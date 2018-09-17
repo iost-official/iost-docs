@@ -26,3 +26,11 @@ This will generate a `build` directory inside the `website` directory containing
 
 ## Deploy
 Complete the deployment by publishing the website/build directory with nginx or github page.
+
+## Directory struct
+* docs: All documents are here
+* docs/assets: All document assets are here
+* website/blog: All blogs are here
+* website/blog/assets: All blog assets are here
+
+The use of assets can refer to: docs/doc004.md
