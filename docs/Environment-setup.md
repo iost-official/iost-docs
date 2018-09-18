@@ -1,5 +1,5 @@
 ---
-id: doc006
+id: Environment-setup
 title: Environment setup
 sidebar_label: Environment setup
 ---

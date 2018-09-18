@@ -1,13 +1,29 @@
 {
   "docs": {
     "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"],
-    "Getting started": ["doc000", "doc001"],
-    "Introduction of IOST blockchain": ["doc002", "doc003", "doc004", "doc005"],
-    "Smart Contract": ["doc006", "doc007", "doc008", "doc009"],
-    "Running IOST node": ["doc010", "doc011", "doc012", "doc013", "doc014", "doc015", "doc016"],
-    "Lucky Bet": ["doc017"]
+    "1. Getting started": ["overview", "Quickstart"],
+    "2. Introduction of IOST blockchain": [
+      "Smart-contract", 
+      "VM", 
+      "Database", 
+      "Network-layer"
+    ],
+    "3. Smart Contract": [
+      "Environment-setup",
+      "How-to-write-a-smart-contract", 
+      "Deployment-and-innovation", 
+      "Contract-Testing"
+    ],
+    "4. Running IOST node": [
+      "Faucet", 
+      "Environment-Configuration", 
+      "iServer", 
+      "iWallet", 
+      "Deployment", 
+      "Running-Testing", 
+      "Metrics"
+    ],
+    "5. Lucky Bet": ["Design-Tech-deta"]
   },
   "docs-other": {
     "First Category": ["doc4", "doc5"]

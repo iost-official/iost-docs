@@ -1,5 +1,5 @@
 ---
-id: doc001
+id: Quickstart
 title: Quickstart
 sidebar_label: Quickstart
 ---
