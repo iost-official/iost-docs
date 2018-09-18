@@ -1,7 +1,6 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "1. Getting started": ["overview", "Quickstart"],
+    "1. Getting started": ["doc1", "Quickstart"],
     "2. Introduction of IOST blockchain": [
       "Smart-contract", 
       "VM", 
@@ -26,6 +25,10 @@
     "5. Lucky Bet": ["Design-Tech-deta"]
   },
   "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "First Category": [
+      "doc4",
+      "doc5",
+      "md-example"
+    ]
   }
 }
