@@ -6,6 +6,7 @@
  */
 
 const React = require('react');
+const ReactGA = require('react-ga');
 
 class Footer extends React.Component {
   docUrl(doc, language) {
@@ -16,6 +17,10 @@ class Footer extends React.Component {
   pageUrl(doc, language) {
     const baseUrl = this.props.config.baseUrl;
     return baseUrl + (language ? `${language}/` : '') + doc;
+  }
+
+  componentDidMount() {
+    ReactGA.initialize('UA-122248491-2');
   }
 
   render() {
@@ -66,7 +71,7 @@ class Footer extends React.Component {
           <div>
             <h5>More</h5>
             <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/">GitHub</a>
+            <a href="https://github.com/iost-official/">GitHub</a>
             <a
               className="github-button"
               href={this.props.config.repoUrl}
