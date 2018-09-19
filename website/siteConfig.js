@@ -94,7 +94,7 @@ const siteConfig = {
   twitterImage: 'img/logo.png',
 
   
-  gaTrackingId: "UA-122248491-2",
+  gaTrackingId: "UA-126034939-1",
   gaGtag: true
 
 
