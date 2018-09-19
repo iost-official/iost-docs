@@ -1,5 +1,15 @@
 /* your custom css */
 
+.fixedHeaderContainer {
+    background-color: #2c2e31;
+}
+
+.navigationSlider .slidingNav ul li.siteNavItemActive a,
+.navigationSlider .slidingNav ul li a:hover,
+.navigationSlider .slidingNav ul li.siteNavGroupActive a {
+    background-color: transparent;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
