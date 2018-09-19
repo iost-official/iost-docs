@@ -38,7 +38,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: '1-getting-started/doc1', label: 'Docs'},
+    {doc: 'en/1-getting-started/doc1', label: 'Docs'},
     // {doc: 'doc4', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
