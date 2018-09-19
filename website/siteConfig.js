@@ -11,7 +11,7 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'IOST',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
     image: '/img/logo.png',
@@ -38,8 +38,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
+    {doc: 'en/1-getting-started/doc1', label: 'Docs'},
+    // {doc: 'doc4', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],
@@ -54,7 +54,8 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#2E8555',
+    // primaryColor: '#2c2e31',
+    primaryColor: '#2e8555',
     secondaryColor: '#205C3B',
   },
 
@@ -91,6 +92,11 @@ const siteConfig = {
   // Open Graph and Twitter card images.
   ogImage: 'img/logo.png',
   twitterImage: 'img/logo.png',
+
+  
+  gaTrackingId: "UA-126034939-1",
+  gaGtag: true
+
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...

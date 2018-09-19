@@ -1,6 +1,8 @@
 ---
 id: doc4
-title: Other Document
+title: doc4
+sidebar_label: doc4
 ---
 
-this is another document
+This is a document 
+

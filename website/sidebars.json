@@ -1,31 +1,39 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "1. Getting started": ["overview", "Quickstart"],
+    "1. Getting started": [
+      "en/1-getting-started/doc1", 
+      "en/1-getting-started/Quickstart"
+    ],
     "2. Introduction of IOST blockchain": [
-      "Smart-contract", 
-      "VM", 
-      "Database", 
-      "Network-layer"
+      "en/2-intro-of-iost/Smart-contract", 
+      "en/2-intro-of-iost/VM", 
+      "en/2-intro-of-iost/Database", 
+      "en/2-intro-of-iost/Network-layer"
     ],
     "3. Smart Contract": [
-      "Environment-setup",
-      "How-to-write-a-smart-contract", 
-      "Deployment-and-innovation", 
-      "Contract-Testing"
+      "en/3-smart-contract/Environment-setup",
+      "en/3-smart-contract/How-to-write-a-smart-contract", 
+      "en/3-smart-contract/Deployment-and-invocation", 
+      "en/3-smart-contract/Contract-Testing"
     ],
     "4. Running IOST node": [
-      "Faucet", 
-      "Environment-Configuration", 
-      "iServer", 
-      "iWallet", 
-      "Deployment", 
-      "Running-Testing", 
-      "Metrics"
+      "en/4-running-iost-node/Faucet", 
+      "en/4-running-iost-node/Environment-Configuration", 
+      "en/4-running-iost-node/iServer", 
+      "en/4-running-iost-node/iWallet", 
+      "en/4-running-iost-node/Deployment", 
+      "en/4-running-iost-node/Running-Testing", 
+      "en/4-running-iost-node/Metrics"
     ],
-    "5. Lucky Bet": ["Design-Tech-deta"]
+    "5. Lucky Bet": [
+      "en/5-lucky-bet/Design-Tech-data"
+    ]
   },
   "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "First Category": [
+      "doc4",
+      "doc5",
+      "md-example"
+    ]
   }
 }
