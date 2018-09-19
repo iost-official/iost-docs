@@ -6,7 +6,6 @@
  */
 
 const React = require('react');
-const ReactGA = require('react-ga');
 
 class Footer extends React.Component {
   docUrl(doc, language) {
@@ -17,10 +16,6 @@ class Footer extends React.Component {
   pageUrl(doc, language) {
     const baseUrl = this.props.config.baseUrl;
     return baseUrl + (language ? `${language}/` : '') + doc;
-  }
-
-  componentDidMount() {
-    ReactGA.initialize('UA-122248491-2');
   }
 
   render() {

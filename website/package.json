@@ -11,7 +11,5 @@
   "devDependencies": {
     "docusaurus": "^1.4.0"
   },
-  "dependencies": {
-    "react-ga": "^2.5.3"
-  }
+  "dependencies": {}
 }
