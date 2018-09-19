@@ -13,7 +13,7 @@
     "3. Smart Contract": [
       "3-smart-contract/Environment-setup",
       "3-smart-contract/How-to-write-a-smart-contract", 
-      "3-smart-contract/Deployment-and-innovation", 
+      "3-smart-contract/Deployment-and-invocation", 
       "3-smart-contract/Contract-Testing"
     ],
     "4. Running IOST node": [
@@ -26,7 +26,7 @@
       "4-running-iost-node/Metrics"
     ],
     "5. Lucky Bet": [
-      "5-lucky-bet/Design-Tech-deta"
+      "5-lucky-bet/Design-Tech-data"
     ]
   },
   "docs-other": {
