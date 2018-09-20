@@ -33,4 +33,4 @@ Complete the deployment by publishing the website/build directory with nginx or 
 * website/blog: All blogs are here
 * website/blog/assets: All blog assets are here
 
-The use of assets can refer to: docs/doc004.md
+The use of assets can refer to: docs/2-intro-of-iost/Database.md
