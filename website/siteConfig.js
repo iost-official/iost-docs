@@ -58,6 +58,7 @@ const siteConfig = {
     primaryColor: '#2e8555',
     secondaryColor: '#205C3B',
   },
+  scrollToTop: true,
 
   /* Custom fonts for website */
   /*
@@ -92,7 +93,8 @@ const siteConfig = {
   // Open Graph and Twitter card images.
   ogImage: 'img/logo.png',
   twitterImage: 'img/logo.png',
-
+  twitter: 'true',
+  twitterUsername: 'IOSToken',
   
   gaTrackingId: "UA-126034939-1",
   gaGtag: true
