@@ -4,4 +4,4 @@ title: Database
 sidebar_label: Database
 ---
 
-![example](assets/doc004/WechatIMG125.jpeg)
+![example](assets/2-intro-of-iost/Database/WechatIMG125.jpeg)
