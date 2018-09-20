@@ -35,7 +35,7 @@ function Versions() {
               <tr>
                 <th>{latestVersion}</th>
                 <td>
-                  <a href="/en">Documentation</a>
+                  <a href="/docs/en/1-getting-started/doc1">Documentation</a>
                 </td>
                 <td>
                   <a href="">Release Notes</a>
@@ -53,7 +53,7 @@ function Versions() {
               <tr>
                 <th>master</th>
                 <td>
-                  <a href="/en">Documentation</a>
+                  <a href="/docs/en/next/1-getting-started/doc1">Documentation</a>
                 </td>
                 <td>
                   <a href="">Release Notes</a>
