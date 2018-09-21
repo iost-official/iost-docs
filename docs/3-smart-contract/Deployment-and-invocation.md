@@ -17,7 +17,7 @@ sidebar_label: Deployment and invocation
 
 ```bash
 # Generate ABI for target js
-iwallet compile -g jsFilePath 
+./iwallet compile -g jsFilePath 
 ```
 
 这个会生成 .js.abi 文件和 .js.after 文件。 
@@ -25,7 +25,7 @@ iwallet compile -g jsFilePath
 
 ```bash
 # Generate .sc for signsers to sign
-iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signer "ID0, ID1..." 
+./iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signer "ID0, ID1..." 
 # Example 
 ./iwallet compile -e 3600 -l 100000 -p 1 ./test.js ./test.js.abi
 ```
@@ -35,7 +35,7 @@ iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signer "ID0, ID1..."
 
 ```bash
 # sign a .sc file with private key
-iwallet sign -k path_of_seckey path_of_txFile
+./iwallet sign -k path_of_seckey path_of_txFile
 # Example 
 ./iwallet sign -k ~/.iwallet/id_secp ./test.sc
 ```
@@ -44,7 +44,7 @@ iwallet sign -k path_of_seckey path_of_txFile
 
 ```bash 
 # publish a transaction with .sig file from every signer
-iwallet publish -k path_of_seckey path_of_txFile path_of_sig0 path_of_sig1 ... 
+./iwallet publish -k path_of_seckey path_of_txFile path_of_sig0 path_of_sig1 ... 
 # Example
-iwallet publish -k ~/.ssh/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1 
+./iwallet publish -k ~/.ssh/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1 
 ```

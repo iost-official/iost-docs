@@ -143,35 +143,35 @@ BlockChain 类提供了所有的系统调用方法， 帮助用户调用官方�
 let BlockChain = (function () {
     let bc = new IOSTBlockchain;
     return {
-        // transfer IOSToken
+        // transfer IOS
         transfer: function (from, to, amount) {
             if (!(amount instanceof Int64)) {
                 amount = new Int64(amount);
             }
             return bc.transfer(from, to, amount.toString());
         },
-        // withdraw IOSToken
+        // withdraw IOST
         withdraw: function (to, amount) {
             if (!(amount instanceof Int64)) {
                 amount = new Int64(amount);
             }
             return bc.withdraw(to, amount.toString());
         },
-        // deposit IOSToken
+        // deposit IOST
         deposit: function (from, amount) {
             if (!(amount instanceof Int64)) {
                 amount = new Int64(amount);
             }
             return bc.deposit(from, amount.toString());
         },
-        // put IOSToken into contract
+        // put IOST into contract
         topUp: function (contract, from, amount) {
             if (!(amount instanceof Int64)) {
                 amount = new Int64(amount);
             }
             return bc.topUp(contract, from, amount.toString());
         },
-        // get IOSToken from contract
+        // get IOST from contract
         countermand: function (contract, to, amount) {
             if (!(amount instanceof Int64)) {
                 amount = new Int64(amount);
