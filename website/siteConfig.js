@@ -55,7 +55,7 @@ const siteConfig = {
   /* Colors for website */
   colors: {
     // primaryColor: '#2c2e31',
-    primaryColor: '#2aa3ef',
+    primaryColor: '#375EAB',
     secondaryColor: '#205C3B',
   },
   scrollToTop: true,
