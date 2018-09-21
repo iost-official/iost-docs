@@ -8,5 +8,6 @@ sidebar_label: Faucet - how to get IOST token
 
 - Open [Explore.io](http://explorer.iost.io/applyIOST)
 - Fill the form.
-- You will get a public key with private key, save it carefully. 
-参照部署与更新中
+- You will get a IOST address with private key, save it carefully. 
+
+You can use the IOST address as your account. 
