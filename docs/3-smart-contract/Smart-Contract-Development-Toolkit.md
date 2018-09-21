@@ -65,8 +65,8 @@ Not enough non-option arguments: got 0, need at least 1
 
 
 ## Hello BlockChain
-### New Project
-> scaf new helloBlockChain
+#### New Project
+> scaf new <contract_name>
 
 project is generated in current directory, with initialized structure
 
@@ -84,10 +84,10 @@ abi  contract  libjs  test
 ```
 
 
-### Add a Contract
-> cd helloBlockChain
+#### Add a Contract
+> cd <contract_name>
 
-> scaf add contract helloContract
+> scaf add contract <contract_name>
 
 'add <item>' command should be executed in project directory
 
@@ -137,10 +137,12 @@ usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat abi/helloContract.json
 ```
 
 
-### Add a Function
-> scaf add func helloContract hello string p0
+#### Add a Function
+> scaf add func <contract_name> <function_name> [type0] [parameter0] [type1] [parameter1] ...
 
-add a func named hello to helloContract contract class. 'string p0' means function hello has one parameter with type string and name p0
+add a func named hello to helloContract contract class. 'string p0' means function hello has one parameter with type string and name p0.
+
+'type' of parameter should be one of ['string', 'number', 'bool', 'json']
 
 function hello(p0) and its corresponding abi infomation is added into helloContract.js and helloContract.json
 
@@ -170,8 +172,8 @@ In function hello(p0), we log the result of two system functions, BlockChain.tra
 Cause system functions are mocked, these functions will always return same valid results.
 
 
-### Add a test
-> scaf add test helloContract test1
+#### Add a test
+> scaf add test <contract_name> <test_name>
 
 add a test named test1 for helloContract contract, helloContract_test1.js is created in test/ with just one require statement
 
@@ -193,8 +195,8 @@ ins0.hello("iost");
 ```
 
 
-### Run test
-> scaf test helloContract
+#### Run test
+> scaf test <contract_name>
 
 scaf test <contract_name> will run all the tests of specific contract
 
@@ -206,8 +208,8 @@ transfer  a b 100
 {"parent_hash":"0x00","number":10,"witness":"IOSTwitness","time":1537000000}
 hello  iost
 ```
-### Compile the Contract
-> scaf compile helloContract
+#### Compile the Contract
+> scaf compile <contract_name>
 
 compiled contract file and abi file is created in build/, which you can use to upload to an iost blockchain
 
