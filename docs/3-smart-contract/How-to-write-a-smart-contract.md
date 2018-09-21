@@ -23,7 +23,7 @@ IOST 内部使用了 [Chrome V8](https://developers.google.com/v8/) 引擎来进
 - Init函数 为每个智能合约上链时被调用的函数， 一般可以用来初始化智能合约使用到的全局数据。
 - Construct函数 为每个智能合约被调用时会首先执行的函数， 一般用来初始化智能合约类， 读取被持久化的智能合约数据。
 
-除了这两个函数之外， 开发者可以根据自己需要定义其他函数， 以供自己与他人使用。 下面是一个简单的智能合约的模板。
+除了这两个函数之外， 开发者可以根据自己需要定义其他函数， 以供自己与他人使用。 下面是一个简单的智能合约的模板, 实现了 Transfer 功能。
 
 ```javascript
 class Test {
@@ -37,12 +37,13 @@ class Test {
 
     transfer(from, to, amount) {
         //Function called by other
+        BlockChain.transfer(from, to, amount)
+        
     }
 
 };
 module.exports = Test;
 ```
-
 ### 内部类使用
 #### IOSTContractStorage 类
 运行时所有的变量都会存储在内存中。 IOST 提供了```IOSTContractStorage``` 类来帮助开发者持久化智能合约中需要使用到的数据。 
