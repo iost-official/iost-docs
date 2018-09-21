@@ -37,7 +37,7 @@ iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signer "ID0, ID1..."
 # sign a .sc file with private key
 iwallet sign -k path_of_seckey path_of_txFile
 # Example 
-./iwallet sign -k ~/.ssh/id_secp ./test.sc
+./iwallet sign -k ~/.iwallet/id_secp ./test.sc
 ```
 
 最后使用 Transaction 的 .sc 文件， 和所有的签名文件 .sig， 发布该合约到链上。
