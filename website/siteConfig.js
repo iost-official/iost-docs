@@ -21,7 +21,7 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'IOST', // Title for your website.
+  title: 'IOST Documentation', // Title for your website.
   tagline: 'IOST documentation',
   url: 'http://iostdoc.duoladayin.com/', // Your website URL
   baseUrl: '/', // Base URL for your project */
@@ -79,7 +79,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-dark',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
