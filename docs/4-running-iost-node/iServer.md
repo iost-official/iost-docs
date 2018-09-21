@@ -5,14 +5,13 @@ sidebar_label: iServer
 ---
 
 ### 启动 iServer
-iServer 是IOST节点的服务，其中包含共识、同步、交易池和网络等模块。启动iServer即可部署一个IOST的节点。
+IOST节点服务iServer，包含共识、同步、交易池和网络等模块。启动iServer服务即可部署IOST的节点。
 
-* 在项目根目录编译项目，运行命令
+* 在项目根目录编译项目，运行以下命令，iServer的可执行文件会保存在项目根目录下的target文件夹下。
 
 ```
 make build
 ```
-iServer的可执行文件会保存在项目根目录下的target文件夹下。
 
 * 运行以下命令启动IOST节点。
 
@@ -28,6 +27,8 @@ acc:
   seckey: YOUR_SECERT_KEY
   algorithm: ed25519
 ```
+account设置节点账户信息。
+
 
 ```
 genesis:
@@ -37,19 +38,23 @@ genesis:
   - "21000000000"
   votecontractpath: config/
 ```
+genesis设置创世块信息，witnessinfo设置创世块的账号和数额。
+
 
 ```
-
 vm:
   jspath: vm/v8vm/v8/libjs/
   loglevel: ""
 
 ```
 
+
 ```
 db:
   ldbpath: storage/
 ```
+db配置数据库存储位置。
+
 
 ```
 p2p:
@@ -59,12 +64,16 @@ p2p:
   version: 1
   datapath: p2p/
 ```
+p2p配置网络信息，需设置seednodes来连入网络。
+
 
 ```
 rpc:
   jsonport: 30001
   grpcport: 30002
 ```
+rpc配置RPC服务的端口。
+
 
 ```
 log:
@@ -77,6 +86,8 @@ log:
     enable: true
   asyncwrite: true
 ```
+log配置日志服务。
+
 
 ```
 metrics:
