@@ -16,10 +16,11 @@ git clone https://github.com/iost-official/Go-IOS-Protocol.git
 
 然后需要在 ```Go-IOS-Protocol/cmd/playground/contract``` 下安装 ```node```与```npm```
 
+### 安装 ```Node```
 
-[安装 ```Node``` ](https://nodejs.org/zh-cn/download/package-manager/#macos)
+参考 [官方文档](https://nodejs.org/zh-cn/download/package-manager/#macos)
 
-安装```npm```
+### 安装```npm```
 
 ```git
 cd Go-IOS-Protocol/cmd/playground/contract
