@@ -22,7 +22,7 @@ npm install
 ```
 
 
-## Write a smart contract
+## 3. Write a smart contract
 IOST smart contract supports Javascript. A sample smart contract looks like:
 
 ```
@@ -45,7 +45,7 @@ class Sample {
 module.exports = Sample;
 ```
 
-## Deployment
+## 4. Deployment
 
 The deployment requires the following steps:
 
