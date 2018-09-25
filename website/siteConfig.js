@@ -23,7 +23,7 @@ const users = [
 const siteConfig = {
   title: 'IOST Documentation', // Title for your website.
   tagline: 'IOST documentation',
-  url: 'http://iostdoc.duoladayin.com/', // Your website URL
+  url: 'http://developers.iost.io/', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
