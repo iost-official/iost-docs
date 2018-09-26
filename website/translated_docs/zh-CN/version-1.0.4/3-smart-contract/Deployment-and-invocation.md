@@ -46,5 +46,5 @@ sidebar_label: 部署和调用
 # publish a transaction with .sig file from every signer
 ./iwallet publish -k path_of_seckey path_of_txFile path_of_sig0 path_of_sig1 ...
 # Example
-./iwallet publish -k ~/.ssh/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1
+./iwallet publish -k ~/.iwallet/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1
 ```
