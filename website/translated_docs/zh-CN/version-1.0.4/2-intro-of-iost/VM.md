@@ -39,9 +39,9 @@ Sandbox作为最终执行JavaScript智能合约的载体，对上承接V8VM，�
 | 类库          | 功能   |
 | --------     | -----  |
 | Blockchain   | 类Node.js的模块系统，包括模块缓存、模块预编译、模块循环调用等等。 |
-| Event        | JavaScript对State数据库的读写，并在合约执行失败或者出现异常的时候完成回退。   |
+| Event        | 事件实现，JavaScript合约内部对event的调用在完成上链后都可以得到回调。 |
 | NativeModule | 区块链相关功能函数实现，包括transfer、withdraw以及获取当前block、当前tx信息。    |
-| Storage      | 事件实现，JavaScript合约内部对event的调用在完成上链后都可以得到回调。    |
+| Storage      | JavaScript对State数据库的读写，并在合约执行失败或者出现异常的时候完成回退。    |
 
 * <font color="#0092ff">Execute，</font>
 最终执行JavaScript智能合约，IOST V8VM会开辟单独的线程执行合约，并监控当前执行状态，当发生异常、使用资源超过限制、执行时间超过最大限制时，会调用Terminate结束当前合约执行，返回异常结果。
