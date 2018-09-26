@@ -65,6 +65,7 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>More</h5>
+            <a href="https://iost.io">IOST Home</a>
             <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
             <a href="https://github.com/iost-official/">GitHub</a>
             <a
@@ -75,7 +76,7 @@ class Footer extends React.Component {
               data-show-count="true"
               data-count-aria-label="# stargazers on GitHub"
               aria-label="Star this project on GitHub">
-              Star
+              IOST
             </a>
           </div>
         </section>

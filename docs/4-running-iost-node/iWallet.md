@@ -4,15 +4,13 @@ title: iWallet
 sidebar_label: iWallet
 ---
 
-# iwallet instructions
-**IOSBlockchain** 由两个程序组成，`iserver`是核心程序，多个`iserver`组成了区块链网络。`iwallet`是命令行工具，用于与区块链（iserver）交互。
+**IOSBlockchain** has two programs: `iServer` is the core program and multiple `iServer` forms the blockchain network. `iWallet` is a command line tool to interact with `iServer` blockchain.
 
-系统`build`成功后，`iwallet`在工程的`target/`目录中
+After successfully `build`ing the system, `iWallet` is in the `target/` folder in the project directory.
 
 ![iwallet1](assets/4-running-iost-node/iWallet/iwallet.png)
 
-
-## 命令介绍 
+## Commands
 
 |Command      |Contents                                |Description
 |:-----------:|:--------------------------------------:|:--------------------------------------------|
@@ -27,10 +25,11 @@ sidebar_label: iWallet
 |sign         |Sign to .sc file                        |  ./iwallet sign -k ~/.iwallet/id_ed25519 ./test.sc
 |transaction  |find transaction by transaction hash    |  ./iwallet transaction HUVdKWhstUHbdHKiZma4YRHGQZwVXerh75hKcXTdu39t
 
-## 命令实例
+## Command Examples
+
 ### help:
 
-查看`iwallet`帮助信息
+Look up `iwallet` helping information
 
 ```
 ./iwallet -h
@@ -38,19 +37,18 @@ sidebar_label: iWallet
 
 ### account:
 
-创建IOST账户，账号ID对应的公钥和私钥默认保存在~/.iwallet/目录
+Create an IOST accouunt, with corresponding public and private keys saved in the `~/.iwallet/` directory.
 
 ```
 ./iwallet account -n id
 return:
 the iost account ID is:
 IOSTPVgmuin4vxcqxLvNQ2XnRxPk64MtDkanQEZ4ttkysbjPD6XiW
-
 ```
 
 ### balance:
 
-查询账户余额
+Look up account balance:
 
 ```
 ./iwallet balance IOSTPVgmuin4vxcqxLvNQ2XnRxPk64MtDkanQEZ4ttkysbjPD6XiW
@@ -60,7 +58,7 @@ return:
 
 ### block:
 
-通过block号或者hash，查询block
+Look up block with hash:
 
 ```
 # 查询0号block数据
@@ -71,12 +69,11 @@ return:
 
 ### call:
 
-call命令用于调用链上合约中的方法
-
+You can `call` an on-chain contract's methods.
 
 ```
-# 调用iost.system合约中的Transfer方法，账号IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP转给账号IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk 100token，
-# -k为指定私钥地址，--expiration为指定交易超时时间
+# Calls iost.system contract's Transfer method，Account IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP transfers Account IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk 100 token,
+# -k is private key，--expiration specifies timeout
 ./iwallet call "iost.system" "Transfer" '["IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP", "IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk", 100]' -k ~/.iwallet/id_ed25519 --expiration 50
 return:
 ok
@@ -85,7 +82,7 @@ ok
 
 ### net:
 
-net命令用于获取iserver的网络地址
+`net` command obtains the network address of iserver.
 
 ```
 ./iwallet net
@@ -96,7 +93,7 @@ netId: 12D3KooWNdJgdRAAYoHvrYgCHhNEXS9p7LshjmJWJhDApMXCfahk
 
 ### transaction:
 
-transaction命令用于查询
+`transaction` command is used for look-ups
 
 ```
 ./iwallet transaction 8LaUT2gbZeTG8Ev988DELNjCWSMQ369uGHAhUUWEHxuV
@@ -107,4 +104,4 @@ txRaw:<time:1537540108548894481 expiration:1537540158548891677 gasLimit:1000 gas
 
 ### compile/publish/sign:
 
-命令使用请参照[Deployment-and-invocation](../3-smart-contract/Deployment-and-invocation)
+Please refer to [Deployment-and-invocation](../3-smart-contract/Deployment-and-invocation)

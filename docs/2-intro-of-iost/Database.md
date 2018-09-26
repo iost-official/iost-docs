@@ -4,12 +4,12 @@ title: Database
 sidebar_label: Database
 ---
 
-IOST数据库层的整体架构图如下所示：
+The database layer of IOST is structured as below:
 
 ![statedb](assets/2-intro-of-iost/Database/statedb.png)
 
-最底层为Storage，提供最终的持久化存储。我们采用最简单的key-value数据库的形式，通过写不同数据库的backend可以实现不同数据库的接入。
+The lowest level is Storage, which provides final persistence of data. We adopt the simplest key-value database form factor, and achieve access to different databases by writing to different database backends.
 
-为了更加符合区块链数据处理的模式，我们实现了一个MVCC的cache进行内存中多版本的并发处理与写缓存机制，这样可以提高性能与易用性。
+Due to the paradigm of data handling on the blockchain, we use MVCC cache to process requests and cache them concurrently in memory. This improves usability and performance.
 
-最外层是Commit Manager，用来进行多版本数据的管理与维护，这样可以让上层切换数据库至任意版本，并当作普通数据库进行使用。
+The out-most layer is Commit Manager, which handles the management and maintenance of multi-version data. Higher layers, therefore, can treat the interface as a typical database and switch to any version at will.

@@ -97,12 +97,12 @@ const siteConfig = {
   twitterUsername: 'IOSToken',
   
   gaTrackingId: "UA-126034939-1",
-  gaGtag: true
+  gaGtag: true,
 
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/iost-official/Go-IOS-Protocol',
 };
 
 module.exports = siteConfig;

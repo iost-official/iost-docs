@@ -5,16 +5,16 @@ sidebar_label: Overview
 original_id: doc1
 ---
 
-Welcome to IOST’s documentation page!
+Welcome to IOST documentations!
 
-IOST is a new generation of high-performance public blockchains. The infrastructure is scalable, stable and allow low level customization for different business requirements. After IOST Testnet release, we have welcomed many new developers to the IOST technical community.
+IOST is a new generation of high-performance public blockchains. The infrastructure is scalable, stable and allows low level customization for different business requirements. After the launch of IOST Testnet, we have welcomed many new developers to the IOST technical community.
 
-This documentation is an entry to the IOST ecosystem for new developers as well as experienced. The IOST community and IOST core team maintain the documentation - we welcome you to help us with this! The documentation serves the 
-purpose of providing a a clear understanding of IOST technology and ecosystem. 
+These documentations are an entry point to IOST ecosystem for new developers as well as those who are experienced. The documentations are maintained both by the IOST community and by the core team — your help is always welcome! The documentation serves the purpose of providing a clear understanding of IOST technology and ecosystem.
 
-Prerequisites for getting started with development on the IOST networks are:
+There are some prerequisites to get started with development on the IOST networks:
+
 * Mainstream coding and development experience
-* NO need for previous Blockchain development experience
+* No need for previous Blockchain development experience
 * Understanding of IOST basics or your business scenario/requirements
 
 We sincerely welcome developers to IOST!

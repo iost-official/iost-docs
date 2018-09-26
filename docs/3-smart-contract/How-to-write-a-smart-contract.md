@@ -1,29 +1,33 @@
 ---
 id: How-to-write-a-smart-contract
-title: How to write a smart contract
-sidebar_label: How to write a smart contract
+title: How to Write a Smart Contract
+sidebar_label: How to Write a Smart Contract
 ---
 
+## Basic Information
 
-### 基本信息
-#### 支持语言
-当前IOST支持使用JavaScript编写的智能合约。 
+### Language supported
 
-#### 运行环境
-IOST 内部使用了 [Chrome V8](https://developers.google.com/v8/) 引擎来进行智能合约的运行。
+Currently, IOST smart contracts supports JavaScript.
 
-### 智能合约编写规则
+### Runtime environment
 
-#### 智能合约的实现
-在IOST中， 智能合约会被编写成一个JavaScript中的类(```class```)。 使用时需要显示地去```export```该类。
+Internally, IOST employs [Chrome V8](https://developers.google.com/v8/) engine to run the contracts.
 
-##### 智能合约结构
-智能合约编写的类必须包含 Init函数 与 Constructor函数。
+## Smart Contract Programming Guides
 
-- Init函数 为每个智能合约上链时被调用的函数， 一般可以用来初始化智能合约使用到的全局数据。
-- Construct函数 为每个智能合约被调用时会首先执行的函数， 一般用来初始化智能合约类， 读取被持久化的智能合约数据。
+### Implementing smart contracts
 
-除了这两个函数之外， 开发者可以根据自己需要定义其他函数， 以供自己与他人使用。 下面是一个简单的智能合约的模板, 实现了 Transfer 功能。
+In IOST, smart contracts will be coded into a JavaScript `class`. When using it, you need to explicitly `export` the class.
+
+#### Structure of a smart contract
+
+A smart contract class must include `Init` and `Constructor` functions.
+
+- `Init` is run when a contract is deployed. It usually contains code to initialize properties of the contract.
+- `Construct` is run when a contract is called. It's usually used to initialize classes of the smart contract, and read persistent smart contract data.
+
+Apart from these two functions, developers can define other functions as needed. Below is a template of a simple smart contract that has `Transfer` functionalities.
 
 ```javascript
 class Test {
@@ -38,17 +42,21 @@ class Test {
     transfer(from, to, amount) {
         //Function called by other
         BlockChain.transfer(from, to, amount)
-        
+
     }
 
 };
 module.exports = Test;
 ```
-### 内部类使用
-#### IOSTContractStorage 类
-运行时所有的变量都会存储在内存中。 IOST 提供了```IOSTContractStorage``` 类来帮助开发者持久化智能合约中需要使用到的数据。 
 
-开发者可以使用该类来在多次智能合约调用之间同步数据。
+## Using an Internal Class
+
+### IOSTContra
+ctStorage Class
+
+All variables will be stored in memory in runtime. IOST provides `IOSTContractStorage` class to help developers persist data in smart contracts.
+
+Developers may use this class to synchronize data during multiple contract calls.
 
 ```javascript
 let IOSTContractStorage = (function () {
@@ -125,7 +133,7 @@ let IOSTContractStorage = (function () {
         // map Delete a (k, f) pair. use k + f to delete value.
         // mapDel(key, field)
         mapDel: mapStorageObj.mapDel,
-        // currently not suportted, dont't use. 
+        // currently not suportted, dont't use.
         globalGet: globalStorageObj.get,
     }
 })();
@@ -134,10 +142,11 @@ module.exports = IOSTContractStorage;
 
 ```
 
-#### BlockChain 类
-BlockChain 类提供了所有的系统调用方法， 帮助用户调用官方提供的一系列api。 包括但不限于转账， 汇款， 调用其他智能合约， 查询block， transaction等。 
+### BlockChain class
 
-详细接口列表如下: 
+BlockChain class provides all methods for the system to call, and helps the user to call official APIs, including but not limited to transfering, wiring money, calling other contracts, and looking up a block or transaction.
+
+Detailed interfaces are listed below:
 
 ```javascript
 let BlockChain = (function () {
@@ -194,7 +203,7 @@ let BlockChain = (function () {
         callWithReceipt: function (contract, api, args) {
             return bc.callWithReceipt(contract, api, args);
         },
-        // 
+        //
         requireAuth: function (pubKey) {
             return bc.requireAuth(pubKey);
         },
@@ -209,8 +218,9 @@ module.exports = BlockChain;
 ```
 
 
-#### Int64 类
-当前 IOST 仅支持Int64类型的大数。 请尽量不要绕过IOST官方接口实现其他大数类型。 
+### Int64 Type
+
+Currently, IOST only support big numbers of type `Int64`. Please refrain from using other number types.
 
 ```javascript
 'use strict';
@@ -274,7 +284,7 @@ class Int64 {
         let rs = this.number.times(arg.number);
         return new this.constructor(rs);
     }
-    
+
     // Div n
     div(n) {
         let arg = this._checkArgument(n);

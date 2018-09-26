@@ -5,22 +5,23 @@ sidebar_label: iServer
 original_id: iServer
 ---
 
-### 启动 iServer
-IOST节点服务iServer，包含共识、同步、交易池和网络等模块。启动iServer服务即可部署IOST的节点。
+## Launching iServer
 
-* 在项目根目录编译项目，运行以下命令，iServer的可执行文件会保存在项目根目录下的target文件夹下。
+IOST node service iServer includes consensus, synchronization, transaction pool and network modules. Launch iServer service to deploy IOST nodes.
+
+* To compile the project in the root directory, run the following command and the executables will be saved the `target` directory in the root folder.
 
 ```
 make build
 ```
 
-* 运行以下命令启动IOST节点。
+* Use the below command to run the IOST node
 
 ```
 ./target/iserver -f ./config/iserver.yaml
 ```
 
-* 修改./config/iserver.yaml 配置文件。
+* Change ./config/iserver.yaml configuration file
 
 ```
 acc:
@@ -28,8 +29,8 @@ acc:
   seckey: YOUR_SECERT_KEY
   algorithm: ed25519
 ```
-account设置节点账户信息。
 
+* Set node account information
 
 ```
 genesis:
@@ -39,7 +40,8 @@ genesis:
   - "21000000000"
   votecontractpath: config/
 ```
-genesis设置创世块信息，witnessinfo设置创世块的账号和数额。
+
+* Set up genesis block information and witness the block and amount.
 
 
 ```
@@ -54,7 +56,8 @@ vm:
 db:
   ldbpath: storage/
 ```
-db配置数据库存储位置。
+
+Set up database location.
 
 
 ```
@@ -65,15 +68,16 @@ p2p:
   version: 1
   datapath: p2p/
 ```
-p2p配置网络信息，需设置seednodes来连入网络。
 
+Set up network information. This requires setting up seed nodes to access the network.
 
 ```
 rpc:
   jsonport: 30001
   grpcport: 30002
 ```
-rpc配置RPC服务的端口。
+
+Set up RPC ports.
 
 
 ```
@@ -87,7 +91,8 @@ log:
     enable: true
   asyncwrite: true
 ```
-log配置日志服务。
+
+Set up logging services.
 
 
 ```

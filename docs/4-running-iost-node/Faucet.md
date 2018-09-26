@@ -4,8 +4,6 @@ title: Faucet - how to get IOST token
 sidebar_label: Faucet - how to get IOST token
 ---
 
-## Get Test IOST From Explore.io
-
 - Open [explorer.iost.io](http://explorer.iost.io/applyIOST)
 - Fill the form with correct information. (The Address is IOST Account Address, if don't have one, click Generate Address.)
 - If the address is generated, you will get a IOST address with private key, please save it carefully. 

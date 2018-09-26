@@ -4,9 +4,10 @@ title: Quickstart
 sidebar_label: Quickstart
 ---
 
-# The easiest way
+The Easiest Way
 
 ## 1. Clone the repository
+
 ```
 git clone https://github.com/iost-official/Go-IOS-Protocol.git
 cd Go-IOS-Protocol
@@ -14,16 +15,16 @@ cd Go-IOS-Protocol
 
 ## 2. Install the dependencies
 
-Just run this to install all dependencies:
+Run this command to install all dependencies:
 
 ```
 cd Go-IOS-Protocol/cmd/playground/contract
 npm install
 ```
 
+## 3. Write your first smart contract
 
-## 3. Write a smart contract
-IOST smart contract supports Javascript. A sample smart contract looks like:
+IOST smart contract supports JavaScript. A sample smart contract may look like this:
 
 ```
 class Sample {
@@ -38,18 +39,18 @@ class Sample {
     transfer(from, to, amount) {
         //Function called by other
         BlockChain.transfer(from, to, amount)
-        
+
     }
 
 };
 module.exports = Sample;
 ```
 
-## 4. Deployment
+## 4. Deploy the contract
 
-The deployment requires the following steps:
+Deployment requires the following steps:
 
-- Compile js to generate ABI files
-- Generate a package file for transaction using .js and .abi files .sc
-- Issue the .sc file to each signer, and the signer generates the .sig file
-- Collect .sig files and .sc files, publish to the main chain
+- Compile .js files to generate ABI files
+- Generate a package file for transactions with .js, .abi and .sc files
+- Issue the .sc file to each signer, and the signers generate the .sig files
+- Collect .sig files and .sc files. Publish the files to the main chain

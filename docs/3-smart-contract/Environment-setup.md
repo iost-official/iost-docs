@@ -4,23 +4,23 @@ title: Environment setup
 sidebar_label: Environment setup
 ---
 
-当前 IOST 的智能合约编写仍旧依赖于 [Go-IOS-Protocol](https://github.com/iost-official/Go-IOS-Protocol) 
+Currently, IOST smart contracts programming depends on [Go-IOS-Protocol](https://github.com/iost-official/Go-IOS-Protocol).
 
-IOST 将在未来的开发中把智能合约编写与 [Go-IOS-Protocol](https://github.com/iost-official/Go-IOS-Protocol) 进行分离， 未来版本中智能合约的编写将不再依赖于 [Go-IOS-Protocol](https://github.com/iost-official/Go-IOS-Protocol) 。
+In the future, IOST will become independent of GO-IOS-Protocol.
 
-开发者需要首先克隆整个分支
+Developers needs to clone the entire branch:
 
 ```git
 git clone https://github.com/iost-official/Go-IOS-Protocol.git
 ```
 
-然后需要在 ```Go-IOS-Protocol/cmd/playground/contract``` 下安装 ```node```与```npm```
+Then, install `node` and `npm` in the directory `Go-IOS-Protocol/cmd/playground/contract`.
 
-### 安装 ```Node```
+## Installing ```Node```
 
-参考 [官方文档](https://nodejs.org/zh-cn/download/package-manager/#macos)
+Please refer to [Official Documents](https://nodejs.org/zh-cn/download/package-manager/#macos)
 
-### 安装```npm```
+## Installing```npm```
 
 ```git
 cd Go-IOS-Protocol/cmd/playground/contract
