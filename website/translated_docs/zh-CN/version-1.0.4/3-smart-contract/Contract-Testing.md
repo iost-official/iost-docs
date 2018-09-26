@@ -18,8 +18,7 @@ docker run -d -p 30002:30002 iostio/iost-node:2.0.0
 
 ### 注意事项
 
-1. 我们的docker镜像本地是使用的30002端口， 而iwallet默认对接的是30302端口， 如果我们使用iwallet 需要在后面加上 "-s localhost::30002" 然后再加上其他命令
-2. 在我们的这个镜像中， 所有的IOST都被存在了一个初始账户中。 该账户有21000000000个IOST， 我们如果需要使用其他账户发起交易， 或者发布合约， 需要先使用该账户中进行IOST转账。 因为任何的IOST交易都会消耗Gas， 而所有币都在初始账户中， 意味着一开始只有初始账户可以付得起Gas费用， 只有初始账户可以发起交易。
+在我们的这个镜像中， 所有的IOST都被存在了一个初始账户中。 该账户有21000000000个IOST， 我们如果需要使用其他账户发起交易， 或者发布合约， 需要先使用该账户中进行IOST转账。 因为任何的IOST交易都会消耗Gas， 而所有币都在初始账户中， 意味着一开始只有初始账户可以付得起Gas费用， 只有初始账户可以发起交易。
 
 - 初始账户账号 `IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C`
 - 初始账户秘钥 `1rANSfcRzr4HkhbUFZ7L1Zp69JZZHiDDq5v7dNSbbEqeU4jxy3fszV4HGiaLQEyqVpS1dKT9g7zCVRxBVzuiUzB`
