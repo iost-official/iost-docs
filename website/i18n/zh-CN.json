@@ -22,8 +22,8 @@
           "sidebar_label": "Network layer"
         },
         "2-intro-of-iost/Smart-contract": {
-          "title": "Smart contract",
-          "sidebar_label": "Smart contract"
+          "title": "Smart Contract",
+          "sidebar_label": "Smart Contract"
         },
         "2-intro-of-iost/VM": {
           "title": "VM",
@@ -42,8 +42,8 @@
           "sidebar_label": "Environment setup"
         },
         "3-smart-contract/How-to-write-a-smart-contract": {
-          "title": "How to write a smart contract",
-          "sidebar_label": "How to write a smart contract"
+          "title": "How to Write a Smart Contract",
+          "sidebar_label": "How to Write a Smart Contract"
         },
         "3-smart-contract/Smart-Contract-Development-Toolkit": {
           "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
@@ -73,13 +73,9 @@
           "title": "Metrics",
           "sidebar_label": "Metrics"
         },
-        "4-running-iost-node/Running-Testing": {
-          "title": "Testing",
-          "sidebar_label": "Testing"
-        },
         "5-lucky-bet/Design-Tech-data": {
-          "title": "Design & Tech data",
-          "sidebar_label": "Design & Tech data"
+          "title": "Lucky Bet Smart Contract",
+          "sidebar_label": "Lucky Bet Smart Contract"
         },
         "doc2": {
           "title": "Doc2"
@@ -87,103 +83,89 @@
         "doc3": {
           "title": "This is document number 3"
         },
-        "doc4": {
-          "title": "doc4",
-          "sidebar_label": "doc4"
-        },
-        "doc5": {
-          "title": "Fifth Document"
-        },
         "md-example": {
           "title": "Markdown example",
           "sidebar_label": "Markdown example"
         },
-        "version-1.0.0-doc1": {
+        "version-1.0.4-doc1": {
           "title": "Overview",
           "sidebar_label": "Overview"
         },
-        "version-1.0.0-Quickstart": {
+        "version-1.0.4-Quickstart": {
           "title": "Quickstart",
           "sidebar_label": "Quickstart"
         },
-        "version-1.0.0-Database": {
+        "version-1.0.4-Database": {
           "title": "Database",
           "sidebar_label": "Database"
         },
-        "version-1.0.0-Network-layer": {
+        "version-1.0.4-Network-layer": {
           "title": "Network layer",
           "sidebar_label": "Network layer"
         },
-        "version-1.0.0-Smart-contract": {
-          "title": "Smart contract",
-          "sidebar_label": "Smart contract"
+        "version-1.0.4-Smart-contract": {
+          "title": "Smart Contract",
+          "sidebar_label": "Smart Contract"
         },
-        "version-1.0.0-VM": {
+        "version-1.0.4-VM": {
           "title": "VM",
           "sidebar_label": "VM"
         },
-        "version-1.0.0-Contract-Testing": {
-          "title": "Testing",
-          "sidebar_label": "Testing"
+        "version-1.0.4-Contract-Testing": {
+          "title": "测试",
+          "sidebar_label": "测试"
         },
-        "version-1.0.0-Deployment-and-invocation": {
+        "version-1.0.4-Deployment-and-invocation": {
           "title": "Deployment and invocation",
           "sidebar_label": "Deployment and invocation"
         },
-        "version-1.0.0-Environment-setup": {
+        "version-1.0.4-Environment-setup": {
           "title": "Environment setup",
           "sidebar_label": "Environment setup"
         },
-        "version-1.0.0-How-to-write-a-smart-contract": {
-          "title": "How to write a smart contract",
-          "sidebar_label": "How to write a smart contract"
+        "version-1.0.4-How-to-write-a-smart-contract": {
+          "title": "How to Write a Smart Contract",
+          "sidebar_label": "How to Write a Smart Contract"
         },
-        "version-1.0.0-Deployment": {
+        "version-1.0.4-Smart-Contract-Development-Toolkit": {
+          "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
+          "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
+        },
+        "version-1.0.4-Deployment": {
           "title": "Deployment",
           "sidebar_label": "Deployment"
         },
-        "version-1.0.0-Environment-Configuration": {
+        "version-1.0.4-Environment-Configuration": {
           "title": "Environment & Configuration",
           "sidebar_label": "Environment & Configuration"
         },
-        "version-1.0.0-Faucet": {
+        "version-1.0.4-Faucet": {
           "title": "Faucet - how to get IOST token",
           "sidebar_label": "Faucet - how to get IOST token"
         },
-        "version-1.0.0-iServer": {
+        "version-1.0.4-iServer": {
           "title": "iServer",
           "sidebar_label": "iServer"
         },
-        "version-1.0.0-iWallet": {
+        "version-1.0.4-iWallet": {
           "title": "iWallet",
           "sidebar_label": "iWallet"
         },
-        "version-1.0.0-Metrics": {
+        "version-1.0.4-Metrics": {
           "title": "Metrics",
           "sidebar_label": "Metrics"
         },
-        "version-1.0.0-Running-Testing": {
-          "title": "Testing",
-          "sidebar_label": "Testing"
+        "version-1.0.4-Design-Tech-data": {
+          "title": "Lucky Bet Smart Contract",
+          "sidebar_label": "Lucky Bet Smart Contract"
         },
-        "version-1.0.0-Design-Tech-data": {
-          "title": "Design & Tech data",
-          "sidebar_label": "Design & Tech data"
-        },
-        "version-1.0.0-doc2": {
+        "version-1.0.4-doc2": {
           "title": "Doc2"
         },
-        "version-1.0.0-doc3": {
+        "version-1.0.4-doc3": {
           "title": "This is document number 3"
         },
-        "version-1.0.0-doc4": {
-          "title": "doc4",
-          "sidebar_label": "doc4"
-        },
-        "version-1.0.0-doc5": {
-          "title": "Fifth Document"
-        },
-        "version-1.0.0-md-example": {
+        "version-1.0.4-md-example": {
           "title": "Markdown example",
           "sidebar_label": "Markdown example"
         }
@@ -191,7 +173,8 @@
       "links": {
         "Docs": "文档",
         "Help": "帮助",
-        "Blog": "博客"
+        "Blog": "博客",
+        "Roadmap": "路线图"
       },
       "categories": {
         "1. Getting started": "1. Getting started",
