@@ -96,11 +96,16 @@ EOS是继以太坊之后，又一现象级的公链应用，有自己独立的�
 
 V8VM架构的核心是<font color="#0092ff">VMManger</font>，主要有如下三个功能：
 
+![](assets/iost-v8vm-design/V8VM.png)
+
 * <font color="#0092ff">VM入口，</font>对外接收其他模块的请求，包括RPC请求、Block验证、Tx验证等等，预处理、格式化后交给VMWorker执行。
 * <font color="#0092ff">管理VMWorker生命周期，</font>根据当前系统负载灵活设置worker数量，实现worker复用；同时在worker内部实现了JavaScript代码热启动、热点Sandbox快照持久化功能，减少了频繁创建虚拟机、频繁载入相同代码引发的高负载、内存飙升问题，降低系统消耗的同时，又极大的提高了系统吞吐量，使得IOST V8VM在处理fomo3D这种典型的海量用户合约时游刃有余。
 * <font color="#0092ff">管理与State数据库的交互，</font>保证每一笔IOST交易的原子性，在合约执行出错，或者gas不足的情况下，能够回退整个交易。同时在State数据库中，也是实现了两级内存缓存，最终才会flush到RocksDB中。
 
 #### 2. Sandbox核心设计
+
+![](assets/iost-v8vm-design/sandbox.png)
+
 Sandbox作为最终执行JavaScript智能合约的载体，对上承接V8VM，对下封装Chrome V8完成调用，主要分为Compile阶段和Execute阶段：
 
 > Compile阶段
