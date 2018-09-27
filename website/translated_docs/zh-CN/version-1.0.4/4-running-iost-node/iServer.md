@@ -17,10 +17,10 @@ make build
 * 运行以下命令启动IOST节点。
 
 ```
-./target/iserver -f ./config/iserver.yaml
+./target/iserver -f ./config/iserver.yml
 ```
 
-* 修改./config/iserver.yaml 配置文件。
+* 修改./config/iserver.yml 配置文件。
 
 ```
 acc:

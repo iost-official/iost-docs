@@ -38,7 +38,7 @@ brew install rocksdb
 
 ```
 git clone git@github.com:iost-official/Go-IOS-Protocol.git
-make build
+cd Go-IOS-Protocol
 make test
 ```
 

@@ -49,7 +49,7 @@ class Footer extends React.Component {
               rel="noreferrer noopener">
               Forum
             </a>
-            <a href="https://discordapp.com/">Project Chat</a>
+            <a href="https://iost-community.slack.com/">Slack chat</a>
             
             {/* <a href={`${this.props.config.baseUrl}blog`}>Blog</a> */}
           </div>

@@ -52,4 +52,4 @@ module.exports = Sample;
 - 编译 JavaScript 文档来生成 ABI 文件
 - 使用 `.js` `.abi` 和 `.sc` 文件生成一个包
 - 将 `.sc` 文件发送给各个签名者，他们会生成 `.sig` 文档
-- 收到 `.sig` 和 `.sc` 文件之后，发不到主链上
+- 收到 `.sig` 和 `.sc` 文件之后，发布到主链上
