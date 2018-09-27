@@ -42,6 +42,7 @@ const siteConfig = {
     // {doc: 'doc4', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
+    {href: "https://iost.io/#roadmap", label: 'Roadmap', external: true},
   ],
 
   // If you have users set above, you add it here:

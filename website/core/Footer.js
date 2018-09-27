@@ -37,6 +37,15 @@ class Footer extends React.Component {
             <a href={this.docUrl('1-getting-started/doc1.html', this.props.language)}>
               Getting Started
             </a>
+            <a href="https://explorer.iost.io/" target="_blank">
+              Explorer
+            </a>
+            <a href="https://iost.io/updates/" target="_blank">
+              News
+            </a>
+            <a href="https://iost.io/resources/" target="_blank">
+              Resources
+            </a>
           </div>
           <div>
             <h5>Community</h5>
@@ -50,6 +59,7 @@ class Footer extends React.Component {
               Forum
             </a>
             <a href="https://iost-community.slack.com/">Slack chat</a>
+            <a href="https://medium.com/@iostoken">Medium</a>
             
             {/* <a href={`${this.props.config.baseUrl}blog`}>Blog</a> */}
           </div>
