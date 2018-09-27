@@ -15,6 +15,10 @@
     background-color: transparent;
 }
 
+.blog .wrapper{
+    max-width: 1400px !important;
+}
+
 
 .navigationSlider .slidingNav ul {
     background-color: #2c2e31;

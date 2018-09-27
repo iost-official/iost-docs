@@ -21,8 +21,8 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'IOST Documentation', // Title for your website.
-  tagline: 'IOST documentation',
+  title: 'IOST Docs', // Title for your website.
+  tagline: 'IOST docs',
   url: 'http://developers.iost.io/', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
