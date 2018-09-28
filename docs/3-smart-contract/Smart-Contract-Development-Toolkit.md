@@ -110,11 +110,6 @@ class helloContract
     }
     init() {
     }
-    hello(p0) {
-		console.log(BlockChain.transfer("a", "b", 100));
-		console.log(BlockChain.blockInfo());
-		console.log("hello ", p0);
-    }
 };
 module.exports = helloContract;
 
@@ -123,12 +118,6 @@ usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat abi/helloContract.json
     "lang": "javascript",
     "version": "1.0.0",
     "abi": [
-        {
-            "name": "hello",
-            "args": [
-                "string"
-            ]
-        }
     ]
 }
 ```
@@ -199,7 +188,6 @@ ins0.hello("iost");
 
 ```
 scaf test <contract_name>
-
 ```
 
 This command will run all the tests of specific contract.

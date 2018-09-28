@@ -67,9 +67,11 @@ Not enough non-option arguments: got 0, need at least 1
 
 ## Hello BlockChain
 
-### 新项目
+### 创建项目
 
-> scaf new helloBlockChain
+```
+scaf new <contract_name>
+```
 
 使用上述指令在当前目录下创建新的智能合约项目，并填充必要的文档结构。
 
@@ -85,11 +87,12 @@ usr@Tower [master]:~/nodecode/dapp$ ls helloBlockChain/
 abi  contract  libjs  test
 ```
 
-### 添加一个智能合约
+### 添加合约
 
-> cd helloBlockChain
-
-> scaf add contract helloContract
+```
+cd <contract_name>
+scaf add contract <contract_name>
+```
 
 `add <item>` 指令应仅在项目目录内执行。
 
@@ -115,9 +118,6 @@ class helloContract
     init() {
     }
     hello(p0) {
-		console.log(BlockChain.transfer("a", "b", 100));
-		console.log(BlockChain.blockInfo());
-		console.log("hello ", p0);
     }
 };
 module.exports = helloContract;
@@ -127,21 +127,19 @@ usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat abi/helloContract.json
     "lang": "javascript",
     "version": "1.0.0",
     "abi": [
-        {
-            "name": "hello",
-            "args": [
-                "string"
-            ]
-        }
     ]
 }
 ```
 
 ### 编写新的函数
 
-> scaf add func helloContract hello string p0
+```
+scaf add func <contract_name> <function_name> [type0] [parameter0] [type1] [parameter1] ...
+```
 
 这会在 `helloContract` 合约类中添加函数 `hello`。`string p0` 表明函数 `hello` 带有一个名为 `p0` 的字符串参数。
+
+参数类型应是 ['string', 'number', 'bool', 'json'] 之一
 
 函数 `hello(p0)` 和对应的 ABI 信息会被添加到 `helloContract.js` 和 `helloContract.json` 中。
 
@@ -173,7 +171,9 @@ add abi hello to ./abi/helloContract.json
 
 ### 添加一个测试文件
 
-> scaf add test helloContract test1
+```
+scaf add test <contract_name> <test_name>
+```
 
 这个指令会将名为 `test1` 的测试加入到 `helloContract` 合约中。`helloContract_test1.js` 会被创建到 `test/` 目录下，并且只有一行 `require` 函数。
 
@@ -195,7 +195,9 @@ ins0.hello("iost");
 
 ### 运行测试
 
-> scaf test helloContract
+```
+scaf test <contract_name>
+```
 
 `scaf test <contract_name>` 会在合约中运行所有测试指令。
 
@@ -210,7 +212,9 @@ hello  iost
 
 ### 编译合约
 
-> scaf compile helloContract
+```
+scaf compile <contract_name>
+```
 
 这个指令会编译合约和 ABI 文件，并将编译结果放入 `build/` 目录中。你可以将这些文件上传到主链。
 
