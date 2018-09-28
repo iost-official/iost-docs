@@ -1,13 +1,13 @@
 ---
-id: version-1.0.4-Contract-Testing
+id: version-1.0.5-Contract-Testing
 title: Testing
 sidebar_label: Testing
 original_id: Contract-Testing
 ---
 
-To conveniently test smart contracts, IOST has provided developers with standalone block-generating docker mirror. This can help developers ensure the validity of smart contracts before putting them on chain, by allowing them to use the development device as a recipient of blockchain RPC requests.
+To conveniently test smart contracts, IOST has provided developers with standalone block-generating docker mirror. This can help developers ensure the validity of smart contracts before putting them on the main chain, by allowing them to use the standalone docker as the backend of RPC requrests.
 
-It's worth noting that, contracts are not directly put on chain when uploaded to the receiving end of RPC. The contract will have to wait for the next block to generate. Validity check will be run, too, when the contract is put on chain.
+It's worth noting that, contracts are not directly put on chain when uploaded to the receiving end of RPC. The contract will have to wait for the next block to be generated. Validity check will be run, too, when the contract is packed into the block.
 
 ## Launch Docker Mirror
 
@@ -19,9 +19,7 @@ With this command, we map the docker's 30002 port to the machine's 30002 port, a
 
 ### Notes
 
-1. The docker uses 30002 port locally, whereas iWallet uses 30302. When using iWallet we need to add `-s localhost::30002` before running other commands.
-
-2. In this mirror, all IOSTs are put into an initial account, with 21,000,000,000 IOST. When we need to initiate a transaction or publish a contract, you need to transfer money from that account. Since any IOST transaction costs gas, and all tokens are stored in the initial account, only that account can afford a transaction.
+In this mirror, all IOSTs are put into an initial account, with 21,000,000,000 IOST. When we need to initiate a transaction or publish a contract, you need to transfer money from that account. Since any IOST transaction costs gas, and all tokens are stored in the initial account, only that account can afford a transaction.
 
 - Initial Account: `IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C`
 - Initial Secret: `1rANSfcRzr4HkhbUFZ7L1Zp69JZZHiDDq5v7dNSbbEqeU4jxy3fszV4HGiaLQEyqVpS1dKT9g7zCVRxBVzuiUzB`

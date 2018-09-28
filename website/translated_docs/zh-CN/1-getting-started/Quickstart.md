@@ -7,8 +7,8 @@ sidebar_label: 快速开始
 ## 1. 克隆代码库
 
 ```
-git clone https://github.com/iost-official/Go-IOS-Protocol.git
-cd Go-IOS-Protocol
+git clone https://github.com/iost-official/go-iost.git
+cd go-iost
 ```
 
 ## 2. 安装依赖环境
@@ -16,7 +16,7 @@ cd Go-IOS-Protocol
 运行下面的指令来安装所有的依赖环境：
 
 ```
-cd Go-IOS-Protocol/cmd/playground/contract
+cd go-iost/cmd/playground/contract
 npm install
 ```
 

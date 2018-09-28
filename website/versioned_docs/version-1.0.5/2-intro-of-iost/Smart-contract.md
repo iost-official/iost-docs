@@ -1,5 +1,5 @@
 ---
-id: version-1.0.4-Smart-contract
+id: version-1.0.5-Smart-contract
 title: Smart Contract
 sidebar_label: Smart Contract
 original_id: Smart-contract
