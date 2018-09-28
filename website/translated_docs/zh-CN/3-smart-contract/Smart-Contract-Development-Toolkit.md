@@ -117,8 +117,6 @@ class helloContract
     }
     init() {
     }
-    hello(p0) {
-    }
 };
 module.exports = helloContract;
 
