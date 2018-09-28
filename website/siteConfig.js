@@ -21,9 +21,9 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'IOST', // Title for your website.
-  tagline: 'IOST documentation',
-  url: 'http://iostdoc.duoladayin.com/', // Your website URL
+  title: 'IOST Docs', // Title for your website.
+  tagline: 'IOST docs',
+  url: 'http://developers.iost.io/', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -42,6 +42,7 @@ const siteConfig = {
     // {doc: 'doc4', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
+    {href: "https://iost.io/#roadmap", label: 'Roadmap', external: true},
   ],
 
   // If you have users set above, you add it here:
@@ -55,7 +56,7 @@ const siteConfig = {
   /* Colors for website */
   colors: {
     // primaryColor: '#2c2e31',
-    primaryColor: '#2aa3ef',
+    primaryColor: '#375EAB',
     secondaryColor: '#205C3B',
   },
   scrollToTop: true,
@@ -79,7 +80,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-dark',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -97,12 +98,12 @@ const siteConfig = {
   twitterUsername: 'IOSToken',
   
   gaTrackingId: "UA-126034939-1",
-  gaGtag: true
+  gaGtag: true,
 
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/iost-official/Go-IOS-Protocol',
 };
 
 module.exports = siteConfig;
