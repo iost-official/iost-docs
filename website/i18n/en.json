@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "IOST documentation",
+    "tagline": "IOST docs",
     "docs": {
       "1-getting-started/doc1": {
         "title": "Overview",
@@ -168,6 +168,18 @@
       "version-1.0.4-md-example": {
         "title": "Markdown example",
         "sidebar_label": "Markdown example"
+      },
+      "version-1.0.5-Smart-contract": {
+        "title": "Smart Contract",
+        "sidebar_label": "Smart Contract"
+      },
+      "version-1.0.5-Contract-Testing": {
+        "title": "Testing",
+        "sidebar_label": "Testing"
+      },
+      "version-1.0.5-Deployment-and-invocation": {
+        "title": "Deployment and invocation",
+        "sidebar_label": "Deployment and invocation"
       }
     },
     "links": {
