@@ -17,7 +17,7 @@ Deployment takes a few steps:
 
 ### Compile js to generate ABI file
 
-Deployment needs the iWallet program in the project. I'm sure you have already compiled an iWallet program from the documents, in the `GO-IOS-Protocol/target` directory.
+Deployment needs the iWallet program in the project. I'm sure you have already compiled an iWallet program from the documents, in the `go-iost/target` directory.
 
 First, use iWallet to compile the js codes into corresponding ABIs.
 

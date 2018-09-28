@@ -10,7 +10,7 @@ original_id: Deployment
 Run the command to get the code repository:
 
 ```
-git clone git@github.com:iost-official/Go-IOS-Protocol.git
+git clone git@github.com:iost-official/go-iost.git
 ```
 
 ## Build

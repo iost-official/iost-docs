@@ -5,7 +5,7 @@ sidebar_label: Smart Contract
 original_id: Smart-contract
 ---
 
-Smart contracts receive and execute transactions within the block, in order to maintain the <<??>> and produce irreversible proof. IOST implements general ABI interfaces, plug-and-play multi-language support, and can generate the result of the consensus. This has substantially improved the usability of the blockchain.
+Smart contracts receive and execute transactions within the block, in order to maintain the variables of smart contract insides blockchain and produce irreversible proof. IOST implements general ABI interfaces, plug-and-play multi-language support, and can generate the result of the consensus. This has substantially improved the usability of the blockchain.
 
 ## ABI Interface
 
@@ -13,7 +13,7 @@ IOST smart contracts interacts with the network through ABIs.
 
 ABIs are JSON-defined information, including the name, parameter types, etc. The supported basic types are `string`, `number`, and `bool`.
 
-More complicated data structures can <<??>>. When calling functions in a smart contract, ABI parameter types should be strictly followed. Otherwise the execution will halt and transaction fees will incur.
+More complicated data structures can be parsed to JSON string. When calling functions in a smart contract, ABI parameter types should be strictly followed. Otherwise the execution will halt and transaction fees will incur.
 
 ```json
 // example luckybet.js.abi

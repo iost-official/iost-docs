@@ -14,7 +14,7 @@ Deployment takes a few steps:
 - Distribute .sc files to each signer, and signers will generate .sig files
 - Collect .sig files and the .sc files, and publish them on chain
 
-Deployment needs the iWallet program in the project. I'm sure you have already compiled an iWallet program from the documents, in the `GO-IOS-Protocol/target` directory.
+Deployment needs the iWallet program in the project. I'm sure you have already compiled an iWallet program from the documents, in the `go-iost/target` directory.
 
 First, use iWallet to compile the js codes into corresponding ABIs.
 

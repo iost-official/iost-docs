@@ -5,7 +5,7 @@ sidebar_label: Testing
 original_id: Contract-Testing
 ---
 
-To conveniently test smart contracts, IOST has provided developers with standalone block-generating docker mirrors to pack the contract <<??>>. This can help developers ensure the validity of smart contracts before putting them on chain, by allowing them to use the development device as a recipient of blockchain RPC requests.
+To conveniently test smart contracts, IOST has provided developers with standalone block-generating docker mirror. This can help developers ensure the validity of smart contracts before putting them on chain, by allowing them to use the development device as a recipient of blockchain RPC requests.
 
 It's worth noting that, contracts are not directly put on chain when uploaded to the receiving end of RPC. The contract will have to wait for the next block to generate. Validity check will be run, too, when the contract is put on chain.
 

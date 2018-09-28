@@ -15,7 +15,7 @@ sidebar_label: 部署和调用
 - 收集 .sig 文件与 .sc 文件, publish 到主链上
 
 ### 编译js生成ABI文件
-合约上链需要使用项目中的 iWallet 程序。 相信在前面的步骤中您已经编译了一个 iWallet 程序， 在 Go-IOS-Protocol/target 文件夹下。
+合约上链需要使用项目中的 iWallet 程序。 相信在前面的步骤中您已经编译了一个 iWallet 程序， 在 go-iost/target 文件夹下。
 首先， 使用 iWallet 程序将 js 代码编译成相应的 ABI。
 
 ```bash

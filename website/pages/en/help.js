@@ -34,7 +34,7 @@ class Help extends React.Component {
         title: 'Twitter',
       },
       {
-        content: "At our [GitHub repo](https://github.com/iost-official/Go-IOS-Protocol) Browse and submit [issues](https://github.com/iost-official/Go-IOS-Protocol/issues) or [pull requests](https://github.com/iost-official/Go-IOS-Protocol/pulls)",
+        content: "At our [GitHub repo](https://github.com/iost-official/go-iost) Browse and submit [issues](https://github.com/iost-official/go-iost/issues) or [pull requests](https://github.com/iost-official/go-iost/pulls)",
         title: 'Github',
       }
     ];

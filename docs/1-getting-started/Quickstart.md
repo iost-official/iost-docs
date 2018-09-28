@@ -9,8 +9,8 @@ The Easiest Way
 ## 1. Clone the repository
 
 ```
-git clone https://github.com/iost-official/Go-IOS-Protocol.git
-cd Go-IOS-Protocol
+git clone https://github.com/iost-official/go-iost.git
+cd go-iost
 ```
 
 ## 2. Install the dependencies
@@ -18,7 +18,7 @@ cd Go-IOS-Protocol
 Run this command to install all dependencies:
 
 ```
-cd Go-IOS-Protocol/cmd/playground/contract
+cd go-iost/cmd/playground/contract
 npm install
 ```
 
