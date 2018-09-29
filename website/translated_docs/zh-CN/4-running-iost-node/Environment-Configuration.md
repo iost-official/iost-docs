@@ -38,7 +38,11 @@ brew install rocksdb
 
 ```
 git clone git@github.com:iost-official/go-iost.git
+<<<<<<< HEAD:website/versioned_docs/version-1.0.0/4-running-iost-node/Environment-Configuration.md
+make build
+=======
 cd go-iost
+>>>>>>> e132781d2116bb3d41627319565f4d8d4654a857:website/translated_docs/zh-CN/4-running-iost-node/Environment-Configuration.md
 make test
 ```
 

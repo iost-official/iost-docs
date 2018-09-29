@@ -16,7 +16,7 @@ cd go-iost
 运行下面的指令来安装所有的依赖环境：
 
 ```
-cd go-iost/cmd/playground/contract
+cd go-iost/iwallet/contract
 npm install
 ```
 

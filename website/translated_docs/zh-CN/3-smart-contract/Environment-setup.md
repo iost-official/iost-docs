@@ -19,9 +19,9 @@ git clone https://github.com/iost-official/go-iost.git
 参考 [官方文档](https://nodejs.org/zh-cn/download/package-manager/#macos)
 
 ## 安装 `npm` 依赖
-然后需要在 `go-iost/cmd/playground/contract` 下安装 npm 依赖
+然后需要在 `go-iost/iwallet/contract` 下安装 npm 依赖
 
 ```git
-cd go-iost/cmd/playground/contract
+cd go-iost/iwallet/contract
 npm install
 ```

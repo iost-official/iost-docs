@@ -1,33 +1,36 @@
 {
   "docs": {
     "Getting started": [
-      "1-getting-started/doc1", 
+      "1-getting-started/doc1",
       "1-getting-started/Quickstart"
     ],
     "Introduction of IOST blockchain": [
-      "2-intro-of-iost/Smart-contract", 
-      "2-intro-of-iost/VM", 
-      "2-intro-of-iost/Database", 
+      "2-intro-of-iost/Smart-contract",
+      "2-intro-of-iost/VM",
+      "2-intro-of-iost/Database",
       "2-intro-of-iost/Network-layer"
     ],
     "Smart Contract": [
       "3-smart-contract/Environment-setup",
-      "3-smart-contract/How-to-write-a-smart-contract", 
+      "3-smart-contract/How-to-write-a-smart-contract",
       "3-smart-contract/Smart-Contract-Development-Toolkit",
       "3-smart-contract/Deployment-and-invocation", 
       "3-smart-contract/Contract-Testing",
       "3-smart-contract/Update-Contract"
     ],
     "Running IOST node": [
-      "4-running-iost-node/Faucet", 
-      "4-running-iost-node/Environment-Configuration", 
-      "4-running-iost-node/iServer", 
-      "4-running-iost-node/iWallet", 
-      "4-running-iost-node/Deployment", 
+      "4-running-iost-node/Faucet",
+      "4-running-iost-node/Environment-Configuration",
+      "4-running-iost-node/iServer",
+      "4-running-iost-node/iWallet",
+      "4-running-iost-node/Deployment",
       "4-running-iost-node/Metrics"
     ],
     "Lucky Bet": [
       "5-lucky-bet/Design-Tech-data"
+    ],
+    "Reference": [
+      "6-reference/API"
     ]
   },
   "docs-other": {

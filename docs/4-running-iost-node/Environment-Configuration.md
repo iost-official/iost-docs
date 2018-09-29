@@ -84,6 +84,6 @@ Refer to [Official Documents](https://docs.docker.com/install/linux/docker-ce/ub
 ```
 git clone git@github.com:iost-official/go-iost.git
 cd go-iost
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:2.0.0-go1.11 make build
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:2.0.0-go1.11 make test
+docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:1.0.0 make build
+docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:1.0.0 make test
 ```
