@@ -59,7 +59,7 @@ Next, generate .sc files with js and js.abi files.
 # Generate .sc for signsers to sign
 ./iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signers "ID0, ID1..."
 # Example
-./iwallet compile -e 3600 -l 100000 -p 1 ./test.js ./test.js.abi
+./iwallet compile -e 10000 -l 100000 -p 1 ./test.js ./test.js.abi --signers "ID"
 ```
 
 ### Distribute .sc files to each signer, and signers will generate .sig files

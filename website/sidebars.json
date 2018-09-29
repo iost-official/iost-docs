@@ -14,8 +14,9 @@
       "3-smart-contract/Environment-setup",
       "3-smart-contract/How-to-write-a-smart-contract",
       "3-smart-contract/Smart-Contract-Development-Toolkit",
-      "3-smart-contract/Deployment-and-invocation",
-      "3-smart-contract/Contract-Testing"
+      "3-smart-contract/Deployment-and-invocation", 
+      "3-smart-contract/Contract-Testing",
+      "3-smart-contract/Update-Contract"
     ],
     "Running IOST node": [
       "4-running-iost-node/Faucet",

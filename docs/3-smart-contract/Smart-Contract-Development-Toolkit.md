@@ -62,11 +62,10 @@ Not enough non-option arguments: got 0, need at least 1
 ```
 
 ## Hello BlockChain
-
 ### Create a new project
 
 ```
-scaf new helloBlockChain
+scaf new <contract_name>
 ```
 
 The project is generated in the current directory, with initialized structure.
@@ -86,8 +85,8 @@ abi  contract  libjs  test
 ### Add a contract
 
 ```
-cd helloBlockChain
-scaf add contract helloContract
+cd <contract_name>
+scaf add contract <contract_name>
 ```
 
 `add <item>` command should be executed in project directory. Contract file `helloContract.js` and ABI file `helloContract.json` is generated with following initial content:
@@ -111,11 +110,6 @@ class helloContract
     }
     init() {
     }
-    hello(p0) {
-		console.log(BlockChain.transfer("a", "b", 100));
-		console.log(BlockChain.blockInfo());
-		console.log("hello ", p0);
-    }
 };
 module.exports = helloContract;
 
@@ -124,12 +118,6 @@ usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat abi/helloContract.json
     "lang": "javascript",
     "version": "1.0.0",
     "abi": [
-        {
-            "name": "hello",
-            "args": [
-                "string"
-            ]
-        }
     ]
 }
 ```
@@ -137,10 +125,12 @@ usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat abi/helloContract.json
 ### Add a function
 
 ```
-scaf add func helloContract hello string p0
+scaf add func <contract_name> <function_name> [type0] [parameter0] [type1] [parameter1] ...
 ```
 
 The above command adds a function named `hello` to `helloContract` class. `string p0` means function `hello` has one parameter with type `string` and name `p0`.
+
+The type of parameter should be one of ['string', 'number', 'bool', 'json']
 
 function `hello(p0)` and its corresponding ABI infomation is added into `helloContract.js` and `helloContract.json`.
 
@@ -173,7 +163,7 @@ Since system functions are mocked, they will always return the same valid result
 ### Add a test
 
 ```
-scaf add test helloContract test1
+scaf add test <contract_name> <test_name>
 ```
 
 This command adds a test named test1 for `helloContract` contract. `helloContract_test1.js` is created in `test/` with just one `require` statement.
@@ -197,7 +187,7 @@ ins0.hello("iost");
 ### Run test
 
 ```
-scaf test helloContract
+scaf test <contract_name>
 ```
 
 This command will run all the tests of specific contract.
@@ -214,7 +204,7 @@ hello  iost
 ### Compile the contract
 
 ```
-scaf compile helloContract
+scaf compile <contract_name>
 ```
 
 This command compiles contract file and the ABI file is created in `build/`. You can upload these files to an IOST blockchain.
