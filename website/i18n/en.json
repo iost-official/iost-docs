@@ -77,6 +77,10 @@
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
       },
+      "6-reference/API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
       "doc2": {
         "title": "Doc2"
       },
@@ -194,6 +198,7 @@
       "Smart Contract": "Smart Contract",
       "Running IOST node": "Running IOST node",
       "Lucky Bet": "Lucky Bet",
+      "Reference": "Reference",
       "First Category": "First Category"
     }
   },
