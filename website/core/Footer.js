@@ -37,12 +37,15 @@ class Footer extends React.Component {
             <a href={this.docUrl('1-getting-started/doc1.html', this.props.language)}>
               Getting Started
             </a>
-            {/* <a href={this.docUrl('doc2.html', this.props.language)}>
-              Guides (or other categories)
+            <a href="https://explorer.iost.io/" target="_blank">
+              Explorer
             </a>
-            <a href={this.docUrl('doc3.html', this.props.language)}>
-              API Reference (or other categories)
-            </a> */}
+            <a href="https://iost.io/updates/" target="_blank">
+              News
+            </a>
+            <a href="https://iost.io/resources/" target="_blank">
+              Resources
+            </a>
           </div>
           <div>
             <h5>Community</h5>
@@ -55,28 +58,32 @@ class Footer extends React.Component {
               rel="noreferrer noopener">
               Forum
             </a>
-            <a href="https://discordapp.com/">Project Chat</a>
-            <a
-              href="https://twitter.com/IOStoken"
-              target="_blank"
-              rel="noreferrer noopener">
-              Twitter
-            </a>
+            <a href="https://iost-community.slack.com/">Slack chat</a>
+            <a href="https://medium.com/@iostoken">Medium</a>
+            
+            {/* <a href={`${this.props.config.baseUrl}blog`}>Blog</a> */}
           </div>
           <div>
-            <h5>More</h5>
-            <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/iost-official/">GitHub</a>
-            <a
-              className="github-button"
-              href={this.props.config.repoUrl}
-              data-icon="octicon-star"
-              data-count-href="/facebook/docusaurus/stargazers"
-              data-show-count="true"
-              data-count-aria-label="# stargazers on GitHub"
-              aria-label="Star this project on GitHub">
-              Star
-            </a>
+            <h5>Social</h5>
+            <div className="social">
+              <a
+                className="github-button"
+                href={this.props.config.repoUrl}
+                data-icon="octicon-star"
+                data-count-href="/facebook/docusaurus/stargazers"
+                data-show-count="true"
+                data-count-aria-label="# stargazers on GitHub"
+                aria-label="Star this project on GitHub">
+                iost-official
+              </a>
+            </div>
+            <div className="social">
+              <a
+                href={`https://twitter.com/${this.props.config.twitterUsername}`}
+                className="twitter-follow-button">
+                Follow @{this.props.config.twitterUsername}
+              </a>
+            </div>
           </div>
         </section>
         <section className="copyright">{this.props.config.copyright}</section>

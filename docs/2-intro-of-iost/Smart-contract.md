@@ -1,20 +1,18 @@
 ---
 id: Smart-contract
-title: Smart contract
-sidebar_label: Smart contract
+title: Smart Contract
+sidebar_label: Smart Contract
 ---
 
-# IOST 智能合约
+Smart contracts receive and execute transactions within the block, in order to maintain the variables of smart contract insides blockchain and produce irreversible proof. IOST implements general ABI interfaces, plug-and-play multi-language support, and can generate the result of the consensus. This has substantially improved the usability of the blockchain.
 
-智能合约接收并执行区块中的Transaction，从而维护区块链的中的状态，产生不可逆的证明。IOST实现了通用ABI接口，
-可插拔的多语言支持，并且可以生成得到共识的执行结果。有效地提升了区块链的易用性。
+## ABI Interface
 
-## ABI接口
-IOST智能合约通过ABI接口与区块链进行交互。
+IOST smart contracts interacts with the network through ABIs.
 
-ABI通过json定义了智能合约接口的详细信息，包括ABI名字，参数类型列表等。ABI的参数类型可以支持JSON的基本类型：
-```string, number, bool```，更复杂的数据结构可以通过编解码为string的方式传递。智能合约的调用当中必须要
-严格匹配ABI参数类型，否则将会执行失败，并且扣除一部分手续费。
+ABIs are JSON-defined information, including the name, parameter types, etc. The supported basic types are `string`, `number`, and `bool`.
+
+More complicated data structures can be parsed to JSON string. When calling functions in a smart contract, ABI parameter types should be strictly followed. Otherwise the execution will halt and transaction fees will incur.
 
 ```json
 // example luckybet.js.abi
@@ -35,34 +33,35 @@ ABI通过json定义了智能合约接口的详细信息，包括ABI名字，参�
 }
 ```
 
-每个trasaction包含若干个事务性的action，每个action即为一个ABI调用。所有transaction在链上都会产生一个严格的顺序，
-由此可以避免双花问题。
+Every transaction includes multiple transactional actions, and each action is a call to an ABI. All transactions will generate a strict serial on the chain, preventing double-spend attacks.
 
 ```golang
 type Action struct {
 	Contract   string  
-	ActionName string 
+	ActionName string
 	Data       string  // A JSON Array of args
 }
 ```
-在智能合约当中也可以通过```BlockChain.call()```接口来调用ABI接口，并且可以得到ABI的返回值。系统会记录调用栈并且阻止重入，从而防止攻击。
 
-## 多语言的支持
-IOST实现了多编程语言的智能合约，目前开放给开发者的是v8引擎下的JavaScript，另有golang原生模块支持的native VM用以处理需要高性能的
-转账等交易。
+In a smart contract you can use `BlockChain.call()` to call an ABI interface, and obtain the return value. The system will log the call stack and deny double-spend.
 
-IOST智能合约引擎分三个部分：monitor，VM，host。其中，monitor是全局的控制单元，路由ABI调用到正确的VM当中，VM则是智能合约虚拟机的实现，
-而host则对智能合约的运行环境进行了封装，以确保智能合约在正确的上下文中运行。
+## Multi-language Support
 
-## 智能合约的权限系统
-Transaction支持多重签名，在智能合约当中可以通过```RequireAuth()```接口检查当前上下文是否拥有某个ID的签名。智能合约的相互调用会传递
-签名权限，如果A.a调用了B.b，用户1调用了A.a，那么B.b也会得到用户1的授权。
+IOST achieved multi-language smart contracts. Currently, we are opening JavaScript with v8 engine, and there are native golang VM modules to handle high-performance transactions.
 
-智能合约还可以检查调用栈，从而得到“是谁调用了此ABI”的信息，从而进行一些操作。
+The smart contract engine of IOST consists of three parts: monitor, VM, host. Monitor is the global control unit that gateways ABI calls to the right VM. VM is a virtual machine implementation of smart contracts. Host packs the runtime environments and makes sure the contracts run in the right context.
 
-## 智能合约的运行结果
+## Smart Contract Permission System
 
-智能合约在执行完毕之后，会生成TxReceipt加入到区块中，并且得到区块链的共识。可以通过RPC找到已上线Transaction的TxReceipt。
+Transactions support multiple signatures. Within a contract, you can use `RequireAuth()` to check if the current context bears the signature of a certain ID. Calls between smart contracts will relay signature authorizations. For example, if `A.a` calls `B.b`, authorization to `B.b` from a user is implied when `A.a` is called.
+
+Smart contracts can check the stack of calling, and answer questions such as "Who invoked this ABI." This allows for certain operations to exist.
+
+Smart contracts have special permissions, such as upgrading and removal. These can be implemented with `can_update()` and `can_destroy()`.
+
+## Result of a Call
+
+After execution, the smart contract will generate a `TxReceipt` into the block and seek consensus. You can use RPC to track the TxReceipts of on-chain transactions.
 
 ```sh
 $ curl -X GET \
@@ -80,18 +79,3 @@ $ curl -X GET \
 }
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

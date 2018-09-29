@@ -15,7 +15,8 @@
       "3-smart-contract/How-to-write-a-smart-contract", 
       "3-smart-contract/Smart-Contract-Development-Toolkit",
       "3-smart-contract/Deployment-and-invocation", 
-      "3-smart-contract/Contract-Testing"
+      "3-smart-contract/Contract-Testing",
+      "3-smart-contract/Update-Contract"
     ],
     "Running IOST node": [
       "4-running-iost-node/Faucet", 
@@ -23,7 +24,6 @@
       "4-running-iost-node/iServer", 
       "4-running-iost-node/iWallet", 
       "4-running-iost-node/Deployment", 
-      "4-running-iost-node/Running-Testing", 
       "4-running-iost-node/Metrics"
     ],
     "Lucky Bet": [
@@ -32,8 +32,6 @@
   },
   "docs-other": {
     "First Category": [
-      "doc4",
-      "doc5",
       "md-example"
     ]
   }

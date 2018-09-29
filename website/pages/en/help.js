@@ -24,19 +24,19 @@ class Help extends React.Component {
     const supportLinks = [
       {
         content: `Learn more using the [documentation on this site.](${docUrl(
-          'doc1.html',
+          '1-getting-started/doc1.html',
           language
         )})`,
         title: 'Browse Docs',
       },
       {
-        content: 'Ask questions about the documentation and project',
-        title: 'Join the community',
+        content: 'You can follow and contact us on [Twitter](https://twitter.com/IOStoken).',
+        title: 'Twitter',
       },
       {
-        content: "Find out what's new with this project",
-        title: 'Stay up to date',
-      },
+        content: "At our [GitHub repo](https://github.com/iost-official/go-iost) Browse and submit [issues](https://github.com/iost-official/go-iost/issues) or [pull requests](https://github.com/iost-official/go-iost/pulls)",
+        title: 'Github',
+      }
     ];
 
     return (
@@ -46,7 +46,7 @@ class Help extends React.Component {
             <header className="postHeader">
               <h1>Need help?</h1>
             </header>
-            <p>This project is maintained by a dedicated group of people.</p>
+            <p>If you need help with this project, you can try one of the mechanisms below.</p>
             <GridBlock contents={supportLinks} layout="threeColumn" />
           </div>
         </Container>
