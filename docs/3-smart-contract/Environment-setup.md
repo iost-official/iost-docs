@@ -23,6 +23,6 @@ Please refer to [Official Documents](https://nodejs.org/zh-cn/download/package-m
 ## Installing```npm```
 
 ```git
-cd go-iost/cmd/playground/contract
+cd go-iost/iwallet/contract
 npm install
 ```

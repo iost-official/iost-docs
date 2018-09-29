@@ -19,7 +19,7 @@ cd go-iost
 Run this command to install all dependencies:
 
 ```
-cd go-iost/cmd/playground/contract
+cd go-iost/iwallet/contract
 npm install
 ```
 
