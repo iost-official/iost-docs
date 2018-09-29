@@ -8,7 +8,7 @@ original_id: Deployment
 ## Get repo
 执行如下命令获取代码仓库：
 ```
-git clone git@github.com:iost-official/Go-IOS-Protocol.git
+git clone git@github.com:iost-official/go-iost.git
 ```
 
 ## Build

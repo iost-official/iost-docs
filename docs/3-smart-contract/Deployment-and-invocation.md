@@ -12,7 +12,7 @@ sidebar_label: Deployment and invocation
 - 发放 .sc 文件给各个签名人， 签名人生成 .sig 文件
 - 收集 .sig 文件与 .sc 文件, publish 到主链上
 
-合约上链需要使用项目中的 iWallet 程序。 相信在前面的步骤中您已经编译了一个 iWallet 程序， 在 Go-IOS-Protocol/target 文件夹下。 
+合约上链需要使用项目中的 iWallet 程序。 相信在前面的步骤中您已经编译了一个 iWallet 程序， 在 go-iost/target 文件夹下。 
 首先， 使用 iWallet 程序将 js 代码编译成相应的 ABI。
 
 ```bash

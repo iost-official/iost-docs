@@ -31,7 +31,7 @@ brew install rocksdb
 ```
 ### 进行编译与单元测试
 ```
-git clone git@github.com:iost-official/Go-IOS-Protocol.git
+git clone git@github.com:iost-official/go-iost.git
 make build
 make test
 ```
@@ -50,7 +50,7 @@ cd rocksdb && make static_lib && make install-static
 ```
 ### 进行编译与单元测试
 ```
-git clone git@github.com:iost-official/Go-IOS-Protocol.git
+git clone git@github.com:iost-official/go-iost.git
 make build
 make test
 ```
@@ -64,8 +64,8 @@ Ubuntu下安装docker可参考[官网文档](https://docs.docker.com/install/lin
 
 ### 进行编译与单元测试
 ```
-git clone git@github.com:iost-official/Go-IOS-Protocol.git
-cd Go-IOS-Protocol
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/Go-IOS-Protocol iostio/iost-dev:2.0.0-go1.11 make build
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/Go-IOS-Protocol iostio/iost-dev:2.0.0-go1.11 make test
+git clone git@github.com:iost-official/go-iost.git
+cd go-iost
+docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:2.0.0-go1.11 make build
+docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:2.0.0-go1.11 make test
 ```
