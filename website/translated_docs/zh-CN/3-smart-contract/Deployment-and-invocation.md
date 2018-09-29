@@ -54,7 +54,7 @@ sidebar_label: 部署和调用
 # Generate .sc for signsers to sign
 ./iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signers "ID0, ID1..."
 # Example
-./iwallet compile -e 3600 -l 100000 -p 1 ./test.js ./test.js.abi
+./iwallet compile -e 10000 -l 100000 -p 1 ./test.js ./test.js.abi --signers "ID"
 ```
 ### 发放 .sc 文件给各个签名人， 签名人生成 .sig 文件
 然后将生成的 .sc 文件发给对应的signer进行签名, 生成 .sig 文件 。

@@ -49,6 +49,10 @@
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
+      "3-smart-contract/Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
       "4-running-iost-node/Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
@@ -76,12 +80,6 @@
       "5-lucky-bet/Design-Tech-data": {
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
-      },
-      "doc2": {
-        "title": "Doc2"
-      },
-      "doc3": {
-        "title": "This is document number 3"
       },
       "md-example": {
         "title": "Markdown example",
@@ -158,12 +156,6 @@
       "version-1.0.4-Design-Tech-data": {
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
-      },
-      "version-1.0.4-doc2": {
-        "title": "Doc2"
-      },
-      "version-1.0.4-doc3": {
-        "title": "This is document number 3"
       },
       "version-1.0.4-md-example": {
         "title": "Markdown example",
