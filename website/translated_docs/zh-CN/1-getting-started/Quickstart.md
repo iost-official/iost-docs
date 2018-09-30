@@ -4,52 +4,22 @@ title: 快速开始
 sidebar_label: 快速开始
 ---
 
-## 1. 克隆代码库
+## 整体架构设计
+如果您想了解 IOST 整体的设计，可以阅读如下文档  
 
-```
-git clone https://github.com/iost-official/go-iost.git
-cd go-iost
-```
-
-## 2. 安装依赖环境
-
-运行下面的指令来安装所有的依赖环境：
-
-```
-cd go-iost/iwallet/contract
-npm install
-```
+- [智能合约接口的设计](../2-intro-of-iost/Smart-contract)  
+- [VM的设计](../2-intro-of-iost/VM)  
+- [储存层的设计](../2-intro-of-iost/Database)  
+- [网络层的设计](../2-intro-of-iost/Network-layer)  
 
 
-## 3. 编写一个智能合约
+## 智能合约开发上手
+如果您想在 IOST 上开发部署真实的智能合约，您可以参考我们的[官方样例](../5-lucky-bet/Design-Tech-data)。这里手把手地说明了如何部署合约，运行合约。相信一定会对您有帮助。  
 
-IOST 智能合约支持 JavaScript。一个简单的智能合约如下：
+您在开发中的任何问题，都可以到我们的[官方论坛](https://forum.iost.io)去提问。
 
-```
-class Sample {
-    init() {
-        //Execute once when contract is packed into a block
-    }
 
-    constructor() {
-        //Execute everytime the contract class is called
-    }
+## 如何加入 IOST 网络
+如果您想成为 IOST 网络的一个节点，您可以参考[接入测试网络](../4-running-iost-node/Deployment)的文档。
 
-    transfer(from, to, amount) {
-        //Function called by other
-        BlockChain.transfer(from, to, amount)
-
-    }
-
-};
-module.exports = Sample;
-```
-
-## 4. 部署智能合约
-
-依据以下步骤部署智能合约：
-
-- 编译 JavaScript 文档来生成 ABI 文件
-- 使用 `.js` `.abi` 和 `.sc` 文件生成一个包
-- 将 `.sc` 文件发送给各个签名者，他们会生成 `.sig` 文档
-- 收到 `.sig` 和 `.sc` 文件之后，发布到主链上
+如果您想在 IOST 网络上发布智能合约，您需要 coins 来支付 gas 费用。您可以[申请初始 coins](../4-running-iost-node/Faucet)。

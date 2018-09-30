@@ -26,8 +26,10 @@
       "4-running-iost-node/Deployment",
       "4-running-iost-node/Metrics"
     ],
-    "Lucky Bet": [
-      "5-lucky-bet/Design-Tech-data"
+    "Example: Lucky Bet": [
+      "5-lucky-bet/Design-Tech-data",
+      "5-lucky-bet/Lucky-Bet-Operation",
+      "5-lucky-bet/Lucky-Bet-Js"
     ],
     "Reference": [
       "6-reference/API"
