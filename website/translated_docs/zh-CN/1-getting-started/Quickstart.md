@@ -19,7 +19,6 @@ sidebar_label: 快速开始
 您在开发中的任何问题，都可以到我们的[官方论坛](https://forum.iost.io)去提问。
 
 
-
 ## 如何加入 IOST 网络
 如果您想成为 IOST 网络的一个节点，您可以参考[接入测试网络](../4-running-iost-node/Deployment)的文档。
 
