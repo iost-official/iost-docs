@@ -17,7 +17,14 @@ You can also ask questions on our [official forum](https://forum.iost.io).
 
 
 
+<<<<<<< HEAD
 ## How to join IOST Network
 For developers who want to join IOST network as a node，the [Access the Testnet](../4-running-iost-node/Deployment) documentation may be helpful.
+=======
+```
+cd go-iost/iwallet/contract
+npm install
+```
+>>>>>>> origin/master
 
 If you want to publish smart contracts on IOST，you need some initial coins to pay for gas. You can apply for the initial coins [here](../4-running-iost-node/Faucet).

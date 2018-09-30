@@ -49,6 +49,10 @@
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
+      "3-smart-contract/Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
       "4-running-iost-node/Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
@@ -77,11 +81,9 @@
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
       },
-      "doc2": {
-        "title": "Doc2"
-      },
-      "doc3": {
-        "title": "This is document number 3"
+      "6-reference/API": {
+        "title": "API",
+        "sidebar_label": "API"
       },
       "md-example": {
         "title": "Markdown example",
@@ -159,12 +161,6 @@
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
       },
-      "version-1.0.4-doc2": {
-        "title": "Doc2"
-      },
-      "version-1.0.4-doc3": {
-        "title": "This is document number 3"
-      },
       "version-1.0.4-md-example": {
         "title": "Markdown example",
         "sidebar_label": "Markdown example"
@@ -185,8 +181,7 @@
     "links": {
       "Docs": "Docs",
       "Help": "Help",
-      "Blog": "Blog",
-      "Roadmap": "Roadmap"
+      "Blog": "Blog"
     },
     "categories": {
       "Getting started": "Getting started",
@@ -194,6 +189,7 @@
       "Smart Contract": "Smart Contract",
       "Running IOST node": "Running IOST node",
       "Lucky Bet": "Lucky Bet",
+      "Reference": "Reference",
       "First Category": "First Category"
     }
   },

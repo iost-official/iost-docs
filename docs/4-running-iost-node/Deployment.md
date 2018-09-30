@@ -35,7 +35,7 @@ Run the command to run a local node. Check iServer setup here: [iServer](iServer
 Run the command to run a local node with the docker:
 
 ```
-docker run -it --rm iostio/iost-node:2.0.0
+docker run -it --rm iostio/iost-node:1.0.0
 ```
 
 ### Mount volume
@@ -45,7 +45,7 @@ Use the `-v` flag to mount a volume:
 ```
 mkdir -p /data/iserver
 cp config/iserver.docker.yml /data/iserver
-docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
+docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:1.0.0
 ```
 
 ### Bind port
@@ -53,7 +53,7 @@ docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 Use `-p` flag to map the ports:
 
 ```
-docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
+docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:1.0.0
 ```
 
 
@@ -120,7 +120,7 @@ Among the settings, the network IDs of seed nodes can be changed. Seed nodes of 
 
 ### Run iServer
 
-Connect to Testnet by configuring the iServer as below:
+Connect to Testnet by runing iServer with updated config:
 
 ```
 ./target/iserver -f config/iserver.yml

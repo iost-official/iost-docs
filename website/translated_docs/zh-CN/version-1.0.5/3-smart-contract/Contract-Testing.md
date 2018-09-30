@@ -11,7 +11,7 @@ sidebar_label: 合约测试
 ## 启动docker镜像
 
 ```bash
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
+docker run -d -p 30002:30002 iostio/iost-node:2.0.0
 ```
 
 在这里， 我们将docker的30002好端口与本机的30002端口进行了映射， 这样的话我们对30002端口发送的```RPC```请求将会成功发送到docker里面， 被我们的区块程序打包上链。
