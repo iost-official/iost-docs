@@ -81,6 +81,14 @@
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
       },
+      "5-lucky-bet/Lucky-Bet-Js": {
+        "title": "Lucky Bet Javascript Code Details",
+        "sidebar_label": "Lucky Bet Javascript Code Details"
+      },
+      "5-lucky-bet/Lucky-Bet-Operation": {
+        "title": "Step-by-Step Commands to Deploy and Run",
+        "sidebar_label": "Step-by-Step Commands to Deploy and Run"
+      },
       "6-reference/API": {
         "title": "API",
         "sidebar_label": "API"
@@ -88,6 +96,10 @@
       "md-example": {
         "title": "Markdown example",
         "sidebar_label": "Markdown example"
+      },
+      "version-1.0.0-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
       },
       "version-1.0.4-doc1": {
         "title": "Overview",
@@ -188,9 +200,10 @@
       "Introduction of IOST blockchain": "Introduction of IOST blockchain",
       "Smart Contract": "Smart Contract",
       "Running IOST node": "Running IOST node",
-      "Lucky Bet": "Lucky Bet",
+      "Example: Lucky Bet": "Example: Lucky Bet",
       "Reference": "Reference",
-      "First Category": "First Category"
+      "First Category": "First Category",
+      "Lucky Bet": "Lucky Bet"
     }
   },
   "pages-strings": {
