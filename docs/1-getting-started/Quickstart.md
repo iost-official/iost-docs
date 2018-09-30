@@ -4,53 +4,20 @@ title: Quickstart
 sidebar_label: Quickstart
 ---
 
-The Easiest Way
+## Architecture Design
+- [Design of Smart Contract](../2-intro-of-iost/Smart-contract)   
+- [Design of VM](../2-intro-of-iost/VM)   
+- [Design of Storage](../2-intro-of-iost/Database)   
+- [Design of Network](../2-intro-of-iost/Network-layer)   
 
-## 1. Clone the repository
+## How to Start Contract Development
+For developers who want to develop smart contract on IOST, we provide a step-by-step [realworld example](../5-lucky-bet/Design-Tech-data). It introduces how to deploy and run contracts.   
 
-```
-git clone https://github.com/iost-official/go-iost.git
-cd go-iost
-```
+You can also ask questions on our [official forum](https://forum.iost.io).
 
-## 2. Install the dependencies
 
-Run this command to install all dependencies:
 
-```
-cd go-iost/cmd/playground/contract
-npm install
-```
+## How to join IOST Network
+For developers who want to join IOST network as a node，the [Access the Testnet](../4-running-iost-node/Deployment) documentation may be helpful.
 
-## 3. Write your first smart contract
-
-IOST smart contract supports JavaScript. A sample smart contract may look like this:
-
-```
-class Sample {
-    init() {
-        //Execute once when contract is packed into a block
-    }
-
-    constructor() {
-        //Execute everytime the contract class is called
-    }
-
-    transfer(from, to, amount) {
-        //Function called by other
-        BlockChain.transfer(from, to, amount)
-
-    }
-
-};
-module.exports = Sample;
-```
-
-## 4. Deploy the contract
-
-Deployment requires the following steps:
-
-- Compile .js files to generate ABI files
-- Generate a package file for transactions with .js, .abi and .sc files
-- Issue the .sc file to each signer, and the signers generate the .sig files
-- Collect .sig files and .sc files. Publish the files to the main chain
+If you want to publish smart contracts on IOST，you need some initial coins to pay for gas. You can apply for the initial coins [here](../4-running-iost-node/Faucet).
