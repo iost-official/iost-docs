@@ -1,0 +1,43 @@
+{
+  "version-1.0.6-docs": {
+    "Getting started": [
+      "version-1.0.6-1-getting-started/doc1",
+      "version-1.0.6-1-getting-started/Quickstart"
+    ],
+    "Introduction of IOST blockchain": [
+      "version-1.0.6-2-intro-of-iost/Smart-contract",
+      "version-1.0.6-2-intro-of-iost/VM",
+      "version-1.0.6-2-intro-of-iost/Database",
+      "version-1.0.6-2-intro-of-iost/Network-layer"
+    ],
+    "Smart Contract": [
+      "version-1.0.6-3-smart-contract/Environment-setup",
+      "version-1.0.6-3-smart-contract/How-to-write-a-smart-contract",
+      "version-1.0.6-3-smart-contract/Smart-Contract-Development-Toolkit",
+      "version-1.0.6-3-smart-contract/Deployment-and-invocation",
+      "version-1.0.6-3-smart-contract/Contract-Testing",
+      "version-1.0.6-3-smart-contract/Update-Contract"
+    ],
+    "Running IOST node": [
+      "version-1.0.6-4-running-iost-node/Faucet",
+      "version-1.0.6-4-running-iost-node/Environment-Configuration",
+      "version-1.0.6-4-running-iost-node/iServer",
+      "version-1.0.6-4-running-iost-node/iWallet",
+      "version-1.0.6-4-running-iost-node/Deployment",
+      "version-1.0.6-4-running-iost-node/Metrics"
+    ],
+    "Example: Lucky Bet": [
+      "version-1.0.6-5-lucky-bet/Design-Tech-data",
+      "version-1.0.6-5-lucky-bet/Lucky-Bet-Operation",
+      "version-1.0.6-5-lucky-bet/Lucky-Bet-Js"
+    ],
+    "Reference": [
+      "version-1.0.6-6-reference/API"
+    ]
+  },
+  "version-1.0.6-docs-other": {
+    "First Category": [
+      "version-1.0.6-md-example"
+    ]
+  }
+}

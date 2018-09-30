@@ -188,6 +188,54 @@
       "version-1.0.5-Deployment-and-invocation": {
         "title": "Deployment and invocation",
         "sidebar_label": "Deployment and invocation"
+      },
+      "version-1.0.6-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-1.0.6-Contract-Testing": {
+        "title": "Testing",
+        "sidebar_label": "Testing"
+      },
+      "version-1.0.6-Deployment-and-invocation": {
+        "title": "Deployment and invocation",
+        "sidebar_label": "Deployment and invocation"
+      },
+      "version-1.0.6-Environment-setup": {
+        "title": "Environment setup",
+        "sidebar_label": "Environment setup"
+      },
+      "version-1.0.6-Smart-Contract-Development-Toolkit": {
+        "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
+        "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
+      },
+      "version-1.0.6-Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
+      "version-1.0.6-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
+      },
+      "version-1.0.6-Environment-Configuration": {
+        "title": "Environment & Configuration",
+        "sidebar_label": "Environment & Configuration"
+      },
+      "version-1.0.6-Design-Tech-data": {
+        "title": "Lucky Bet Smart Contract",
+        "sidebar_label": "Lucky Bet Smart Contract"
+      },
+      "version-1.0.6-Lucky-Bet-Js": {
+        "title": "Lucky Bet Javascript Code Details",
+        "sidebar_label": "Lucky Bet Javascript Code Details"
+      },
+      "version-1.0.6-Lucky-Bet-Operation": {
+        "title": "Step-by-Step Commands to Deploy and Run",
+        "sidebar_label": "Step-by-Step Commands to Deploy and Run"
+      },
+      "version-1.0.6-API": {
+        "title": "API",
+        "sidebar_label": "API"
       }
     },
     "links": {
