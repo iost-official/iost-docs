@@ -1,7 +1,7 @@
 ---
 id: Lucky-Bet-Operation
-title: 运行智能合约的具体指令
-sidebar_label: 运行智能合约的具体指令
+title: Step-by-Step Commands to Deploy and Run
+sidebar_label: Step-by-Step Commands to Deploy and Run
 ---
 
 ## 步骤一 配置环境

@@ -1,7 +1,7 @@
 ---
 id: Lucky-Bet-Js
-title: Lucky Bet 智能合约代码详解
-sidebar_label: Lucky Bet 智能合约代码详解
+title: Lucky Bet Javascript Code Details
+sidebar_label: Lucky Bet Javascript Code Details
 ---
 
 ## 获取链上信息

@@ -1,7 +1,7 @@
 ---
 id: Design-Tech-data
-title: Lucky Bet 智能合约
-sidebar_label: Lucky Bet 智能合约
+title: Lucky Bet Smart Contract
+sidebar_label: Lucky Bet Smart Contract
 ---
 
 ## 教程说明

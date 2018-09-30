@@ -26,7 +26,9 @@
       "4-running-iost-node/Metrics"
     ],
     "Lucky Bet": [
-      "5-lucky-bet/Design-Tech-data"
+      "5-lucky-bet/Design-Tech-data",
+      "5-lucky-bet/Lucky-Bet-Operation",
+      "5-lucky-bet/Lucky-Bet-Js"
     ]
   },
   "docs-other": {
