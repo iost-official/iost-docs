@@ -32,6 +32,11 @@ const siteConfig = {
   // Used for publishing and more
   projectName: 'Iost',
   organizationName: 'IOST',
+  algolia: {
+    apiKey: '31556a769e30bb94f63be6ddcc49f071',
+    indexName: 'iost',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  },
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
