@@ -4,360 +4,331 @@ title: API
 sidebar_label: API
 ---
 
-### /estimateGas
 ---
-##### ***POST***
-**Summary:** not supported yet
+## /getChainInfo
+Returns information of the IOST blockchain  
+### Parameters  
+None  
+### Response  
 
-**Parameters**
+| Key | Value |
+|--|--|
+| netType | This IOST blockchain network type. It can be one of 'debugnet', 'testnet' and 'mainnet' |
+|protocolVersion|Must be '1.0' now
+|witnessList|Current witness list
+|height|Current blockchain height
+|headBlock|Information of the head block on the longest chain.
+|headBlock.head.number|Height of the block
+|headBlock.head.witness|Witness(producer) of the block
+|headBlock.hash|Base58 encoded hash of the block
+|headBlock.txs|Transactions in the block. But the value is empty now.
+|headBlock.txhash|Base58 encoded transaction hashes in the block
+|headBlock.receipts|Receipts of the block. But the value is empty now.
+|headBlock.receiptHash|Base58 encoded receipt hashes of the block
+|latestConfirmedBlock| Information of the latest confirmed block. The json content structure is same as 'headBlock'
 
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body |  | Yes | [rpcRawTxReq](#rpcrawtxreq) |
+### Example
+```
+$ curl -s -X GET http://127.0.0.1:30001/getChainInfo|python -m json.tool
+{
+    "headBlock": {
+        "hash": "62LUg4MSavYphZTpCVgJaDKgqzDt8XutvfNDebiNW97N",
+        "head": {
+            "info": null,
+            "merkleHash": "x0H6sO25+ulV6yYIY+90lreD6LxE2YD+ks9OKbU1z/I=",
+            "number": "11",
+            "parentHash": "z7+vyuQUb9Bxxz7i+zE/r7LyvLu4rCYBOJ6scbsIn00=",
+            "time": "513312591",
+            "txsHash": "XEDPW7v09J+f3ZmLMyazw9vOzY/kGz5eyEQenRn32VQ=",
+            "version": "0",
+            "witness": "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+        },
+        "receiptHash": [
+            "43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj"
+        ],
+        "receipts": [],
+        "txhash": [
+            "4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv"
+        ],
+        "txs": []
+    },
+    "height": "11",
+    "latestConfirmedBlock": {
+        "hash": "62LUg4MSavYphZTpCVgJaDKgqzDt8XutvfNDebiNW97N",
+        "head": {
+            "info": null,
+            "merkleHash": "x0H6sO25+ulV6yYIY+90lreD6LxE2YD+ks9OKbU1z/I=",
+            "number": "11",
+            "parentHash": "z7+vyuQUb9Bxxz7i+zE/r7LyvLu4rCYBOJ6scbsIn00=",
+            "time": "513312591",
+            "txsHash": "XEDPW7v09J+f3ZmLMyazw9vOzY/kGz5eyEQenRn32VQ=",
+            "version": "0",
+            "witness": "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+        },
+        "receiptHash": [
+            "43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj"
+        ],
+        "receipts": [],
+        "txhash": [
+            "4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv"
+        ],
+        "txs": []
+    },
+    "netType": "debugnet",
+    "protocolVersion": "1.0",
+    "witnessList": [
+        "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+    ]
+}
+```
 
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcGasRes](#rpcgasres) |
-
-### /getBalance/{ID}/{useLongestChain}
 ---
-##### ***GET***
-**Summary:** get the balance of some account by account ID
+## /getNodeInfo
+Returns information of the IOST server node  
+### Parameters  
+None  
+### Response  
 
-**Parameters**
+| Key | Value |
+|--|--|
+|gitHash|Git hash of the 'iserver' binary
+|buildTime|Building time of the 'server' binary
+|mode|Current mode of the server. It can be one of 'ModeInit', 'ModeNormal' and 'ModeSync'
+|network|Network information of the node 
+|network.ID|Node ID in the p2p network
+|network.peerCount|Peer count of the node
+|network.peerInfo|Peer information of the node
+|network.peerInfo[idx].ID|ID of the idx-th peer
+|network.peerInfo[idx].addr|Address of the idx-th peer
 
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| ID | path |  | Yes | string |
-| useLongestChain | path |  | Yes | boolean (boolean) |
+### Example
+```
+$ curl -s -X GET http://127.0.0.1:30001/getNodeInfo|python -m json.tool
+{
+    "buildTime": "20181017_101014+0000",
+    "gitHash": "6248a34cd645681f09dd72eeb908398f9dc0c116",
+    "mode": "ModeNormal",
+    "network": {
+        "ID": "12D3KooWLYmeFqkumboHoSWfSUJz7RmwfMLwg7pMYjzEiFt4EZBK",
+        "peerCount": 2,
+        "peerInfo": [
+            {
+                "ID": "12D3KooWH8yqnJ7sb1NZijiXRLrg138XgJ7bf53Lu69ve4Sq3Pm3",
+                "addr": "/ip4/13.251.250.120/tcp/30000"
+            },
+            {
+                "ID": "12D3KooWAiRUbb8rk6YLWDPUYUCEi1rCvcA7rnn3RMCnRiksqEYJ",
+                "addr": "/ip4/13.237.106.39/tcp/30000"
+            }
+        ]
+    }
+}
+```
 
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcGetBalanceRes](#rpcgetbalanceres) |
-
-### /getBlockByHash/{hash}/{complete}
 ---
-##### ***GET***
-**Summary:** get the block by hash
+## /getBlockByHash/{hash}/{complete}
+Returns information of the IOST server node  
+### Parameters  
 
-**Parameters**
+| Key | Value |
+|--|--|
+|hash|Base58 encoded hash for the requested block
+|complete|Whether to return full txs and receipts, or just return their hashes
+### Response  
+The same as the block info in 'getChainInfo' api  
+### Example  
+```
+$ curl -s -X GET http://127.0.0.1:30001/getBlockByHash/62LUg4MSavYphZTpCVgJaDKgqzDt8XutvfNDebiNW97N/true |python -m json.tool
+{
+    "hash": "62LUg4MSavYphZTpCVgJaDKgqzDt8XutvfNDebiNW97N",
+    "head": {
+        "info": null,
+        "merkleHash": "x0H6sO25+ulV6yYIY+90lreD6LxE2YD+ks9OKbU1z/I=",
+        "number": "11",
+        "parentHash": "z7+vyuQUb9Bxxz7i+zE/r7LyvLu4rCYBOJ6scbsIn00=",
+        "time": "513312591",
+        "txsHash": "XEDPW7v09J+f3ZmLMyazw9vOzY/kGz5eyEQenRn32VQ=",
+        "version": "0",
+        "witness": "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+    },
+    "receiptHash": [
+        "43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj"
+    ],
+    "receipts": [
+        {
+            "gasUsage": "2015",
+            "receipts": [],
+            "status": {
+                "code": 0,
+                "message": ""
+            },
+            "succActionNum": 1,
+            "txHash": "MtsOqLIPqRuIkxjC7CcygaOu2m+g2lreKhz/WDqcWdU="
+        }
+    ],
+    "txhash": [
+        "4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv"
+    ],
+    "txs": [
+        {
+            "actions": [
+                {
+                    "actionName": "SetCode",
+                    "contract": "iost.system",
+                    "data": "HERE WILL A LONG DATA STRING!! OMIT NOW!!"
+                }
+            ],
+            "expiration": "1540297771456526000",
+            "gasLimit": "3000",
+            "gasPrice": "1",
+            "publisher": {
+                "algorithm": 2,
+                "pubKey": "VzGt610agH7JxDglOJ5e3/cEEuRkOpRimmUq8b/PLwg=",
+                "sig": "9VTWs+KNKBda95GeamJy8UGzqW56rDh9+PKkp1B/JLQwi+suRe8ul6446IT+AW7ijkGdJ4ahw1bYgwhEDTjCDw=="
+            },
+            "signers": [],
+            "signs": [],
+            "time": "1539937771456530000"
+        }
+    ]
+}
+```
 
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| hash | path |  | Yes | string |
-| complete | path |  | Yes | boolean (boolean) |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcBlockInfo](#rpcblockinfo) |
-
-### /getBlockByNum/{num}/{complete}
 ---
-##### ***GET***
-**Summary:** get the block by number
+## /getBlockByNum/{num}/{complete}
+Returns information of the IOST server node  
+### Parameters  
 
-**Parameters**
+| Key | Value |
+|--|--|
+|num|Num(height) for the requested block
+|complete|(optional) Whether to return full txs and receipts, or just return their hashes
+### Response  
+The same as the block info in 'getChainInfo' api  
+### Example  
+```
+$ curl -s -X GET http://127.0.0.1:30001/getBlockByNum/11/false |python -m json.tool
+{
+    "hash": "62LUg4MSavYphZTpCVgJaDKgqzDt8XutvfNDebiNW97N",
+    "head": {
+        "info": null,
+        "merkleHash": "x0H6sO25+ulV6yYIY+90lreD6LxE2YD+ks9OKbU1z/I=",
+        "number": "11",
+        "parentHash": "z7+vyuQUb9Bxxz7i+zE/r7LyvLu4rCYBOJ6scbsIn00=",
+        "time": "513312591",
+        "txsHash": "XEDPW7v09J+f3ZmLMyazw9vOzY/kGz5eyEQenRn32VQ=",
+        "version": "0",
+        "witness": "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+    },
+    "receiptHash": [
+        "43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj"
+    ],
+    "receipts": [],
+    "txhash": [
+        "4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv"
+    ],
+    "txs": []
+}
+```
 
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| num | path |  | Yes | string (int64) |
-| complete | path |  | Yes | boolean (boolean) |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcBlockInfo](#rpcblockinfo) |
-
-### /getHeight
 ---
-##### ***GET***
-**Summary:** get the current height of the blockchain
+## /getTxByHash/{hash}
+Fetches the transaction by its base58 encoded hash  
+### Parameters  
 
-**Responses**
+| Key | Value |
+|--|--|
+|hash|Base58 encoded transaction hash
+### Response  
+The transaction information  
+### Example  
+```
+$ curl -s -X GET http://127.0.0.1:30001/getTxByHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv|python -m json.tool
+{
+    "hash": "4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv",
+    "txRaw": {
+        "actions": [
+            {
+                "actionName": "SetCode",
+                "contract": "iost.system",
+                "data": "..."
+            }
+        ],
+        "expiration": "1540297771456526000",
+        "gasLimit": "3000",
+        "gasPrice": "1",
+        "publisher": {
+            "algorithm": 2,
+            "pubKey": "VzGt610agH7JxDglOJ5e3/cEEuRkOpRimmUq8b/PLwg=",
+            "sig": "9VTWs+KNKBda95GeamJy8UGzqW56rDh9+PKkp1B/JLQwi+suRe8ul6446IT+AW7ijkGdJ4ahw1bYgwhEDTjCDw=="
+        },
+        "signers": [],
+        "signs": [],
+        "time": "1539937771456530000"
+    }
+}
+```
 
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcHeightRes](#rpcheightres) |
-
-### /getNetID
 ---
-##### ***GET***
-**Summary:** get the Net ID
+## /getTxReceiptByTxHash/{hash}
+Fetches receipt of a transaction by the base58 encoded hash of the transaction  
+### Parameters  
 
-**Responses**
+| Key | Value |
+|--|--|
+|hash|Base58 encoded transaction hash
+### Response  
+| Key | Value |
+|--|--|
+|hash|Base58 encoded hash of the receipt
+|txReceiptRaw.gasUsage|Gas used of this transaction
+|txReceiptRaw.status.code|Return code of this transaction. 0 means all things Ok
+|txReceiptRaw.status.message|Result message of this transaction. It can be empty or error message
+### Example  
+```
+$ curl -s -X GET http://127.0.0.1:30001/getTxReceiptByTxHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv|python -m json.tool
+{
+    "hash": "43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj",
+    "txReceiptRaw": {
+        "gasUsage": "2015",
+        "receipts": [],
+        "status": {
+            "code": 0,
+            "message": ""
+        },
+        "succActionNum": 1,
+        "txHash": "MtsOqLIPqRuIkxjC7CcygaOu2m+g2lreKhz/WDqcWdU="
+    }
+}
+```
 
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcGetNetIDRes](#rpcgetnetidres) |
-
-### /getState/{key}
 ---
-##### ***GET***
-**Summary:** get the value of the corresponding key in stateDB
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| key | path |  | Yes | string |
-| field | query |  | No | string |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcGetStateRes](#rpcgetstateres) |
-
-### /getTxByHash/{hash}
----
-##### ***GET***
-**Summary:** get the tx by hash
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| hash | path |  | Yes | string |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpctxRes](#rpctxres) |
-
-### /getTxReceiptByHash/{hash}
----
-##### ***GET***
-**Summary:** get receipt by hash
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| hash | path |  | Yes | string |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpctxReceiptRes](#rpctxreceiptres) |
-
-### /getTxReceiptByTxHash/{hash}
----
-##### ***GET***
-**Summary:** get receipt by txhash
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| hash | path |  | Yes | string |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpctxReceiptRes](#rpctxreceiptres) |
-
-### /sendRawTx
----
-##### ***POST***
-**Summary:** receive encoded tx
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body |  | Yes | [rpcRawTxReq](#rpcrawtxreq) |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 |  | [rpcSendRawTxRes](#rpcsendrawtxres) |
-
-### /subscribe
----
-##### ***POST***
-**Summary:** subscribe an event
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body |  | Yes | [rpcSubscribeReq](#rpcsubscribereq) |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | (streaming responses) | [rpcSubscribeRes](#rpcsubscriberes) |
-
-### Models
----
-
-### EventTopic  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| EventTopic | string |  |  |
-
-### blockBlockHead  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| version | string (int64) |  | No |
-| parentHash | byte |  | No |
-| txsHash | byte |  | No |
-| merkleHash | byte |  | No |
-| info | byte |  | No |
-| number | string (int64) |  | No |
-| witness | string |  | No |
-| time | string (int64) |  | No |
-
-### cryptoSignatureRaw  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| algorithm | integer |  | No |
-| sig | byte |  | No |
-| pubKey | byte |  | No |
-
-### eventEvent  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| topic | [EventTopic](#eventtopic) |  | No |
-| data | string |  | No |
-| time | string (int64) |  | No |
-
-### rpcBlockInfo  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| head | [blockBlockHead](#blockblockhead) |  | No |
-| hash | byte |  | No |
-| txs | [ [txTxRaw](#txtxraw) ] |  | No |
-| txhash | [ byte ] |  | No |
-| receipts | [ [txTxReceiptRaw](#txtxreceiptraw) ] |  | No |
-| receiptHash | [ byte ] |  | No |
-
-### rpcGasRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| gas | string (uint64) |  | No |
-
-### rpcGetBalanceRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| balance | string (int64) |  | No |
-
-### rpcGetNetIDRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| ID | string |  | No |
-
-### rpcGetStateRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| value | string |  | No |
-
-### rpcHeightRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| height | string (int64) |  | No |
-
-### rpcRawTxReq  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| data | byte |  | No |
-
-### rpcSendRawTxRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| hash | string |  | No |
-
-### rpcSubscribeReq  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| topics | [ [EventTopic](#eventtopic) ] |  | No |
-
-### rpcSubscribeRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| ev | [eventEvent](#eventevent) |  | No |
-
-### rpctxReceiptRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| txReceiptRaw | [txTxReceiptRaw](#txtxreceiptraw) |  | No |
-| hash | byte |  | No |
-
-### rpctxRes  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| txRaw | [txTxRaw](#txtxraw) |  | No |
-| hash | byte |  | No |
-
-### txActionRaw  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| contract | string |  | No |
-| actionName | string |  | No |
-| data | string |  | No |
-
-### txReceiptRaw  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| type | integer |  | No |
-| content | string |  | No |
-
-### txStatusRaw  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| code | integer |  | No |
-| message | string |  | No |
-
-### txTxRaw  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| time | string (int64) |  | No |
-| expiration | string (int64) |  | No |
-| gasLimit | string (int64) |  | No |
-| gasPrice | string (int64) |  | No |
-| actions | [ [txActionRaw](#txactionraw) ] |  | No |
-| signers | [ byte ] |  | No |
-| signs | [ [cryptoSignatureRaw](#cryptosignatureraw) ] |  | No |
-| publisher | [cryptoSignatureRaw](#cryptosignatureraw) |  | No |
-
-### txTxReceiptRaw  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| txHash | byte |  | No |
-| gasUsage | string (int64) |  | No |
-| status | [txStatusRaw](#txstatusraw) |  | No |
-| succActionNum | integer |  | No |
-| receipts | [ [txReceiptRaw](#txreceiptraw) ] |  | No |
+## /getTxReceiptByHash/{hash}
+Fetches a receipt by its base58 encoded hash  
+### Parameters  
+
+| Key | Value |
+|--|--|
+|hash|Base58 encoded receipt hash
+### Response  
+Retruns a receipt info with the same json structure as in `getTxReceiptByTxHash`  
+### Example  
+```
+curl -s -X GET http://127.0.0.1:30001/getTxReceiptByHash/43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj|python -m json.tool
+{
+    "hash": "43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj",
+    "txReceiptRaw": {
+        "gasUsage": "2015",
+        "receipts": [],
+        "status": {
+            "code": 0,
+            "message": ""
+        },
+        "succActionNum": 1,
+        "txHash": "MtsOqLIPqRuIkxjC7CcygaOu2m+g2lreKhz/WDqcWdU="
+    }
+}
+```
+
+
+ 
