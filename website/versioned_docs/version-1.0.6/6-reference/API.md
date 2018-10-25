@@ -170,7 +170,7 @@ original_id: API
 ### /sendRawTx
 ---
 ##### ***POST***
-**Summary:** receive encoded tx
+**Summary:** send encoded tx
 
 **Parameters**
 
