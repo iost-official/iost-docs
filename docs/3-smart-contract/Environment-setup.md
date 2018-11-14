@@ -16,13 +16,20 @@ git clone https://github.com/iost-official/go-iost.git
 
 Then, install `node` and `npm` in the directory `go-iost/iwallet/contract`.
 
-## Installing ```Node```
+## Install ```Node```
 
 Please refer to [Official Documents](https://nodejs.org/zh-cn/download/package-manager/#macos)
 
-## Installing```npm```
+## Install```npm```
 
 ```git
 cd go-iost/iwallet/contract
 npm install
+```
+
+## Install```Dynamic Library```
+
+```git
+cd go-iost/vm/v8vm/v8
+make deploy
 ```
