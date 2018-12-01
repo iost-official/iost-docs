@@ -6,7 +6,7 @@ sidebar_label: Database
 
 The database layer of IOST is structured as below:
 
-![statedb](assets/2-intro-of-iost/Database/statedb.png)
+![statedb](../assets/2-intro-of-iost/Database/statedb.png)
 
 The lowest level is Storage, which provides final persistence of data. We adopt the simplest key-value database form factor, and achieve access to different databases by writing to different database backends.
 

@@ -4,11 +4,11 @@ title: iWallet
 sidebar_label: iWallet
 ---
 
-**IOSBlockchain** has two programs: `iServer` is the core program and multiple `iServer` forms the blockchain network. `iWallet` is a command line tool to interact with `iServer` blockchain.
+**IOSTBlockchain** has two programs: `iServer` is the core program and multiple `iServer` forms the blockchain network. `iWallet` is a command line tool to interact with `iServer` blockchain.
 
 After successfully `build`ing the system, `iWallet` is in the `target/` folder in the project directory.
 
-![iwallet1](assets/4-running-iost-node/iWallet/iwallet.png)
+![iwallet1](../assets/4-running-iost-node/iWallet/iwallet.png)
 
 ## Commands
 

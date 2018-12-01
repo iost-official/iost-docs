@@ -31,7 +31,7 @@ You can add and image use direct web image link
 ![Google](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
 
 You can add local image to assets and refer it
-![logo](assets/iost-logo-large.png)
+![logo](../assets/iost-logo-large.png)
 
 
 ### code highlighting

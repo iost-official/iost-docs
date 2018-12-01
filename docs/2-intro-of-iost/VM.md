@@ -10,14 +10,14 @@ We believe a good implementation of virtual machine needs to be both elegantly d
 
 VMManager is at the core of V8VM. It has three main features:
 
-![statedb](assets/2-intro-of-iost/VM/V8VM.png)
+![statedb](../assets/2-intro-of-iost/VM/V8VM.png)
 * <font color="#0092ff">VM Entrance. </font>It interfaces external requests from other modules, including RPC requests, block validation, Tx validation, etc. The work is handed off to VMWorker after preprocessing and formatting.
 * <font color="#0092ff">VMWorker lifecycle management. </font>The number of workers are set dynamically based on system load. It achieves reuse of workers. Within the workers, JavaScript hot launch and persistence of hotspot Sandbox snapshots help reduce frequent creation of VMs, and avoid heavy load in CPU and memory when the same code is loaded. This will increase the throughput of the system, allowing the IOST V8VM to breathe even when processing contracts with a massive user base, such as fomo3D.
 * <font color="#0092ff">Management of interface with State database. </font>This ensures atomicity of each IOST transaction, denying the entire transaction when there is an error of insufficient funds. At the same time, two-level cache is achieved in the State database, before being flushed to RocksDB.
 
 ## 2. Sandbox core design
 
-![statedb](assets/2-intro-of-iost/VM/sandbox.png)
+![statedb](../assets/2-intro-of-iost/VM/sandbox.png)
 
 As the payload of JavaScript smart contract execution, Sandbox interfaces with V8VM, and packs for calling in Chrome V8. There are two stages, Compile and Execution.
 

@@ -8,7 +8,7 @@ Metrics is a tool that monitors system performance. We use [Prometheus](https://
 
 ## Deploying Prometheus
 
-If you are running an IOST node, and wouuld like to look up the metrics of the node, follow these steps:
+If you are running an IOST node, and would like to look up the metrics of the node, follow these steps:
 
 * Run prometheus `pushgateway`
 
@@ -18,7 +18,7 @@ docker run -d -p 9091:9091 prom/pushgateway
 
 After installation, go to `[pushgateway_ip]:9091` in your browser and you can see the following page (`[pushgateway]` is the IP the docker is deployed to):
 
-![example](assets/doc004/pushgateway.png)
+![example](../assets/doc004/pushgateway.png)
 
 * Run prometheus server
 
@@ -42,7 +42,7 @@ scrape_configs:
 
 Remember to replace `pushgateway_ip` with the docker's IP address.
 
-![example](assets/doc004/prometheus.png)
+![example](../assets/doc004/prometheus.png)
 
 * Configure `iserver.yml`
 
@@ -57,7 +57,7 @@ metrics:
 
 Add the above configuaration to `iserver.yml`.
 
-Afther the above steps, you can check IOST metrics in "prometheus\_ip:9091". The following metrics are provided:
+After the above steps, you can check IOST metrics in "prometheus\_ip:9091". The following metrics are provided:
 
 ```
 iost_pob_verify_block: Number of verify blocks
