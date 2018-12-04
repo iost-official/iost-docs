@@ -236,6 +236,18 @@
       "version-1.0.6-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-1.0.7-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-1.0.7-Environment-setup": {
+        "title": "Environment setup",
+        "sidebar_label": "Environment setup"
+      },
+      "version-1.0.7-API": {
+        "title": "API",
+        "sidebar_label": "API"
       }
     },
     "links": {
