@@ -59,7 +59,7 @@ return:
 
 ### block:
 
-Посмотр блока с хешем:
+Просмотр блока с хешем:
 
 ```
 # 查询0号block数据
@@ -70,7 +70,7 @@ return:
 
 ### call:
 
-Вы можете `call` методы контракта в блокчейне.
+Вы можете `call` (вызвать) методы контракта в блокчейне.
 
 ```
 # Calls iost.system contract's Transfer method，Account IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP transfers Account IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk 100 token,

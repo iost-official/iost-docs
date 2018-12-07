@@ -283,7 +283,7 @@ $ curl -s -X GET http://127.0.0.1:30001/getTxByHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyk
 |hash|Base58 закодированный хеш receipt
 |txReceiptRaw.gasUsage|Газ потраченный на эту транзакцию
 |txReceiptRaw.status.code|Код возврата этой транзакции. 0 означает все ОК
-|txReceiptRaw.status.message|Сообщение о результате этой транзакции. Это может быть пустое или сообщение об ошибке
+|txReceiptRaw.status.message|Сообщение о результате этой транзакции. Оно может быть пустое или сообщение об ошибке
 ### Пример  
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getTxReceiptByTxHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv|python -m json.tool
