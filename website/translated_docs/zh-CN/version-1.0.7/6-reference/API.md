@@ -5,7 +5,7 @@ sidebar_label: API
 ---
 
 ## /getNodeInfo
-
+---
 
 ##### **GET**
 **概要:** 获得节点的信息
@@ -62,6 +62,7 @@ curl http://127.0.0.1:30001/getNodeInf
 
 
 ## /getChainInfo
+---
 
 ##### **GET**
 **概要:** 获得区块链的信息
@@ -104,7 +105,7 @@ curl http://127.0.0.1:30001/getChainInfo
 
 
 ## /getTxByHash/{hash}
-
+---
 
 ##### **GET**
 **概要:** 通过交易hash获取交易数据
@@ -205,6 +206,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 
 
 ## /getTxReceiptByTxHash/{hash}
+---
 
 ##### ***GET***
 **概要:** 通过交易hash获取交易receipt数据
@@ -250,6 +252,7 @@ curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4e
 
 
 ## /getBlockByHash/{hash}/{complete}
+---
 
 
 ##### **GET**
@@ -323,6 +326,7 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 | batch_index | repeated int32   | 交易的索引 |
 
 ## /getBlockByNumber/{number}/{complete}
+---
 
 
 ##### **GET**
@@ -372,6 +376,7 @@ curl http://127.0.0.1:30001/getBlockByNumber/3/false
 | block |[Block](#Block) block   | block结构体 |
 
 ## /getAccount/{name}/{by\_longest\_chain}
+---
 
 
 ##### **GET**
@@ -504,6 +509,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | time | int64   | 解冻时间|
 
 ## /getTokenBalance/{account}/{token}/{by\_longest\_chain}
+---
 
 
 ##### **GET**
@@ -541,6 +547,7 @@ curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 | frozen_balances |repeated [FrozenBalance](#FrozenBalance)   | 冻结信息 |
 
 ## /getContract/{id}
+---
 
 ##### **GET**
 **概要:** 通过合约ID获取合约数据
@@ -605,6 +612,8 @@ curl http://127.0.0.1:30001/getContract/base.iost
 
 
 ## /getContractStorage
+---
+
 
 ##### **POST**
 **概要:** 本地获取合约的存储数据
