@@ -15,7 +15,7 @@ sidebar_label: API
 一个请求格式的例子
 
 ```
-curl http://127.0.0.1:30001/getNodeInf
+curl http://127.0.0.1:30001/getNodeInfo
 ```
 
 ### 响应格式
@@ -650,4 +650,65 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 	}
 "}
 ```
+
+## /SendTransaction
+---
+
+##### **POST**
+**概要:**    
+把交易发到节点上。   
+节点收到这个交易后，首先会做基本检查，如果不通过则返回错误，如果通过，则将本交易加入交易池中，并且返回交易的 Hash。   
+用户在一段时间之后，可以使用这个收到的 Hash 通过 getTxReceiptByTxHash 接口来查询本交易的状态，查看是否执行成功。   
+**注意:**   
+由于交易中需要做签名，因此交易一般无法通过 curl 来手动发送。因此在此不提供基于 curl 的例子。 也不建议直接调用本 RPC 接口。    
+普通用户可以使用 [命令行工具](https://docs.qq.com/doc/DSW1BR2ZScW1sZmxt) 发送交易。  
+开发者可以使用 [Javascript SDK](https://github.com/iost-official/iost.js) 中的函数接口发送交易。
+
+### 请求格式
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+
+
+## /getContractStorage
+---
+
+
+##### **POST**
+**概要:** 本地获取合约的存储数据
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.iost","field":"producer00001","key":"producerTable","by_longest_chain":true}'
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| id |string  | 智能合约的ID |
+| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
+| key |struct  | StateDB的key |
+| by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
+
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{"data":"
+	{
+		"pubkey": "IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J",
+		"loc": "",
+		"url": "",
+		"netId": "",
+		"online": true,
+		"registerFee": "200000000"
+	}
+"}
+```
+
+
+
 

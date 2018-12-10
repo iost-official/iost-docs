@@ -1,0 +1,1 @@
+../../website/translated_docs/zh-CN/6-reference/iwallet-example.md
