@@ -5,7 +5,7 @@ sidebar_label: API
 ---
 
 ## /getNodeInfo
-
+---
 
 ##### **GET**
 **概要:** 获得节点的信息
@@ -14,7 +14,7 @@ sidebar_label: API
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getNodeInf
 ```
 
@@ -22,7 +22,7 @@ curl http://127.0.0.1:30001/getNodeInf
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -44,7 +44,7 @@ curl http://127.0.0.1:30001/getNodeInf
 | :----: | :-----: | :------ |
 | build_time |string  | 构建可执行程序的时间 |
 | git_hash |string  | 版本的git hash |
-| mode |string  | 节点运行模式 |
+| mode |string  | 节点运行模式， ModeNormal - 正常模式，ModeSync - 同步块模式，ModeInit - 初始化模式 |
 | network |[NetworkInfo](#NetworkInfo) network  | 网络连接信息 |
 
 ### NetworkInfo
@@ -62,6 +62,7 @@ curl http://127.0.0.1:30001/getNodeInf
 
 
 ## /getChainInfo
+---
 
 ##### **GET**
 **概要:** 获得区块链的信息
@@ -70,7 +71,7 @@ curl http://127.0.0.1:30001/getNodeInf
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getChainInfo
 ```
 
@@ -78,7 +79,7 @@ curl http://127.0.0.1:30001/getChainInfo
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -96,15 +97,15 @@ curl http://127.0.0.1:30001/getChainInfo
 | :----: | :-----: | :------ |
 | net_name |string  | 网络名字，例如mainnet或testnet|
 | protocol_version |string  | iost协议版本 |
-| head_block |int64  | 最新块的高度 |
-| head\_block_hash | string  | 最新块的hash |
+| head_block |int64  | 最新块的块号 |
+| head\_block\_hash | string  | 最新块的hash |
 | lib_block |int64  | 不可逆块的高度 |
 | lib\_block\_hash | string  | 不可逆块的hash |
-| witness_list |repeated string  | 造块节点的列表 |
+| witness_list |repeated string  | 造块节点的pubkey列表 |
 
 
 ## /getTxByHash/{hash}
-
+---
 
 ##### **GET**
 **概要:** 通过交易hash获取交易数据
@@ -113,19 +114,19 @@ curl http://127.0.0.1:30001/getChainInfo
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2ACnR
 ```
 
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| hash | string  | 交易的hash| 
+| hash | string  | 交易的hash|
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -153,7 +154,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| status |enum  | PENDING-交易在缓存中, PACKED - 交易在非不可逆块中，IRREVERSIBLE - 交易在不可逆的块中| 
+| status |enum  | PENDING-交易在缓存中, PACKED - 交易在非不可逆块中，IRREVERSIBLE - 交易在不可逆的块中|
 | transaction |[Transaction](#Transaction) transaction   | 交易数据 |
 
 ### Transaction
@@ -162,21 +163,21 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 | hash |string  | 交易的hash |
 | time |int64  | 交易的时间戳 |
 | expiration | int64  | 交易的过期时间 |
-| gas_ratio |double  | Gas费率 |
-| gas_limit | double  | Gas上线 |
-| delay | int64  | 延迟执行时间，单位纳秒 |
+| gas_ratio |double  | Gas费率，建议设置成1(1.00 ~ 100.00)，可以通过提高费率来让交易更容易被打包 |
+| gas_limit | double  | Gas上限,执行交易所消耗的Gas不会超过这个上限 |
+| delay | int64  | 延迟时间，交易会在延迟时间之后被执行，单位纳秒 |
 | actions |repeated [Action](#Action)  | 交易的最小执行单元 |
 | signers |repeated string  | 交易的签名列表 |
-| publisher |string  | 交易提交者 |
-| referred_tx |string  | 交易的hash |
-| amount_limit |repeated [AmountLimit](#AmountLimit)  | 交易金额限制 |
+| publisher |string  | 交易提交者,承担交易的执行费用 |
+| referred_tx |string  | 交易生成依赖，用于延迟交易 |
+| amount_limit |repeated [AmountLimit](#AmountLimit)  | 用户可以设置的花费token的限制, 如 {"iost": 100} 即本次交易对于每个签名者花费iost不超过100 |
 | tx_receipt |[TxReceipt](#TxReceipt) tx_receipt  | 交易Action的receipt |
 
 ### Action
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| contract | string  | 调用的合约名字 |
-| action_name |string  | 调用的Action名字 |
+| contract | string  | 被调用的合约名字 |
+| action_name |string  | 被调用的Action名字 |
 | data |string  | 入参数据 |
 
 ### AmountLimit
@@ -188,23 +189,24 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 ### TxReceipt
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| tx_hash | string| 交易的hash| 
-| gas_usage |double| 交易的Gas消耗 |
+| tx_hash | string| 交易的hash|
+| gas_usage |double| 交易执行的Gas消耗 |
 | ram_usage |map<string, int64>| 交易的RAM消耗，map-key - 账户名，map-value - 使用RAM量 |
-| status_code | enum  | SUCCESS - 成功，GAS_RUN_OUT - Gas不足，BALANCE_NOT_ENOUGH - 余额不足，WRONG_PARAMETER - 错误参数， RUNTIME_ERROR - 运行时错误， TIMEOUT - 超时， WRONG_TX_FORMAT - 交易格式错误， DUPLICATE_SET_CODE - 重复设置set code, UNKNOWN_ERROR - 未知错误 |
-| message |string  | 信息 |
-| returns | repeated string| 交易的返回信息 |
-| receipts | repeated [Receipt](#Receipt)  | 交易的receipt信息 |
+| status_code | enum  | 交易执行状态，SUCCESS - 成功，GAS_RUN_OUT - Gas不足，BALANCE_NOT_ENOUGH - 余额不足，WRONG_PARAMETER - 错误参数， RUNTIME_ERROR - 运行时错误， TIMEOUT - 超时， WRONG_TX_FORMAT - 交易格式错误， DUPLICATE_SET_CODE - 重复设置set code, UNKNOWN_ERROR - 未知错误 |
+| message| string |status_code的详细描述信息|
+| returns | repeated string| 每个Action的返回值 |
+| receipts | repeated [Receipt](#Receipt)  | event功能使用 |
 
 ### Receipt
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| func_name | string  | 函数的名字 |
+| func_name | string  | abi函数的名字 |
 | content | string  | 内容 |
 
 
 
 ## /getTxReceiptByTxHash/{hash}
+---
 
 ##### ***GET***
 **概要:** 通过交易hash获取交易receipt数据
@@ -213,18 +215,18 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2ACnR
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| hash | string  | receipt的hash| 
+| hash | string  | receipt的hash|
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -246,10 +248,11 @@ curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4e
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| | [TxReceipt](#TxReceipt)  | 交易的receipt| 
+| | [TxReceipt](#TxReceipt)  | 交易的receipt|
 
 
 ## /getBlockByHash/{hash}/{complete}
+---
 
 
 ##### **GET**
@@ -259,19 +262,19 @@ curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4e
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvhPe31GaY/false
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| hash | string  | block hash| 
-| complete | bool  | true - 显示block中的交易， false - 不显示block中交易详情| 
+| hash | string  | block hash|
+| complete | bool  | true - 显示block中的交易， false - 不显示block中交易详情|
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -295,7 +298,7 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| status | enum  | PENDIND - block在缓存中，IRREVERSIBLE - block不可逆| 
+| status | enum  | PENDIND - block在缓存中，IRREVERSIBLE - block不可逆|
 | block |[Block](#Block) block   | block结构体 |
 
 ### Block
@@ -309,7 +312,7 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 | number | int64  | block号 |
 | witness | string  | block生产者的pubkey |
 | time | int64  | block生产时间 |
-| gas_usage | double  | block中所有交易的Gas消耗 |
+| gas_usage | double  | block中交易消耗的总Gas |
 | tx_count | int64  | block中交易总数 |
 | info | [Info](#info) info  | 保留字段 |
 | transactions | repeated [Transaction](#Transaction) | 交易字段 |
@@ -318,11 +321,12 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| mode | int32  | 包模式 | 
-| thread |int32   | 交易执行的线程数量 |
-| batch_index | repeated int32   | 每个批处理执行的交易索引 |
+| mode | int32  | 并发的模式，0 - 不并发， 1 - 并发 |
+| thread |int32   | 交易并发执行的线程数量 |
+| batch_index | repeated int32   | 交易的索引 |
 
 ## /getBlockByNumber/{number}/{complete}
+---
 
 
 ##### **GET**
@@ -332,19 +336,19 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getBlockByNumber/3/false
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| number | int64  | block 的号| 
-| complete | bool  | true - 显示block中的交易， false - 不显示block中交易详情| 
+| number | int64  | block号|
+| complete | bool  | true - 显示block中的交易， false - 不显示block中交易详情|
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -368,10 +372,11 @@ curl http://127.0.0.1:30001/getBlockByNumber/3/false
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| status | enum  | PENDIND - block在缓存中，IRREVERSIBLE - block不可逆| 
+| status | enum  | PENDIND - block在缓存中，IRREVERSIBLE - block不可逆|
 | block |[Block](#Block) block   | block结构体 |
 
 ## /getAccount/{name}/{by\_longest\_chain}
+---
 
 
 ##### **GET**
@@ -381,19 +386,19 @@ curl http://127.0.0.1:30001/getBlockByNumber/3/false
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getAccount/admin/true
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| name | string  | block 的号| 
-| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据| 
+| name | string  | block 的号|
+| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -445,7 +450,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| name | string  | 账户名字| 
+| name | string  | 账户名字|
 | balance |double   | 余额 |
 | create_time |int64   | 账号创建时间 |
 | gas_info |[GasInfo](#GasInfo) gas_info   | Gas信息 |
@@ -457,53 +462,54 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 ### GasInfo
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| current_total | double  | 当前Gas总量| 
+| current_total | double  | 当前Gas总量|
 | transferable_gas |double   | 可以流通的Gas量 |
-| pledge_gas |double   | 质押的Gas |
-| increase_speed |double   | Gas增长的速度 |
-| limit |double   | Gas上限 |
-| pledged_info |repeated [PledgeInfo](#PledgeInfo)   | 质押信息 |
+| pledge_gas |double   | 质押获得的Gas |
+| increase_speed |double   | 每秒增加的Gas |
+| limit |double   | 质押Token获得的Gas上限 |
+| pledged_info |repeated [PledgeInfo](#PledgeInfo)   | 其他账号帮本账号质押的信息 |
 
 ### PledgeInfo
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| pledger | string  | 质押的账号| 
+| pledger | string  | 质押的账号|
 | amount |double   | 质押金额 |
 
 ### RAMInfo
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| available | int64  | 可用的RAM bytes| 
+| available | int64  | 可用的RAM bytes|
 
 ### Permission
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| name | string  | 名字| 
-| groups | repeated string   | 权限组| 
-| items | repeated [Item](#Item)   | 权限信息| 
-| threshold | int64  | 权限阈值| 
+| name | string  | 	权限名字|
+| groups | repeated string   | 权限组|
+| items | repeated [Item](#Item)   | 权限信息|
+| threshold | int64  | 权限阈值|
 
 ### Item
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| id | string   | 权限名字或者key pair id| 
-| is\_key\_pair | bool   | true - id是key pair, false - id为权限名字| 
-| weight | int64   | 权限权重| 
-| permission | string   | 权限| 
+| id | string   | 权限名字或者key pair id|
+| is\_key\_pair | bool   | true - id是key pair, false - id为权限名字|
+| weight | int64   | 权限权重|
+| permission | string   | 权限|
 
 ### Group
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| name | string   | 组名字| 
-| items | repeated [Item](#Item)   | 权限组信息| 
+| name | string   | 组名字|
+| items | repeated [Item](#Item)   | 权限组信息|
 
 ### FrozenBalance
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| amount | double   | 金额| 
-| time | int64   | 解冻时间| 
+| amount | double   | 金额|
+| time | int64   | 解冻时间|
 
 ## /getTokenBalance/{account}/{token}/{by\_longest\_chain}
+---
 
 
 ##### **GET**
@@ -513,20 +519,20 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| account | string  | 账号名| 
-| token | string  | 代币名字| 
-| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据| 
+| account | string  | 账号名|
+| token | string  | 代币名字|
+| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -537,30 +543,31 @@ curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| balance | double  | 余额| 
+| balance | double  | 余额|
 | frozen_balances |repeated [FrozenBalance](#FrozenBalance)   | 冻结信息 |
 
 ## /getContract/{id}
+---
 
 ##### **GET**
-**概要:** 通过ID获取合约数据
+**概要:** 通过合约ID获取合约数据
 
 ### 请求格式
 
 一个请求格式的例子
 
-```shell
+```
 curl http://127.0.0.1:30001/getContract/base.iost
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| id | string  | 合约的ID | 
+| id | string  | 合约的ID |
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 
 {
@@ -590,21 +597,23 @@ curl http://127.0.0.1:30001/getContract/base.iost
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| id | string  | 合约的id| 
-| code | string  | 合约的代码| 
-| language | string  | 合约语言| 
-| version | string  | 合约版本| 
-| abis | repeated [ABI](#ABI)  | 合约的abis| 
+| id | string  | 合约的id|
+| code | string  | 合约的代码|
+| language | string  | 合约语言|
+| version | string  | 合约版本|
+| abis | repeated [ABI](#ABI)  | 合约的abis|
 
 ### ABI
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| name | string  | 合约的名字| 
-| args | repeated string  | 合约的参数| 
-| amount_limit | repeated [AmountLimit](#AmountLimit)  | 金额限制| 
+| name | string  | 接口的名字|
+| args | repeated string  | 接口的参数|
+| amount_limit | repeated [AmountLimit](#AmountLimit)  | 金额限制|
 
 
 ## /getContractStorage
+---
+
 
 ##### **POST**
 **概要:** 本地获取合约的存储数据
@@ -613,7 +622,7 @@ curl http://127.0.0.1:30001/getContract/base.iost
 
 一个请求格式的例子
 
-```shell
+```
 curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.iost","field":"producer00001","key":"producerTable","by_longest_chain":true}'
 ```
 | 字段 | 类型 | 描述 |
@@ -621,14 +630,14 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 | id |string  | 智能合约的ID |
 | field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
 | key |struct  | StateDB的key |
-| by\_longest\_chain |bool  | true 从最长链得到数据，false 从不可逆得到数据 |
+| by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
 
 
 ### 响应格式
 
 一个成功响应的例子
 
-```shell
+```
 200 OK
 {"data":"
 	{
