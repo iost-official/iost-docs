@@ -547,7 +547,7 @@ curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 | balance | double  | 余额|
 | frozen_balances |repeated [FrozenBalance](#frozenbalance)   | 冻结信息 |
 
-## /getContract/{id}
+## /getContract/{id}/{by\_longest\_chain}
 ---
 
 ##### **GET**
@@ -558,11 +558,12 @@ curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 一个请求格式的例子
 
 ```
-curl http://127.0.0.1:30001/getContract/base.iost
+curl http://127.0.0.1:30001/getContract/base.iost/true
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
 | id | string  | 合约的ID |
+| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
 
 ### 响应格式
 
