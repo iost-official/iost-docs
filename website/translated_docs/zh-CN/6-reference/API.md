@@ -45,14 +45,14 @@ curl http://127.0.0.1:30001/getNodeInfo
 | build_time |string  | 构建可执行程序的时间 |
 | git_hash |string  | 版本的git hash |
 | mode |string  | 节点运行模式， ModeNormal - 正常模式，ModeSync - 同步块模式，ModeInit - 初始化模式 |
-| network |[NetworkInfo](#NetworkInfo) network  | 网络连接信息 |
+| network |[NetworkInfo](#networkinfo) network  | 网络连接信息 |
 
 ### NetworkInfo
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | id |string  | 本节点的ID |
 | peer_count |int32  | 邻居节点的数量 |
-| peer_info |repeated [PeerInfo](#PeerInfo)  | 邻居节点的信息 |
+| peer_info |repeated [PeerInfo](#peerinfo)  | 邻居节点的信息 |
 
 ### PeerInfo
 | 字段 | 类型 | 描述 |
@@ -155,7 +155,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | status |enum  | PENDING-交易在缓存中, PACKED - 交易在非不可逆块中，IRREVERSIBLE - 交易在不可逆的块中|
-| transaction |[Transaction](#Transaction) transaction   | 交易数据 |
+| transaction |[Transaction](#transaction) transaction   | 交易数据 |
 
 ### Transaction
 | 字段 | 类型 | 描述 |
@@ -166,25 +166,26 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 | gas_ratio |double  | Gas费率，建议设置成1(1.00 ~ 100.00)，可以通过提高费率来让交易更容易被打包 |
 | gas_limit | double  | Gas上限,执行交易所消耗的Gas不会超过这个上限 |
 | delay | int64  | 延迟时间，交易会在延迟时间之后被执行，单位纳秒 |
-| actions |repeated [Action](#Action)  | 交易的最小执行单元 |
+| actions |repeated [Action](#action)  | 交易的最小执行单元 |
 | signers |repeated string  | 交易的签名列表 |
 | publisher |string  | 交易提交者,承担交易的执行费用 |
 | referred_tx |string  | 交易生成依赖，用于延迟交易 |
-| amount_limit |repeated [AmountLimit](#AmountLimit)  | 用户可以设置的花费token的限制, 如 {"iost": 100} 即本次交易对于每个签名者花费iost不超过100 |
-| tx_receipt |[TxReceipt](#TxReceipt) tx_receipt  | 交易Action的receipt |
+| amount_limit |repeated [AmountLimit](#amountlimit)  | 用户可以设置的花费token的限制, 如 {"iost": 100} 即本次交易对于每个签名者花费iost不超过100 |
+| tx_receipt |[TxReceipt](#txreceipt) tx_receipt  | 交易Action的receipt |
 
 ### Action
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| contract | string  | 被调用的合约名字 |
-| action_name |string  | 被调用的Action名字 |
-| data |string  | 入参数据 |
+| contract | string | 调用的合约名字 |
+| action_name | string | 调用的合约函数名 | 
+| data | string | 调用的具体参数。把所有的参数生成 array 后再用 json 序列化，一般形如 '["a_string",13]' 
+
 
 ### AmountLimit
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| token | string  | token名字 |
-| value |double  | 限制的值 |
+| token | string | token 名字 |
+| value | double | 这种 token 对应的限额 |
 
 ### TxReceipt
 | 字段 | 类型 | 描述 |
@@ -195,7 +196,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 | status_code | enum  | 交易执行状态，SUCCESS - 成功，GAS_RUN_OUT - Gas不足，BALANCE_NOT_ENOUGH - 余额不足，WRONG_PARAMETER - 错误参数， RUNTIME_ERROR - 运行时错误， TIMEOUT - 超时， WRONG_TX_FORMAT - 交易格式错误， DUPLICATE_SET_CODE - 重复设置set code, UNKNOWN_ERROR - 未知错误 |
 | message| string |status_code的详细描述信息|
 | returns | repeated string| 每个Action的返回值 |
-| receipts | repeated [Receipt](#Receipt)  | event功能使用 |
+| receipts | repeated [Receipt](#receipt)  | event功能使用 |
 
 ### Receipt
 | 字段 | 类型 | 描述 |
@@ -248,7 +249,7 @@ curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4e
 
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| | [TxReceipt](#TxReceipt)  | 交易的receipt|
+| | [TxReceipt](#txreceipt)  | 交易的receipt|
 
 
 ## /getBlockByHash/{hash}/{complete}
@@ -299,7 +300,7 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | status | enum  | PENDIND - block在缓存中，IRREVERSIBLE - block不可逆|
-| block |[Block](#Block) block   | block结构体 |
+| block |[Block](#block) block   | block结构体 |
 
 ### Block
 | 字段 | 类型 | 描述 |
@@ -315,7 +316,7 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 | gas_usage | double  | block中交易消耗的总Gas |
 | tx_count | int64  | block中交易总数 |
 | info | [Info](#info) info  | 保留字段 |
-| transactions | repeated [Transaction](#Transaction) | 交易字段 |
+| transactions | repeated [Transaction](#transaction) | 交易字段 |
 
 ### Info
 
@@ -373,7 +374,7 @@ curl http://127.0.0.1:30001/getBlockByNumber/3/false
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | status | enum  | PENDIND - block在缓存中，IRREVERSIBLE - block不可逆|
-| block |[Block](#Block) block   | block结构体 |
+| block |[Block](#block) block   | block结构体 |
 
 ## /getAccount/{name}/{by\_longest\_chain}
 ---
@@ -453,11 +454,11 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | name | string  | 账户名字|
 | balance |double   | 余额 |
 | create_time |int64   | 账号创建时间 |
-| gas_info |[GasInfo](#GasInfo) gas_info   | Gas信息 |
-| ram_info |[RAMInfo](#RAMInfo)   | Ram信息 |
-| permissions |map<string, [Permission](#Permission)>   | 权限 |
-| groups |map<string, [Group](#Group)>   | 权限组 |
-| frozen_balances |repeated [FrozenBalance](#FrozenBalance)   | 冻结余额信息 |
+| gas_info |[GasInfo](#gasinfo) gas_info   | Gas信息 |
+| ram_info |[RAMInfo](#raminfo)   | Ram信息 |
+| permissions |map<string, [Permission](#permission)>   | 权限 |
+| groups |map<string, [Group](#group)>   | 权限组 |
+| frozen_balances |repeated [FrozenBalance](#frozenbalance)   | 冻结余额信息 |
 
 ### GasInfo
 | 字段 | 类型 | 描述 |
@@ -467,7 +468,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | pledge_gas |double   | 质押获得的Gas |
 | increase_speed |double   | 每秒增加的Gas |
 | limit |double   | 质押Token获得的Gas上限 |
-| pledged_info |repeated [PledgeInfo](#PledgeInfo)   | 其他账号帮本账号质押的信息 |
+| pledged_info |repeated [PledgeInfo](#pledgeinfo)   | 其他账号帮本账号质押的信息 |
 
 ### PledgeInfo
 | 字段 | 类型 | 描述 |
@@ -485,7 +486,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | :----: | :--------: | :------ |
 | name | string  | 	权限名字|
 | groups | repeated string   | 权限组|
-| items | repeated [Item](#Item)   | 权限信息|
+| items | repeated [Item](#item)   | 权限信息|
 | threshold | int64  | 权限阈值|
 
 ### Item
@@ -500,7 +501,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | name | string   | 组名字|
-| items | repeated [Item](#Item)   | 权限组信息|
+| items | repeated [Item](#item)   | 权限组信息|
 
 ### FrozenBalance
 | 字段 | 类型 | 描述 |
@@ -544,7 +545,7 @@ curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | balance | double  | 余额|
-| frozen_balances |repeated [FrozenBalance](#FrozenBalance)   | 冻结信息 |
+| frozen_balances |repeated [FrozenBalance](#frozenbalance)   | 冻结信息 |
 
 ## /getContract/{id}
 ---
@@ -601,14 +602,14 @@ curl http://127.0.0.1:30001/getContract/base.iost
 | code | string  | 合约的代码|
 | language | string  | 合约语言|
 | version | string  | 合约版本|
-| abis | repeated [ABI](#ABI)  | 合约的abis|
+| abis | repeated [ABI](#abi)  | 合约的abis|
 
 ### ABI
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | name | string  | 接口的名字|
 | args | repeated string  | 接口的参数|
-| amount_limit | repeated [AmountLimit](#AmountLimit)  | 金额限制|
+| amount_limit | repeated [AmountLimit](#amountlimit)  | 金额限制|
 
 
 ## /getContractStorage
@@ -651,7 +652,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 "}
 ```
 
-## /SendTransaction
+## /sendTx
 ---
 
 ##### **POST**
@@ -672,27 +673,34 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 | gas_ratio | double | GAS倍率。本交易按照默认GAS的 gas_ratio 倍来支付费用。倍率越高，越会被优先执行。合理的取值范围是 [1.0, 100.0] |
 | gas_limit | double | 交易最大允许的GAS |
 | delay | int64 | 延迟交易中使用。延迟执行的纳秒数。非延迟交易设为0 | 
-| actions | repeated Action | 交易中的具体调用 | 
-| amount_limit | repeated AmountLimit | 交易的 token 限制。可以指定多种 token 和对应的数量限制。如果交易超过这些限制，则失败 | 
+| actions | repeated [Action](#action) | 交易中的具体调用 | 
+| amount_limit | repeated [AmountLimit](#amountlimit) | 交易的 token 限制。可以指定多种 token 和对应的数量限制。如果交易超过这些限制，则失败 | 
 | publisher | string | 交易发送者的 ID | 
-| publisher_sigs | repeated Signature | publisher 的签名。publisher 可以提供多个签名，对应多种不同的权限。可以参考权限系统的文档 | 
+| publisher_sigs | repeated [Signature](#signature) | publisher 的签名。publisher 可以提供多个签名，对应多种不同的权限。可以参考权限系统的文档 | 
 | signers | repeated string | 除 publisher 之外的签名人 ID。可以为空 |
-| signatures | repeated Signature | signers 的签名。每个 signer 可以有一个或多个签名，因此长度不低于 signers 长度 |
+| signatures | repeated [Signature](#signature) | signers 的签名。每个 signer 可以有一个或多个签名，因此长度不低于 signers 长度 | 
 
-### Action
-| 字段 | 类型 | 描述 |
-| :----: | :-----: | :------ |
-| contract | string | 调用的合约名字 |
-| action_name | string | 调用的合约函数名 | 
-| data | string | 调用的具体参数。把所有的参数生成 array 后再用 json 序列化，一般形如 '["a_string",13]' 
-### AmountLimit
-| 字段 | 类型 | 描述 |
-| :----: | :-----: | :------ |
-| token | string | token 名字 |
-| value | double | 这种 token 对应的限额 |
 ### Signature
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | algorithm | string | 加密算法。目前仅支持 "ED25519" |
 | signature | string | 合约序列化后使用 sha3 做 hash，之后使用私钥做签名。Base64 编码。细节见对应文档 |
 | public_key | string | 本签名使用的公钥。Base64 编码 | 
+### 响应格式
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| hash | string | 交易 hash 的 base64 编码
+
+
+## /execTx
+---
+
+##### **POST**
+**概要:**    
+把交易发到节点，立刻执行，但是不会被上链共识，也不会被持久化。  
+本接口可以用来在测试合约的执行结果是否符合预期。当然，由于调用时间不同，execTx 的行为不能保证和正式链上执行完全一致。     
+
+### 请求格式
+本接口请求格式和 /sendTx 相同。 
+### 响应格式
+本接口响应格式和 /getTxReceiptByTxHash 相同。

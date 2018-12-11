@@ -8,7 +8,8 @@ sidebar_label: iwallet-example
 ### 说明 
 iwallet 是 IOST 的客户端命令行工具。可以使用本工具连接IOST节点，进行区块链操作，和查询余额，创建账号，转账，调用合约等。
 ### 安装工具
-首先需要安装 golang 环境。可以参考 [环境配置文档](../5-lucky-bet/Lucky-Bet-Operation#step1-安装-golang-环境) 中的 安装 golang 部分。   
+首先需要安装 golang 环境。需要版本不低于 1.11。   
+可以参考 [Step-by-Step Commands to Deploy and Run](../5-lucky-bet/Lucky-Bet-Operation) 中的 安装 golang 部分。   
 之后 clone 代码，并且编译 iwallet。
 
 ```
@@ -203,5 +204,5 @@ balance:"999988976" gas:<currentTotal:"9000000" increaseSpeed:"23" limit:"900000
 $ iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 ### 完整Demo
-[这份文档](http://developers.iost.io/docs/en/5-lucky-bet/Design-Tech-data/) 和 [样例代码](https://github.com/iost-official/luckybet_sample/tree/master) 给出了相对较大的Demo。
+[这份文档](../5-lucky-bet/Design-Tech-data/) 和 [样例代码](https://github.com/iost-official/luckybet_sample/tree/master) 给出了相对较大的Demo。
 其中包含了创建账号，购买RAM，质押GAS，发布合约，调用合约，获取余额等等多种操作。
