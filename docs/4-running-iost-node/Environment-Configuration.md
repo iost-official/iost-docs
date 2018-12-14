@@ -47,7 +47,9 @@ make test
 ### Installing git-lfs
 
 ```
-brew install git-lfs
+sudo apt-get install software-properties-common curl
+sudo curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
 git lfs install
 ```
 
