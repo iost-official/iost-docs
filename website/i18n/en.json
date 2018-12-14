@@ -13,6 +13,10 @@
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
+      "2-intro-of-iost/Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
       "2-intro-of-iost/Database": {
         "title": "Database",
         "sidebar_label": "Database"
