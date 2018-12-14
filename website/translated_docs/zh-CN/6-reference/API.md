@@ -660,37 +660,145 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 **概要:**    
 把交易发到节点上。   
 节点收到这个交易后，首先会做基本检查，如果不通过则返回错误，如果通过，则将本交易加入交易池中，并且返回交易的 Hash。   
-用户在一段时间之后，可以使用这个收到的 Hash 通过 getTxReceiptByTxHash 接口来查询本交易的状态，查看是否执行成功。   
+用户在一段时间之后，可以使用这个收到的 Hash 通过 getTxByHash 或 getTxReceiptByTxHash 接口来查询本交易的状态，查看是否执行成功。   
 **注意:**   
-由于交易中需要做签名，因此交易一般无法通过 curl 来手动发送。因此在此不提供基于 curl 的例子。 也不建议直接调用本 RPC 接口。    
-普通用户可以使用 [命令行工具](iwallet-example) 发送交易。  
+此接口需要先计算交易的哈希和签名，直接调用较为复杂。  
+普通用户可以使用 [命令行工具](./iwallet-example) 发送交易。  
 开发者可以使用 [Javascript SDK](https://github.com/iost-official/iost.js) 中的函数接口发送交易。
 
-### 请求格式
+### 请求参数
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | time | int64 | 交易产生时间。UnixEpoch起始，单位纳秒 |
 | expiration | int64 | 交易过期时间。UnixEpoch起始，单位纳秒。如果造块节点在过期时间之后才收到交易，则不会执行 |
 | gas_ratio | double | GAS倍率。本交易按照默认GAS的 gas_ratio 倍来支付费用。倍率越高，越会被优先执行。合理的取值范围是 [1.0, 100.0] |
-| gas_limit | double | 交易最大允许的GAS |
+| gas_limit | double | 交易最大允许的GAS，最少设置为 50000 |
 | delay | int64 | 延迟交易中使用。延迟执行的纳秒数。非延迟交易设为0 | 
 | actions | repeated [Action](#action) | 交易中的具体调用 | 
-| amount_limit | repeated [AmountLimit](#amountlimit) | 交易的 token 限制。可以指定多种 token 和对应的数量限制。如果交易超过这些限制，则失败 | 
+| amount_limit | repeated [AmountLimit](#amountlimit) | 交易的 token 限制。可以指定多种 token 和对应的数量限制。如果交易超过这些限制，则执行失败 | 
 | publisher | string | 交易发送者的 ID | 
-| publisher_sigs | repeated [Signature](#signature) | publisher 的签名。publisher 可以提供多个签名，对应多种不同的权限。可以参考权限系统的文档 | 
+| publisher_sigs | repeated [Signature](#signature) | publisher 的签名，签名过程[如下](#交易签名)。publisher 可以提供多个签名，对应多种不同的权限。可以参考权限系统的文档 | 
 | signers | repeated string | 除 publisher 之外的签名人 ID。可以为空 |
 | signatures | repeated [Signature](#signature) | signers 的签名。每个 signer 可以有一个或多个签名，因此长度不低于 signers 长度 | 
 
 ### Signature
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| algorithm | string | 加密算法。目前仅支持 "ED25519" |
+| algorithm | string | 加密算法。目前仅支持 "ED25519" 和 "SECP256K1"|
 | signature | string | 合约序列化后使用 sha3 做 hash，之后使用私钥做签名。Base64 编码。细节见对应文档 |
 | public_key | string | 本签名使用的公钥。Base64 编码 | 
 ### 响应格式
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
-| hash | string | 交易 hash 的 base64 编码
+| hash | string | 交易的 hash | 
+### 交易签名
+交易的签名过程分为三步：将交易结构体转为字节数组；使用 sha3 算法对字节数组计算哈希；使用私钥对哈希进行签名。  
+
+* **交易结构体转字节数组**
+
+	交易结构体转字节数组算法为，将交易的每个字段按照声明顺序转成字节数组并转义后，在每一项前面添加分隔符``` ` ```，并拼接。各种字段类型转成字节数组的方式见下表：  
+	
+	| 字段类型 | 转换方法 | 示例 |
+	| :----: | :-----: | :------ |
+	| int | 按照**大端序**转成字节数组 | 如 int64(1023) 对应的字节数组为 [0 0 0 0 0 0 3 255] |
+	| string | 将字符串中每个字符对应的字节进行拼接 | 如 "iost" 对应的字节数组为 [105 111 115 116] |
+	| 数组 | 将数组的每个元素转为字节数组后，在每项前面添加``` ^ ```字符，并拼接  | 如 ["iost" "iost"] 对应的字节数组为 [94 105 111 115 116 94 105 111 115 116]，即 "^iost^iost" |
+	| map | 将字典的每个 key:value 分别转成字节数组，并用``` < ```字符拼接 key 和 value 对应的字节数组，然后在每一项前面添加``` / ```字符，最后按照 key 升序排列后拼接  | 如 ["b":"iost", "a":"iost"] 对应的字节数组为 [47 97 60 105 111 115 116 47 98 60 105 111 115 116]，即 "/a<iost/b<iost" |
+
+	对于 int 和 string 类型的字段转成字节数组后，还需要进行转义。转义的方式为，在 ``` ` ```、``` ^ ```、``` < ```、``` / ```、``` \ ```等五个字符前添加转义符``` \ ```。 数组和字典类型转换后不需要再转义（转换的过程中已经转义过了）。  
+交易字段声明顺序为 "time"、"expiration"、"gas\_ratio"、"gas\_limit"、
+"delay"、"signers"、"actions"、"amount\_limit"、"signatures"，所以交易结构体转字节数组伪代码为：
+
+	```
+	func TxToBytes(t transaction) []byte {
+		return '`' + Int64ToBytes(t.time) + '`' + Int64ToBytes(t. expiration) + 
+	'`' + Int64ToBytes(int64(t.gas_ratio * 100)) + '`' + Int64ToBytes(int64(t.gas_limit * 100)) +     // 注意 gas_ratio 和 gas_limit 需要乘以 100 并转成 int64
+	'`' + Int64ToBytes(t.delay) + '`' + ArrayToBytes(t.signers) +
+	'`' + ArrayToBytes(t.actions) + '`' + ArrayToBytes(t.amount_limit) +
+	'`' + ArrayToBytes(t.signatures)
+	}
+	```
+
+	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L314)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)。
+
+* **使用 sha3 算法对字节数组计算哈希**
+
+	需要利用各个语言对应的 sha3 库对上一步的结果计算哈希，得到哈希的字节数组。
+
+* **使用私钥对哈希进行签名**
+
+	iost 支持两种非对称加密算法："Ed25519" 和 "Secp256k1"。两种算法签名的过程一样：先生成公私钥对，然后使用私钥对上一步的哈希字节数组进行签名。  
+	publisher\_sigs 签名的私钥必须跟交易字段中的 "publisher" 账户对应，signatures 签名的私钥必须跟交易字段中的 "signers" 账户对应。signatures 用于多重签名，不是必需的，但 publisher\_sigs 签名必须要有。交易执行花费的 gas 会从 publisher 账户扣除。
+	
+### 请求示例
+假设账户 testaccount 要发送一笔交易，给 anothertest 账户转账 100 iost。
+
+* **构建交易**
+
+	```
+	{
+		"time": 1544709662543340000,
+		"expiration": 1544709692318715000,
+		"gas_ratio": 1,
+		"gas_limit": 50000,
+		"delay": 0,
+		"signers": [],
+		"actions": [
+			{
+				"contract": "token.iost",
+				"actionName": "transfer",
+				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
+			},
+		],
+		"amount_limit": [],
+		"signatures": [],
+	}
+	```
+* **计算哈希**
+
+	利用上述算法序列化并 sha3 后，得到哈希值 "SEos66QidNOT+xOHYJOGpBs3g6YOPvzh7fujjaINpZA="。
+* **计算签名**
+
+	假设 testaccount 账户的公私钥算法为 ED25519，公钥为 "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ="，私钥为 "rwhlQzbvFdtsyZAkE5JkadxhGIhu2eMy+T89GC/7fsH1GF16d9NwSyD3eAq9FxwVggJq6D4fR58Gk4UvBp8RFA=="，利用私钥对上一步的哈希签名，得到 "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="
+	
+* **发送交易**
+
+	现在完整的交易请求参数为:
+	
+	```
+	{
+		"time": 1544709662543340000,
+		"expiration": 1544709692318715000,
+		"gas_ratio": 1,
+		"gas_limit": 50000,
+		"delay": 0,
+		"signers": [],
+		"actions": [
+			{
+				"contract": "token.iost",
+				"actionName": "transfer",
+				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
+			},
+		],
+		"amount_limit": [],
+		"signatures": [],
+		"publisher": "testaccount",
+		"publisher_sigs": [
+			{
+				"algorithm": "ED25519",
+				"public_key": "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=",
+				"signature": "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg==",
+			},
+		],
+	}
+	```
+	
+	对上述结构进行 json 序列化后，发送如下 rpc 请求即可：
+	
+	```
+	curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"actionName":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[],"delay":0,"expiration":1544709692318715000,"gas_limit":50000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=","signature":"OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="}],"signatures":[],"signers":[],"time":1544709662543340000}'
+	```
+	
 
 
 ## /execTx
