@@ -44,7 +44,7 @@ docker run -it --rm iostio/iost-node:2.0.0
 
 ```
 mkdir -p /data/iserver
-cp config/{docker/iserver.yml,genesis.yml} /data/iserver/iserver.yml
+cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
 docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 ```
 
