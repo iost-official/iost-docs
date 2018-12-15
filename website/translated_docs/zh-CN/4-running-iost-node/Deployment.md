@@ -45,6 +45,7 @@ docker run -it --rm iostio/iost-node:2.0.0
 ```
 mkdir -p /data/iserver
 cp config/iserver.docker.yml /data/iserver/iserver.yml
+cp config/genesis.yml /data/iserver/genesis.yml
 docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 ```
 
@@ -60,7 +61,7 @@ docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 
 
 ### Update config
 
-将genesis配置修改为如下：
+将 genesis.yml 修改为如下：
 
 ```
 creategenesis: true
@@ -113,9 +114,10 @@ foundationinfo:
 initialtimestamp: "2006-01-02T15:04:05Z"
 ```
 
-将p2p.seednodes配置修改为如下：
+将 iserver.yml 中的 p2p.seednodes 配置修改为如下：
 
 ```
+...
 p2p:
   listenaddr: 0.0.0.0:30000
   seednodes:
@@ -123,6 +125,7 @@ p2p:
   chainid: 1024
   version: 1
   datapath: /var/lib/iserver/p2p/
+...
 ```
 
 其中种子节点Network ID可以进行替换，测试网络提供的种子节点列表如下：
