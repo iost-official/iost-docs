@@ -16,7 +16,7 @@ Receipt is much more cheaper than contract storage. It only costs gas, different
 
 ## Generate Receipt
 Smart contract generates receipt by invoking the system function `blockchain.receipt`.
-Here is an example, when the transfer function of this contract is called, three receipts will be generated.
+Here is an example, when the receiptf function of this contract is called, three receipts will be generated.
 
 ```js
 class Contract {

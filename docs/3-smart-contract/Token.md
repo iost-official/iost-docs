@@ -40,7 +40,7 @@ That is it, permission of a contract can be deliveried to the contract it called
 TotalSupply is a int64 number, issuer can not issue token more than totakSupply.
 
 ConfigJson is a json consists of the config for the token. Here is all the supported config properties:
-```json
+```console
 {
 	"decimal": number between 0~19,
 	"canTransfer": true/false, the token can not be transferd if canTransfer is false,
