@@ -18,7 +18,9 @@
       "3-smart-contract/Smart-Contract-Development-Toolkit",
       "3-smart-contract/Deployment-and-invocation", 
       "3-smart-contract/Contract-Testing",
-      "3-smart-contract/Update-Contract"
+      "3-smart-contract/Update-Contract",
+      "3-smart-contract/Generate-Receipt",
+      "3-smart-contract/Token"
     ],
     "Running IOST node": [
       "4-running-iost-node/Faucet",
