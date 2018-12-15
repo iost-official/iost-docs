@@ -21,6 +21,10 @@
         "title": "Database",
         "sidebar_label": "Database"
       },
+      "2-intro-of-iost/Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
       "2-intro-of-iost/Network-layer": {
         "title": "Network layer",
         "sidebar_label": "Network layer"
