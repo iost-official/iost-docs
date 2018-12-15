@@ -103,6 +103,70 @@ curl http://127.0.0.1:30001/getChainInfo
 | lib\_block\_hash | string  | 不可逆块的hash |
 | witness_list |repeated string  | 造块节点的pubkey列表 |
 
+## /getGasRatio
+---
+##### **GET**
+**概要:** 获取当前上链交易的 gas 倍率信息，方便用户合理设置自己交易的 gas 倍率。  
+建议使用比 lowest\_gas\_ratio 稍高的 gas ratio 值，来保证交易尽快上链。
+### 请求格式
+一个请求格式的例子
+
+```
+curl http://127.0.0.1:30001/getGasRatio
+```
+### 响应格式
+
+
+一个成功响应的例子
+
+```
+200 OK
+
+{
+    "lowest_gas_ratio": 1.5,
+    "median_gas_ratio": 1.76
+}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------: |
+| lowest_gas_ratio | double  | 最新的 block 中的打包成功的所有合约的最低 gas ratio|
+| median_gas_ratio | double  | 最新的 block 中的打包成功的所有合约的中位数 gas ratio|
+
+## /getRAMInfo
+---
+##### **GET**
+**概要:** 获取当前区块链的RAM信息，包括用量和价格。
+### 请求格式
+一个请求格式的例子
+
+```
+curl http://127.0.0.1:30001/getRAMInfo
+```
+### 响应格式
+
+
+一个成功响应的例子
+
+```
+200 OK
+
+{
+    "available_ram": "96207067431",
+    "buy_price": 0.04227129323234719,
+    "sell_price": 0.00014551844642842057,
+    "total_ram": "137438953472",
+    "used_ram": "41231886041"
+}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------: |
+| available_ram | int64  | 可用 RAM 数量，以 byte 为单位|
+| used_ram | int64  | 已经出售的 RAM 数量，以 byte 为单位|
+| total_ram | int64 | 系统总计 RAM 数量，以 byte 为单位|
+| buy_price | double | 此刻购买 RAM 的价格，以 IOST/byte 为单位|
+| sell_price | double | 此刻购买 RAM 的价格，以 IOST/byte 为单位| 
 
 ## /getTxByHash/{hash}
 ---

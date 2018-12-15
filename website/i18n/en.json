@@ -256,6 +256,14 @@
       "version-1.0.7-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-1.0.8-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-1.0.8-iwallet-example": {
+        "title": "iwallet-example",
+        "sidebar_label": "iwallet-example"
       }
     },
     "links": {
