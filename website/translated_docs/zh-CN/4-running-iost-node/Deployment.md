@@ -35,7 +35,7 @@ make build
 执行如下命令可以用docker跑一个单机节点
 
 ```
-docker run -it --rm iostio/iost-node:2.0.0
+docker run -it --rm iostio/iost-node:1.1.0
 ```
 
 ### Mount volume
@@ -45,7 +45,7 @@ docker run -it --rm iostio/iost-node:2.0.0
 ```
 mkdir -p /data/iserver
 cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
-docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
+docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:1.1.0
 ```
 
 ### Bind port
@@ -53,7 +53,7 @@ docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 通过`-p`选项可以将端口绑定出来，例如：
 
 ```
-docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
+docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:1.1.0
 ```
 
 ## 接入测试网络
