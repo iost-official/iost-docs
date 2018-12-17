@@ -17,7 +17,7 @@ git clone https://github.com/iost-official/go-iost.git && cd go-iost
 执行如下命令进行编译，生成`target`目录：
 
 ```
-git checkout v1.1.0
+git checkout v2.0.0
 make build
 ```
 
@@ -36,7 +36,7 @@ make build
 执行如下命令可以用docker跑一个单机节点
 
 ```
-docker run -it --rm iostio/iost-node:1.1.0
+docker run -it --rm iostio/iost-node:2.0.0
 ```
 
 ### Mount volume
@@ -46,7 +46,7 @@ docker run -it --rm iostio/iost-node:1.1.0
 ```
 mkdir -p /data/iserver
 cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
-docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:1.1.0
+docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 ```
 
 ### Bind port
@@ -54,7 +54,7 @@ docker run -it --rm -v /data/iserver:/var/lib/iserver iostio/iost-node:1.1.0
 通过`-p`选项可以将端口绑定出来，例如：
 
 ```
-docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:1.1.0
+docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
 ```
 
 ## 接入测试网络
