@@ -9,7 +9,7 @@ sidebar_label: 部署
 执行如下命令获取代码仓库：
 
 ```
-git clone git@github.com:iost-official/go-iost.git
+git clone https://github.com/iost-official/go-iost.git && cd go-iost
 ```
 
 ## Build
@@ -17,6 +17,7 @@ git clone git@github.com:iost-official/go-iost.git
 执行如下命令进行编译，生成`target`目录：
 
 ```
+git checkout v1.1.0
 make build
 ```
 
