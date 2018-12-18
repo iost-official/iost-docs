@@ -1,47 +1,48 @@
 ---
-id: Deployment
-title: Deployment
-sidebar_label: Deployment
+id: version-2.0.1-Deployment
+title: Развертывание
+sidebar_label: Развертывание
+original_id: Deployment
 ---
 
-## Get repo
+## Получить репозиторий
 
-Run the command to get the repository:
+Запустите команду, чтобы получить репозиторий:
 
 ```
 git clone https://github.com/iost-official/go-iost.git && cd go-iost
 ```
 
-## Build
+## Сборка
 
-Run the command to compile and generate file in the `target` directory:
+Запустите команду для компиляции и создания файла в `target` директории:
 
 ```
 git checkout v2.0.0
 make build
 ```
 
-## Run
+## Запуск
 
-Run the command to start a local node. Check iServer config here: [iServer](iServer).
+Запустите команду для запуска локального узла. Проверьте конфигурацию iServer здесь: [iServer](iServer).
 
 ```
 ./target/iserver -f config/iserver.yml
 ```
 
-## Docker
+## Докер
 
-### Run
+### Запуск
 
-Run the command to start a local node using docker:
+Запустите команду для запуска локального узла, используя докер:
 
 ```
 docker run -d iostio/iost-node:2.0.0
 ```
 
-### Mount volume
+### Монтирование тома
 
-Using `-v` flag to mount a volume:
+Использование флага `-v` для монтирования тома:
 
 ```
 mkdir -p /data/iserver
@@ -49,17 +50,17 @@ cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
 docker run -d -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 ```
 
-### Bind port
+### Порт привязки
 
-Using `-p` flag to map the ports:
+Использование флага `-p` для сопоставления портов:
 
 ```
 docker run -d -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
 ```
 
-### Using docker-compose
+### Использование docker-compose
 
-It's recommended to deploy using docker-compose:
+Рекомендуется развертывать, используя docker-compose:
 
 ```
 # docker-compose.yml
@@ -79,13 +80,13 @@ services:
       - /data/iserver:/var/lib/iserver
 ```
 
-To start the node: `docker-compose up -d`
+Для запуска узла: `docker-compose up -d`
 
-## Access the Testnet
+## Доступ к тестовой сети
 
-### Update config
+### Обновить конфигурацию
 
-Change genesis settings as below:
+Измените настройки генезиса, как показано ниже:
 
 ```
 creategenesis: true
@@ -138,7 +139,7 @@ foundationinfo:
 initialtimestamp: "2006-01-02T15:04:05Z"
 ```
 
-Change section `p2p.seednodes` in `iserver.yml` as below:
+Измените раздел `p2p.seednodes` в `iserver.yml` как показано ниже:
 
 ```
 ...
@@ -152,17 +153,16 @@ p2p:
 ...
 ```
 
-Among the settings, the network IDs of seed nodes can be replaced,
-as shown below:
+Среди настроек, можно заменить сетевые ID начальных узлов, как показано ниже:
 
 | Name   | Region | Network ID                                                                              |
 | ------ | ------ | --------------------------------------------------------------------------------------- |
 | node-7 | London | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | Paris  | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
 
-### Run iServer
+### Запуск iServer
 
-Connect to Testnet by runing iServer with updated config:
+Подключитесь к тестовой сети, запустив iServer с обновленной конфигурацией:
 
 ```
 ./target/iserver -f config/iserver.yml

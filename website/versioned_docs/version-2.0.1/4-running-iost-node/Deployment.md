@@ -1,7 +1,8 @@
 ---
-id: Deployment
+id: version-2.0.1-Deployment
 title: Deployment
 sidebar_label: Deployment
+original_id: Deployment
 ---
 
 ## Get repo
