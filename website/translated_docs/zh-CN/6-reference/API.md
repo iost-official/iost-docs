@@ -469,7 +469,6 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 {
 	"name": "admin",
 	"balance": 982678652,
-	"create_time": "0",
 	"gas_info": {
 		"current_total": 53102598634,
 		"transferable_gas": 60000,
@@ -517,7 +516,6 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | :----: | :--------: | :------ |
 | name | string  | 账户名字|
 | balance |double   | 余额 |
-| create_time |int64   | 账号创建时间 |
 | gas_info |[GasInfo](#gasinfo) gas_info   | Gas信息 |
 | ram_info |[RAMInfo](#raminfo)   | Ram信息 |
 | permissions |map<string, [Permission](#permission)>   | 权限 |
