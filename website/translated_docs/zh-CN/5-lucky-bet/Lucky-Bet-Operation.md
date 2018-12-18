@@ -5,7 +5,7 @@ sidebar_label: Step-by-Step Commands to Deploy and Run
 ---
 
 ## 步骤一 配置环境
-Step1 安装 golang 环境。
+### Step1 安装 golang 环境。
 ```shell
 wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
 # 解压到 /usr/local/go 位置
@@ -17,7 +17,8 @@ echo 'export PATH=$GOROOT/bin:$GOPATH/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 go version # 此时应该能够正确输出 “go version go1.11 linux/amd64” 字样。
 ```
-Step2 安装 Docker 环境。具体步骤见[官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)。安装成功的标志是，运行 docker run hello-world，能够正确输出类似如下：
+### Step2 安装 Docker 环境。
+具体步骤见[官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/)。安装成功的标志是，运行 docker run hello-world，能够正确输出类似如下：
 ![docker_output](assets/5-lucky-bet/Lucky-Bet-Operation/docker_output.png)
 ## 步骤二 编译IOST项目
 ```shell

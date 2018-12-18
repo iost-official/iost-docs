@@ -1,33 +1,34 @@
 ---
-id: API
+id: version-2.0.0-API
 title: API
 sidebar_label: API
+original_id: API
 ---
 
 ---
 ## /getChainInfo
-Возвращает информацию о блокчейне IOST  
-### Параметры  
+Returns information of the IOST blockchain  
+### Parameters  
 None  
-### Ответ  
+### Response  
 
-| Ключ | Значение |
-| netType | Это тип сети блокчейна IOST. Он может быть одним из 'debugnet', 'testnet' и 'mainnet' |
-|protocolVersion|Сейчас должен быть '1.0'
-|witnessList|Текущий список witness
-|height|Текущая высота blockchain
-|headBlock|Информация о головном блоке на самой длинной цепи.
-|headBlock.head.number|Высота блока
-|headBlock.head.witness|Witness(производитель) блока
+| Key | Value |
 |--|--|
-|headBlock.hash|Base58 кодированный хэш блока
-|headBlock.txs|Транзакции в блоке. Но сейчас значение пусто.
-|headBlock.txhash|Base58 закодированные хеши транзакций в блоке
-|headBlock.receipts|Квитанции(receipt) блока. Но сейчас значение пусто.
-|headBlock.receiptHash|Base58 закодированные хеши receipt в блоке
-|latestConfirmedBlock| Информация о последнем подтвержденном блоке. Структура содержимого json такая же, как и 'headBlock'
+| netType | This IOST blockchain network type. It can be one of 'debugnet', 'testnet' and 'mainnet' |
+|protocolVersion|Must be '1.0' now
+|witnessList|Current witness list
+|height|Current blockchain height
+|headBlock|Information of the head block on the longest chain.
+|headBlock.head.number|Height of the block
+|headBlock.head.witness|Witness(producer) of the block
+|headBlock.hash|Base58 encoded hash of the block
+|headBlock.txs|Transactions in the block. But the value is empty now.
+|headBlock.txhash|Base58 encoded transaction hashes in the block
+|headBlock.receipts|Receipts of the block. But the value is empty now.
+|headBlock.receiptHash|Base58 encoded receipt hashes of the block
+|latestConfirmedBlock| Information of the latest confirmed block. The json content structure is same as 'headBlock'
 
-### Пример
+### Example
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getChainInfo|python -m json.tool
 {
@@ -84,24 +85,24 @@ $ curl -s -X GET http://127.0.0.1:30001/getChainInfo|python -m json.tool
 
 ---
 ## /getNodeInfo
-Возвращает информацию узла сервера IOST  
-### Параметры  
+Returns information of the IOST server node  
+### Parameters  
 None  
-### Ответ  
+### Response  
 
-| Ключ | Значение |
+| Key | Value |
 |--|--|
-|gitHash|Git hash из бинарного файла 'iserver'
-|buildTime|Время сборки бинарного 'server'
-|mode|Текущий режим сервера. Он может быть одним из 'ModeInit', 'ModeNormal' и 'ModeSync'
-|network|Сетевая информация узла
-|network.ID| ID узла в p2p сети
-|network.peerCount|Количество Peer-ов  узла
-|network.peerInfo|Информация о Peer-ах узла
-|network.peerInfo[idx].ID|ID  idx-го peer-а
-|network.peerInfo[idx].addr|Адрес idx-го peer-а
+|gitHash|Git hash of the 'iserver' binary
+|buildTime|Building time of the 'server' binary
+|mode|Current mode of the server. It can be one of 'ModeInit', 'ModeNormal' and 'ModeSync'
+|network|Network information of the node 
+|network.ID|Node ID in the p2p network
+|network.peerCount|Peer count of the node
+|network.peerInfo|Peer information of the node
+|network.peerInfo[idx].ID|ID of the idx-th peer
+|network.peerInfo[idx].addr|Address of the idx-th peer
 
-### Пример
+### Example
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getNodeInfo|python -m json.tool
 {
@@ -127,16 +128,16 @@ $ curl -s -X GET http://127.0.0.1:30001/getNodeInfo|python -m json.tool
 
 ---
 ## /getBlockByHash/{hash}/{complete}
-Возвращает информацию узла сервера IOST  
-### Параметры  
+Returns information of the IOST server node  
+### Parameters  
 
-| Ключ | Значение |
+| Key | Value |
 |--|--|
-|hash|Base58 закодированный хеш для запрошенного блока
-|complete|Нужно ли возвращать полные txs и receipts, или возвращать только их хеши
-### Ответ  
-Такой же как и информация о блоке в 'getChainInfo' api  
-### Пример  
+|hash|Base58 encoded hash for the requested block
+|complete|Whether to return full txs and receipts, or just return their hashes
+### Response  
+The same as the block info in 'getChainInfo' api  
+### Example  
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getBlockByHash/62LUg4MSavYphZTpCVgJaDKgqzDt8XutvfNDebiNW97N/true |python -m json.tool
 {
@@ -196,16 +197,16 @@ $ curl -s -X GET http://127.0.0.1:30001/getBlockByHash/62LUg4MSavYphZTpCVgJaDKgq
 
 ---
 ## /getBlockByNumber/{number}/{complete}
-Возвращает информацию узла сервера IOST  
-### Параметры  
+Returns information of the IOST server node  
+### Parameters  
 
-| Ключ | Значение |
+| Key | Value |
 |--|--|
-|num|Num(высота) для запрошенного блока
-|complete|(optional) Нужно ли возвращать полные txs и receipts, или возвращать только их хеши
-### Ответ  
-Такой же как и информация о блоке в 'getChainInfo' api  
-### Пример  
+|num|Num(height) for the requested block
+|complete|(optional) Whether to return full txs and receipts, or just return their hashes
+### Response  
+The same as the block info in 'getChainInfo' api  
+### Example  
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getBlockByNumber/11/false |python -m json.tool
 {
@@ -233,15 +234,15 @@ $ curl -s -X GET http://127.0.0.1:30001/getBlockByNumber/11/false |python -m jso
 
 ---
 ## /getTxByHash/{hash}
-Получает транзакцию по ее закодированному base58 хешу  
-### Параметры  
+Fetches the transaction by its base58 encoded hash  
+### Parameters  
 
-| Ключ | Значение |
+| Key | Value |
 |--|--|
-|hash|Base58 закодированный хеш транзакции
-### Ответ  
-Информация о транзакции  
-### Пример  
+|hash|Base58 encoded transaction hash
+### Response  
+The transaction information  
+### Example  
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getTxByHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv|python -m json.tool
 {
@@ -271,21 +272,21 @@ $ curl -s -X GET http://127.0.0.1:30001/getTxByHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyk
 
 ---
 ## /getTxReceiptByTxHash/{hash}
-Получает квитанцию (receipt) транзакции по закодированному base58 хешу транзакции  
-### Параметры  
+Fetches receipt of a transaction by the base58 encoded hash of the transaction  
+### Parameters  
 
-| Ключ | Значение |
+| Key | Value |
 |--|--|
-|hash|Base58 закодированный хеш транзакции
-### Ответ  
-| Ключ | Значение |
+|hash|Base58 encoded transaction hash
+### Response  
+| Key | Value |
 |--|--|
-|hash|Base58 закодированный хеш receipt
-|txReceiptRaw.gasUsage|Газ потраченный на эту транзакцию
-|txReceiptRaw.status.code|Код возврата этой транзакции. 0 означает все ОК
-|txReceiptRaw.status.message|Сообщение о результате этой транзакции. Оно может быть пустое или сообщение об ошибке
-|txReceiptRaw.receipts|Квитанции, сгенерированные этой транзакцией
-### Пример  
+|hash|Base58 encoded hash of the receipt
+|txReceiptRaw.gasUsage|Gas used of this transaction
+|txReceiptRaw.status.code|Return code of this transaction. 0 means all things Ok
+|txReceiptRaw.status.message|Result message of this transaction. It can be empty or error message
+|txReceiptRaw.receipts|Receipts generated by this transaction
+### Example  
 ```
 $ curl -s -X GET http://127.0.0.1:30001/getTxReceiptByTxHash/4RX7yVQNDvfWHYYLr5s9Cq6fAqyka3T9XTvk7y8H9qZv|python -m json.tool
 {
@@ -305,15 +306,15 @@ $ curl -s -X GET http://127.0.0.1:30001/getTxReceiptByTxHash/4RX7yVQNDvfWHYYLr5s
 
 ---
 ## /getTxReceiptByHash/{hash}
-Получает квитанцию (receipt) по ее закодированному base58 хешу  
-### Параметры  
+Fetches a receipt by its base58 encoded hash  
+### Parameters  
 
-| Ключ | Значение |
+| Key | Value |
 |--|--|
-|hash|Base58 закодированный хеш Квитанции
-### Ответ  
-Возвращает информацию о квитанции с такой же json структурой как в `getTxReceiptByTxHash`  
-### Пример  
+|hash|Base58 encoded receipt hash
+### Response  
+Retruns a receipt info with the same json structure as in `getTxReceiptByTxHash`  
+### Example  
 ```
 curl -s -X GET http://127.0.0.1:30001/getTxReceiptByHash/43qkJuKgaMauLTv57q1pg4j5DYxieswPZqvS6epFUZHj|python -m json.tool
 {

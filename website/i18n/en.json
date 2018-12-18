@@ -13,9 +13,17 @@
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
+      "2-intro-of-iost/Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
       "2-intro-of-iost/Database": {
         "title": "Database",
         "sidebar_label": "Database"
+      },
+      "2-intro-of-iost/Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
       },
       "2-intro-of-iost/Network-layer": {
         "title": "Network layer",
@@ -92,6 +100,10 @@
       "6-reference/API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "6-reference/iwallet-example": {
+        "title": "iwallet-example",
+        "sidebar_label": "iwallet-example"
       },
       "md-example": {
         "title": "Markdown example",
@@ -248,6 +260,14 @@
       "version-1.0.7-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-1.0.8-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-1.0.8-iwallet-example": {
+        "title": "iwallet-example",
+        "sidebar_label": "iwallet-example"
       }
     },
     "links": {

@@ -5,6 +5,8 @@
       "1-getting-started/Quickstart"
     ],
     "Introduction of IOST blockchain": [
+      "2-intro-of-iost/Account",
+      "2-intro-of-iost/Economic-model",
       "2-intro-of-iost/Smart-contract",
       "2-intro-of-iost/VM",
       "2-intro-of-iost/Database",
@@ -16,7 +18,9 @@
       "3-smart-contract/Smart-Contract-Development-Toolkit",
       "3-smart-contract/Deployment-and-invocation", 
       "3-smart-contract/Contract-Testing",
-      "3-smart-contract/Update-Contract"
+      "3-smart-contract/Update-Contract",
+      "3-smart-contract/Generate-Receipt",
+      "3-smart-contract/Token"
     ],
     "Running IOST node": [
       "4-running-iost-node/Faucet",
@@ -32,7 +36,8 @@
       "5-lucky-bet/Lucky-Bet-Js"
     ],
     "Reference": [
-      "6-reference/API"
+      "6-reference/API",
+      "6-reference/iwallet-example"
     ]
   },
   "docs-other": {
