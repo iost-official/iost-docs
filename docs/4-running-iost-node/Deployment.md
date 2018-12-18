@@ -54,7 +54,7 @@ docker run -d -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
 Using `-p` flag to map the ports:
 
 ```
-docker run -it --rm -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:1.0.0
+docker run -d -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
 ```
 
 ### Using docker-compose
