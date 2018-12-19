@@ -49,6 +49,10 @@
         "title": "Environment setup",
         "sidebar_label": "Environment setup"
       },
+      "3-smart-contract/Generate-Receipt": {
+        "title": "Generate Receipt in Smart Contract",
+        "sidebar_label": "Generate Receipt in Smart Contract"
+      },
       "3-smart-contract/How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
         "sidebar_label": "How to Write a Smart Contract"
@@ -56,6 +60,10 @@
       "3-smart-contract/Smart-Contract-Development-Toolkit": {
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
+      },
+      "3-smart-contract/Token": {
+        "title": "Create Token",
+        "sidebar_label": "Create Token"
       },
       "3-smart-contract/Update-Contract": {
         "title": "Update Contract",
@@ -268,6 +276,26 @@
       "version-1.0.8-iwallet-example": {
         "title": "iwallet-example",
         "sidebar_label": "iwallet-example"
+      },
+      "version-2.0.0-Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
+      "version-2.0.0-Generate-Receipt": {
+        "title": "Generate Receipt in Smart Contract",
+        "sidebar_label": "Generate Receipt in Smart Contract"
+      },
+      "version-2.0.0-Token": {
+        "title": "Create Token",
+        "sidebar_label": "Create Token"
+      },
+      "version-2.0.0-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.0.1-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
       }
     },
     "links": {
