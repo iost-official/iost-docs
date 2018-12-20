@@ -1,7 +1,7 @@
 ---
 id: version-1.0.4-Faucet
-title: Кран - как получить токен IOST
-sidebar_label: Кран - как получить токен IOST
+title: Faucet - как получить токен IOST
+sidebar_label: Faucet - как получить токен IOST
 original_id: Faucet
 ---
 

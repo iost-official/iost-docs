@@ -1,7 +1,7 @@
 ---
 id: Faucet
 title: Faucet - как получить токен IOST
-sidebar_label: Кран - как получить токен IOST
+sidebar_label: Faucet - как получить токен IOST
 ---
 
 - Откройте [explorer.iost.io](http://explorer.iost.io/applyIOST)
