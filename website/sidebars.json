@@ -38,6 +38,12 @@
     "Reference": [
       "6-reference/API",
       "6-reference/iwallet-example"
+    ],
+    "IOST.js": [
+      "7-iost-js/IOST-class",
+      "7-iost-js/Blockchain-class",
+      "7-iost-js/KeyPair-class",
+      "7-iost-js/Transaction-class"
     ]
   },
   "docs-other": {

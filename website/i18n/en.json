@@ -113,6 +113,22 @@
         "title": "iwallet-example",
         "sidebar_label": "iwallet-example"
       },
+      "7-iost-js/Blockchain-class": {
+        "title": "Blockchain",
+        "sidebar_label": "Blockchain"
+      },
+      "7-iost-js/IOST-class": {
+        "title": "IOST",
+        "sidebar_label": "IOST"
+      },
+      "7-iost-js/KeyPair-class": {
+        "title": "KeyPair",
+        "sidebar_label": "KeyPair"
+      },
+      "7-iost-js/Transaction-class": {
+        "title": "Transaction",
+        "sidebar_label": "Transaction"
+      },
       "md-example": {
         "title": "Markdown example",
         "sidebar_label": "Markdown example"
@@ -310,6 +326,7 @@
       "Running IOST node": "Running IOST node",
       "Example: Lucky Bet": "Example: Lucky Bet",
       "Reference": "Reference",
+      "IOST.js": "IOST.js",
       "First Category": "First Category",
       "Lucky Bet": "Lucky Bet"
     }
