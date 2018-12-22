@@ -109,10 +109,6 @@
         "title": "API",
         "sidebar_label": "API"
       },
-      "6-reference/iwallet-example": {
-        "title": "iwallet-example",
-        "sidebar_label": "iwallet-example"
-      },
       "7-iost-js/Blockchain-class": {
         "title": "Blockchain",
         "sidebar_label": "Blockchain"
@@ -124,6 +120,9 @@
       "7-iost-js/KeyPair-class": {
         "title": "KeyPair",
         "sidebar_label": "KeyPair"
+      },
+      "7-iost-js/RPC": {
+        "title": "7-iost-js/RPC"
       },
       "7-iost-js/Transaction-class": {
         "title": "Transaction",
