@@ -6,7 +6,7 @@ sidebar_label: iWallet
 
 **IOSBlockchain** имеет две программы: `iServer` является основной программой и несколько `iServer` формируют сеть блокчейна. `iWallet` это инструмент командной строки для взаимодействия с `iServer` блокчейна.
 
-После успешной `build`ing(постройки) системы, `iWallet` находится в `target/` папке в директории проекта.
+После успешной `build`ing(постройки) системы, `iWallet` находится в папке `target/` в директории проекта.
 
 ![iwallet1](assets/4-running-iost-node/iWallet/iwallet.png)
 
@@ -14,7 +14,7 @@ sidebar_label: iWallet
 
 |Команда      |Содержание                              |Описание
 |:-----------:|:--------------------------------------:|:--------------------------------------------|
-|help         |Помощь по любой команде                 |  using iwallet -h to get further infomation
+|help         |Помощь по любой команде                 |  используйте iwallet -h для получения дополнительной информации
 |account      |Управление аккаунтом                    |  ./iwallet account -n id
 |balance      |проверка баланса указанного аккаунта    |  ./iwallet balance ~/.iwallet/id_ed25519.pub
 |block        |печатает информацию о блоке, по умолчанию находит по номеру блока   |  
@@ -23,7 +23,7 @@ sidebar_label: iWallet
 |net          |Получить id сети                          |  ./iwallet net
 |publish      |подписывает .sc файлы с помощью .sig файлов, и публикует их        |./iwallet publish -k ~/.iwallet/id_ed25519 ./dashen.sc ./dashen.sig0 ./dashen.sig1
 |sign         |Подписать файл .sc                        |  ./iwallet sign -k ~/.iwallet/id_ed25519 ./test.sc
-|transaction  |найти транзакцию по транзакционному хешу    |  ./iwallet transaction HUVdKWhstUHbdHKiZma4YRHGQZwVXerh75hKcXTdu39t
+|transaction  |найти транзакцию по хешу транзакции    |  ./iwallet transaction HUVdKWhstUHbdHKiZma4YRHGQZwVXerh75hKcXTdu39t
 
 ## Примеры команд
 
@@ -37,7 +37,7 @@ sidebar_label: iWallet
 
 ### account:
 
-Создать аккаунт IOST, с соответствующими открытым и закрытым ключами сохранеными в директории `~/.iwallet/`.
+Создать аккаунт IOST, с соответствующими публичным и приватным ключами сохранеными в директории `~/.iwallet/`.
 
 ```
 ./iwallet account -n id
@@ -69,7 +69,7 @@ return:
 
 ### call:
 
-Вы можете `call` (вызвать) методы трансфера контракта в блокчейне.
+Вы можете `call` (вызывать) методы контракта в блокчейне, например метод трансфера.
 
 ```
 # Calls iost.system contract's Transfer method，Account IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP transfers Account IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk 100 token,
@@ -82,7 +82,7 @@ ok
 
 ### net:
 
-`net` команда получает сетевой адрес iserver.
+команда `net` получает сетевой адрес iserver.
 
 ```
 ./iwallet net
@@ -93,7 +93,7 @@ netId: 12D3KooWNdJgdRAAYoHvrYgCHhNEXS9p7LshjmJWJhDApMXCfahk
 
 ### transaction:
 
-`transaction` команда используется для поиска
+команда `transaction` используется для получения информации о транзакции
 
 ```
 ./iwallet transaction 8LaUT2gbZeTG8Ev988DELNjCWSMQ369uGHAhUUWEHxuV

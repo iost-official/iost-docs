@@ -1,7 +1,7 @@
 ---
 id: Environment-setup
-title: Настройка среды
-sidebar_label: Настройка среды
+title: Настройка среды разработки
+sidebar_label: Настройка среды разработки
 ---
 
 В настоящее время программирование смарт-контрактов IOST зависит от [go-iost](https://github.com/iost-official/go-iost).
@@ -18,7 +18,7 @@ git clone https://github.com/iost-official/go-iost.git
 
 ## Установить ```Node```
 
-Пожалуйста, обратитесь к  [Официальная документация Node.js](https://nodejs.org/en/download/package-manager/#macos)
+Пожалуйста, обратитесь к  [Официальной документации Node.js](https://nodejs.org/en/download/package-manager/#macos)
 
 ## Установить```npm```
 

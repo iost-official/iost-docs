@@ -15,13 +15,13 @@ None
 | Ключ | Значение |
 | netType | Это тип сети блокчейна IOST. Он может быть одним из 'debugnet', 'testnet' и 'mainnet' |
 |protocolVersion|Сейчас должен быть '1.0'
-|witnessList|Текущий список witness
+|witnessList|Текущий список производителей блоков
 |height|Текущая высота blockchain
 |headBlock|Информация о головном блоке на самой длинной цепи.
 |headBlock.head.number|Высота блока
 |headBlock.head.witness|Witness(производитель) блока
 |--|--|
-|headBlock.hash|Base58 кодированный хэш блока
+|headBlock.hash|Base58 кодированный хеш блока
 |headBlock.txs|Транзакции в блоке. Но сейчас значение пусто.
 |headBlock.txhash|Base58 закодированные хеши транзакций в блоке
 |headBlock.receipts|Квитанции(receipt) блока. Но сейчас значение пусто.
@@ -85,7 +85,7 @@ $ curl -s -X GET http://127.0.0.1:30001/getChainInfo|python -m json.tool
 
 ---
 ## /getNodeInfo
-Возвращает информацию узла сервера IOST  
+Возвращает информацию об серверном узле IOST  
 ### Параметры  
 None  
 ### Ответ  

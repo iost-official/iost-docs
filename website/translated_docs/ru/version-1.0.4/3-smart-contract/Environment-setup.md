@@ -1,7 +1,7 @@
 ---
 id: version-1.0.4-Environment-setup
-title: Настройка среды
-sidebar_label: Настройка среды
+title: Настройка среды разработки
+sidebar_label: Настройка среды разработки
 original_id: Environment-setup
 ---
 
@@ -19,7 +19,7 @@ git clone https://github.com/iost-official/go-iost.git
 
 ## Установка ```Node```
 
-Пожалуйста, обратитесь к [Официальная документация Node.js](https://nodejs.org/en/download/package-manager/#macos)
+Пожалуйста, обратитесь к [Официальной документации Node.js](https://nodejs.org/en/download/package-manager/#macos)
 
 ## Установка```npm```
 

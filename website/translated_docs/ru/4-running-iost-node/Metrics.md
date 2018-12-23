@@ -4,7 +4,7 @@ title: Метрика
 sidebar_label: Метрика
 ---
 
-Показатели - это инструмент, который контролирует производительность системы. Мы используем [Prometheus](https://prometheus.io/) для нашей системы.
+Метрика - это инструмент, который контролирует производительность системы. Мы используем [Prometheus](https://prometheus.io/) для нашей системы.
 
 ## Развертывание Prometheus
 
@@ -16,7 +16,7 @@ sidebar_label: Метрика
 docker run -d -p 9091:9091 prom/pushgateway
 ```
 
-После установки перейдите к `[pushgateway_ip]:9091` в вашем браузере, и вы можете увидеть следующую страницу (`[pushgateway]` это IP-адрес, к которому применяется докер):
+После установки перейдите к `[pushgateway_ip]:9091` в вашем браузере, и вы сможете увидеть следующую страницу (`[pushgateway]` это IP-адрес, на котором развернут докер):
 
 ![example](assets/doc004/pushgateway.png)
 
@@ -26,7 +26,7 @@ docker run -d -p 9091:9091 prom/pushgateway
 docker run -d -p 9090:9090 -v /tmp/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
 
-* Конфигурировать `promethus.yml`
+* Сконфигурируйте `promethus.yml`
 
 ```
 global:
@@ -40,11 +40,11 @@ scrape_configs:
       - targets: ['pushgateway_ip:9090']
 ```
 
-Не забудьте заменить `pushgateway_ip` с IP-адресом докера.
+Не забудьте заменить `pushgateway_ip` на IP-адрес докера.
 
 ![example](assets/doc004/prometheus.png)
 
-* Конфигурировать `iserver.yml`
+* Сконфигурируйте `iserver.yml`
 
 ```
 metrics:
@@ -71,8 +71,8 @@ iost_p2p_bytes_in: Bytes received
 iost_p2p_packet_in: Packets received
 ```
 
-## Проверка разрешений на метрики
+## Проверка разрешений метрик
 
-Если вам нужно добавить разрешение на предоставления доступа к метрике, чтобы другие пользователи не влияли на показатели к вашей системы, разверните экземпляр объекта nginx и добавьте контроль разрешений. Обратитесь к документу за конкретными шагами: https://prometheus.io/docs/guides/basic-auth/
+Если вам нужно добавить разрешение на предоставления доступа к метрике, чтобы другие пользователи не влияли на показатели вашей системы, разверните экземпляр объекта nginx и добавьте контроль разрешений. Обратитесь к документу по конкретным шагам: https://prometheus.io/docs/guides/basic-auth/
 
 После развертывания nginx, добавьте поля `username` и `password` в конфигурационный файл `iserver.yml`.

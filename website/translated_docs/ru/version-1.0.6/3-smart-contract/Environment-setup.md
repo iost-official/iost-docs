@@ -1,7 +1,7 @@
 ---
 id: version-1.0.6-Environment-setup
-title: Настройка среды
-sidebar_label: Настройка среды
+title: Настройка среды разработки
+sidebar_label: Настройка среды разработки
 original_id: Environment-setup
 ---
 

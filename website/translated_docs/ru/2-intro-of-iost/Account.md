@@ -74,8 +74,8 @@ User0, perm0		|key1			|true			|Разрешение предоставлены (
 User0, perm1		|key7			|true			|key7 предоставляет разрешение User1@active, таким образом, предоставляя perm1
 User0, owner		|key1			|false		|`active` не предоставляет разрешение `owner`
 User0, active		|key0			|true			|`owner` предоставляет все разрешения
-User0, perm2		|key4			|false		|Подписи не достигли порога
-User0, perm2		|key4,key5	|true			|Подписи достигли порога
+User0, perm2		|key4			|false		|Подписи не достигли пороговое значение
+User0, perm2		|key4,key5	|true			|Подписи достигли пороговое значение
 User0, perm2		|key3			|true			|Группа разрешений не рассчитывает и не проверяет пороговое значение
 User0, perm2		|key1			|true			|`active` не проверяет пороговое значение
 User0, perm4		|key8			|false		|Может быть реализовано при расчете веса группы разрешений

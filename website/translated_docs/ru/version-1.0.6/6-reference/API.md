@@ -43,7 +43,7 @@ original_id: API
 ### /getBlockByHash/{hash}/{complete}
 ---
 ##### ***GET***
-**Summary:** получить блок по хэшу
+**Summary:** получить блок по хешу
 
 **Parameters**
 
@@ -119,7 +119,7 @@ original_id: API
 ### /getTxByHash/{hash}
 ---
 ##### ***GET***
-**Summary:** получить транзакцию по хэшу
+**Summary:** получить транзакцию по хешу
 
 **Parameters**
 
@@ -136,7 +136,7 @@ original_id: API
 ### /getTxReceiptByHash/{hash}
 ---
 ##### ***GET***
-**Summary:** получить квитанцию(receipt) по хэшу
+**Summary:** получить квитанцию(receipt) по хешу
 
 **Parameters**
 
@@ -153,7 +153,7 @@ original_id: API
 ### /getTxReceiptByTxHash/{hash}
 ---
 ##### ***GET***
-**Summary:** получить квитанцию(receipt) по хэшу транзакции
+**Summary:** получить квитанцию(receipt) по хешу транзакции
 
 **Parameters**
 

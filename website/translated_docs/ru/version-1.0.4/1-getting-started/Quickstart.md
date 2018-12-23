@@ -7,7 +7,7 @@ original_id: Quickstart
 
 Самый простой способ
 
-## 1. Клонировать хранилище
+## 1. Клонировать репозиторий
 
 ```
 git clone https://github.com/iost-official/go-iost.git

@@ -10,7 +10,7 @@ original_id: Environment-Configuration
 * Go 1.9 или новее (Go 1.11 рекомендованный)
 * `git-lfs` (v2.5.2 рекомендованный)
 * Rocksdb v5.14.3 или новее
-* Docker v18.06.0-ce или новее (старые версии не тестируются)
+* Docker v18.06.0-ce или новее (старые версии не тестировались)
 
 ## Среда
 
@@ -74,11 +74,11 @@ make test
 
 #### Mac OS X
 
-Ссылка на [Официальная Документация](https://docs.docker.com/docker-for-mac/install/) для установки на Mac OS X.
+Ссылка на [Официальную Документацию](https://docs.docker.com/docker-for-mac/install/) для установки на Mac OS X.
 
 #### Ubuntu/Linux
 
-Ссылка на [Официальная Документация](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) для установки на Ubuntu.
+Ссылка на [Официальную Документацию](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) для установки на Ubuntu.
 
 ### Компиляция и модульные тесты
 
