@@ -17,10 +17,10 @@ make build
 * Use the below command to run the IOST node
 
 ```
-./target/iserver -f ./config/iserver.yaml
+./target/iserver -f ./config/iserver.yml
 ```
 
-* Change ./config/iserver.yaml configuration file
+* Change ./config/iserver.yml configuration file
 
 ```
 acc:
