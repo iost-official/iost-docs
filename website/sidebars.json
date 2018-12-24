@@ -36,8 +36,13 @@
       "5-lucky-bet/Lucky-Bet-Js"
     ],
     "Reference": [
-      "6-reference/API",
-      "6-reference/iwallet-example"
+      "6-reference/API"
+    ],
+    "IOST.js": [
+      "7-iost-js/IOST-class",
+      "7-iost-js/Blockchain-class",
+      "7-iost-js/KeyPair-class",
+      "7-iost-js/Transaction-class"
     ]
   },
   "docs-other": {
