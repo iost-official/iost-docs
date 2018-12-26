@@ -18,6 +18,7 @@ Run the command to compile and generate file in the `target` directory:
 
 ```
 git checkout v2.0.0
+make vmlib
 make build
 ```
 

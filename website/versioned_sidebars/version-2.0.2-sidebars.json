@@ -1,0 +1,53 @@
+{
+  "version-2.0.2-docs": {
+    "Getting started": [
+      "version-2.0.2-1-getting-started/doc1",
+      "version-2.0.2-1-getting-started/Quickstart"
+    ],
+    "Introduction of IOST blockchain": [
+      "version-2.0.2-2-intro-of-iost/Account",
+      "version-2.0.2-2-intro-of-iost/Economic-model",
+      "version-2.0.2-2-intro-of-iost/Smart-contract",
+      "version-2.0.2-2-intro-of-iost/VM",
+      "version-2.0.2-2-intro-of-iost/Database",
+      "version-2.0.2-2-intro-of-iost/Network-layer"
+    ],
+    "Smart Contract": [
+      "version-2.0.2-3-smart-contract/Environment-setup",
+      "version-2.0.2-3-smart-contract/How-to-write-a-smart-contract",
+      "version-2.0.2-3-smart-contract/Smart-Contract-Development-Toolkit",
+      "version-2.0.2-3-smart-contract/Deployment-and-invocation",
+      "version-2.0.2-3-smart-contract/Contract-Testing",
+      "version-2.0.2-3-smart-contract/Update-Contract",
+      "version-2.0.2-3-smart-contract/Generate-Receipt",
+      "version-2.0.2-3-smart-contract/Token"
+    ],
+    "Running IOST node": [
+      "version-2.0.2-4-running-iost-node/Faucet",
+      "version-2.0.2-4-running-iost-node/Environment-Configuration",
+      "version-2.0.2-4-running-iost-node/iServer",
+      "version-2.0.2-4-running-iost-node/iWallet",
+      "version-2.0.2-4-running-iost-node/Deployment",
+      "version-2.0.2-4-running-iost-node/Metrics"
+    ],
+    "Example: Lucky Bet": [
+      "version-2.0.2-5-lucky-bet/Design-Tech-data",
+      "version-2.0.2-5-lucky-bet/Lucky-Bet-Operation",
+      "version-2.0.2-5-lucky-bet/Lucky-Bet-Js"
+    ],
+    "Reference": [
+      "version-2.0.2-6-reference/API"
+    ],
+    "IOST.js": [
+      "version-2.0.2-7-iost-js/IOST-class",
+      "version-2.0.2-7-iost-js/Blockchain-class",
+      "version-2.0.2-7-iost-js/KeyPair-class",
+      "version-2.0.2-7-iost-js/Transaction-class"
+    ]
+  },
+  "version-2.0.2-docs-other": {
+    "First Category": [
+      "version-2.0.2-md-example"
+    ]
+  }
+}
