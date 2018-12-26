@@ -530,13 +530,13 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | pledge_gas |double   | 质押获得的Gas |
 | increase_speed |double   | 每秒增加的Gas |
 | limit |double   | 质押Token获得的Gas上限 |
-| pledged_info |repeated [PledgeInfo](#pledgeinfo)   | 其他账号帮本账号质押的信息 |
+| pledged_info |repeated [PledgeInfo](#pledgeinfo)   | 本账号帮其他账号质押的信息 |
 
 ### PledgeInfo
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| pledger | string  | 质押的账号|
-| amount |double   | 质押金额 |
+| pledger | string  | 接受本账号质押的账号|
+| amount |double   | 本账号给 pledger 质押的金额 |
 
 ### RAMInfo
 | 字段 | 类型 | 描述 |
