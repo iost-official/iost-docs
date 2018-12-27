@@ -20,7 +20,7 @@ sidebar_label: 部署和调用
 
 ```bash
 # Generate ABI for target js
-./iwallet compile -g jsFilePath
+./iwallet compile jsFilePath
 ```
 
 这个会生成 .js.abi 文件和 .js.after 文件。
@@ -48,30 +48,16 @@ sidebar_label: 部署和调用
 }
 ```
 
-### 使用 .js 与 .abi 文件生成 transaction 的封装文件 .sc
-
-```bash
-# Generate .sc for signsers to sign
-./iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signers "ID0, ID1..."
-# Example
-./iwallet compile -e 10000 -l 100000 -p 1 ./test.js ./test.js.abi --signers "ID"
-```
-### 发放 .sc 文件给各个签名人， 签名人生成 .sig 文件
-然后将生成的 .sc 文件发给对应的signer进行签名, 生成 .sig 文件 。
-签名方法
-
-```bash
-# sign a .sc file with private key
-./iwallet sign -k path_of_seckey path_of_txFile
-# Example
-./iwallet sign -k ~/.iwallet/id_secp ./test.sc
-```
-### 收集 .sig 文件与 .sc 文件, publish 到主链上
-最后使用 Transaction 的 .sc 文件， 和所有的签名文件 .sig， 发布该合约到链上。
+### publish 到主链上
+使用 ```.js``` 与 ```.abi``` 发布该合约到链上。
 
 ```bash
 # publish a transaction with .sig file from every signer
-./iwallet publish -k path_of_seckey path_of_txFile path_of_sig0 path_of_sig1 ...
+./iwallet --server serverIP --account acountName --amount_limit amountLimit publish jsFilePath abiFilePath
 # Example
-./iwallet publish -k ~/.iwallet/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit  "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
+...
+
+#Return
+The contract id is ContractBgHM72pFxE9KbTpQWipvYcNtrfNxjEYdJD7dAEiEXXZh
 ```

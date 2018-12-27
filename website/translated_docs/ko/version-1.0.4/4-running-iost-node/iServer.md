@@ -17,10 +17,10 @@ make build
 * IOST 노드를 구동하기 위해서 아래의 명령어를 입력하세요.
 
 ```
-./target/iserver -f ./config/iserver.yaml
+./target/iserver -f ./config/iserver.yml
 ```
 
-* ./config/iserver.yaml 설정 파일을 아래와 같이 변경하세요. YOUR_ID와 YOUR_SECRET_KEY에 IOST 계정의 아이디와 프라이빗 키를 입력합니다.
+* ./config/iserver.yml 설정 파일을 아래와 같이 변경하세요. YOUR_ID와 YOUR_SECRET_KEY에 IOST 계정의 아이디와 프라이빗 키를 입력합니다.
 
 ```
 acc:
@@ -29,7 +29,7 @@ acc:
   algorithm: ed25519
 ```
 
-* `genesis` - 동일한 파일(.config/iserver.yaml)에서 제네시스 블록 정보를 아래와 같이 입력합니다.
+* `genesis` - 동일한 파일(.config/iserver.yml)에서 제네시스 블록 정보를 아래와 같이 입력합니다.
 
 ```
 genesis:

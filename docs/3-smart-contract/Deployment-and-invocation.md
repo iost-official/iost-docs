@@ -51,35 +51,16 @@ Currently, the .abi file still needs some modifications. Mainly check the follow
 }
 ```
 
-### Use .js and .abi files to generate the .sc packer file
-
-Next, generate .sc files with js and js.abi files.
-
-```bash
-# Generate .sc for signsers to sign
-./iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signers "ID0, ID1..."
-# Example
-./iwallet compile -e 10000 -l 100000 -p 1 ./test.js ./test.js.abi --signers "ID"
-```
-
-### Distribute .sc files to each signer, and signers will generate .sig files
-
-Distribute the .sc files to corresponding signers, and obtain .sig files.
-
-```bash
-# sign a .sc file with private key
-./iwallet sign -k path_of_seckey path_of_txFile
-# Example
-./iwallet sign -k ~/.iwallet/id_secp ./test.sc
-```
-
 ### Collect .sig files and the .sc files, and publish them on chain
-
-Finally, deploy the .sc file in the Transaction, as well as all signed .sig files.
+Finally, use ```.js``` file and ```.abi``` file to deploy the contract to chain.
 
 ```bash
 # publish a transaction with .sig file from every signer
-./iwallet publish -k path_of_seckey path_of_txFile path_of_sig0 path_of_sig1 ...
+./iwallet --server serverIP --account acountName --amount_limit amountLimit publish jsFilePath abiFilePath
 # Example
-./iwallet publish -k ~/.iwallet/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit  "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
+...
+
+#Return
+The contract id is ContractBgHM72pFxE9KbTpQWipvYcNtrfNxjEYdJD7dAEiEXXZh
 ```

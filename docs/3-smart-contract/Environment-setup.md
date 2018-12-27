@@ -30,6 +30,6 @@ npm install
 ## Install```Dynamic Library```
 
 ```git
-cd go-iost/vm/v8vm/v8
+cd go-iost
 make deploy
 ```
