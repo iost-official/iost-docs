@@ -137,7 +137,7 @@ Account management is based on the contract of `account.iost`. The ABI is as fol
 }
 ```
 
-Account name are only valid with `[a-z0-9_]`, with a length between 6 and 32. Permission name and group names are only valid with `[a-zA-Z0-9_]` with a length between 1 and 32.
+Account name are only valid with `[a-z0-9_]`, with a length between 5 and 11. Permission name and group names are only valid with `[a-zA-Z0-9_]` with a length between 1 and 32.
 
 Normally, accounts will need to deposit IOST upon application, or the account may not be used. One way to do this is with `iost.js`:
 
