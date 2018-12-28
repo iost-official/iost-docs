@@ -19,6 +19,7 @@ git clone https://github.com/iost-official/go-iost.git && cd go-iost
 
 ```
 git checkout v2.0.0
+make vmlib
 make build
 ```
 

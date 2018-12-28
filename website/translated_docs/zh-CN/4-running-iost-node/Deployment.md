@@ -149,7 +149,6 @@ p2p:
     - /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a
   chainid: 1024
   version: 1
-  datapath: /var/lib/iserver/p2p/
 ...
 ```
 

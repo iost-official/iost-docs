@@ -69,6 +69,10 @@
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
+      "4-running-iost-node/Deployment-Docker-Centos": {
+        "title": "Deployment Docker Centos",
+        "sidebar_label": "Deployment Docker Centos"
+      },
       "4-running-iost-node/Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
@@ -311,6 +315,30 @@
       "version-2.0.1-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
+      },
+      "version-2.0.2-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-2.0.2-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.0.2-Blockchain-class": {
+        "title": "Blockchain",
+        "sidebar_label": "Blockchain"
+      },
+      "version-2.0.2-IOST-class": {
+        "title": "IOST",
+        "sidebar_label": "IOST"
+      },
+      "version-2.0.2-KeyPair-class": {
+        "title": "KeyPair",
+        "sidebar_label": "KeyPair"
+      },
+      "version-2.0.2-Transaction-class": {
+        "title": "Transaction",
+        "sidebar_label": "Transaction"
       }
     },
     "links": {

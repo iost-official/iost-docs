@@ -11,7 +11,7 @@ sidebar_label: 合约测试
 ## 启动docker镜像
 
 ```bash
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
+docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.0.0
 ```
 
 在这里， 我们将docker的30002好端口与本机的30002端口进行了映射， 这样的话我们对30002端口发送的```RPC```请求将会成功发送到docker里面， 被我们的区块程序打包上链。
@@ -19,9 +19,6 @@ docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
 ### 注意事项
 
 在我们的这个镜像中， 所有的IOST都被存在了一个初始账户中。 该账户有21000000000个IOST， 我们如果需要使用其他账户发起交易， 或者发布合约， 需要先使用该账户中进行IOST转账。 因为任何的IOST交易都会消耗Gas， 而所有币都在初始账户中， 意味着一开始只有初始账户可以付得起Gas费用， 只有初始账户可以发起交易。
-
-- 初始账户账号 `IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C`
-- 初始账户秘钥 `1rANSfcRzr4HkhbUFZ7L1Zp69JZZHiDDq5v7dNSbbEqeU4jxy3fszV4HGiaLQEyqVpS1dKT9g7zCVRxBVzuiUzB`
 
 
 ### 如何将 IOST 转到其他账户
@@ -31,22 +28,18 @@ docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
 ```bash
 // This will generate a private/public key pair under ~/.iwallet/ folder
 ./iwallet account
+// Import Admin 
+./iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 
 ##### 生成一笔交易
 
 ```bash
 // Normally we ask the fromID to sign the transaction
-./iwallet call "iost.system" "Transfer" '["fromID", "toID", 100]' --signer "ID0, ID1"
+./iwallet -s localhost:30002 --account admin  account --create yourAccountName --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 // Example
-./iwallet call iost.system Transfer '["IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C", "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C", 100]' --signers "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+./iwallet -s localhost:30002 --account admin  account --create lispczz3 --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 ```
-
-这会生成一个 iost.sc 的 Transaction 文件。 我们应该依据部署与更新中提到的合约上链流程将这个合约上链。
-
-## 合约本地上链
-
-参照部署与更新中的合约上链。
 
 ## 检验上链是否成功
 

@@ -18,10 +18,10 @@ make build
 * Используйте комманду ниже для запуска узла IOST
 
 ```
-./target/iserver -f ./config/iserver.yaml
+./target/iserver -f ./config/iserver.yml
 ```
 
-* Измените файл конфигурации ./config/iserver.yaml
+* Измените файл конфигурации ./config/iserver.yml
 
 ```
 acc:

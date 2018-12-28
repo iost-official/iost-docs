@@ -18,6 +18,7 @@ git clone git@github.com:iost-official/go-iost.git
 Запустите команду для компиляции и создания файла в `target` директории:
 
 ```
+make vmlib
 make build
 ```
 

@@ -20,9 +20,6 @@ docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
 
 В этом зеркале все IOST помещаются в начальный аккаунт с 21 000 000 000 IOST. Когда нам нужно инициировать транзакцию или развернуть контракт, вам необходимо перевести средства с этого аккаунта. Поскольку на любую транзакцию IOST затрачивается газ, и все токены хранятся в первоначальном аккаунте, только этот аккаунт может провести транзакцию.
 
-- Начальный Аккаунт: `IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C`
-- Начальный Секретный ключ: `1rANSfcRzr4HkhbUFZ7L1Zp69JZZHiDDq5v7dNSbbEqeU4jxy3fszV4HGiaLQEyqVpS1dKT9g7zCVRxBVzuiUzB`
-
 ## Как перевести IOST на другой аккаунт
 
 ### Сгенерировать аккаунт
@@ -30,15 +27,17 @@ docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
 ```bash
 // This will generate a private/public key pair under ~/.iwallet/ folder
 ./iwallet account
+// Import Admin
+./iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 
 ### Инициировать транзакцию
 
 ```bash
 // Normally we ask the fromID to sign the transaction
-./iwallet call "iost.system" "Transfer" '["fromID", "toID", 100]' --signer "ID0, ID1"
+./iwallet -s localhost:30002 --account admin  account --create yourAccountName --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 // Example
-./iwallet call iost.system Transfer '["IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C", "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C", 100]' --signers "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+./iwallet -s localhost:30002 --account admin  account --create lispczz3 --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 ```
 
 Это создаст файл транзакции `iost.sc`. Мы должны следовать рабочему процессу развертывания, чтобы развернуть этот контракт в блокчейне, как указано в *Развертывание и вызов*.

@@ -530,13 +530,13 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | pledge_gas |double   | 质押获得的Gas |
 | increase_speed |double   | 每秒增加的Gas |
 | limit |double   | 质押Token获得的Gas上限 |
-| pledged_info |repeated [PledgeInfo](#pledgeinfo)   | 其他账号帮本账号质押的信息 |
+| pledged_info |repeated [PledgeInfo](#pledgeinfo)   | 本账号帮其他账号质押的信息 |
 
 ### PledgeInfo
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
-| pledger | string  | 质押的账号|
-| amount |double   | 质押金额 |
+| pledger | string  | 接受本账号质押的账号|
+| amount |double   | 本账号给 pledger 质押的金额 |
 
 ### RAMInfo
 | 字段 | 类型 | 描述 |
@@ -875,3 +875,45 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 本接口请求格式和 /sendTx 相同。 
 ### 响应格式
 本接口响应格式和 /getTxReceiptByTxHash 相同。
+
+## /subscribe
+---
+
+
+##### **POST**
+**概要:** 订阅事件，包括智能合约中触发的事件和交易执行完的事件。
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl -X POST http://127.0.0.1:30001/subscribe -d '{"topics":["CONTRACT_RECEIPT"], "filter":{"contract_id":"token.iost"}}'
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| topics |repeated enum  | 订阅的事件主题，枚举类型有两种值，CONTRACT\_EVENT-合约中触发的事件, CONTRACT\_RECEIPT-交易执行完的事件|
+| filter | [Filter](#filter)  | 收到的事件会按照 filter 中的字段过滤，若不传这一字段，则会收到所有 topics 中的事件数据 |
+### Filter
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| contract_id | string | 智能合约的 id|
+
+
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646637413936000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646637711757000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646638013188000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646638317840000"}}}
+...
+```
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| topic | enum  | 事件的主题，CONTRACT\_EVENT-合约中触发的事件, CONTRACT\_RECEIPT-交易执行完的事件|
+| data | string  | 事件数据|
+| time | int64  | 事件的时间戳|
