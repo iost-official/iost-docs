@@ -542,8 +542,6 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | available | int64  | 可用的RAM bytes|
-| used | int64  | 已使用的RAM bytes|
-| total | int64  | 总共RAM bytes|
 
 ### Permission
 | 字段 | 类型 | 描述 |

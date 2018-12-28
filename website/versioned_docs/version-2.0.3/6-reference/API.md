@@ -1,7 +1,8 @@
 ---
-id: API
+id: version-2.0.3-API
 title: API
 sidebar_label: API
+original_id: API
 ---
 
 
@@ -572,8 +573,6 @@ amount          |double |the amount of the deposit
 Key                 |Type       |Description 
 ----                    |--         |--
 available           |int64      |RAM bytes available for use
-used           |int64      |RAM bytes used
-total           |int64      |RAM bytes total
 
 ### Permission
 
