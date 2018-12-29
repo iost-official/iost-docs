@@ -85,6 +85,10 @@
         "title": "Faucet - how to get IOST token",
         "sidebar_label": "Faucet - how to get IOST token"
       },
+      "4-running-iost-node/Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
       "4-running-iost-node/iServer": {
         "title": "iServer",
         "sidebar_label": "iServer"
