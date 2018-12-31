@@ -75,7 +75,6 @@ yum install -y git2u docker-ce
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod 755 /usr/local/bin/docker-compose
-firewall-cmd --permanent --add-port=30000-30003/tcp
 git clone https://github.com/iost-official/go-iost && cd go-iost
 git checkout v2.0.0
 systemctl enable docker
@@ -253,12 +252,19 @@ You should see blocks syncing
 ![verify_server](assets/4-running-iost-node/GoogleCloudPlatform/verify_server.png)
 
 
-You may need to restart docker container if it was started before you applied the firewall rules, use the CONTAINER ID shown from `docker ps`
+You may need to restart docker container if it was started before you applied the firewall rules in the VPC. Ensure you are in directory where docker-compose.yml exists.
 ```
-docker restart 1234abcd
+docker-compose restart iserver
 ```
 
-You may also need to change your account number in /data/iserver/iserver.yml
+You may also need to change your account number in /data/iserver/iserver.yml if you are running a Servi Node
+
+
+To check your node is syncing run the following command look for the *headBlock* being increased
+``
+docker exec -ti 1234abcd bash
+./iwallet state
+```
 
 To check your node is up query a seednode and look for your public ip
 ```
