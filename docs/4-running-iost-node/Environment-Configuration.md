@@ -7,83 +7,63 @@ sidebar_label: Environment & Configuration
 ## Prerequisites
 
 * Go 1.9 or newer (Go 1.11 recommended)
-* `git-lfs` (v2.5.2 recommended)
-* Rocksdb v5.14.3 or newer
-* Docker v18.06.0-ce or newer (older versions are not tested)
+* Git LFS (v2.5.2 recommended)
+* [Docker CE 18.06 or newer](https://docs.docker.com/install/) (older versions are not tested)
 
-## Environment
-
-Currently, you can develop and deploy on below environments:
+Currently, below environments are tested:
 
 * [Mac OS X](#mac-os-x)
 * [Ubuntu/Linux](#ubuntu-linux)
 * [Docker](#docker)
 
-## Mac OS X
+## Building and unit tests
 
-### Installing git-lfs
+- Install all the prerequisites.
+   Please refer to its platform-specific installation doc.
+
+   To install Git LFS:
 
 ```
+# mac-os-x
 brew install git-lfs
+
+# ubuntu
+sudo apt install -y git-lfs
+
+# centos
+yum --enablerepo=epel install -y git-lfs
+```
+
+- Install the Git command line extension. You only have to set up Git LFS once.
+
+```
 git lfs install
 ```
 
-### Installing rocksdb
-
-```
-brew install rocksdb
-```
-
-### Compiling and unit tests
-
-```
-git clone git@github.com:iost-official/go-iost.git
-make build
-make test
-```
-
-## Ubuntu/Linux
-
-### Installing git-lfs
-
-```
-brew install git-lfs
-git lfs install
-```
-
-### Installing rocksdb
-
-```
-apt install -y libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev
-git clone -b "v5.14.3" https://github.com/facebook/rocksdb.git && \
-cd rocksdb && make static_lib && make install-static
-```
-
-### Compiling and unit tests
-
-```
-git clone git@github.com:iost-official/go-iost.git
-make build
-make test
-```
-
-## Docker
-
-### Installing docker
-
-#### Mac OS X
-
-Refer to [Official Documents](https://docs.docker.com/docker-for-mac/install/) to install on Mac OS X.
-
-#### Ubuntu/Linux
-
-Refer to [Official Documents](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) to install on Ubuntu.
-
-### Compiling and unit tests
+- Get repo.
 
 ```
 git clone git@github.com:iost-official/go-iost.git
 cd go-iost
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:1.0.0 make build
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:1.0.0 make test
+```
+
+- Build binaries
+
+```
+make vmlib
+make build
+```
+
+- Run unit tests.
+
+```
+make test
+```
+
+- Run binaries.
+
+```
+target/iserver -f config/iserver.yml
+
+target/iwalllet state
 ```
