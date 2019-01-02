@@ -58,5 +58,5 @@ make
 ```
 target/iserver -f config/iserver.yml
 
-target/iwalllet state
+target/iwallet state
 ```
