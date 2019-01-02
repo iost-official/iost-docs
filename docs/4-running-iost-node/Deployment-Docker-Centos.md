@@ -29,8 +29,8 @@ It is assumed you will be running the commands as root, it is also assumed you d
 yum update -y
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum install -y  https://centos7.iuscommunity.org/ius-release.rpm
-yum install -y git2u docker-ce netstat
+yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+yum install -y git2u docker-ce
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod 755 /usr/local/bin/docker-compose
@@ -65,7 +65,7 @@ service iptables save
 
 If you are using firewalld you can run the following commands to allow the necessary ports
 ```
-firewall-cmd --permanent --add-port=30000:30003/tcp
+firewall-cmd --permanent --add-port=30000-30003/tcp
 firewall-cmd --reload
 ```
 
@@ -157,7 +157,6 @@ p2p:
     - /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a
   chainid: 1024
   version: 1
-  datapath: /var/lib/iserver/p2p/
 ...
 ```
 
@@ -246,7 +245,11 @@ services:
       - /data/iserver:/var/lib/iserver
 ```
 
-To start the node: `docker-compose up -d`
+To start the node run
+
+```
+docker-compose up -d
+```
 
 
 ## Useful commands
