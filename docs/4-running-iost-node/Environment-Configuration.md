@@ -28,6 +28,7 @@ Currently, below environments are tested:
 brew install git-lfs
 
 # ubuntu
+# see also: https://github.com/git-lfs/git-lfs/wiki/Installation
 sudo apt install -y git-lfs
 
 # centos
@@ -43,21 +44,13 @@ git lfs install
 - Get repo.
 
 ```
-git clone git@github.com:iost-official/go-iost.git
-cd go-iost
+git clone git@github.com:iost-official/go-iost.git && cd go-iost
 ```
 
 - Build binaries
 
 ```
-make vmlib
-make build
-```
-
-- Run unit tests.
-
-```
-make test
+make
 ```
 
 - Run binaries.
