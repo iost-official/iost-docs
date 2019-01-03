@@ -148,3 +148,5 @@ An increasing value of `confirmed` means it is syncing the block data.
 You may also check the state of the node using `iwallet`:
 `docker-compose exec iserver ./iwallet state`
 
+Use `-s` together with seednode's IP to get latest blockchain info:
+`docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state`
