@@ -28,7 +28,6 @@
       "4-running-iost-node/iServer",
       "4-running-iost-node/iWallet",
       "4-running-iost-node/Deployment",
-      "4-running-iost-node/Deployment-Docker-Centos",
       "4-running-iost-node/Google-Compute-Platform",
       "4-running-iost-node/Metrics"
     ],
