@@ -76,7 +76,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.s
 curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod 755 /usr/local/bin/docker-compose
 git clone https://github.com/iost-official/go-iost && cd go-iost
-git checkout v2.0.0
+git checkout v2.1.0
 systemctl enable docker
 systemctl start docker
 mkfs.xfs /dev/sdb
@@ -186,7 +186,7 @@ version: "2.2"
 
 services:
   iserver:
-    image: iostio/iost-node:2.0.0
+    image: iostio/iost-node:2.1.0
     restart: always
     ports:
       - "30000:30000"

@@ -19,13 +19,19 @@ First get the configuration templates:
 
 ```
 mkdir -p /data/iserver
-curl https://raw.githubusercontent.com/iost-official/go-iost/v2.0.0/config/docker/iserver.yml -o /data/iserver/iserver.yml
-curl https://raw.githubusercontent.com/iost-official/go-iost/v2.0.0/config/genesis.yml -o /data/iserver/genesis.yml
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/docker/iserver.yml -o /data/iserver/iserver.yml
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/genesis.yml -o /data/iserver/genesis.yml
 ```
 
 `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
 
-In order to access Everest v2.0.0 the testnet, the genesis
+*If you have already run previous version of iServer, make sure the old data has been purged:*
+
+```
+rm -rf /data/iserver/storage
+```
+
+In order to access Everest v2.1.0 the testnet, the genesis
 file `/data/iserver/genesis.yml` should be modified as below:
 
 ```
@@ -104,13 +110,13 @@ Among the settings, the network IDs of seed nodes can be replaced, which is show
 Run the command to start a local node:
 
 ```
-docker run -d iostio/iost-node:2.0.0
+docker run -d iostio/iost-node:2.1.0
 ```
 
 You must want to mount the data volume and publish the ports like this:
 
 ```
-docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.0.0
+docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 ```
 
 Or using docker-compose:
@@ -122,7 +128,7 @@ version: "2"
 
 services:
   iserver:
-    image: iostio/iost-node:2.0.0
+    image: iostio/iost-node:2.1.0
     restart: always
     ports:
       - "30000-30003:30000-30003"
