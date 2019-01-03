@@ -53,21 +53,21 @@ x为通胀系数，n为增发次数，214.2亿为一年通胀后Token总量。
 
 ### Gas奖励
     
-普通节点通过质押Token可以获得Gas，1Token = 100000Gas/Day，质押的Token被锁定不能交易。
+普通节点通过质押Token可以获得Gas，1Token = 10万Gas/Day，质押的Token被锁定不能交易。
 
 规则：
 
-- 质押1个IOST，立刻获得100000GAS，每天产生100000GAS
-- 生产过程平滑，Gas生产速度为 100000Gas/Token/Day
-- 每个用户GAS的上限是总质押Token数的3倍，即2天充能完毕
-- Gas被使用后，不足质押Token的3倍时，根据Gas生产速度，继续增加Gas
+- 质押1个IOST，立刻获得10万GAS，每天产生10万GAS
+- 生产过程平滑，Gas生产速度为 10万Gas/Token/Day
+- 每个用户GAS的上限是总质押Token数的30万倍，即2天充能完毕
+- Gas被使用后，不足质押Token的30万倍时，根据Gas生产速度，继续产生Gas。
 - 随时可以发起IOST赎回，申请赎回的Token不再产生GAS，赎回需要等待72小时
 - 如果IOST被赎回，奖励Gas上限相应降低，超出上限的Gas被销毁。质押全部赎回时，Gas清零
 
 ### Gas使用
 
 - 交易执行需要消耗Gas
-- 交易消耗的Gas数量 =  命令的CGas（Command Gas）消耗 * 命令次数 * Gas rate
+- 交易消耗的Gas数量 = 命令的CGas（Command Gas）消耗 * 命令次数 * Gas rate
 - Gas不能交易
 
 ### Gas收集
