@@ -38,7 +38,9 @@
       "5-lucky-bet/Lucky-Bet-Js"
     ],
     "Reference": [
-      "6-reference/API"
+      "6-reference/API",
+      "6-reference/SystemContract",
+      "6-reference/EconContract"
     ],
     "IOST.js": [
       "7-iost-js/IOST-class",

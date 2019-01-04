@@ -117,6 +117,14 @@
         "title": "API",
         "sidebar_label": "API"
       },
+      "6-reference/EconContract": {
+        "title": "Econ Contract",
+        "sidebar_label": "Econ Contract"
+      },
+      "6-reference/SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
       "7-iost-js/Blockchain-class": {
         "title": "Blockchain",
         "sidebar_label": "Blockchain"
