@@ -1,5 +1,5 @@
 ---
-id: System Contract
+id: SystemContract
 title: System Contract
 sidebar_label: System Contract
 ---
@@ -68,3 +68,45 @@ sidebar_label: System Contract
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 账户名 | string |
+
+#### VoteFor
+代别人投票，投票质押的 IOST 会从代理者账户扣除。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 代理者账户名| string |
+| 投票者账户名| string |
+| 竞选者账户名 | string |
+| 投票数量 | string |
+
+#### Vote
+投票。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 投票者账户名| string |
+| 竞选者账户名 | string |
+| 投票数量 | string |
+
+#### Unvote
+取消投票。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 投票者账户名| string |
+| 竞选者账户名 | string |
+| 投票数量 | string |
+
+#### VoterWithdraw
+投票者领取分红奖励。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 投票者账户名| string |
+
+#### CandidateWithdraw
+竞选者领取分红奖励。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 竞选者账户名| string |
