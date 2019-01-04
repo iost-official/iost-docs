@@ -11,7 +11,7 @@ It's worth noting that, contracts are not directly put on chain when uploaded to
 ## Launch Docker Mirror
 
 ```bash
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
+docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.0.0
 ```
 
 With this command, we map the docker's 30002 port to the machine's 30002 port, allowing RPC requests to be sent directly to the docker. It is subsequently packed by our blockchain program and put on chain.
@@ -39,10 +39,6 @@ In this mirror, all IOSTs are put into an initial account, with 21,000,000,000 I
 // Example
 ./iwallet -s localhost:30002 --account admin  account --create lispczz3 --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 ```
-
-## Putting a Contract on the Local Chain
-
-Please refer to *Deployment and invocation*.
 
 ## Check If Contract Is On Chain
 

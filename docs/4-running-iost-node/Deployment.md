@@ -4,89 +4,35 @@ title: Deployment
 sidebar_label: Deployment
 ---
 
-## Get repo
+We are using Docker to deploy an IOST node.
 
-Run the command to get the repository:
+However, you can also choose to run native binaries. Check [this](Environment-Configuration.md).
 
-```
-git clone https://github.com/iost-official/go-iost.git && cd go-iost
-```
+## Prerequisites
 
-## Build
+- [Docker CE 18.06 or newer](https://docs.docker.com/install/) (older versions are not tested)
+- (Optional) [Docker Compose](https://docs.docker.com/compose/install/)
 
-Run the command to compile and generate file in the `target` directory:
+## Config genesis & [iServer](./iServer.md)
 
-```
-git checkout v2.0.0
-make vmlib
-make build
-```
-
-## Run
-
-Run the command to start a local node. Check iServer config here: [iServer](iServer).
-
-```
-./target/iserver -f config/iserver.yml
-```
-
-## Docker
-
-### Run
-
-Run the command to start a local node using docker:
-
-```
-docker run -d iostio/iost-node:2.0.0
-```
-
-### Mount volume
-
-Using `-v` flag to mount a volume:
+First get the configuration templates:
 
 ```
 mkdir -p /data/iserver
-cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
-docker run -d -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/docker/iserver.yml -o /data/iserver/iserver.yml
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/genesis.yml -o /data/iserver/genesis.yml
 ```
 
-### Bind port
+`/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
 
-Using `-p` flag to map the ports:
-
-```
-docker run -d -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
-```
-
-### Using docker-compose
-
-It's recommended to deploy using docker-compose:
+*If you have already run previous version of iServer, make sure the old data has been purged:*
 
 ```
-# docker-compose.yml
-
-version: "2.2"
-
-services:
-  iserver:
-    image: iostio/iost-node:2.0.0
-    restart: always
-    ports:
-      - "30000:30000"
-      - "30001:30001"
-      - "30002:30002"
-      - "30003:30003"
-    volumes:
-      - /data/iserver:/var/lib/iserver
+rm -rf /data/iserver/storage
 ```
 
-To start the node: `docker-compose up -d`
-
-## Access the Testnet
-
-### Update config
-
-Change genesis settings as below:
+In order to access Everest v2.1.0 the testnet, the genesis
+file `/data/iserver/genesis.yml` should be modified as below:
 
 ```
 creategenesis: true
@@ -139,7 +85,7 @@ foundationinfo:
 initialtimestamp: "2006-01-02T15:04:05Z"
 ```
 
-Change section `p2p.seednodes` in `iserver.yml` as below:
+Besides, section `p2p.seednodes` in `/data/iserver/iserver.yml` must also be changed:
 
 ```
 ...
@@ -152,18 +98,55 @@ p2p:
 ...
 ```
 
-Among the settings, the network IDs of seed nodes can be replaced,
-as shown below:
+Among the settings, the network IDs of seed nodes can be replaced, which is shown as below:
 
 | Name   | Region | Network ID                                                                              |
 | ------ | ------ | --------------------------------------------------------------------------------------- |
 | node-7 | London | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | Paris  | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
 
-### Run iServer
+## Starting the node
 
-Connect to Testnet by runing iServer with updated config:
+Run the command to start a local node:
 
 ```
-./target/iserver -f config/iserver.yml
+docker run -d iostio/iost-node:2.1.0
 ```
+
+You must want to mount the data volume and publish the ports like this:
+
+```
+docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
+```
+
+Or using docker-compose:
+
+```
+# docker-compose.yml
+
+version: "2"
+
+services:
+  iserver:
+    image: iostio/iost-node:2.1.0
+    restart: always
+    ports:
+      - "30000-30003:30000-30003"
+    volumes:
+      - /data/iserver:/var/lib/iserver
+```
+
+To start the node: `docker-compose up -d`
+
+To start, stop, restart or remove: `docker-compose (start|stop|restart|down)`
+
+## Checking the node
+
+The log file is located at `/data/iserver/logs/iost.log`.
+An increasing value of `confirmed` means it is syncing the block data.
+
+You may also check the state of the node using `iwallet`:
+`docker-compose exec iserver ./iwallet state`
+
+Use `-s` together with seednode's IP to get latest blockchain info:
+`docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state`

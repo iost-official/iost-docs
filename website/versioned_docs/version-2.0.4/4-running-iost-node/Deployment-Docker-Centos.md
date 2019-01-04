@@ -1,7 +1,8 @@
 ---
-id: Deployment-Docker-Centos
+id: version-2.0.4-Deployment-Docker-Centos
 title: Deployment Docker Centos
 sidebar_label: Deployment Docker Centos
+original_id: Deployment-Docker-Centos
 ---
 
 ## Install Centos 7 
