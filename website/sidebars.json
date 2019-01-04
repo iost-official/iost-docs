@@ -6,6 +6,7 @@
     ],
     "Introduction of IOST blockchain": [
       "2-intro-of-iost/Account",
+      "2-intro-of-iost/Vote",
       "2-intro-of-iost/Economic-model",
       "2-intro-of-iost/Smart-contract",
       "2-intro-of-iost/VM",
@@ -28,6 +29,7 @@
       "4-running-iost-node/iServer",
       "4-running-iost-node/iWallet",
       "4-running-iost-node/Deployment",
+      "4-running-iost-node/Google-Compute-Platform",
       "4-running-iost-node/Metrics"
     ],
     "Example: Lucky Bet": [
@@ -36,7 +38,9 @@
       "5-lucky-bet/Lucky-Bet-Js"
     ],
     "Reference": [
-      "6-reference/API"
+      "6-reference/API",
+      "6-reference/SystemContract",
+      "6-reference/EconContract"
     ],
     "IOST.js": [
       "7-iost-js/IOST-class",

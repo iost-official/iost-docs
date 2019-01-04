@@ -564,7 +564,7 @@ pledged\_info   |repeated PledgeInfo    |The information on deposit made by othe
 
 Key                 |Type       |Description 
 ----                    |--         |--
-pledger         |string     |the account making the deposit
+pledger         |string     |the account receiving the deposit
 amount          |double |the amount of the deposit
 
 ### RAMInfo
@@ -572,6 +572,8 @@ amount          |double |the amount of the deposit
 Key                 |Type       |Description 
 ----                    |--         |--
 available           |int64      |RAM bytes available for use
+used           |int64      |RAM bytes used
+total           |int64      |RAM bytes total
 
 ### Permission
 

@@ -37,6 +37,10 @@
         "title": "VM",
         "sidebar_label": "VM"
       },
+      "2-intro-of-iost/Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
       "3-smart-contract/Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
@@ -81,6 +85,10 @@
         "title": "Faucet - how to get IOST token",
         "sidebar_label": "Faucet - how to get IOST token"
       },
+      "4-running-iost-node/Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
       "4-running-iost-node/iServer": {
         "title": "iServer",
         "sidebar_label": "iServer"
@@ -108,6 +116,14 @@
       "6-reference/API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "6-reference/EconContract": {
+        "title": "Econ Contract",
+        "sidebar_label": "Econ Contract"
+      },
+      "6-reference/SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
       },
       "7-iost-js/Blockchain-class": {
         "title": "Blockchain",
@@ -311,6 +327,102 @@
       "version-2.0.1-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
+      },
+      "version-2.0.2-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-2.0.2-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.0.2-Blockchain-class": {
+        "title": "Blockchain",
+        "sidebar_label": "Blockchain"
+      },
+      "version-2.0.2-IOST-class": {
+        "title": "IOST",
+        "sidebar_label": "IOST"
+      },
+      "version-2.0.2-KeyPair-class": {
+        "title": "KeyPair",
+        "sidebar_label": "KeyPair"
+      },
+      "version-2.0.2-Transaction-class": {
+        "title": "Transaction",
+        "sidebar_label": "Transaction"
+      },
+      "version-2.0.3-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-2.0.3-Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
+      "version-2.0.3-Contract-Testing": {
+        "title": "Testing",
+        "sidebar_label": "Testing"
+      },
+      "version-2.0.3-Deployment-and-invocation": {
+        "title": "Deployment and invocation",
+        "sidebar_label": "Deployment and invocation"
+      },
+      "version-2.0.3-Environment-setup": {
+        "title": "Environment setup",
+        "sidebar_label": "Environment setup"
+      },
+      "version-2.0.3-Deployment-Docker-Centos": {
+        "title": "Deployment Docker Centos",
+        "sidebar_label": "Deployment Docker Centos"
+      },
+      "version-2.0.3-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
+      },
+      "version-2.0.3-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.0.4-Deployment-Docker-Centos": {
+        "title": "Deployment Docker Centos",
+        "sidebar_label": "Deployment Docker Centos"
+      },
+      "version-2.0.4-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
+      },
+      "version-2.0.4-Environment-Configuration": {
+        "title": "Environment & Configuration",
+        "sidebar_label": "Environment & Configuration"
+      },
+      "version-2.0.4-Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
+      "version-2.0.4-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.0.5-Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
+      "version-2.1.0-Contract-Testing": {
+        "title": "Testing",
+        "sidebar_label": "Testing"
+      },
+      "version-2.1.0-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
+      },
+      "version-2.1.0-Environment-Configuration": {
+        "title": "Environment & Configuration",
+        "sidebar_label": "Environment & Configuration"
+      },
+      "version-2.1.0-Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
       }
     },
     "links": {

@@ -11,7 +11,7 @@ It's worth noting that, contracts are not directly put on chain when uploaded to
 ## Launch Docker Mirror
 
 ```bash
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:1.0.0
+docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.0.0
 ```
 
 With this command, we map the docker's 30002 port to the machine's 30002 port, allowing RPC requests to be sent directly to the docker. It is subsequently packed by our blockchain program and put on chain.
@@ -20,9 +20,6 @@ With this command, we map the docker's 30002 port to the machine's 30002 port, a
 
 In this mirror, all IOSTs are put into an initial account, with 21,000,000,000 IOST. When we need to initiate a transaction or publish a contract, you need to transfer money from that account. Since any IOST transaction costs gas, and all tokens are stored in the initial account, only that account can afford a transaction.
 
-- Initial Account: `IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C`
-- Initial Secret: `1rANSfcRzr4HkhbUFZ7L1Zp69JZZHiDDq5v7dNSbbEqeU4jxy3fszV4HGiaLQEyqVpS1dKT9g7zCVRxBVzuiUzB`
-
 ## How to Transfer IOST to Another Account
 
 ### Generate an account
@@ -30,22 +27,18 @@ In this mirror, all IOSTs are put into an initial account, with 21,000,000,000 I
 ```bash
 // This will generate a private/public key pair under ~/.iwallet/ folder
 ./iwallet account
+// Import Admin 
+./iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 
 ### Initiate a transaction
 
 ```bash
 // Normally we ask the fromID to sign the transaction
-./iwallet call "iost.system" "Transfer" '["fromID", "toID", 100]' --signer "ID0, ID1"
+./iwallet -s localhost:30002 --account admin  account --create yourAccountName --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 // Example
-./iwallet call iost.system Transfer '["IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C", "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C", 100]' --signers "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+./iwallet -s localhost:30002 --account admin  account --create lispczz3 --initial_balance 1000 --initial_gas_pledge 10 --initial_ram 0
 ```
-
-This will generate an `iost.sc` transaction file. We should follow the publishing workflow to put this contract on chain, as mentioned in *Deployment and invocation*.
-
-## Putting a Contract on the Local Chain
-
-Please refer to *Deployment and invocation*.
 
 ## Check If Contract Is On Chain
 
