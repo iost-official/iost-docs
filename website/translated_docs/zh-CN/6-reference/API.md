@@ -165,7 +165,7 @@ curl http://127.0.0.1:30001/getRAMInfo
 | available_ram | int64  | 可用 RAM 数量，以 byte 为单位|
 | used_ram | int64  | 已经出售的 RAM 数量，以 byte 为单位|
 | total_ram | int64 | 系统总计 RAM 数量，以 byte 为单位|
-| buy_price | double | 此刻购买 RAM 的价格，以 IOST/byte 为单位|
+| buy_price | double | 此刻购买 RAM 的价格，以 IOST/byte 为单位，已经包含手续费 |
 | sell_price | double | 此刻购买 RAM 的价格，以 IOST/byte 为单位| 
 
 ## /getTxByHash/{hash}
