@@ -29,7 +29,7 @@ npm install
 ## 安装 `Dynamic Lib` 依赖
 
 ```git
-cd go-iost/vm/v8vm/v8
-make deploy
+cd go-iost
+make vmlib
 ```
 
