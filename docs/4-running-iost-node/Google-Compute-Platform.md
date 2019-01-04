@@ -76,7 +76,6 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.s
 curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod 755 /usr/local/bin/docker-compose
 git clone https://github.com/iost-official/go-iost && cd go-iost
-git checkout v2.1.0
 systemctl enable docker
 systemctl start docker
 mkfs.xfs /dev/sdb
@@ -261,14 +260,15 @@ You may also need to change your account number in /data/iserver/iserver.yml if 
 
 
 To check your node is syncing run the following command look for the *headBlock* being increased
-``
+
+```
 docker exec -ti 1234abcd bash
 ./iwallet state
 ```
 
 To check your node is up query a seednode and look for your public ip
 ```
-docker exec -ti 1234abcd bash
+docker-compose exec iserver bash
 ./iwallet state -s 35.176.127.71:30002 | grep 35.246.82.51
 ``
 

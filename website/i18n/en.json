@@ -73,7 +73,7 @@
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "4-running-iost-node/version-2.0.3-Deployment-Docker-Centos": {
+      "4-running-iost-node/Deployment-Docker-Centos": {
         "title": "Deployment Docker Centos",
         "sidebar_label": "Deployment Docker Centos"
       },
@@ -439,6 +439,14 @@
       "version-2.1.2-SystemContract": {
         "title": "System Contract",
         "sidebar_label": "System Contract"
+      },
+      "version-2.1.3-SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "version-2.1.4-Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
       }
     },
     "links": {
