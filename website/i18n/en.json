@@ -37,6 +37,10 @@
         "title": "VM",
         "sidebar_label": "VM"
       },
+      "2-intro-of-iost/Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
       "3-smart-contract/Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
