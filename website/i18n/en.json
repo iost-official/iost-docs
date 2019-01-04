@@ -73,6 +73,10 @@
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
+      "4-running-iost-node/version-2.0.3-Deployment-Docker-Centos": {
+        "title": "Deployment Docker Centos",
+        "sidebar_label": "Deployment Docker Centos"
+      },
       "4-running-iost-node/Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
@@ -423,6 +427,18 @@
       "version-2.1.0-Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
+      },
+      "version-2.1.2-Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
+      "version-2.1.2-EconContract": {
+        "title": "Econ Contract",
+        "sidebar_label": "Econ Contract"
+      },
+      "version-2.1.2-SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
       }
     },
     "links": {
