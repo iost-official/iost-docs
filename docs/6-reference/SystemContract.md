@@ -112,7 +112,6 @@ sidebar_label: System Contract
 | 竞选者账户名| string |
 
 ## vote.iost
----
 
 ### 简介
 通用投票合约，用于创建投票、收集投票、统计投票。可以基于本合约实现你自己想要的投票功能。
@@ -237,3 +236,148 @@ sidebar_label: System Contract
 | 参数列表 | 参数类型 | 备注 |
 | :----: | :------ | :------ |
 | 投票 ID| string | NewVote 接口返回的 ID|
+
+## auth.iost
+
+### 简介
+账号系统和权限管理
+
+### 基础信息
+| contract_id | vote.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+#### SignUp
+创建账号
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| ownerKey | string |
+| activeKey | string |
+
+#### AddPermission
+向账号添加权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string | 
+| 权限名 | string |
+| 权限阈值 | number |
+
+#### DropPermission
+删除权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+
+#### AssignPermission
+指定权限给item
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限 | string |
+| item | string |
+| 权重 | number |
+
+
+#### RevokePermission
+撤销权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限 | string |
+| item | string |
+
+#### AddGroup
+添加权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+
+#### DropPermission
+删除权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+
+#### AssignGroup
+指定item给权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+| item | string |
+| 权重 | number |
+
+#### RevokeGroup
+撤销权限组的item
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+| item | string |
+
+
+#### AssignPermissionToGroup
+添加权限到组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+| 组名 | string |
+
+
+#### RevokePermissionInGroup
+删除组中的权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+| 组名 | string |
+
+
+## bonus.iost
+
+### 简介
+
+正式节点造块奖励管理
+
+### 基础信息
+
+| contract_id | bonus.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+### 接口描述
+
+#### IssueContribute
+
+发放贡献值，系统自动调用
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| data | json |
+
+#### ExchangeIOST
+
+使用贡献值兑换IOST
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 账户名 | string |
+| 数量 | string |

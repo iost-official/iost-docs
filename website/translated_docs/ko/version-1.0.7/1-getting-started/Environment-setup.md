@@ -30,6 +30,6 @@ npm install
 ## ```Dynamic Library``` 설치하기
 
 ```git
-cd go-iost/vm/v8vm/v8
-make deploy
+cd go-iost
+make vmlib
 ```

@@ -17,6 +17,8 @@ An IOST account is created with ID and permissions. An account may have multiple
 
 Public key is a string of `IOST` prefix + Base58-encoded public key + crc32 validation digit. 
 
+Permission pair can be a string of account_name@permission_name
+
 Each item has a certain weight; correspondingly, each permission has a threshold. When a transaction item has a weight larger than the threshold, the transaction assumes that permission.
 
 The method of checking item ownership is by checking whether the transaction signatures contain the signature for that certain item's public key (when the item is a public key), or recursively check if the transaction contains the item's account-permission pair (when the item is an account-permission pair).
