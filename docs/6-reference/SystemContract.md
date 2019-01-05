@@ -239,6 +239,7 @@ sidebar_label: System Contract
 | 投票 ID| string | NewVote 接口返回的 ID|
 
 ## auth.iost
+---
 
 ### 简介
 账号系统和权限管理
@@ -354,6 +355,7 @@ sidebar_label: System Contract
 
 
 ## bonus.iost
+---
 
 ### 简介
 
