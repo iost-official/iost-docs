@@ -244,7 +244,7 @@ sidebar_label: System Contract
 账号系统和权限管理
 
 ### 基础信息
-| contract_id | vote.iost |
+| contract_id | auth.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
