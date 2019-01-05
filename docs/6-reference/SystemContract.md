@@ -112,6 +112,7 @@ sidebar_label: System Contract
 | 竞选者账户名| string |
 
 ## vote.iost
+---
 
 ### 简介
 通用投票合约，用于创建投票、收集投票、统计投票。可以基于本合约实现你自己想要的投票功能。
@@ -247,6 +248,8 @@ sidebar_label: System Contract
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
+
+### 接口描述
 
 #### SignUp
 创建账号
