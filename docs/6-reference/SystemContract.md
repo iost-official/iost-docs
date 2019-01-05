@@ -227,3 +227,37 @@ sidebar_label: System Contract
 | 权限名 | string |
 | 组名 | string |
 
+
+## bonus.iost
+
+---
+
+### 简介
+
+正式节点造块奖励管理
+
+### 基础信息
+
+| contract_id | bonus.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+### 接口描述
+
+#### IssueContribute
+
+发放贡献值，系统自动调用
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| data | json |
+
+#### ExchangeIOST
+
+使用贡献值兑换IOST
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 账户名 | string |
+| 数量 | string |
