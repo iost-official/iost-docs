@@ -110,3 +110,120 @@ sidebar_label: System Contract
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 竞选者账户名| string |
+
+
+## auth.iost
+---
+
+### 简介
+账号系统和权限管理
+
+### 基础信息
+| contract_id | auth.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+### 接口描述
+
+#### SignUp
+创建账号
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| ownerKey | string |
+| activeKey | string |
+
+#### AddPermission
+向账号添加权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string | 
+| 权限名 | string |
+| 权限阈值 | number |
+
+#### DropPermission
+删除权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+
+#### AssignPermission
+指定权限给item
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限 | string |
+| item | string |
+| 权重 | number |
+
+
+#### RevokePermission
+撤销权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限 | string |
+| item | string |
+
+#### AddGroup
+添加权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+
+#### DropPermission
+删除权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+
+#### AssignGroup
+指定item给权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+| item | string |
+| 权重 | number |
+
+#### RevokeGroup
+撤销权限组的item
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+| item | string |
+
+
+#### AssignPermissionToGroup
+添加权限到组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+| 组名 | string |
+
+
+#### RevokePermissionInGroup
+删除组中的权限
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+| 组名 | string |
+
