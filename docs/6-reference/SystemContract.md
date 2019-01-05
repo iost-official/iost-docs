@@ -163,7 +163,7 @@ sidebar_label: System Contract
 | 权重 | number |
 
 
-#### DropPermission
+#### RevokePermission
 撤销权限
 
 | 参数列表 | 参数类型 |
@@ -180,38 +180,50 @@ sidebar_label: System Contract
 | 用户名 | string |
 | 组名 | string |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### name
-comments
+#### DropPermission
+删除权限组
 
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 用户名 | string |
-| abcde | string |
-| abcde | string |
-| abcde | number |
+| 组名 | string |
+
+#### AssignGroup
+指定item给权限组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+| item | string |
+| 权重 | number |
+
+#### RevokeGroup
+撤销权限组的item
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 组名 | string |
+| item | string |
 
 
+#### AssignPermissionToGroup
+添加权限到组
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+| 组名 | string |
 
 
+#### RevokePermissionInGroup
+删除组中的权限
 
-
-
-
-
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 用户名 | string |
+| 权限名 | string |
+| 组名 | string |
 
