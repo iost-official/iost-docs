@@ -6,14 +6,16 @@ sidebar_label: Deployment
 
 We are using Docker to deploy an IOST node.
 
-However, you can also choose to run native binaries. Check [this](Environment-Configuration.md).
+However, you can also choose to run native binaries. Check [this](/4-running-iost-node/Environment-Configuration/).
 
 ## Prerequisites
 
 - [Docker CE 18.06 or newer](https://docs.docker.com/install/) (older versions are not tested)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Config genesis & [iServer](./iServer.md)
+## Config genesis & iServer
+
+For more details of iServer, see [here](/4-running-iost-node/iServer/).
 
 First get the configuration templates:
 

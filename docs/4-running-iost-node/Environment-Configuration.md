@@ -13,8 +13,8 @@ sidebar_label: Environment & Configuration
 Currently, below environments are tested:
 
 * [Mac OS X](#mac-os-x)
-* [Ubuntu/Linux](#ubuntu-linux)
-* [Docker](#docker)
+* [Ubuntu](#ubuntu-linux)
+* [CentOS](#docker)
 
 ## Building and unit tests
 
@@ -58,5 +58,5 @@ make
 ```
 target/iserver -f config/iserver.yml
 
-target/iwallet state
+target/iwallet -h
 ```
