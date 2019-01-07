@@ -41,7 +41,6 @@
       "6-reference/API",
       "6-reference/SystemContract",
       "6-reference/EconContract",
-      "6-reference/GroundContract",
       "6-reference/TokenContract"
     ],
     "IOST.js": [
