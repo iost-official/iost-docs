@@ -93,7 +93,7 @@ amount	 	|String	| 送信量
 memo	 	|Number	| メモ
 
 ### 戻り値
-Transaction オブジェクト
+Transactionオブジェクト
 
 ### 例
 ```javascript

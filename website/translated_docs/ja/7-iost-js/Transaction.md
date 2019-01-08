@@ -24,7 +24,7 @@ hash 		|String          | Base58エンコードしたトランザクションハ
 名前             |型       |説明 
 ----                |--         |--
 status 		|String          | トランザクションステータス
-transaction |Object 		 | [Transaction オブジェクト](Blockchain-class#transaction-object)
+transaction |Object 		 | [Transactionオブジェクト](Blockchain-class#transaction-object)
 
 #### Transactionオブジェクト
 名前             |型       |説明
@@ -32,27 +32,27 @@ transaction |Object 		 | [Transaction オブジェクト](Blockchain-class#trans
 hash 			|String          | トランザクションハッシュ
 time 			|Number 		 | トランザクションのタイムスタンプ
 expiration 		|Number          | 有効期限gas_ratio 		|Number          | GAS比率gas_limit  		|Number          | GAS上限delay 			|Number          | 遅延時間(ナノ秒)
-actions 		|Array           | [Action オブジェクト](#action-object)配列
+actions 		|Array           | [Actionオブジェクト](#action-object)配列
 signers 		|Array           | 署名者の配列
 publisher 		|String          | トランザクションパブリッシャー
 referred_tx 	|String          | 参照トランザクションハッシュ
-amount_limit	|Array			 | [AmountLimit オブジェクト](#amountlimit-object)配列
-tx_receipt 		|Object          | [TxReceipt オブジェクト](#txreceipt-object)
+amount_limit	|Array			 | [AmountLimitオブジェクト](#amountlimit-object)配列
+tx_receipt 		|Object          | [TxReceiptオブジェクト](#txreceipt-object)
 
-#### Action オブジェクト
+#### Actionオブジェクト
 名前             |型       |説明 
 ----                |--         |--
 contract 			|String          | コントラクト名
 action_name 			|String 		 | アクション名
 data 		|String          | データ
 
-#### AmountLimit オブジェクト
+#### AmountLimitオブジェクト
 名前             |型       |説明 
 ----                |--         |--
 token 			|String          | トークン名
 value 			|Number 		 | 上限値
 
-#### TxReceipt オブジェクト
+#### TxReceiptオブジェクト
 名前             |型       |説明 
 ----                |--         |--
 tx_hash 			|String          | トランザクションハッシュ
@@ -60,9 +60,9 @@ gas_usage 			|Number 		 | GAS使用量
 ram_usage 		|Map          | RAM使用量status_code 		|String          | ステータスコード
 message  		|String          | メッセージ
 returns 			|Array          | トランザクションの戻り値配列
-receipts 		|Array           | [Receipt オブジェクト](#receipt-object)配列
+receipts 		|Array           | [Receiptオブジェクト](#receipt-object)配列
 
-#### Receipt オブジェクト
+#### Receiptオブジェクト
 名前             |型       |説明 
 ----                |--         |--
 func_name 			|String          | 関数名
@@ -107,7 +107,7 @@ rpc.transaction.getTxByHash("5YdA8qPq5N6W47rZV4u31FdbQzeMt2QX9KGj4uPyERZa").then
 hash 		|String          | Base58エンコードしたトランザクションハッシュ
 
 ### 戻り値
-[TxReceipt オブジェクト](#txreceipt-object)を返すPromise。
+[TxReceiptオブジェクト](#txreceipt-object)を返すPromise。
 
 ### 例
 ```javascript
