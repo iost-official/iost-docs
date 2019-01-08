@@ -65,6 +65,10 @@
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
+      "4-running-iost-node/Deployment-Docker-Centos": {
+        "title": "Deployment Docker Centos",
+        "sidebar_label": "Deployment Docker Centos"
+      },
       "4-running-iost-node/Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
