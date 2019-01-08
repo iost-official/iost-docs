@@ -41,13 +41,13 @@
         "title": "Vote",
         "sidebar_label": "Vote"
       },
-      "3-smart-contract/Contract-Testing": {
-        "title": "Testing",
-        "sidebar_label": "Testing"
-      },
       "3-smart-contract/Generate-Receipt": {
         "title": "Generate Receipt in Smart Contract",
         "sidebar_label": "Generate Receipt in Smart Contract"
+      },
+      "3-smart-contract/ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
       },
       "3-smart-contract/How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
@@ -440,13 +440,15 @@
     },
     "categories": {
       "Getting started": "Getting started",
-      "Introduction of IOST blockchain": "Introduction of IOST blockchain",
+      "IOST Design and Concepts": "IOST Design and Concepts",
       "Smart Contract": "Smart Contract",
       "Running IOST node": "Running IOST node",
       "Examples": "Examples",
       "Reference": "Reference",
       "IOST Javascript SDK": "IOST Javascript SDK",
+      "IOST Tech Internals": "IOST Tech Internals",
       "First Category": "First Category",
+      "Introduction of IOST blockchain": "Introduction of IOST blockchain",
       "Example: Lucky Bet": "Example: Lucky Bet",
       "IOST.js": "IOST.js",
       "Lucky Bet": "Lucky Bet"

@@ -4,22 +4,19 @@
       "1-getting-started/doc1",
       "1-getting-started/Quickstart"
     ],
-    "Introduction of IOST blockchain": [
+    "IOST Design and Concepts": [
       "2-intro-of-iost/Account",
       "2-intro-of-iost/Vote",
       "2-intro-of-iost/Economic-model",
-      "2-intro-of-iost/Smart-contract",
-      "2-intro-of-iost/VM",
-      "2-intro-of-iost/Database",
-      "2-intro-of-iost/Network-layer"
+      "2-intro-of-iost/Smart-contract"
     ],
     "Smart Contract": [
+      "3-smart-contract/ContractStart",
       "3-smart-contract/How-to-write-a-smart-contract",
-      "3-smart-contract/Smart-Contract-Development-Toolkit",
-      "3-smart-contract/Contract-Testing",
       "3-smart-contract/Update-Contract",
       "3-smart-contract/Generate-Receipt",
-      "3-smart-contract/Token"
+      "3-smart-contract/Token",
+      "3-smart-contract/Smart-Contract-Development-Toolkit"
     ],
     "Running IOST node": [
       "4-running-iost-node/LocalServer",
@@ -44,6 +41,11 @@
       "7-iost-js/Blockchain-class",
       "7-iost-js/KeyPair-class",
       "7-iost-js/Transaction-class"
+    ],
+    "IOST Tech Internals": [
+      "2-intro-of-iost/VM",
+      "2-intro-of-iost/Database",
+      "2-intro-of-iost/Network-layer"
     ]
   },
   "docs-other": {

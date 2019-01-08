@@ -1,3 +1,9 @@
+---
+id: ContractStart
+title: Smart Contract Quick Start
+sidebar_label: Smart Contract Quick Start
+---
+
 # 智能合约快速入门指南
 
 ## IOST DApp基础
@@ -20,7 +26,7 @@ IOST智能合约目前支持JavaScript（ES6）开发。
 
 ### 使用iwallet和测试节点
 
-智能合约的开发和部署需要iwallet，同时，启动一个测试节点可以方便debug。可以通过以下方法得到iwallet，启动测试节点：
+智能合约的开发和部署需要iwallet，同时，启动一个测试节点可以方便debug。可以通过以下两种方法中的任意一种完成。
 
 #### docker环境（推荐）
 
@@ -28,8 +34,8 @@ IOST智能合约目前支持JavaScript（ES6）开发。
 
 ```
 docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-docker ps
-docker exec -it <container_name> /bin/bash
+docker ps # 这条命令最后一列会输出目前已经启动的 docker container 名字，需要记下在下一条命令中用到
+docker exec -it <container_name> /bin/bash # 会进入docker
 ./iwallet -h
 ```
 
@@ -51,7 +57,7 @@ iwallet -h
 ```
 iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
-_在docker中，使用./iwallet_
+在docker中，你需要使用"./iwallet"而不是"iwallet"，因为目前 Docker 中没有全局安装 iwallet
 
 
 ## Hello world
@@ -193,7 +199,6 @@ abi略过
 curl -X POST \
   http://localhost:30001/getContractStorage \
   -H 'Content-Type: application/json' \
-  -H 'Postman-Token: 5c27c4c2-ca80-4854-bd1e-a2a2e2784274' \
   -H 'cache-control: no-cache' \
   -d '{
     "id": "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e",
@@ -223,7 +228,7 @@ iwallet \
 
 示例
 ```
-if (!BlockChain.requireAuth("someone", "active")) {
+if (!blockchain.requireAuth("someone", "active")) {
     throw "require auth error"  // 没有被catch的throw会抛出到虚拟机，导致失败
 }
 ```
