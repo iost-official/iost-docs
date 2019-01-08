@@ -1,62 +1,42 @@
 ---
-id: Environment-Configuration
-title: Environment & Configuration
-sidebar_label: Environment & Configuration
+id: Building-IOST
+title: Build IOST
+sidebar_label: Build IOST
 ---
-
-## Prerequisites
-
-* Go 1.9 or newer (Go 1.11 recommended)
-* Git LFS (v2.5.2 recommended)
-* [Docker CE 18.06 or newer](https://docs.docker.com/install/) (older versions are not tested)
-
-Currently, below environments are tested:
-
-* [Mac OS X](#mac-os-x)
-* [Ubuntu](#ubuntu-linux)
-* [CentOS](#docker)
-
-## Building and unit tests
-
-- Install all the prerequisites.
-   Please refer to its platform-specific installation doc.
-
-   To install Git LFS:
-
+### Install Golang
+Go 1.11 or newer is needed.
+After installing, running
 ```
-# mac-os-x
-brew install git-lfs
+go version
+```
+You will see outputs contains "go version go1.11".
 
-# ubuntu
+### Install Git LFS
+Git LFS (v2.5.2 or newer) is needed.
+
+Install on MacOS
+```
+brew install git-lfs && git lfs install
+```
+Install on Ubuntu
+```
 # see also: https://github.com/git-lfs/git-lfs/wiki/Installation
-sudo apt install -y git-lfs
-
-# centos
-yum --enablerepo=epel install -y git-lfs
+sudo apt install -y git-lfs && git lfs install
 ```
 
-- Install the Git command line extension. You only have to set up Git LFS once.
-
+Install on CentOS
 ```
-git lfs install
-```
-
-- Get repo.
-
-```
-git clone git@github.com:iost-official/go-iost.git && cd go-iost
+yum --enablerepo=epel install -y git-lfs && git lfs install
 ```
 
-- Build binaries
+### Clone Code
 
 ```
-make
+go get -d github.com/iost-official/go-iost
 ```
 
-- Run binaries.
-
+### Build IOST
 ```
-target/iserver -f config/iserver.yml
-
-target/iwallet -h
+cd $GOPATH/src/github.com/iost-official/go-iost
+make build install
 ```

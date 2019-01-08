@@ -4,46 +4,35 @@ title: 环境与设置
 sidebar_label: 环境与设置
 ---
 
-## 准备条件
+### 安装Golang
+至少需要安装 Go 1.11。   
+之后运行
+go version
+应该输出"go version go1.11".
+### 安装 Git LFS
+至少需要安装 Git LFS (v2.5.2)。
 
-* Go 1.9 及以上（推荐Go 1.11）
-* Git LFS（推荐2.5.2）
-* Docker CE 18.06 及以上（低版本未测试）
-
-## 运行环境
-
-目前支持如下环境进行开发与部署：
-
-* [Mac OS X](#mac-os-x)
-* [Ubuntu](#ubuntu-linux)
-* [CentOS](#docker)
-
-## 编译
-
-- 安装所有依赖。请参考对应的官方文档。
-
-- 安装 Git LFS 插件。只需要运行一次。
-
+MacOS安装
+brew install git-lfs && git lfs install
+Ubuntu安装
 ```
-git lfs install
+# see also: https://github.com/git-lfs/git-lfs/wiki/Installation
+sudo apt install -y git-lfs && git lfs install
 ```
 
-- 获取仓库。
-
+CentOS安装
 ```
-git clone https://github.com/iost-official/go-iost && cd go-iost
-```
-
-- 编译。
-
-```
-make
+yum --enablerepo=epel install -y git-lfs && git lfs install
 ```
 
-- 运行。
+### 获取代码
 
 ```
-target/iserver -f config/iserver.yml
+go get -d github.com/iost-official/go-iost
+```
 
-target/iwallet -h
+### 编译
+```
+cd $GOPATH/src/github.com/iost-official/go-iost
+make build install
 ```
