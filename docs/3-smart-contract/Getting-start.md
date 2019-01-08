@@ -169,22 +169,20 @@ The use of smart contract output (similar to the concept of utxo) is inconvenien
 The database is a pure K-V database, the key, value type is string. Each smart contract has a separate namespace.
 Smart contracts can read status data from other smart contracts, but can only write their own fields.
 
-###码
+### Coding
 ```
-// Storage.js
-Class Test {
-Init() {
-Storage.put("value1", "foobar")
+class Test {
+    init() {
+        storage.put("value1", "foobar")
+    }
+    read() {
+        console.log(storage.get("value1"))
+    }
+    change(someone) {
+        storage.put("value1", someone)
+    }
 }
-Read() {
-Console.log(storage.get("value1"))
-}
-    Change(someone) {
-        Storage.put("value1", someone)
-    }
-}
-
-Module.exports = Test;
+module.exports = Test;
 ```
 Abi skip
 
