@@ -1,3 +1,10 @@
+---
+id: ContractStart
+title: Smart Contract Quick Start
+sidebar_label: Smart Contract Quick Start
+---
+
+
 # Getting start of DApp development
 
 ## IOST DApp Basics
@@ -20,7 +27,7 @@ Tx | transaction, the state on the blockchain must be modified by submitting tx,
 
 ### Using iwallet and test nodes
 
-The development and deployment of smart contracts requires iwallet. At the same time, starting a test node can facilitate debugging. You can get iwallet by starting the test node by:
+The development and deployment of smart contracts requires iwallet. At the same time, starting a test node can facilitate debugging. You can do this by choose any between the two methods below.
 
 #### docker environment (recommended)
 
@@ -28,8 +35,8 @@ Start docker and enter the docker environment. There will also be a local test n
 
 ```
 Docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-Docker ps
-Docker exec -it <container_name> /bin/bash
+Docker ps # the last column of the output is the docker container name, which will be used in next command
+Docker exec -it <container_name> /bin/bash # you will enter docker
 ./iwallet -h
 ```
 
@@ -51,7 +58,7 @@ In order to complete the test, you need to import the secret key for iwallet. Th
 ```
 Iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
-_ In docker, use ./iwallet_
+In docker, You shoudl use "./iwallet" instead of "iwallet", which is not installed inside docker image.
 
 
 ## Hello world
@@ -192,7 +199,6 @@ After deploying the code, you can get the storage by the following method
 Curl -X POST \
   Http://localhost:30001/getContractStorage \
   -H 'Content-Type: application/json' \
-  -H 'Postman-Token: 5c27c4c2-ca80-4854-bd1e-a2a2e2784274'
   -H 'cache-control: no-cache' \
   -d '{
     "id": "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e",
@@ -222,7 +228,7 @@ The basis of permission control can be found at:
 
 Example
 ```
-If (!BlockChain.requireAuth("someone", "active")) {
+If (!blockchain.requireAuth("someone", "active")) {
     Throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
 }
 ```
