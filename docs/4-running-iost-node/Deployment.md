@@ -15,6 +15,8 @@ We are using Docker to deploy an IOST node.
 
 ## Prepare Config File
 
+For more details of iServer, see [here](/4-running-iost-node/iServer/).
+
 First get the configuration templates:
 
 ```

@@ -1,8 +1,7 @@
 ---
-id: version-2.0.3-Environment-setup
+id: Environment-setup
 title: Environment setup
 sidebar_label: Environment setup
-original_id: Environment-setup
 ---
 
 Currently, IOST smart contracts programming depends on [go-iost](https://github.com/iost-official/go-iost).
