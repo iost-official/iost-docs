@@ -1,19 +1,19 @@
 ---
 id: Deployment
-title: Deployment
-sidebar_label: Deployment
+title: Join IOST Testnet
+sidebar_label: Join IOST Testnet
 ---
 
-We are using Docker to deploy an IOST node.
+The documentation introduces how to setup a running server connecting to IOST testnet, if you just want to setup a local single-server blockchain net for debugging/testing, you may better refer to [Launch Local Server](LocalServer)   
 
-However, you can also choose to run native binaries. Check [this](Environment-Configuration.md).
+We are using Docker to deploy an IOST node.
 
 ## Prerequisites
 
 - [Docker CE 18.06 or newer](https://docs.docker.com/install/) (older versions are not tested)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Config genesis & [iServer](./iServer.md)
+## Prepare Config File
 
 First get the configuration templates:
 
@@ -107,14 +107,7 @@ Among the settings, the network IDs of seed nodes can be replaced, which is show
 
 ## Starting the node
 
-Run the command to start a local node:
-
-```
-docker run -d iostio/iost-node:2.1.0
-```
-
-You must want to mount the data volume and publish the ports like this:
-
+Run the command to start a node
 ```
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 ```
@@ -145,8 +138,12 @@ To start, stop, restart or remove: `docker-compose (start|stop|restart|down)`
 The log file is located at `/data/iserver/logs/iost.log`.
 An increasing value of `confirmed` means it is syncing the block data.
 
-You may also check the state of the node using `iwallet`:
-`docker-compose exec iserver ./iwallet state`
+You may also check the state of the node using `iwallet` tool inside the docker
+```
+docker-compose exec iserver ./iwallet state
+```
 
-Use `-s` together with seednode's IP to get latest blockchain info:
-`docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state`
+Use `-s` together with seednode's IP to get latest blockchain info from that node
+```
+docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state
+```

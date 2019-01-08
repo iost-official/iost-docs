@@ -13,35 +13,30 @@
       "2-intro-of-iost/Network-layer"
     ],
     "Smart Contract": [
-      "3-smart-contract/Environment-setup",
       "3-smart-contract/How-to-write-a-smart-contract",
       "3-smart-contract/Smart-Contract-Development-Toolkit",
-      "3-smart-contract/Deployment-and-invocation", 
       "3-smart-contract/Contract-Testing",
       "3-smart-contract/Update-Contract",
       "3-smart-contract/Generate-Receipt",
       "3-smart-contract/Token"
     ],
     "Running IOST node": [
-      "4-running-iost-node/Faucet",
-      "4-running-iost-node/Environment-Configuration",
-      "4-running-iost-node/iServer",
+      "4-running-iost-node/LocalServer",
+      "4-running-iost-node/Building-IOST",
       "4-running-iost-node/iWallet",
       "4-running-iost-node/Deployment",
       "4-running-iost-node/Google-Compute-Platform",
       "4-running-iost-node/Metrics"
     ],
-    "Example: Lucky Bet": [
-      "5-lucky-bet/Design-Tech-data",
-      "5-lucky-bet/Lucky-Bet-Operation",
-      "5-lucky-bet/Lucky-Bet-Js"
+    "Examples": [
+      "5-lucky-bet/LuckyBet"
     ],
     "Reference": [
       "6-reference/API",
       "6-reference/SystemContract",
       "6-reference/EconContract"
     ],
-    "IOST.js": [
+    "IOST Javascript SDK": [
       "7-iost-js/IOST-class",
       "7-iost-js/Blockchain-class",
       "7-iost-js/KeyPair-class",

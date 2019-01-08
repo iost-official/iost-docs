@@ -4,22 +4,25 @@ title: 快速开始
 sidebar_label: 快速开始
 ---
 
-## 整体架构设计
-如果您想了解 IOST 整体的设计，可以阅读如下文档  
+## 例子
+如果您想在 IOST 上开发部署真实的智能合约，您可以参考我们的[官方样例](../5-lucky-bet/LuckyBet)。这里手把手地说明了如何部署合约，运行合约。相信一定会对您有帮助。
 
-- [智能合约接口的设计](2-intro-of-iost/Smart-contract.md)  
-- [VM的设计](2-intro-of-iost/VM.md)  
-- [储存层的设计](2-intro-of-iost/Database.md)  
-- [网络层的设计](2-intro-of-iost/Network-layer.md)  
+## 帮助
+[Slack](https://iost-community.slack.com/) 和 [论坛](https://forum.iost.io)。
 
+## 启动IOST
+可以使用[单机测试网](../4-running-iost-node/LocalServer) 或 [加入官方网](../4-running-iost-node/Deployment)。   
+[命令行工具](../4-running-iost-node/iWallet) 可以用来和 IOST Blockchain交互。
 
-## 智能合约开发上手
-如果您想在 IOST 上开发部署真实的智能合约，您可以参考我们的[官方样例](5-lucky-bet/Design-Tech-data.md)。这里手把手地说明了如何部署合约，运行合约。相信一定会对您有帮助。  
+## SDK and API
+### javascript SDK
+* 代码
+   - [Github 链接](https://github.com/iost-official/iost.js)    
+* 文档   
+   - [IOST](../7-iost-js/IOST-class)   
+   - [Blockchain](../7-iost-js/IOST-class)   
+   - [KeyPair](../7-iost-js/KeyPair-class)   
+   - [Transaction](../7-iost-js/Transaction-class)
 
-您在开发中的任何问题，都可以到我们的[官方论坛](https://forum.iost.io)去提问。
-
-
-## 如何加入 IOST 网络
-如果您想成为 IOST 网络的一个节点，您可以参考[接入测试网络](4-running-iost-node/Deployment.md)的文档。
-
-如果您想在 IOST 网络上发布智能合约，您需要 coins 来支付 gas 费用。您可以[申请初始 coins](4-running-iost-node/Faucet.md)。
+### JSON RPC API
+[文档](../6-reference/API)    

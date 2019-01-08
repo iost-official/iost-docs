@@ -27,92 +27,91 @@ If the function is not implemented in the contract, the contract is not allowed 
 
 Below we take a simple smart contract as an example to illustrate the process of contract update.
 
-### Create Contract
-
-First create an account update using `iwallet` command, record the account ID returned on the screen
-```console
-./iwallet account -n update
-return:
-the iost account ID is:
-IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h
-```
-
-Create a new contract file helloContract.js and its corresponding ABI file helloContract.json with following content
+Create a new contract file helloContract.js with following content
 ```js
 class helloContract
 {
-    constructor() {
-    }
     init() {
     }
     hello() {
-		const ret = storage.put("message", "hello block chain");
-        if (ret !== 0) {
-            throw new Error("storage put failed. ret = " + ret);
-        }
+        return "hello world";
     }
-	can_update(data) {
-		const adminID = "IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h";
-		const ret = BlockChain.requireAuth(adminID);
-		return ret;
-	}
+    can_update(data) {
+        return blockchain.requireAuth(blockchain.publisher(), "active");
+    }
 };
 module.exports = helloContract;
 ```
-```json
-{
-    "lang": "javascript",
-    "version": "1.0.0",
-    "abi": [
-        {
-            "name": "hello",
-            "args": []
-        },
-		{
-			"name": "can_update",
-			"args": ["string"]
-		}
+Look at the can_update() function implementation in the contract file, which allows the contract to be updated only when using the contract owner account authorization.
+
+### Publish Contract
+
+Please refer to [Publish Contract](../4-running-iost-node/iWallet#publish-contract) for more explanation.
+```
+$ export IOST_ACCOUNT=admin # replace with your own account name here
+$ iwallet compile hello.js
+$ iwallet --account $IOST_ACCOUNT publish hello.js hello.js.abi
+...
+The contract id is ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
+```
+
+### Call the Contract First Time
+Now you call the `hello` function inside the contract you just uploaded, you will get 'hello world' as return.   
+```
+$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+...
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"hello world\"]"
+    ],
+    "receipts": [
     ]
 }
 ```
-Look at the can_update() function implementation in the contract file, which allows the contract to be updated only when using the adminID account authorization.
-
-### Deploy Contract
-
-Please refer to [Deployment-and-invocation](../3-smart-contract/Deployment-and-invocation)
-
-Remember to record contractID like ContractHDnNufJLz8YTfY3rQYUFDDxo6AN9F5bRKa2p2LUdqWVW
 
 ### Update Contract
 First edit the contract file helloContract.js to generate a new contract code as follows:
 ```js
 class helloContract
 {
-    constructor() {
-    }
     init() {
     }
     hello() {
-		const ret = storage.put("message", "update block chain");
-        if (ret !== 0) {
-            throw new Error("storage put failed. ret = " + ret);
-        }
+        return "hello iost";
     }
-	can_update(data) {
-		const adminID = "IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h";
-		const ret = BlockChain.requireAuth(adminID);
-		return ret;
-	}
+    can_update(data) {
+        return blockchain.requireAuth(blockchain.publisher(), "active");
+    }
 };
 module.exports = helloContract;
 ```
-We modified the implementation of the hello() function to change the contents of the "message" written to the database to "update block chain".
+We modified the implementation of the hello() function to change the return from 'hello world' to 'hello iost'.   
 
 Use the following command to upgrade your smart contract:
 
 ```console
-./iwallet compile -u -e 3600 -l 100000 -p 1 ./helloContract.js ./helloContract.json <合约ID> <can_update 参数> -k ~/.iwallet/update_ed25519
+iwallet --account $IOST_ACCOUNT publish --update hello.js hello.js.abi ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
 ```
--u indicates to update contract, -k indicates the private key used for signing and publishing, here the account `update` is used to authorize the transaction
 
-After the transaction is confirmed, you can call the hello() function via iwallet and check the contents of the database "message" to see the content changes.
+### Call the Contract Second Time
+After the transaction is confirmed, you can call the hello() function via iwallet again and find that the return changes from 'hello world' to 'hello iost'
+```
+$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+...
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"hello iost\"]"
+    ],
+    "receipts": [
+    ]
+}
+```
+
+
+
+
+
+
+

@@ -70,12 +70,12 @@
         "sidebar_label": "Update Contract"
       },
       "4-running-iost-node/Deployment": {
-        "title": "Deployment",
-        "sidebar_label": "Deployment"
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
       },
-      "4-running-iost-node/Environment-Configuration": {
-        "title": "Environment & Configuration",
-        "sidebar_label": "Environment & Configuration"
+      "4-running-iost-node/Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
       },
       "4-running-iost-node/Faucet": {
         "title": "Faucet - how to get IOST token",
@@ -85,37 +85,36 @@
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "4-running-iost-node/iServer": {
-        "title": "iServer",
-        "sidebar_label": "iServer"
+      "4-running-iost-node/LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
       },
       "4-running-iost-node/iWallet": {
-        "title": "iWallet",
-        "sidebar_label": "iWallet"
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
       },
       "4-running-iost-node/Metrics": {
         "title": "Metrics",
         "sidebar_label": "Metrics"
       },
       "5-lucky-bet/Design-Tech-data": {
-        "title": "Lucky Bet Smart Contract",
-        "sidebar_label": "Lucky Bet Smart Contract"
+        "title": "5-lucky-bet/Design-Tech-data"
       },
       "5-lucky-bet/Lucky-Bet-Js": {
         "title": "Lucky Bet Javascript Code Details",
         "sidebar_label": "Lucky Bet Javascript Code Details"
       },
-      "5-lucky-bet/Lucky-Bet-Operation": {
-        "title": "Step-by-Step Commands to Deploy and Run",
-        "sidebar_label": "Step-by-Step Commands to Deploy and Run"
+      "5-lucky-bet/LuckyBet": {
+        "title": "LuckyBet Example",
+        "sidebar_label": "LuckyBet Example"
       },
       "6-reference/API": {
         "title": "API",
         "sidebar_label": "API"
       },
       "6-reference/EconContract": {
-        "title": "Econ Contract",
-        "sidebar_label": "Econ Contract"
+        "title": "Economic Contract",
+        "sidebar_label": "Economic Contract"
       },
       "6-reference/SystemContract": {
         "title": "System Contract",
@@ -431,10 +430,12 @@
       "Introduction of IOST blockchain": "Introduction of IOST blockchain",
       "Smart Contract": "Smart Contract",
       "Running IOST node": "Running IOST node",
-      "Example: Lucky Bet": "Example: Lucky Bet",
+      "Examples": "Examples",
       "Reference": "Reference",
-      "IOST.js": "IOST.js",
+      "IOST Javascript SDK": "IOST Javascript SDK",
       "First Category": "First Category",
+      "Example: Lucky Bet": "Example: Lucky Bet",
+      "IOST.js": "IOST.js",
       "Lucky Bet": "Lucky Bet"
     }
   },

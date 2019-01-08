@@ -60,25 +60,9 @@ Transaction支持多重签名，在智能合约当中可以通过```RequireAuth(
 
 智能合约还可以检查调用栈，从而得到“是谁调用了此ABI”的信息，从而进行一些操作。
 
-智能合约还有一些特殊的权限，比如升级，删除智能合约。可以通过实现```can_update()```,```can_destroy()```接口来自行设计权限的规则。
+智能合约还有一些特殊的权限，比如升级智能合约。可以通过实现```can_update()```接口来自行设计权限的规则。
 
 ## 智能合约的运行结果
 
-智能合约在执行完毕之后，会生成TxReceipt加入到区块中，并且得到区块链的共识。可以通过RPC找到已上线Transaction的TxReceipt。
-
-```sh
-$ curl -X GET \
-  http://52.192.65.220:30001/getTxReceiptByTxHash/G62UQbq9u8MP8cNLD9HUpMFtstTvRUAJ4avzKiAJc86f \
-  -H 'Cache-Control: no-cache' \
-  -H 'Postman-Token: 2442fe9c-0c80-4459-a9e6-0001bbde3dbb'l
-{
-    "txReceiptRaw": {
-        "txHash": "4CjfeOvtjmhdZep9WG5pPoEoLPu90avQkbGKefTKNaw=",
-        "gasUsage": "1129",
-        "status": {},
-        "succActionNum": 1
-    },
-    "hash": "eU9xHGM15gfDInAG7Y8q3RB9mMm1Pekmj4RUUHWFkqU="
-}
-
-```
+智能合约在执行完毕之后，会生成TxReceipt加入到区块中，并且得到区块链的共识。   
+可以通过[RPC](../6-reference/API#gettxreceiptbytxhash-hash)找到已上线Transaction的TxReceipt。
