@@ -34,7 +34,7 @@ Permissions can operate with groups. You may add permissions to a group, and add
 With smart contracts, there is a simple API to call.
 
 ```
-BlockChain.requireAuth(id, permission_string)
+blockchain.requireAuth(id, permission_string)
 ```
 
 This will return a boolean value for you to decide whether the operation should continue.
@@ -84,7 +84,7 @@ User0, perm4		|key8			|false		|Can be implemented when calculating permission gr
 
 ## Creating and Managing Accounts
 
-Account management is based on the contract of `account.iost`. The ABI is as follows:
+Account management is based on the contract of `auth.iost`. The ABI is as follows:
 
 ```
 {

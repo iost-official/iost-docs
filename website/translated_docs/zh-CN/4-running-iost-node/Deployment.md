@@ -3,10 +3,7 @@ id: Deployment
 title: 部署
 sidebar_label: 部署
 ---
-
-我们推荐使用 Docker 部署一个 iServer 节点。
-
-当然也可以使用原生二进制可执行文件。请参考[环境配置]()
+本文介绍如何加入IOST官方网。如果只是测试调试，建议部署[本地单节点网络](LocalServer)
 
 ## 依赖
 
