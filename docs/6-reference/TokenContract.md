@@ -7,236 +7,235 @@ sidebar_label: Token Contract
 ## token.iost
 ---
 
-### 简介
-代币合约, 用于代币创建,发行,转账和销毁, 支持冻结功能, 支持配置代币全称,小数位数,转账属性等。
+### Description
+Token contract is used for token creation, distribution, transfer and destruction, can freeze token for some time, and also with support for configuring the full name of tokens, decimal places, transfer attributes
 
-### 基础信息
+### Info
 | contract_id | token.iost |
 | :----: | :------ |
 | language | native |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### create (tokenSym, issuer, totalSupply, config)
-创建代币.
+Create token.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符,合约内唯一 | string |
-| issuer   | 发行者,具有发行代币权限 | string |
-| totalSupply | 总发行量,整数 | number |
-| config | 配置 | json |
+| tokenSym | Token identifier, unique within the contract | string |
+| issuer | issuer with issuing token permission | string |
+| totalSupply | Total supply, integer | number |
+| config | configuration | json |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
-tokenSym 长度应在 2~16 位, 使用 a-z, 0-9, _ 字符
+tokenSym should be 2~16 characters long, consists of a-z, 0-9 and _ characters
 
-config 支持的配置项举例如下:
+Examples of configuration items supported by config are as follows:
 
 {
 
-   "fullName": "iost token",   // 代币全称, string
-   
-   "canTransfer": true,		// 是否可交易, bool
-   
-   "decimal": 8				// 小数位数, number
+   "fullName": "iost token", // full name of the token, string
+
+   "canTransfer": true, // if tradable, bool
+
+   "decimal": 8 // decimal places, number
 
 }
 
 #### issue (tokenSym, to, amount)
-发行代币.
+Issue tokens.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| to  | 代币接收账户 | string |
-| amount | 金额 | string |
+| tokenSym | Token Identifier | string |
+| to | Token receiving account | string |
+| amount | amount | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
-amount 金额为字符串类型, 可以是整数或小数, 如 "100", "1.22" 都是合法的金额
+The amount parameter is a string, which can be an integer or a decimal, such as "100", "1.22" are legal amounts
 
 #### transfer (tokenSym, from, to, amount, memo)
-代币转账.
+Token transfer.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| to  | 代币接收账户 | string |
-| amount | 金额 | string |
-| memo | 附加信息 | string |
+| tokenSym | Token Identifier | string |
+| from | Token Transfer Account | string |
+| to | Token receiving account | string |
+| amount | amount | string |
+| memo | Additional Information | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
 #### transferFreeze (tokenSym, from, to, amount, ftime, memo)
-转账并冻结代币.
+Transfer and freeze tokens.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| to  | 代币接收账户 | string |
-| amount | 金额 | string |
-| ftime| 解冻时间,Unix时间戳的毫秒数 | number |
-| memo | 附加信息 | string |
+| tokenSym | Token Identifier | string |
+| from | Token transfer Account | string |
+| to | Token receiving account | string |
+| amount | amount | string |
+| ftime| Unfreeze time, milliseconds of Unix timestamp | number |
+| memo | Additional Information | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
 #### destroy (tokenSym, from, amount)
-销毁代币.
+Destroy tokens.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| amount | 金额 | string |
+| tokenSym | Token Identifier | string |
+| from | Token destroy account | string |
+| amount | amount | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
 #### balanceOf (tokenSym, from)
-获取代币余额.
+Get the token balance.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币账户 | string |
+| tokenSym | Token Identifier | string |
+| from | Token account | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
-| 账户余额 | number |
+| Account Balance | string |
 
 #### supply (tokenSym)
-获取代币发行量,即已经issue且没有destroy的代币总额.
+Get the token circulation, that is, the total amount of tokens that have been issued and have not been destroyed.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
+| tokenSym | Token Identifier | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
-| 发行量 | number |
+| supply | string |
 
 #### totalSupply(tokenSym)
-获取代币总发行量.
+Get the total circulation of tokens.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
+| tokenSym | Token Identifier | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
-| 总发行量 | number |
+| Total supply | string |
 
 
 ## token721.iost
 ---
 
-### 简介
-不可交换代币合约, 用于不可交换代币创建,发行,转账和销毁.
+### Description
+Token721 contract is used for the creation, distribution, transfer and destruction of non-exchangeable tokens.
 
-### 基础信息
+### Info
 | contract_id | token721.iost |
 | :----: | :------ |
 | language | native |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### create (tokenSym, issuer, totalSupply)
-创建代币.
+Create tokens.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符,合约内唯一 | string |
-| issuer   | 发行者,具有发行代币权限 | string |
-| totalSupply | 总发行量,整数 | number |
+| tokenSym | Token identifier, unique within the contract | string |
+| issuer | issuer with issuing token rights | string |
+| totalSupply | Total circulation, integer | number |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
-tokenSym 长度应在 2~16 位, 使用 a-z, 0-9, _ 字符
+tokenSym should be 2~16 characters long, consists of a-z, 0-9 and _ characters
 
 #### issue (tokenSym, to, metaData)
-发行代币.
+Issue tokens.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| to  | 代币接收账户 | string |
-| metaData | 代币的meta数据 | string |
+| tokenSym | Token Identifier | string |
+| to | Token receiving account | string |
+| metaData | Meta data for tokens | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
 | tokenID | string |
 
-tokenID 为代币编号,在某一代币中,系统会为发行的每个代币生成一个代币编号,同种代币中编号不会重复.
+tokenID is the token identification. In a certain token, the system will generate a specific tokenID for each token issued which won't be duplicated in a certain kind token.
 
 #### transfer (tokenSym, from, to, tokenID)
-代币转账.
+Token transfer.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| to  | 代币接收账户 | string |
-| tokenID | 代币ID | string |
+| tokenSym | Token Identifier | string |
+| from | Token Transfer Account | string |
+| to | Token receiving account | string |
+| tokenID | Token ID | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
 #### balanceOf (tokenSym, from)
-获取代币余额.
+Get the token balance.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币账户 | string |
+| tokenSym | Token Identifier | string |
+| from | Token account | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
-| 账户余额 | number |
+| Account Balance | number |
 
 #### ownerOf (tokenSym, tokenID)
-获取某个特定代币的拥有者
+Get the owner of a particular token
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| tokenID | 代币ID | string |
+| tokenSym | Token Identifier | string |
+| tokenID | Token ID | string |
 
-| 返回值 | 类型|
+| Return value | Type|
 | :----: | :------ |
-| 拥有者账户 | string |
+| Owner Account | string |
 
 #### tokenOfOwnerByIndex(tokenSym, owner, index)
-获取账户拥有的第index个代币
+Get the index token owned by the account
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| owner | 代币账户 | string |
-| index | 代币index,整数 | number |
+| tokenSym | Token Identifier | string |
+| owner | Token account | string |
+| index | Token index, integer | number |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
 | tokenID | string |
 
 #### tokenMetadata(tokenSym, tokenID)
-获取代币的meta数据
+Get the meta data of the token
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| tokenID | 代币ID | string |
+| tokenSym | Token Identifier | string |
+| tokenID | Token ID | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
 | metaData | string |
-

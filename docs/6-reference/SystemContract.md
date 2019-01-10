@@ -1,470 +1,470 @@
 ---
-id: SystemContract
-title: System Contract
-sidebar_label: System Contract
+Id: SystemContract
+Title: System Contract
+Sidebar_label: System Contract
 ---
 
 ## vote_producer.iost
 ---
 
-### 简介
-超级节点竞选投票合约。
+### Description
+The Super Node campaigns for voting.
 
-### 基础信息
+### Info
 | contract_id | vote_producer.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### ApplyRegister
-申请注册成为超级节点候选人。
+Apply for registration to become a super node candidate.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
-| 公钥base58编码 | string |
-| 地理位置| string |
-| 网站 url | string |
-| 网络 id | string |
+| Account Name | string |
+| public key base58 encoding | string |
+| Location | string |
+| Website url | string |
+| network id | string |
 
 #### ApplyUnregister
-申请取消注册。
+Apply for cancellation.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
 
 #### Unregister
-取消注册，需要先调用 ApplyUnregister，审核通过后，才可调用本接口。
+To cancel the registration, you need to call ApplyUnregister first. After the audit is passed, you can call this interface.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
 #### UpdateProducer
-更新注册信息。
+Update registration information.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
-| 公钥base58编码 | string |
-| 地理位置| string |
-| 网站 url | string |
-| 网络 id | string |
+| Account Name | string |
+| public key base58 encoding | string |
+| Location | string |
+| Website url | string |
+| network id | string |
 
 #### LogInProducer
-上线，表示本节点目前可以提供服务。
+Go online, indicating that the node is currently available for service.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
 #### LogOutProducer
-离线，表示本节点目前无法提供服务。
+Offline means that the node is currently unable to provide services.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
 #### VoteFor
-代别人投票，投票质押的 IOST 会从代理者账户扣除。
+Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 代理者账户名| string |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| Agent account name | string |
+| Voter Account Name | string |
+| Campaigner Account Name | string |
+| Number of votes | string |
 
 #### Vote
-投票。
+vote.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| Voter Account Name | string |
+| Campaigner Account Name | string |
+| Number of votes | string |
 
 #### Unvote
-取消投票。
+Cancel the vote.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| Voter Account Name | string |
+| Campaigner Account Name | string |
+| Number of votes | string |
 
 #### VoterWithdraw
-投票者领取分红奖励。
+Voters receive bonus awards.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 投票者账户名| string |
+| Voter Account Name | string |
 
 #### CandidateWithdraw
-竞选者领取分红奖励。
+The contestant receives a bonus award.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 竞选者账户名| string |
+| Campaigner Account Name | string |
 
 ## vote.iost
 ---
 
-### 简介
-通用投票合约，用于创建投票、收集投票、统计投票。可以基于本合约实现你自己想要的投票功能。
+### Description
+A universal voting contract used to create votes, collect votes, and vote on statistics. You can implement your own voting function based on this contract.
 
-### 基础信息
+### Info
 | contract_id | vote.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### NewVote
-创建投票。
+Create a vote.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ | :------ |
-| 投票创建者账户名| string | 创建投票需要质押 1000 IOST，会从创建者账户扣除，创建者账户拥有投票的 admin 权限|
-| 投票描述| string ||
-| 投票设置| json 对象 |包含 5 个 key: <br>resultNumber —— number 类型，投票结果数量，最大为 2000;<br> minVote —— number 类型，最低得票数，得票数大于这个数量的候选者才能进入投票结果集合; <br>options —— 数组类型，候选者集合，每一项为字符串，代表一个候选者，初始可以传空 []; <br>anyOption —— bool 类型，是否允许投非 options 集合中的候选项，传 false 表示用户只能投 options 集合中的候选项; <br>freezeTime —— number 类型，取消投票后 token 冻结时间，单位秒;|
-调用成功会返回全局唯一的投票 ID。
+| Vote creator account name | string | Create a vote that requires pledge 1000 IOST, which will be deducted from the creator account, and the creator account has the admin privilege to vote |
+| Vote Description | string ||
+| Voting Settings | json object| contains 5 keys: <br>resultNumber —— number type, number of voting results, maximum 2000; <br> minVote —— number type, minimum number of votes, candidates with more votes than this number In order to enter the voting result set; <br>options - array type, candidate set, each item is a string, represents a candidate, the initial can be empty []; <br>anyOption - bool type, whether to allow The candidate in the non-options collection, passing false means that the user can only cast candidates in the options collection; <br>freezeTime - number type, cancel the token freeze time, in seconds;
+A successful call returns a globally unique vote ID.
 
 #### AddOption
-增加投票选项。
+Increase voting options.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 选项| string ||
-| 是否清除以前得票数| bool ||
+| Vote ID| string | ID returned by the NewVote interface|
+| Options | string ||
+| Whether to clear the previous votes | bool ||
 
 #### RemoveOption
-删除投票选项，但保留得票结果，删除后，再通过 AddOption 添加该选项能选择是否恢复得票数。
+Delete the voting option, but retain the result of the vote, delete it, and then add this option through AddOption to choose whether to restore the number of votes.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 选项| string ||
-| 是否强制删除| bool | false 表示当该选项在结果集中时不删除，true 表示强制删除并更新结果集|
+| Vote ID| string | ID returned by the NewVote interface|
+| Options | string ||
+Whether to force delete | bool | false means that the option is not deleted when it is in the result set, true means to force delete and update the result set |
 
 #### GetOption
-获取候选项的得票情况。
+Get the votes for the candidate.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 选项| string ||
+| Vote ID| string | ID returned by the NewVote interface|
+| Options | string ||
 
-返回结果为 json 对象：
+The result is a json object:
 
-| key | 类型 | 备注 |
+| key | type | notes |
 | :----: | :------ | :------ |
-| votes| string | 得票数|
-| deleted| bool | 是否被标记为删除 |
-| clearTime| number | 票数上次被清零的区块号 |
+| votes| string | Votes |
+| deleted| bool | Is it marked as deleted |
+| clearTime| number | The block number where the number of votes was last cleared |
 
 #### VoteFor
-代别人投票，投票质押的 IOST 会从代理者账户扣除。
+Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 代理者账户名| string ||
-| 投票者账户名| string ||
-| 选项 | string ||
-| 投票数量 | string ||
+| Vote ID| string | ID returned by the NewVote interface|
+| Agent account name | string ||
+| Voter Account Name | string ||
+| Options | string ||
+| Number of votes | string ||
 
 #### Vote
-投票。
+vote.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 投票者账户名| string ||
-| 选项 | string ||
-| 投票数量 | string ||
+| Vote ID| string | ID returned by the NewVote interface|
+| Voter Account Name | string ||
+| Options | string ||
+| Number of votes | string ||
 
 #### Unvote
-取消投票。
+Cancel the vote.
 
-| 参数列表 | 参数类型 |备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 投票者账户名| string ||
-| 选项 | string ||
-| 投票数量 | string ||
+| Vote ID| string | ID returned by the NewVote interface|
+| Voter Account Name | string ||
+| Options | string ||
+| Number of votes | string ||
 
 #### GetVote
-获取某账户投票记录。
+Get an account vote record.
 
-| 参数列表 | 参数类型 |备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 投票者账户名| string ||
+| Vote ID| string | ID returned by the NewVote interface|
+| Voter Account Name | string ||
 
-返回结果为 json 数组，每一项为下面的对象：
+The result is a json array, each of which is the following object:
 
-| key | 类型 | 备注 |
+| key | type | notes |
 | :----: | :------ | :------ |
-| option| string | 选项 |
-| votes| string | 投票数量 |
-| voteTime| number | 上次投票的区块号 |
-| clearedVotes| string | 被清零的投票数量 |
+| option| string | options |
+| votes| string | Number of votes |
+| voteTime| number | Block number of the last vote |
+| clearedVotes| string | Number of votes cleared |
 
 #### GetResult
-获取投票结果，返回得票数前 resultNumber 的选项。
+Get the voting result and return the option of resultNumber before the number of votes.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
+| Vote ID| string | ID returned by the NewVote interface|
 
-返回结果为 json 数组，每一项为下面的对象：
+The result is a json array, each of which is the following object:
 
-| key | 类型 | 备注 |
+| key | type | notes |
 | :----: | :------ | :------ |
-| option| string | 选项 |
-| votes| string | 投票数量 |
+| option| string | options |
+| votes| string | Number of votes |
 
 #### DelVote
-删除投票，退换创建投票时质押的 IOST 到创建者账户。
+Delete the vote and return the IOST that was created during the voting to the creator account.
 
-| 参数列表 | 参数类型 | 备注 |
+| Parameter List | Parameter Type | Remarks |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
+| Vote ID| string | ID returned by the NewVote interface|
 
 ## auth.iost
 ---
 
-### 简介
-账号系统和权限管理
+### Description
+Account system and rights management
 
-### 基础信息
+### Info
 | contract_id | auth.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### SignUp
-创建账号
+Create an account
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
+| Username | string |
 | ownerKey | string |
 | activeKey | string |
 
 #### AddPermission
-向账号添加权限
+Add permissions to an account
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string | 
-| 权限名 | string |
-| 权限阈值 | number |
+| Username | string |
+| Permission name | string |
+| Permission threshold | number |
 
 #### DropPermission
-删除权限
+Delete permission
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
+| Username | string |
+| Permission name | string |
 
 #### AssignPermission
-指定权限给item
+Specify permissions for item
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限 | string |
+| Username | string |
+| Permissions | string |
 | item | string |
-| 权重 | number |
+| Weight | number |
 
 
 #### RevokePermission
-撤销权限
+Revoke permission
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限 | string |
+| Username | string |
+| Permissions | string |
 | item | string |
 
 #### AddGroup
-添加权限组
+Add permission group
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| Username | string |
+| Group name | string |
 
-#### DropPermission
-删除权限组
+#### DropGroup
+Delete permission group
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| Username | string |
+| Group name | string |
 
 #### AssignGroup
-指定item给权限组
+Specify item to the permission group
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| Username | string |
+| Group name | string |
 | item | string |
-| 权重 | number |
+| Weight | number |
 
 #### RevokeGroup
-撤销权限组的item
+Revoke the item of the permission group
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| Username | string |
+| Group name | string |
 | item | string |
 
 
 #### AssignPermissionToGroup
-添加权限到组
+Add permissions to the group
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
-| 组名 | string |
+| Username | string |
+| Permission name | string |
+| Group name | string |
 
 
 #### RevokePermissionInGroup
-删除组中的权限
+Delete permissions in a group
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
-| 组名 | string |
+| Username | string |
+| Permission name | string |
+| Group name | string |
 
 
 ## bonus.iost
 ---
 
-### 简介
+### Description
 
-正式节点造块奖励管理
+Formal node? Building block reward? Management
 
-### 基础信息
+### Info
 
 | contract_id | bonus.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### IssueContribute
 
-发放贡献值，系统自动调用
+The contribution value is issued and the system automatically calls
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
 | data | json |
 
 #### ExchangeIOST
 
-使用贡献值兑换IOST
+Use the contribution value to redeem IOST
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
-| 数量 | string |
+| Account Name | string |
+| Quantity | string |
 
 
 ## system.iost
 
 ---
 
-### 简介
-基础系统合约,用于发行更新合约以及其他基本系统函数.
+### Description
+Base system contract for issuing and updating contracts and other basic system functions.
 
-### 基础信息
+### Info
 | contract_id | system.iost |
 | :----: | :------ |
 | language | native |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
 #### SetCode (code)
-部署智能合约.
+Deploy smart contracts.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| code | 智能合约代码 | string |
+| code | Smart Contract Code | string |
 
-| 返回值 | 返回值类型 |
+| Return Value | Return Value Type |
 | :----: | :------ |
 | contractID | string |
 
-智能合约代码中包括代码和智能合约信息, 如语言和接口定义, code参数支持两种格式: json格式和protobuf序列化的编码格式
-对于开发者来说, 部署合约一般不需要直接调用该接口, 建议使用iwallet或相关语言的SDK实现
+The smart contract code includes code and smart contract information, such as language and interface definitions. The code parameter supports two formats: json format and protobuf serialization encoding format.
+For developers, deployment contracts generally do not need to call this interface directly. It is recommended to use iwallet or related language SDK implementation.
 
-部署智能合约时,系统会自动调用智能合约的init()函数,开发者可以在init函数中做一些初始化工作.
+When deploying a smart contract, the system automatically calls the init() function of the smart contract. The developer can do some initialization work in the init function.
 
-返回值 contractID 是智能合约ID, 全局唯一, 由部署合约交易的hash生成,以Contract开头包含大小写字母和数字, 一个交易中只能部署一个智能合约
+Return value contractID is the smart contract ID, which is globally unique and generated by the hash of the deployment contract transaction. The contractID starts with "Contract" and consists of uppercase and lowercase letters and numbers. Only one smart contract can be deployed in a transaction.
 
 #### UpdateCode (code, data)
-升级智能合约.
+Upgrade smart contracts.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| code | 智能合约代码 | string |
-| data | 升级函数参数 | string |
+| code | Smart Contract Code | string |
+| data | upgrade function parameters | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
-升级智能合约, code为智能合约代码, 格式与 SetCode 中参数格式相同.
+Upgrade the smart contract, code is the smart contract code, the format is the same as the parameter in SetCode.
 
-升级智能合约时, 系统会自动检查升级权限, 即调用合约中的can_update(data)函数, 参数data即为UpdateCode中的第二个参数, 当且仅当can_update函数存在且调用返回结果为true时,
-合约升级才会成功, 否则升级失败,判定为没有升级权限.
+When upgrading a smart contract, the system will automatically check the upgrade permission, that is, the can_update(data) function in the contract, and the parameter data is the second parameter in the UpdateCode, if and only if the can_update function exists and the call returns true.
+The contract upgrade will succeed, otherwise the upgrade will fail and it is determined that there is no upgrade permission.
 
 #### CancelDelaytx (txHash)
-取消延迟交易, 在延迟交易执行前调用该函数可以取消延迟交易.
+Cancel a delayed transaction, call this function before the execution of the delayed transaction to cancel the delayed transaction.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| txHash | 交易hash | string |
+| txHash | Transaction hash | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
 
 #### RequireAuth (acc, permission)
-检查该交易是否有acc账户的permission权限签名.
+Check if the transaction has the permission of the account.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| acc | 账户名 | string |
-| permission | 权限名 | string |
+| acc | account name | string |
+| permission | permission name | string |
 
-| 返回值 | 类型 |
+| Return value | Type |
 | :----: | :------ |
 | ok | bool |
 
 #### Receipt (data)
-生成交易收据, 收据存放在block中, 也可通过交易hash查询到.
+Generate a transaction receipt, the receipt is stored in the block, and can also be queried through the transaction hash.
 
-| 参数名称 | 参数描述 | 参数类型 |
+| Parameter Name | Parameter Description | Parameter Type |
 | :----: | :----: | :------ |
-| data | 收据内容 | string |
+| data | receipt content | string |
 
-| 返回值 | 无 |
+| Return value | None |
 | :----: | :------ |
