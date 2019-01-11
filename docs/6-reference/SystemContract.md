@@ -18,7 +18,7 @@ The Super Node campaigns for voting.
 
 ### API
 
-#### ApplyRegister
+#### applyRegister
 Apply for registration to become a super node candidate.
 
 | Parameter List | Parameter Type |
@@ -29,7 +29,7 @@ Apply for registration to become a super node candidate.
 | Website url | string |
 | network id | string |
 
-#### ApplyUnregister
+#### applyUnregister
 Apply for cancellation.
 
 | Parameter List | Parameter Type |
@@ -37,14 +37,14 @@ Apply for cancellation.
 | Account Name | string |
 
 
-#### Unregister
+#### unregister
 To cancel the registration, you need to call ApplyUnregister first. After the audit is passed, you can call this interface.
 
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Account Name | string |
 
-#### UpdateProducer
+#### updateProducer
 Update registration information.
 
 | Parameter List | Parameter Type |
@@ -55,21 +55,21 @@ Update registration information.
 | Website url | string |
 | network id | string |
 
-#### LogInProducer
+#### logInProducer
 Go online, indicating that the node is currently available for service.
 
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Account Name | string |
 
-#### LogOutProducer
+#### logOutProducer
 Offline means that the node is currently unable to provide services.
 
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Account Name | string |
 
-#### VoteFor
+#### voteFor
 Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
 
 | Parameter List | Parameter Type |
@@ -79,7 +79,7 @@ Vote on behalf of others, the IOST of the voting pledge will be deducted from th
 | Campaigner Account Name | string |
 | Number of votes | string |
 
-#### Vote
+#### vote
 vote.
 
 | Parameter List | Parameter Type |
@@ -88,7 +88,7 @@ vote.
 | Campaigner Account Name | string |
 | Number of votes | string |
 
-#### Unvote
+#### unvote
 Cancel the vote.
 
 | Parameter List | Parameter Type |
@@ -97,14 +97,14 @@ Cancel the vote.
 | Campaigner Account Name | string |
 | Number of votes | string |
 
-#### VoterWithdraw
+#### voterWithdraw
 Voters receive bonus awards.
 
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Voter Account Name | string |
 
-#### CandidateWithdraw
+#### candidateWithdraw
 The contestant receives a bonus award.
 
 | Parameter List | Parameter Type |
@@ -125,7 +125,7 @@ A universal voting contract used to create votes, collect votes, and vote on sta
 
 ### API
 
-#### NewVote
+#### newVote
 Create a vote.
 
 | Parameter List | Parameter Type | Remarks |
@@ -135,7 +135,7 @@ Create a vote.
 | Voting Settings | json object| contains 5 keys: <br>resultNumber —— number type, number of voting results, maximum 2000; <br> minVote —— number type, minimum number of votes, candidates with more votes than this number In order to enter the voting result set; <br>options - array type, candidate set, each item is a string, represents a candidate, the initial can be empty []; <br>anyOption - bool type, whether to allow The candidate in the non-options collection, passing false means that the user can only cast candidates in the options collection; <br>freezeTime - number type, cancel the token freeze time, in seconds;
 A successful call returns a globally unique vote ID.
 
-#### AddOption
+#### addOption
 Increase voting options.
 
 | Parameter List | Parameter Type | Remarks |
@@ -144,7 +144,7 @@ Increase voting options.
 | Options | string ||
 | Whether to clear the previous votes | bool ||
 
-#### RemoveOption
+#### removeOption
 Delete the voting option, but retain the result of the vote, delete it, and then add this option through AddOption to choose whether to restore the number of votes.
 
 | Parameter List | Parameter Type | Remarks |
@@ -153,7 +153,7 @@ Delete the voting option, but retain the result of the vote, delete it, and then
 | Options | string ||
 Whether to force delete | bool | false means that the option is not deleted when it is in the result set, true means to force delete and update the result set |
 
-#### GetOption
+#### getOption
 Get the votes for the candidate.
 
 | Parameter List | Parameter Type | Remarks |
@@ -169,7 +169,7 @@ The result is a json object:
 | deleted| bool | Is it marked as deleted |
 | clearTime| number | The block number where the number of votes was last cleared |
 
-#### VoteFor
+#### voteFor
 Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
 
 | Parameter List | Parameter Type | Remarks |
@@ -180,7 +180,7 @@ Vote on behalf of others, the IOST of the voting pledge will be deducted from th
 | Options | string ||
 | Number of votes | string ||
 
-#### Vote
+#### vote
 vote.
 
 | Parameter List | Parameter Type | Remarks |
@@ -190,7 +190,7 @@ vote.
 | Options | string ||
 | Number of votes | string ||
 
-#### Unvote
+#### unvote
 Cancel the vote.
 
 | Parameter List | Parameter Type | Remarks |
@@ -200,7 +200,7 @@ Cancel the vote.
 | Options | string ||
 | Number of votes | string ||
 
-#### GetVote
+#### getVote
 Get an account vote record.
 
 | Parameter List | Parameter Type | Remarks |
@@ -217,7 +217,7 @@ The result is a json array, each of which is the following object:
 | voteTime| number | Block number of the last vote |
 | clearedVotes| string | Number of votes cleared |
 
-#### GetResult
+#### getResult
 Get the voting result and return the option of resultNumber before the number of votes.
 
 | Parameter List | Parameter Type | Remarks |
@@ -231,7 +231,7 @@ The result is a json array, each of which is the following object:
 | option| string | options |
 | votes| string | Number of votes |
 
-#### DelVote
+#### delVote
 Delete the vote and return the IOST that was created during the voting to the creator account.
 
 | Parameter List | Parameter Type | Remarks |
@@ -252,7 +252,7 @@ Account system and rights management
 
 ### API
 
-#### SignUp
+#### signUp
 Create an account
 
 | Parameter List | Parameter Type |
@@ -261,7 +261,7 @@ Create an account
 | ownerKey | string |
 | activeKey | string |
 
-#### AddPermission
+#### addPermission
 Add permissions to an account
 
 | Parameter List | Parameter Type |
@@ -270,7 +270,7 @@ Add permissions to an account
 | Permission name | string |
 | Permission threshold | number |
 
-#### DropPermission
+#### dropPermission
 Delete permission
 
 | Parameter List | Parameter Type |
@@ -278,7 +278,7 @@ Delete permission
 | Username | string |
 | Permission name | string |
 
-#### AssignPermission
+#### assignPermission
 Specify permissions for item
 
 | Parameter List | Parameter Type |
@@ -289,7 +289,7 @@ Specify permissions for item
 | Weight | number |
 
 
-#### RevokePermission
+#### revokePermission
 Revoke permission
 
 | Parameter List | Parameter Type |
@@ -298,7 +298,7 @@ Revoke permission
 | Permissions | string |
 | item | string |
 
-#### AddGroup
+#### addGroup
 Add permission group
 
 | Parameter List | Parameter Type |
@@ -306,7 +306,7 @@ Add permission group
 | Username | string |
 | Group name | string |
 
-#### DropGroup
+#### dropGroup
 Delete permission group
 
 | Parameter List | Parameter Type |
@@ -314,7 +314,7 @@ Delete permission group
 | Username | string |
 | Group name | string |
 
-#### AssignGroup
+#### assignGroup
 Specify item to the permission group
 
 | Parameter List | Parameter Type |
@@ -324,7 +324,7 @@ Specify item to the permission group
 | item | string |
 | Weight | number |
 
-#### RevokeGroup
+#### revokeGroup
 Revoke the item of the permission group
 
 | Parameter List | Parameter Type |
@@ -334,7 +334,7 @@ Revoke the item of the permission group
 | item | string |
 
 
-#### AssignPermissionToGroup
+#### assignPermissionToGroup
 Add permissions to the group
 
 | Parameter List | Parameter Type |
@@ -344,7 +344,7 @@ Add permissions to the group
 | Group name | string |
 
 
-#### RevokePermissionInGroup
+#### revokePermissionInGroup
 Delete permissions in a group
 
 | Parameter List | Parameter Type |
@@ -370,7 +370,7 @@ Formal node? Building block reward? Management
 
 ### API
 
-#### IssueContribute
+#### issueContribute
 
 The contribution value is issued and the system automatically calls
 
@@ -378,7 +378,7 @@ The contribution value is issued and the system automatically calls
 | :----: | :------ |
 | data | json |
 
-#### ExchangeIOST
+#### exchangeIOST
 
 Use the contribution value to redeem IOST
 
@@ -403,7 +403,7 @@ Base system contract for issuing and updating contracts and other basic system f
 
 ### API
 
-#### SetCode (code)
+#### setCode (code)
 Deploy smart contracts.
 
 | Parameter Name | Parameter Description | Parameter Type |
@@ -421,7 +421,7 @@ When deploying a smart contract, the system automatically calls the init() funct
 
 Return value contractID is the smart contract ID, which is globally unique and generated by the hash of the deployment contract transaction. The contractID starts with "Contract" and consists of uppercase and lowercase letters and numbers. Only one smart contract can be deployed in a transaction.
 
-#### UpdateCode (code, data)
+#### updateCode (code, data)
 Upgrade smart contracts.
 
 | Parameter Name | Parameter Description | Parameter Type |
@@ -437,7 +437,7 @@ Upgrade the smart contract, code is the smart contract code, the format is the s
 When upgrading a smart contract, the system will automatically check the upgrade permission, that is, the can_update(data) function in the contract, and the parameter data is the second parameter in the UpdateCode, if and only if the can_update function exists and the call returns true.
 The contract upgrade will succeed, otherwise the upgrade will fail and it is determined that there is no upgrade permission.
 
-#### CancelDelaytx (txHash)
+#### cancelDelaytx (txHash)
 Cancel a delayed transaction, call this function before the execution of the delayed transaction to cancel the delayed transaction.
 
 | Parameter Name | Parameter Description | Parameter Type |
@@ -447,7 +447,7 @@ Cancel a delayed transaction, call this function before the execution of the del
 | Return value | None |
 | :----: | :------ |
 
-#### RequireAuth (acc, permission)
+#### requireAuth (acc, permission)
 Check if the transaction has the permission of the account.
 
 | Parameter Name | Parameter Description | Parameter Type |
@@ -459,7 +459,7 @@ Check if the transaction has the permission of the account.
 | :----: | :------ |
 | ok | bool |
 
-#### Receipt (data)
+#### receipt (data)
 Generate a transaction receipt, the receipt is stored in the block, and can also be queried through the transaction hash.
 
 | Parameter Name | Parameter Description | Parameter Type |

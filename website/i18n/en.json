@@ -106,8 +106,7 @@
         "sidebar_label": "Gas Charge Table"
       },
       "6-reference/SystemContract": {
-        "title": "System Contract",
-        "sidebar_label": "System Contract"
+        "title": "6-reference/SystemContract"
       },
       "6-reference/TokenContract": {
         "title": "Token Contract",
@@ -573,9 +572,9 @@
       "IOST Tech Internals": "IOST Tech Internals",
       "First Category": "First Category",
       "Introduction of IOST blockchain": "Introduction of IOST blockchain",
+      "Lucky Bet": "Lucky Bet",
       "Example: Lucky Bet": "Example: Lucky Bet",
-      "IOST.js": "IOST.js",
-      "Lucky Bet": "Lucky Bet"
+      "IOST.js": "IOST.js"
     }
   },
   "pages-strings": {

@@ -19,7 +19,7 @@ original_id: SystemContract
 
 ### 接口描述
 
-#### ApplyRegister
+#### applyRegister
 申请注册成为超级节点候选人。
 
 | 参数列表 | 参数类型 |
@@ -30,7 +30,7 @@ original_id: SystemContract
 | 网站 url | string |
 | 网络 id | string |
 
-#### ApplyUnregister
+#### applyUnregister
 申请取消注册。
 
 | 参数列表 | 参数类型 |
@@ -38,14 +38,14 @@ original_id: SystemContract
 | 账户名 | string |
 
 
-#### Unregister
+#### unregister
 取消注册，需要先调用 ApplyUnregister，审核通过后，才可调用本接口。
 
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 账户名 | string |
 
-#### UpdateProducer
+#### updateProducer
 更新注册信息。
 
 | 参数列表 | 参数类型 |
@@ -56,21 +56,21 @@ original_id: SystemContract
 | 网站 url | string |
 | 网络 id | string |
 
-#### LogInProducer
+#### logInProducer
 上线，表示本节点目前可以提供服务。
 
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 账户名 | string |
 
-#### LogOutProducer
+#### logOutProducer
 离线，表示本节点目前无法提供服务。
 
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 账户名 | string |
 
-#### VoteFor
+#### voteFor
 代别人投票，投票质押的 IOST 会从代理者账户扣除。
 
 | 参数列表 | 参数类型 |
@@ -80,7 +80,7 @@ original_id: SystemContract
 | 竞选者账户名 | string |
 | 投票数量 | string |
 
-#### Vote
+#### vote
 投票。
 
 | 参数列表 | 参数类型 |
@@ -89,7 +89,7 @@ original_id: SystemContract
 | 竞选者账户名 | string |
 | 投票数量 | string |
 
-#### Unvote
+#### unvote
 取消投票。
 
 | 参数列表 | 参数类型 |
@@ -98,14 +98,14 @@ original_id: SystemContract
 | 竞选者账户名 | string |
 | 投票数量 | string |
 
-#### VoterWithdraw
+#### voterWithdraw
 投票者领取分红奖励。
 
 | 参数列表 | 参数类型 |
 | :----: | :------ |
 | 投票者账户名| string |
 
-#### CandidateWithdraw
+#### candidateWithdraw
 竞选者领取分红奖励。
 
 | 参数列表 | 参数类型 |
@@ -126,7 +126,7 @@ original_id: SystemContract
 
 ### 接口描述
 
-#### NewVote
+#### newVote
 创建投票。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -136,7 +136,7 @@ original_id: SystemContract
 | 投票设置| json 对象 |包含 5 个 key: <br>resultNumber —— number 类型，投票结果数量，最大为 2000;<br> minVote —— number 类型，最低得票数，得票数大于这个数量的候选者才能进入投票结果集合; <br>options —— 数组类型，候选者集合，每一项为字符串，代表一个候选者，初始可以传空 []; <br>anyOption —— bool 类型，是否允许投非 options 集合中的候选项，传 false 表示用户只能投 options 集合中的候选项; <br>freezeTime —— number 类型，取消投票后 token 冻结时间，单位秒;|
 调用成功会返回全局唯一的投票 ID。
 
-#### AddOption
+#### addOption
 增加投票选项。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -145,7 +145,7 @@ original_id: SystemContract
 | 选项| string ||
 | 是否清除以前得票数| bool ||
 
-#### RemoveOption
+#### removeOption
 删除投票选项，但保留得票结果，删除后，再通过 AddOption 添加该选项能选择是否恢复得票数。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -154,7 +154,7 @@ original_id: SystemContract
 | 选项| string ||
 | 是否强制删除| bool | false 表示当该选项在结果集中时不删除，true 表示强制删除并更新结果集|
 
-#### GetOption
+#### getOption
 获取候选项的得票情况。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -170,7 +170,7 @@ original_id: SystemContract
 | deleted| bool | 是否被标记为删除 |
 | clearTime| number | 票数上次被清零的区块号 |
 
-#### VoteFor
+#### voteFor
 代别人投票，投票质押的 IOST 会从代理者账户扣除。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -181,7 +181,7 @@ original_id: SystemContract
 | 选项 | string ||
 | 投票数量 | string ||
 
-#### Vote
+#### vote
 投票。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -191,7 +191,7 @@ original_id: SystemContract
 | 选项 | string ||
 | 投票数量 | string ||
 
-#### Unvote
+#### unvote
 取消投票。
 
 | 参数列表 | 参数类型 |备注 |
@@ -201,7 +201,7 @@ original_id: SystemContract
 | 选项 | string ||
 | 投票数量 | string ||
 
-#### GetVote
+#### getVote
 获取某账户投票记录。
 
 | 参数列表 | 参数类型 |备注 |
@@ -218,7 +218,7 @@ original_id: SystemContract
 | voteTime| number | 上次投票的区块号 |
 | clearedVotes| string | 被清零的投票数量 |
 
-#### GetResult
+#### getResult
 获取投票结果，返回得票数前 resultNumber 的选项。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -232,7 +232,7 @@ original_id: SystemContract
 | option| string | 选项 |
 | votes| string | 投票数量 |
 
-#### DelVote
+#### delVote
 删除投票，退换创建投票时质押的 IOST 到创建者账户。
 
 | 参数列表 | 参数类型 | 备注 |
@@ -253,7 +253,7 @@ original_id: SystemContract
 
 ### 接口描述
 
-#### SignUp
+#### signUp
 创建账号
 
 | 参数列表 | 参数类型 |
@@ -262,7 +262,7 @@ original_id: SystemContract
 | ownerKey | string |
 | activeKey | string |
 
-#### AddPermission
+#### addPermission
 向账号添加权限
 
 | 参数列表 | 参数类型 |
@@ -271,7 +271,7 @@ original_id: SystemContract
 | 权限名 | string |
 | 权限阈值 | number |
 
-#### DropPermission
+#### dropPermission
 删除权限
 
 | 参数列表 | 参数类型 |
@@ -279,7 +279,7 @@ original_id: SystemContract
 | 用户名 | string |
 | 权限名 | string |
 
-#### AssignPermission
+#### assignPermission
 指定权限给item
 
 | 参数列表 | 参数类型 |
@@ -290,7 +290,7 @@ original_id: SystemContract
 | 权重 | number |
 
 
-#### RevokePermission
+#### revokePermission
 撤销权限
 
 | 参数列表 | 参数类型 |
@@ -299,7 +299,7 @@ original_id: SystemContract
 | 权限 | string |
 | item | string |
 
-#### AddGroup
+#### addGroup
 添加权限组
 
 | 参数列表 | 参数类型 |
@@ -307,7 +307,7 @@ original_id: SystemContract
 | 用户名 | string |
 | 组名 | string |
 
-#### DropPermission
+#### dropPermission
 删除权限组
 
 | 参数列表 | 参数类型 |
@@ -315,7 +315,7 @@ original_id: SystemContract
 | 用户名 | string |
 | 组名 | string |
 
-#### AssignGroup
+#### assignGroup
 指定item给权限组
 
 | 参数列表 | 参数类型 |
@@ -325,7 +325,7 @@ original_id: SystemContract
 | item | string |
 | 权重 | number |
 
-#### RevokeGroup
+#### revokeGroup
 撤销权限组的item
 
 | 参数列表 | 参数类型 |
@@ -335,7 +335,7 @@ original_id: SystemContract
 | item | string |
 
 
-#### AssignPermissionToGroup
+#### assignPermissionToGroup
 添加权限到组
 
 | 参数列表 | 参数类型 |
@@ -345,7 +345,7 @@ original_id: SystemContract
 | 组名 | string |
 
 
-#### RevokePermissionInGroup
+#### revokePermissionInGroup
 删除组中的权限
 
 | 参数列表 | 参数类型 |
@@ -371,7 +371,7 @@ original_id: SystemContract
 
 ### 接口描述
 
-#### IssueContribute
+#### issueContribute
 
 发放贡献值，系统自动调用
 
@@ -379,7 +379,7 @@ original_id: SystemContract
 | :----: | :------ |
 | data | json |
 
-#### ExchangeIOST
+#### exchangeIOST
 
 使用贡献值兑换IOST
 
@@ -404,7 +404,7 @@ original_id: SystemContract
 
 ### 接口描述
 
-#### SetCode (code)
+#### setCode (code)
 部署智能合约.
 
 | 参数名称 | 参数描述 | 参数类型 |
@@ -422,7 +422,7 @@ original_id: SystemContract
 
 返回值 contractID 是智能合约ID, 全局唯一, 由部署合约交易的hash生成,以Contract开头包含大小写字母和数字, 一个交易中只能部署一个智能合约
 
-#### UpdateCode (code, data)
+#### updateCode (code, data)
 升级智能合约.
 
 | 参数名称 | 参数描述 | 参数类型 |
@@ -438,7 +438,7 @@ original_id: SystemContract
 升级智能合约时, 系统会自动检查升级权限, 即调用合约中的can_update(data)函数, 参数data即为UpdateCode中的第二个参数, 当且仅当can_update函数存在且调用返回结果为true时,
 合约升级才会成功, 否则升级失败,判定为没有升级权限.
 
-#### CancelDelaytx (txHash)
+#### cancelDelaytx (txHash)
 取消延迟交易, 在延迟交易执行前调用该函数可以取消延迟交易.
 
 | 参数名称 | 参数描述 | 参数类型 |
@@ -448,7 +448,7 @@ original_id: SystemContract
 | 返回值 | 无 |
 | :----: | :------ |
 
-#### RequireAuth (acc, permission)
+#### requireAuth (acc, permission)
 检查该交易是否有acc账户的permission权限签名.
 
 | 参数名称 | 参数描述 | 参数类型 |
@@ -460,7 +460,7 @@ original_id: SystemContract
 | :----: | :------ |
 | ok | bool |
 
-#### Receipt (data)
+#### receipt (data)
 生成交易收据, 收据存放在block中, 也可通过交易hash查询到.
 
 | 参数名称 | 参数描述 | 参数类型 |
