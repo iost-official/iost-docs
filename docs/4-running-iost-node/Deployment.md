@@ -4,18 +4,18 @@ title: Join IOST Testnet
 sidebar_label: Join IOST Testnet
 ---
 
-The documentation introduces how to setup a running server connecting to IOST testnet, if you just want to setup a local single-server blockchain net for debugging/testing, you may better refer to [Launch Local Server](LocalServer)   
+The documentation introduces how to setup a running server connecting to IOST testnet, if you just want to setup a local single-server blockchain net for debugging/testing, you may better refer to [Launch Local Server](4-running-iost-node/LocalServer.md)   
 
 We are using Docker to deploy an IOST node.
 
 ## Prerequisites
 
-- [Docker CE 18.06 or newer](https://docs.docker.com/install/) (older versions are not tested)
-- (Optional) [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker CE 18.06 or newer](https://docs.docker.com/install) (older versions are not tested)
+- (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Prepare Config File
 
-For more details of iServer, see [here](/4-running-iost-node/iServer/).
+For more details of iServer, see [here](4-running-iost-node/LocalServer.md).
 
 First get the configuration templates:
 

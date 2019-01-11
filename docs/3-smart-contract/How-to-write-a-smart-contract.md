@@ -12,7 +12,7 @@ Currently, IOST smart contracts supports JavaScript.
 
 ### Runtime environment
 
-Internally, IOST employs [Chrome V8](https://developers.google.com/v8/) engine to run the contracts.
+Internally, IOST employs [Chrome V8](https://developers.google.com/v8) engine to run the contracts.
 
 ## Smart Contract Programming Guides
 

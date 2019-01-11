@@ -776,7 +776,7 @@ This API requires transaction hash and signature, and is tricky to be called dir
 
 <!-- 可能需要更新以下链接 -->
 
-We recommend users send transactions with our [CLI tools](http://developers.iost.io/docs/zh-CN/6-reference/API/iwallet-example).
+We recommend users send transactions with our [CLI tools](4-running-iost-node/iWallet.md).
 
 Developers may send transactions with [JavaScript SDK](https://github.com/iost-official/iost.js).
 
@@ -792,7 +792,7 @@ delay               |int64      |The nanoseconds of the transaction delay. Set t
 actions         |repeated Action    |Specific calls of the transaction
 amount\_limit   |repeated AmountLimit   |Limits on token of the transaction. More than one token limits may be specified; if the transaction exceeds theses limits, execution will halt.
 publisher           |string     |ID of the transaction publisher
-publisher\_sigs |repeated Signature |Signatures of the publisher, [as described here](/MISSING_URL_HERE). The publisher may provide multiple signatures for different permissions. Refer to documentations on the permission system.
+publisher\_sigs |repeated Signature |Signatures of the publisher, [as described here](/MISSING_URL_HERE.md). The publisher may provide multiple signatures for different permissions. Refer to documentations on the permission system.
 signers         |repeated string    |The IDs of signers other than the publisher. May be left empty.
 signatures      |repeated Signature |Signatures of the signers. Each signers should have one or many signatures, so the length of the signatures should not be less than that of the signers.
 

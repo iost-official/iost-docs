@@ -1,7 +1,8 @@
 ---
-id: Blockchain-class
+id: version-2.1.7-Blockchain-class
 title: Blockchain
 sidebar_label: Blockchain
+original_id: Blockchain-class
 ---
 
 This is the main class that interact with IOST blockchain and IOST smart contracts to get informations from them.
@@ -72,7 +73,7 @@ witness 				|String          | block producer witness
 time 					|String          | block timestamp
 gas_usage 				|String          | block gas usage
 tx_count 				|String          | transaction count
-transactions			|Array			 | array of [Transaction Object](Transaction-class#transaction-object)
+transactions			|Array			 | array of [Transaction Object](7-iost-js/Transaction-class.md#transaction-object)
 info 					|Object          | [Info Object](#info-object)
 
 #### AmountLimit Object

@@ -1,7 +1,7 @@
 set -x
-set -e
+#set -e
 LAN='zh-CN'
-V="2.1.6"
+V="2.1.7"
 for d in `ls versioned_docs/version-$V`;
 do
 	mkdir -p translated_docs/zh-CN/version-$V/$d

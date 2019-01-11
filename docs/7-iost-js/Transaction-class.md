@@ -23,7 +23,7 @@ Promise returns transaction object.
 Name             |Type       |Description 
 ----                |--         |--
 status 		|String          | transaction status
-transaction |Object 		 | [Transaction Object](Blockchain-class#transaction-object)
+transaction |Object 		 | [Transaction Object](7-iost-js/Blockchain-class.md#transaction-object)
 
 #### Transaction Object
 Name             |Type       |Description 

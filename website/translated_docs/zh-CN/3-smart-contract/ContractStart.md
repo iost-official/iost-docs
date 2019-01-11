@@ -53,7 +53,7 @@ iwallet -h
 ```
 ### 为iwallet导入初始账户```admin```
 
-为了完成测试，需要为iwallet导入秘钥，对应的秘钥在config/genesis.yml的admininfo字段当中
+为了完成测试，需要为iwallet导入私钥，对应的公钥在config/genesis.yml的admininfo字段当中
 ```
 iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
@@ -63,9 +63,8 @@ iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBW
 ## Hello world
 
 ### 准备代码
-首先准备一个JavaScript类
+首先准备一个JavaScript类, 例如：HelloWorld.js
 ```
-// HelloWorld.js
 class HelloWorld {
 	init() {} // 需要提供一个init函数，它将会在部署时被调用
     hello(someone) {
@@ -75,9 +74,8 @@ class HelloWorld {
 
 module.exports = HelloWorld;
 ```
-该智能合约包含一个接口，接收一个输入然后输出```hello, +输入```。为了让智能合约外部可以调用这个接口，需要准备abi文件
+该智能合约包含一个接口，接收一个输入然后输出```hello, +输入```。为了让智能合约外部可以调用这个接口，需要准备abi文件，例如：HelloWorld.abi
 ```
-// HelloWorld.abi
 {
   "lang": "javascript",
   "version": "1.0.0",

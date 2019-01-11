@@ -8,7 +8,7 @@ sidebar_label: Economic Contract
 ---
 
 GAS related contract, including pledging IOST for gas, unpleding, transferring GAS.      
-Details of economic model are introduced on [GAS economic model](../2-intro-of-iost/Economic-model/#gas奖励)。
+Details of economic model are introduced on [GAS economic model](2-intro-of-iost/Economic-model.md#gas奖励)。
 
 ### Info
 | contract_id | gas.iost |
@@ -46,7 +46,7 @@ undo pledge. IOST pledged earlier will be returned. minimum unpledging amount is
 #### transfer
 transfer GAS. minimum transferring amount is 1 IOST.   
 __Notice__: GAS obtained from pledgement cannot be transferred. Only `transferable GAS` can be transferred. Besides, `transferable GAS` after being transferred once will not be transferable any longer.      
-You can obtain transferable GAS from [transferable gas reward](../2-intro-of-iost/Economic-model/#流通gas奖励)
+You can obtain transferable GAS from [transferable gas reward](2-intro-of-iost/Economic-model.md#流通gas奖励)
 
 ##### Example
 \["user1","user2","100"\]: user1 transfers 100 GAS to user2
@@ -61,8 +61,8 @@ You can obtain transferable GAS from [transferable gas reward](../2-intro-of-ios
 ## ram.iost
 ---
 RAM related contract, including buying/selling/transferring.    
-Details of economic model are introduced on [RAM economic model](../2-intro-of-iost/Economic-model/#资源).  
-Buying/Selling RAM not too much, you can get price estimate in [RPC](../6-reference/API/#getraminfo). 
+Details of economic model are introduced on [RAM economic model](2-intro-of-iost/Economic-model.md#资源).  
+Buying/Selling RAM not too much, you can get price estimate in [RPC](6-reference/API.md#getraminfo). 
 
 ### Info
 | contract_id | ram.iost |

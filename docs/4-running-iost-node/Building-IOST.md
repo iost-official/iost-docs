@@ -18,6 +18,7 @@ Install on MacOS
 ```
 brew install git-lfs && git lfs install
 ```
+
 Install on Ubuntu
 ```
 # see also: https://github.com/git-lfs/git-lfs/wiki/Installation
