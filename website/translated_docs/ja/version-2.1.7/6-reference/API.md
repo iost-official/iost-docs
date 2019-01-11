@@ -1,5 +1,5 @@
 ---
-id: version-2.0.4-API
+id: version-2.1.7-API
 title: API
 sidebar_label: API
 original_id: API
@@ -44,10 +44,8 @@ curl http://127.0.0.1:30001/getNodeInfo
 
 キー             |型       |説明 
 ----                |--         |--
-|buildTime|'iserver'バイナリのビルド時間
-binary
-|gitHash|'iserver'バイナリのGitハッシュ
-|mode|サーバーの実行中モード。 'ModeInit'、'ModeNormal'、'ModeSync'のいずれか
+build\_time |string         |'server'バイナリのビルド時間git\_hash       |string     |'iserver'バイナリのGitハッシュ
+mode            |string     |サーバーの実行中モード。 'ModeInit'、'ModeNormal'、'ModeSync'のいずれか
 network     |[NetworkInfo](#network)|network|ノードのネットワーク情報
 
 ### NetworkInfo
@@ -304,8 +302,8 @@ curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4e
 ```
 
 キー                 |型       |説明 
-----                    |--         |--
-|TxReceipt|トランザクションのレシート
+----                |--         |--
+hash                |string|トランザクションのレシート
 
 ### レスポンス
 
@@ -673,7 +671,7 @@ curl http://127.0.0.1:30001/getContract/base.iost/true
 ----                    |--         |--
 id                      |string     |コントラクトID
 by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得、false: 不可逆ブロックからデータを取得
-
+ｖ
 
 ### レスポンス
 
@@ -783,7 +781,7 @@ APIはトランザクションハッシュと署名を必要とし、直接呼�
 
 開発者は[JavaScript SDK](https://github.com/iost-official/iost.js)を使ってください。
 
-### リクエストパラメータ
+### リクエスト Parameters
 
 キー                 |型       |説明 
 ----                    |--         |--
@@ -798,7 +796,6 @@ publisher           |string     |トランザクションパブリッシャーID
 publisher\_sigs |Signatureの繰り返し |[ここで説明してあるように](/MISSING_URL_HERE)パブリッシャーの署名。パブリッシャーは、それぞれのパーミッションに複数署名を提供できる。パーミッションシステムのドキュメントを参照
 signers         |stringの繰り返し    |パブリッシャーではない署名者のID。空白のままも可
 signatures      |Signatureの繰り返し |署名者の署名。各署名者は１つ以上の署名が必要で、署名の数は署名者より少なくてはいけない
-
 
 <!-- 上表中需要提供 URL -->
 
@@ -818,7 +815,7 @@ hash                |string     |トランザクションハッシュ
 
     アルゴリズムは、次のとおりです。宣言に従って、パラメータをバイト配列に変換し、次のようにエンコードし、項目ごとにセパレータとして<code>\`</code>を追加します。エンコード処理は、次のようになります。
     
-    型    |変換メソッド                          |例
+        型    |変換メソッド                          |例
     ---     |--------------                                 |--------------------
     int     |バイト配列にビッグエンディアンに変換 |int64(1023)は、\[0 0 0 0 0 0 3 255\]になる
     string  |文字列中の各文字をバイトに分ける    |"iost"ｊは、\[105 111 115 116\]になる
