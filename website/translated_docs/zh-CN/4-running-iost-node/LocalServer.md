@@ -5,7 +5,7 @@ sidebar_label: iServer
 ---
 
 ## Docker启动
-安装好[Docker](https://docs.docker.com/install/)之后，如下命令启动一个单节点测试网。
+安装好[Docker](https://docs.docker.com/install)之后，如下命令启动一个单节点测试网。
 
 ```
 docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
@@ -15,7 +15,7 @@ docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 ## Host启动
 
 
-[编译](Building-IOST)完成后, 如下命令启动
+[编译](4-running-iost-node/Building-IOST.md)完成后, 如下命令启动
 ```
 iserver -f ./config/iserver.yml
 ```

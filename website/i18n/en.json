@@ -41,13 +41,13 @@
         "title": "Vote",
         "sidebar_label": "Vote"
       },
-      "3-smart-contract/Generate-Receipt": {
-        "title": "Generate Receipt in Smart Contract",
-        "sidebar_label": "Generate Receipt in Smart Contract"
-      },
       "3-smart-contract/ContractStart": {
         "title": "Smart Contract Quick Start",
         "sidebar_label": "Smart Contract Quick Start"
+      },
+      "3-smart-contract/Generate-Receipt": {
+        "title": "Generate Receipt in Smart Contract",
+        "sidebar_label": "Generate Receipt in Smart Contract"
       },
       "3-smart-contract/How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
@@ -65,25 +65,25 @@
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "4-running-iost-node/Deployment": {
-        "title": "Join IOST Testnet",
-        "sidebar_label": "Join IOST Testnet"
-      },
       "4-running-iost-node/Building-IOST": {
         "title": "Build IOST",
         "sidebar_label": "Build IOST"
+      },
+      "4-running-iost-node/Deployment": {
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
       },
       "4-running-iost-node/Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "4-running-iost-node/LocalServer": {
-        "title": "Launch Local Server",
-        "sidebar_label": "Launch Local Server"
-      },
       "4-running-iost-node/iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
+      },
+      "4-running-iost-node/LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
       },
       "4-running-iost-node/Metrics": {
         "title": "Metrics",
@@ -491,6 +491,70 @@
       "version-2.1.6-TokenContract": {
         "title": "Token Contract",
         "sidebar_label": "Token Contract"
+      },
+      "version-2.1.7-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-2.1.7-Network-layer": {
+        "title": "Network layer",
+        "sidebar_label": "Network layer"
+      },
+      "version-2.1.7-Smart-contract": {
+        "title": "Smart Contract",
+        "sidebar_label": "Smart Contract"
+      },
+      "version-2.1.7-Generate-Receipt": {
+        "title": "Generate Receipt in Smart Contract",
+        "sidebar_label": "Generate Receipt in Smart Contract"
+      },
+      "version-2.1.7-How-to-write-a-smart-contract": {
+        "title": "How to Write a Smart Contract",
+        "sidebar_label": "How to Write a Smart Contract"
+      },
+      "version-2.1.7-Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
+      "version-2.1.7-Deployment": {
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
+      },
+      "version-2.1.7-Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
+      "version-2.1.7-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-2.1.7-LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
+      },
+      "version-2.1.7-Metrics": {
+        "title": "Metrics",
+        "sidebar_label": "Metrics"
+      },
+      "version-2.1.7-LuckyBet": {
+        "title": "LuckyBet Example",
+        "sidebar_label": "LuckyBet Example"
+      },
+      "version-2.1.7-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.1.7-EconContract": {
+        "title": "Economic Contract",
+        "sidebar_label": "Economic Contract"
+      },
+      "version-2.1.7-Blockchain-class": {
+        "title": "Blockchain",
+        "sidebar_label": "Blockchain"
+      },
+      "version-2.1.7-Transaction-class": {
+        "title": "Transaction",
+        "sidebar_label": "Transaction"
       }
     },
     "links": {

@@ -8,10 +8,10 @@ sidebar_label: Step-by-Step Commands to Deploy and Run
 
 
 ## 步骤一 启动网络
-首先[启动本地节点](../4-running-iost-node/LocalServer)。   
+首先[启动本地节点](4-running-iost-node/LocalServer.md)。   
 
 ## 步骤二 安装命令行工具
-按照[编译文档](../4-running-iost-node/Building-IOST) 来编译安装命令行工具。
+按照[编译文档](4-running-iost-node/Building-IOST.md) 来编译安装命令行工具。
 
 ## 步骤三 部署运行智能合约
 ```shell

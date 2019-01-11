@@ -7,10 +7,10 @@ The tutorial is designed to demonstrate smart contract coding and deployment.
 It will give you instructions to deploy one IOST node locally(just for development, not connecting to the actual chain). Then a smart contract(a gambling game named 'Lucky Bet') will be deployed onto the node.
 
 ## Step1: Run Local Server
-You should [launch a local server](../4-running-iost-node/LocalServer) firstly.   
+You should [launch a local server](4-running-iost-node/LocalServer.md) firstly.   
 
 ## Step2: Install iWallet
-You should follow [this documentation](../4-running-iost-node/Building-IOST) to build IOST then.
+You should follow [this documentation](4-running-iost-node/Building-IOST.md) to build IOST then.
 
 ## Step3: Deploy and Run the Smart Contract
 ```shell
