@@ -1,7 +1,8 @@
 ---
-id: SystemContract
+id: version-2.1.6-SystemContract
 title: System Contract
 sidebar_label: System Contract
+original_id: SystemContract
 ---
 
 ## vote_producer.iost
@@ -306,7 +307,7 @@ sidebar_label: System Contract
 | 用户名 | string |
 | 组名 | string |
 
-#### DropGroup
+#### DropPermission
 删除权限组
 
 | 参数列表 | 参数类型 |

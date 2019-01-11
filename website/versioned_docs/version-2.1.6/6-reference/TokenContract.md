@@ -1,7 +1,8 @@
 ---
-id: TokenContract
+id: version-2.1.6-TokenContract
 title: Token Contract
 sidebar_label: Token Contract
+original_id: TokenContract
 ---
 
 ## token.iost
@@ -110,7 +111,7 @@ amount 金额为字符串类型, 可以是整数或小数, 如 "100", "1.22" 都
 
 | 返回值 | 类型 |
 | :----: | :------ |
-| 账户余额 | string |
+| 账户余额 | number |
 
 #### supply (tokenSym)
 获取代币发行量,即已经issue且没有destroy的代币总额.
@@ -121,7 +122,7 @@ amount 金额为字符串类型, 可以是整数或小数, 如 "100", "1.22" 都
 
 | 返回值 | 类型 |
 | :----: | :------ |
-| 发行量 | string |
+| 发行量 | number |
 
 #### totalSupply(tokenSym)
 获取代币总发行量.
@@ -132,7 +133,7 @@ amount 金额为字符串类型, 可以是整数或小数, 如 "100", "1.22" 都
 
 | 返回值 | 类型 |
 | :----: | :------ |
-| 总发行量 | string |
+| 总发行量 | number |
 
 
 ## token721.iost
