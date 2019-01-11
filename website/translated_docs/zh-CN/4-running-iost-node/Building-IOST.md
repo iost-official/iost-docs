@@ -13,7 +13,10 @@ go version
 至少需要安装 Git LFS (v2.5.2)。
 
 MacOS安装
+```
 brew install git-lfs && git lfs install
+```
+
 Ubuntu安装
 ```
 # see also: https://github.com/git-lfs/git-lfs/wiki/Installation

@@ -53,7 +53,7 @@ iwallet -h
 ```
 ### 为iwallet导入初始账户```admin```
 
-为了完成测试，需要为iwallet导入秘钥，对应的秘钥在config/genesis.yml的admininfo字段当中
+为了完成测试，需要为iwallet导入私钥，对应的公钥在config/genesis.yml的admininfo字段当中
 ```
 iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
