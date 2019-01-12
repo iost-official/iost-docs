@@ -28,6 +28,7 @@ Apply for registration to become a super node candidate.
 | Location | string |
 | Website url | string |
 | network id | string |
+| is producer | bool |
 
 #### applyUnregister
 Apply for cancellation.
