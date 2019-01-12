@@ -74,11 +74,11 @@ make test
 
 #### Mac OS X
 
-[Official Documents](https://docs.docker.com/docker-for-mac/install/)を参照してインストールしてください。
+[Official Documents](https://docs.docker.com/docker-for-mac/install)を参照してインストールしてください。
 
 #### Ubuntu/Linux
 
-[Official Documents](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) を参照してインストールしてください。
+[Official Documents](https://docs.docker.com/install/linux/docker-ce/ubuntu#install-using-the-repository) を参照してインストールしてください。
 
 ### コンパイルとユニットテスト
 

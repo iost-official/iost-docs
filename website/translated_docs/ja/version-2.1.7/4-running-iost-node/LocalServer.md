@@ -10,7 +10,7 @@ original_id: LocalServer
 Dockerを使ってIOSTサーバーを起動するのは簡単です。これが推奨されます。
 次のコマンドは、シングルモードのネイティブIOSTブロックチェーンサーバーを起動します。
 これをデバッグやテストに使用できます。
-[Docker CE 18.06以上](https://docs.docker.com/install/)が必要です。(古いバージョンはテストしていません)
+[Docker CE 18.06以上](https://docs.docker.com/install)が必要です。(古いバージョンはテストしていません)
 
 ```
 docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0

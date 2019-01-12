@@ -25,7 +25,7 @@ make build
 
 # 実行
 
-次のコマンドでローカルノードを起動してください。iServerの設定を[iServer](iServer)でチェックします。
+次のコマンドでローカルノードを起動してください。iServerの設定を[iServer](iServer.md)でチェックします。
 
 ```
 ./target/iserver -f config/iserver.yml

@@ -9,7 +9,7 @@ original_id: Environment-Configuration
 
 * Go 1.9 以上 (Go 1.11 推奨)
 * `git-lfs` (v2.5.2 推奨)
-* [Docker CE 18.06以上](https://docs.docker.com/install/) (旧バージョンはテストしていません)
+* [Docker CE 18.06以上](https://docs.docker.com/install) (旧バージョンはテストしていません)
 
 現在のところ、開発には次の環境がテストされています。
 

@@ -75,7 +75,7 @@ witness 				|String          | ブロックプロデューサー
 time 					|String          | ブロックのタイムスタンプ
 gas_usage 				|String          | ブロックのGAS使用量
 tx_count 				|String          | トランザクション数
-transactions			|Array			 | [Transactionオブジェクト](Transaction-class#transaction-object)の配列
+transactions			|Array			 | [Transactionオブジェクト](Transaction-class.md#transaction-object)の配列
 info 					|Object          | [Infoオブジェクト](#info-object)
 
 #### AmountLimitオブジェクト

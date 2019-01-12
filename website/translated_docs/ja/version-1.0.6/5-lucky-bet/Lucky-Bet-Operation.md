@@ -8,7 +8,7 @@ original_id: Lucky-Bet-Operation
 ## 環境設定
 ### Go言語のインストール
 ```shell
-wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.11.linux-64.tar.gz
 # untar to /usr/local/go 
 sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
 echo 'export GOROOT=/usr/local/go' >> ~/.bashrc
@@ -18,7 +18,7 @@ source ~/.bashrc
 go version # You will see "go version go1.11 linux/amd64".
 ```
 ### Dockerのインストール  
-Have a look at [official steps](https://docs.docker.com/install/linux/docker-ce/ubuntu/). After installing, running 'docker run hello-world', you will see the following output：
+Have a look at [official steps](https://docs.docker.com/install/linux/docker-ce/ubuntu). After installing, running 'docker run hello-world', you will see the following output：
 ![docker_output](assets/5-lucky-bet/Lucky-Bet-Operation/docker_output.png)
 ## IOSTのビルド
 ```shell

@@ -53,11 +53,11 @@ module.exports = Contract;
 ### トランザクションハッシュを使ったレシートの照会
 特定のトランザクションにより生成されたレシートは、RPCインターフェースを通して、トランザクションハッシュにより照会することができます。
 
-[/getTxReceiptByHash](../6-reference/API#gettxreceiptbyhash-hash)を参照してください。
+[/getTxReceiptByHash](6-reference/API.md#gettxreceiptbyhash-hash)を参照してください。
 
 
 ### ブロックデータによるレシートの照会
 完全なブロックデータは、すべてのトランザクションとレシートを含んでいます。ブロックデータをダウンロードして解析することで、ブロック内で生成されたすべてのレシートを取得することができます。
 
-[ /getBlockByHash](../6-reference/API#getblockbyhash-hash-complete)と[/getBlockByNumber](../6-reference/API#getblockbynumber-number-complete)を参照して、リクエストパラメータ内の`complete`を`true`にしてください。
+[ /getBlockByHash](6-reference/API.md#getblockbyhash-hash-complete)と[/getBlockByNumber](6-reference/API.md#getblockbynumber-number-complete)を参照して、リクエストパラメータ内の`complete`を`true`にしてください。
 

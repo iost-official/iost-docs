@@ -79,7 +79,7 @@ module.exports = helloContract;
 
 ### コントラクトのデプロイ
 
-[デプロイと呼び出し](../3-smart-contract/Deployment-and-invocation)を参照してください。
+[デプロイと呼び出し](3-smart-contract/Deployment-and-invocation.md)を参照してください。
 
 RContractHDnNufJLz8YTfY3rQYUFDDxo6AN9F5bRKa2p2LUdqWVWのようなコントラクトIDをメモしてください。
 

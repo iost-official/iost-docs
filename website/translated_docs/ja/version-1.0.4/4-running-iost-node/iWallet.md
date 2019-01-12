@@ -105,4 +105,4 @@ txRaw:<time:1537540108548894481 expiration:1537540158548891677 gasLimit:1000 gas
 
 ### compile/publish/sign:
 
-[デプロイと呼び出し](../3-smart-contract/Deployment-and-invocation)を参照してください。
+[デプロイと呼び出し](3-smart-contract/Deployment-and-invocation.md)を参照してください。

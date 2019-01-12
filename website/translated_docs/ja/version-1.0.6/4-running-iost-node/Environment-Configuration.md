@@ -74,11 +74,11 @@ make test
 
 #### Mac OS X
 
-Refer to [Official Documents](https://docs.docker.com/docker-for-mac/install/) to install on Mac OS X.
+Refer to [Official Documents](https://docs.docker.com/docker-for-mac/install) to install on Mac OS X.
 
 #### Ubuntu/Linux
 
-Refer to [Official Documents](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) to install on Ubuntu.
+Refer to [Official Documents](https://docs.docker.com/install/linux/docker-ce/ubuntu#install-using-the-repository) to install on Ubuntu.
 
 ### コンパイルとユニットテスト
 

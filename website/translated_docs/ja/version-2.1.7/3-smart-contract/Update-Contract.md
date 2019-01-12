@@ -47,7 +47,7 @@ module.exports = helloContract;
 
 ### コントラクトのパブリッシュ
 
-[コントラクトのパブリッシュ](../4-running-iost-node/iWallet#publish-contract)を参照してください。
+[コントラクトのパブリッシュ](4-running-iost-node/iWallet.md#publish-contract)を参照してください。
 ```
 $ export IOST_ACCOUNT=admin # replace with your own account name here
 $ iwallet compile hello.js

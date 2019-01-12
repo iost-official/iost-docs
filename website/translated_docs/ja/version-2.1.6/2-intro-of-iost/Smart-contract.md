@@ -62,7 +62,7 @@ IOSTのスマートコントラクトエンジンは、モニター、VM、ホ�
 
 ## 呼び出しの結果
 
-実行後、スマートコントラクトは、ブロック内に`TxReceipt`を生成し、合意を求めます。[RPC](../6-reference/API#gettxreceiptbytxhash-hash)を使って、オンチェーンtランザクションのTxReceiptsを追跡することができます。
+実行後、スマートコントラクトは、ブロック内に`TxReceipt`を生成し、合意を求めます。[RPC](6-reference/API.md#gettxreceiptbytxhash-hash)を使って、オンチェーンtランザクションのTxReceiptsを追跡することができます。
 
 
 

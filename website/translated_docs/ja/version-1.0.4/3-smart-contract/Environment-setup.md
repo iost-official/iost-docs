@@ -19,7 +19,7 @@ git clone https://github.com/iost-official/go-iost.git
 
 ## ```Node```のインストール
 
-Please refer to [公式ドキュメント](https://nodejs.org/zh-cn/download/package-manager/#macos)
+Please refer to [公式ドキュメント](https://nodejs.org/zh-cn/download/package-manager#macos)
 
 ## ```npm```のインストール
 

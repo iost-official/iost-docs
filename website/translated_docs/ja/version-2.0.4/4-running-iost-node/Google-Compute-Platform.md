@@ -63,7 +63,7 @@ Computeメニューで、仮想マシン(VM)を作成できます。仮想マシ
 Managementタブから、Automationスクリプトが作成できます。これを使うと作業の一部を自動化できます。詳細については、
 https://cloud.google.com/compute/docs/startupscript を参照してください。
 
-このスクリプトの派生元については、[CentOSでのDockerによるデプロイ](Deployment-Docker-Centos)を参照してください。
+このスクリプトの派生元については、[CentOSでのDockerによるデプロイ](Deployment-Docker-Centos.md)を参照してください。
 
 このスクリプトは、データディスクもアタッチしようとしますので気をつけてください。このスクリプトはすく数回実行できるようにはなっていませんので、最初の初期化後に、**削除**してください。 
 

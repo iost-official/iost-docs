@@ -8,10 +8,10 @@ original_id: iWallet
 iwalletは、IOSTはブロックチェーンのコマンドラインツールです。
 このツールで、ブロックチェーンに接続し、送金したり、アカウントを作成したり、残高を確認したり、コントラクトを呼び出したりできます。
 
-iwalletと[API](../6-reference/API)は、RPC APIを内部で使っています。それは同様の機能を持っています。
+iwalletと[API](6-reference/API.md)は、RPC APIを内部で使っています。それは同様の機能を持っています。
   
 ## ビルド
-最初に、[IOSTをビルド](Building-IOST)する必要があります。
+最初に、[IOSTをビルド](Building-IOST.md)する必要があります。
 ブロックチェーンにコントラクトをパブリッシュしたいなら、Node.jsとnpmをインストールし、次のコマンドを実行します。
 コントラクトをパブリッシュしないのなら、次のステップは省略できます。
 ``` 
@@ -22,8 +22,8 @@ npm install
 ## 基本機能
 ### アカウント情報の照会
 iwalletで、残高、RAM,GASなどのアカウント情報を調べることができます。
-出力形式は、[getAccountInfo API](../6-reference/API#getaccount-name-by-longest-chain)と同じです。
-コマンドの`--server`フラグには、リモートIOSTサーバーを指定します。もし、[ローカルでサーバーを起動](LocalServer)するなら、フラグなしでデフォルト値を使用できます(localhost:30002)。 
+出力形式は、[getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain)と同じです。
+コマンドの`--server`フラグには、リモートIOSTサーバーを指定します。もし、[ローカルでサーバーを起動](LocalServer.md)するなら、フラグなしでデフォルト値を使用できます(localhost:30002)。 
 
 ```
 iwallet --server 127.0.0.1:30002 balance xxxx
@@ -58,7 +58,7 @@ iwallet --server 127.0.0.1:30002 balance xxxx
 }
 ```
 ### ブロックチェーン情報の照会
-ブロックチェーンとサーバーノードの情報を照会します。出力は、[getNodeInfo](../6-reference/API#getnodeinfo)と[getChainInfo](../6-reference/API#getchaininfo)を合わせたものになります。
+ブロックチェーンとサーバーノードの情報を照会します。出力は、[getNodeInfo](6-reference/API.md#getnodeinfo)と[getChainInfo](6-reference/API.md#getchaininfo)を合わせたものになります。
 
 ```
 iwallet --server 127.0.0.1:30002 state
@@ -206,7 +206,7 @@ iwallet block --method hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
 ```
 ### トランザクション情報の照会
 #### トランザクションの詳細の取得
-`transaction`は、[getTxByHash API](../6-reference/API#gettxbyhash-hash])と同じです。
+`transaction`は、[getTxByHash API](6-reference/API.md#gettxbyhash-hash])と同じです。
 
 ```
 iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
@@ -229,7 +229,7 @@ iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
 # 
 ```
 #### トランザクションハッシュによるトランザクションレシートの取得
-`receipt`は、[getTxReceiptByTxHash API](../6-reference/API#gettxreceiptbytxhash-hash)と同じです。
+`receipt`は、[getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash)と同じです。
 
 ```
 iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx

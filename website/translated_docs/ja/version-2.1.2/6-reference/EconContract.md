@@ -10,7 +10,7 @@ original_id: EconContract
 
 ### 简介
 质押获取 GAS 相关的合约。包括质押 IOST 获得 GAS，取消质押，转让 GAS。   
-具体经济模型细节可以参考 [GAS经济模型](../2-intro-of-iost/Economic-model/#gas奖励)。
+具体经济模型细节可以参考 [GAS经济模型](2-intro-of-iost/Economic-model.md#gas奖励)。
 
 ### 基础信息
 | contract_id | gas.iost |
@@ -48,7 +48,7 @@ original_id: EconContract
 #### transfer
 转让 GAS。最小转让单位为 100 GAS。   
 注意，质押获得的 GAS 不能转让。只有流通 GAS 才可以转让。流通 GAS 转让一次后，不再可流通。   
-流通 GAS 的获得方法见 [流通gas奖励](../Economic-model/#流通gas奖励)
+流通 GAS 的获得方法见 [流通gas奖励](../Economic-model.md#流通gas奖励)
 
 ##### 举例
 \["user1","user2","100"\]: user1 把自己的 100 个流通 GAS 转让给 user2。
@@ -64,8 +64,8 @@ original_id: EconContract
 ---
 ### 简介
 RAM相关的系统合约。包括 RAM 买卖，RAM 转让。   
-具体经济模型细节可以参考 [RAM经济模型](../Economic-model/#资源)。
-买卖少量 RAM 时，用户可以使用 [RPC 中的接口](../6-reference/API/#getraminfo) 来估算最终的价格。 
+具体经济模型细节可以参考 [RAM经济模型](../Economic-model.md#资源)。
+买卖少量 RAM 时，用户可以使用 [RPC 中的接口](6-reference/API.md#getraminfo) 来估算最终的价格。 
 
 ### 基础信息
 | contract_id | ram.iost |

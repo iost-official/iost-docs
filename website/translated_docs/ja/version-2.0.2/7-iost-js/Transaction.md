@@ -25,7 +25,7 @@ hash 		|String          | Base58エンコードしたトランザクションハ
 名前             |型       |説明 
 ----                |--         |--
 status 		|String          | トランザクションステータス
-transaction |Object 		 | [Transactionオブジェクト](Blockchain-class#transaction-object)
+transaction |Object 		 | [Transactionオブジェクト](Blockchain-class.md#transaction-object)
 
 #### Transactionオブジェクト
 名前             |型       |説明

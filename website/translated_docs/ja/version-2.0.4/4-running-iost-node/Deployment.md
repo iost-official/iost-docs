@@ -12,8 +12,8 @@ IOSTノードをデプロイするには、Dockerを使います。
 
 ## 前提条件
 
-- [Docker CE 18.06以上](https://docs.docker.com/install/) (旧バージョンはテストしていません)
-- (オプション) [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker CE 18.06以上](https://docs.docker.com/install) (旧バージョンはテストしていません)
+- (オプション) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## ジェネシスの設定と[iServer](./iServer.md)
 

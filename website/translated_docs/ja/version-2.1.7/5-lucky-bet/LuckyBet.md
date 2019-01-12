@@ -9,10 +9,10 @@ original_id: LuckyBet
 それにより、スマートコントラクト('Lucky Bet'という名前のギャンブルゲーム)がノードにデプロイされます。
 
 ## ステップ1: ローカルサーバーの実行
-最初に[ローカールサーバーを起動](../4-running-iost-node/LocalServer)します。
+最初に[ローカールサーバーを起動](4-running-iost-node/LocalServer.md)します。
 
 ## ステップ2: iWalletのインストール
-[このドキュメント](../4-running-iost-node/Building-IOST)に従って、IOSTをビルドします。
+[このドキュメント](4-running-iost-node/Building-IOST.md)に従って、IOSTをビルドします。
 
 ## ステップ3: スマートコントラクトのデプロイと実行
 ```shell

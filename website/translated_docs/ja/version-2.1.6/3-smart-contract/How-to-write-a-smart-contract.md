@@ -13,7 +13,7 @@ original_id: How-to-write-a-smart-contract
 
 ### 実行環境
 
-IOSTはコントラクトの実行のために[Chrome V8](https://developers.google.com/v8/)エンジンを内部で使っています。
+IOSTはコントラクトの実行のために[Chrome V8](https://developers.google.com/v8)エンジンを内部で使っています。
 
 ## スマートコントラクトプログラミングガイド
 

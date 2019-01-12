@@ -5,18 +5,18 @@ sidebar_label: IOSTテストネットへの参加
 original_id: Deployment
 ---
 
-このドキュメントで、IOSTテストネットへ接続するサーバーをセットアップする方法を紹介します。デバッグやテストのためにローカルシングルサーバブロックチェーンネットをセットアップしたいだけなら、[ローカルサーバーの起動](LocalServer)を参照してください。
+このドキュメントで、IOSTテストネットへ接続するサーバーをセットアップする方法を紹介します。デバッグやテストのためにローカルシングルサーバブロックチェーンネットをセットアップしたいだけなら、[ローカルサーバーの起動](LocalServer.md)を参照してください。
 
 IOSTノードをデプロイするために、ここではDockerを使用しています。
 
 ## 前提条件
 
-- [Docker CE 18.06以上](https://docs.docker.com/install/) (旧バージョンはテストしていません)
-- (オプション) [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker CE 18.06以上](https://docs.docker.com/install) (旧バージョンはテストしていません)
+- (オプション) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## 設定ファイルの準備
 
-iServerについては、[こちら](/4-running-iost-node/iServer/)を参照してください。
+iServerについては、[こちら](/4-running-iost-node/iServer.md)を参照してください。
 
 最初に設定テンプレートを取得します。
 

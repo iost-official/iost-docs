@@ -9,7 +9,7 @@ original_id: EconContract
 ---
 
 GASのプレッジ、解約、転送を含むGAS関連のコントラクトです。
-経済モデルの詳細は、[GASの経済モデル](../2-intro-of-iost/Economic-model/#gas奖励)を参照してください。
+経済モデルの詳細は、[GASの経済モデル](2-intro-of-iost/Economic-model.md#gas奖励)を参照してください。
 
 ### 情報
 | コントラクトID | gas.iost |
@@ -48,7 +48,7 @@ IOSTのGASのプレッジ。最小のプレッジ量は1IOSTです。
 #### transfer
 GASの転送。最小転送量は1IOST。
 __注意__: プレッジから得たGASは転送できません。`transferable GAS`だけが、転送できます。ですから、一度転送した後の`transferable GAS`は、もう転送できません。
-転送可能GASは、[transferable gas reward]から取得できます。(../2-intro-of-iost/Economic-model/#流通gas奖励)
+転送可能GASは、[transferable gas reward]から取得できます。(2-intro-of-iost/Economic-model/#流通gas奖励)
 
 #### 例
 \["user1","user2","100"\]: user1は、100GASをuser2に転送します。
@@ -64,8 +64,8 @@ __注意__: プレッジから得たGASは転送できません。`transferable 
 ---
 売買や転送を含むコントラクト関係のRAMです。
    
-経済モデルの詳細は、[RAMの経済モデル](../2-intro-of-iost/Economic-model/#资源)で紹介されています。
-RAMの売買は多すぎず、[RPC](../6-reference/API/#getraminfo)で見積価格を取得できます。
+経済モデルの詳細は、[RAMの経済モデル](2-intro-of-iost/Economic-model.md#资源)で紹介されています。
+RAMの売買は多すぎず、[RPC](6-reference/API.md#getraminfo)で見積価格を取得できます。
 
 ### 情報
 | コントラクト | ram.iost |
