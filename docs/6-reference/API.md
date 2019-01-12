@@ -803,7 +803,7 @@ signers         |repeated string    |The IDs of signers other than the publisher
 signatures      |repeated Signature |Signatures of the signers. Each signers should have one or many signatures, so the length of the signatures should not be less than that of the signers.
 
 <!-- 上表中需要提供 URL -->
-G
+
 ### Signature
 
 Key                 |Type       |Description 
