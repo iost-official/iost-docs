@@ -28,6 +28,7 @@ sidebar_label: System Contract
 | 地理位置| string |
 | 网站 url | string |
 | 网络 id | string |
+| 是否申请成为正式节点 | bool |
 
 #### ApplyUnregister
 申请取消注册。
