@@ -1,7 +1,8 @@
 ---
-id: Deployment
+id: version-2.1.7-Deployment
 title: Join IOST Testnet
 sidebar_label: Join IOST Testnet
+original_id: Deployment
 ---
 
 The documentation introduces how to setup a running server connecting to IOST testnet, if you just want to setup a local single-server blockchain net for debugging/testing, you may better refer to [Launch Local Server](4-running-iost-node/LocalServer.md)   
