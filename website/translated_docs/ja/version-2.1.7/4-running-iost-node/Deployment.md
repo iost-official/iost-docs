@@ -1,21 +1,22 @@
 ---
-id: version-2.1.0-Deployment
-title: デプロイ
-sidebar_label: デプロイ
+id: version-2.1.7-Deployment
+title: IOSTテストネットへの参加
+sidebar_label: IOSTテストネットへの参加
 original_id: Deployment
 ---
 
-IOSTノードをデプロイするには、Dockerを使います。
+このドキュメントで、IOSTテストネットへ接続するサーバーをセットアップする方法を紹介します。デバッグやテストのためにローカルシングルサーバブロックチェーンネットをセットアップしたいだけなら、[ローカルサーバーの起動](LocalServer)を参照してください。
 
-そうでなくて、ネイティブバイナリを実行することもできます。
-[ここ](Environment-Configuration.md)をチェックしてください。
+IOSTノードをデプロイするために、ここではDockerを使用しています。
 
 ## 前提条件
 
 - [Docker CE 18.06以上](https://docs.docker.com/install/) (旧バージョンはテストしていません)
 - (オプション) [Docker Compose](https://docs.docker.com/compose/install/)
 
-## ジェネシスの設定と[iServer](./iServer.md)
+## 設定ファイルの準備
+
+iServerについては、[こちら](/4-running-iost-node/iServer/)を参照してください。
 
 最初に設定テンプレートを取得します。
 
@@ -106,16 +107,9 @@ p2p:
 | node-7 | London | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | Paris  | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
 
-### iServerの実行
+### ノードの開始
 
-更新した設定でiServerを実行してテストネットへ接続してください。
-
-```
-docker run -d iostio/iost-node:2.1.0
-```
-
-データボリュームをマウントして、次のようにポートを公開する必要があります。
-
+次のコマンドでノードを開始します。
 ```
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 ```
@@ -136,6 +130,7 @@ services:
     volumes:
       - /data/iserver:/var/lib/iserver
 ```
+
 次のようにノーを起動してください。
 
 `docker-compose up -d`
@@ -148,10 +143,14 @@ services:
 
 ログファイルは、`/data/iserver/logs/iost.log`にあります。増加する`confirmed`は、ブロックデータの同期が進んでいっていることを示しています。
 
-`iwallet`を使って、次のように状態をチェックすることもできます。
+Docker内の`iwallet`を使って、次のように状態をチェックすることもできます。
 
-`docker-compose exec iserver ./iwallet state`
+```
+docker-compose exec iserver ./iwallet state
+```
 
-`-s`とシードノードのIPで、最新のブロックチェーン情報を取得できます。
+`-s`とシードノードのIPで、ノードの最新のブロックチェーン情報を取得できます。
 
-`docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state`
+```
+docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state
+```
