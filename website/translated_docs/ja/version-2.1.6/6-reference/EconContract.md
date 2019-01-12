@@ -1,7 +1,7 @@
 ---
 id: version-2.1.6-EconContract
-title: Economicコントラクト
-sidebar_label: Economicコントラクト
+title: コントラクトの経済
+sidebar_label: コントラクトの経済
 original_id: EconContract
 ---
 

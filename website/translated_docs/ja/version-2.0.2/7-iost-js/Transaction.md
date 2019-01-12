@@ -58,7 +58,8 @@ value 			|Number 		 | 上限値
 ----                |--         |--
 tx_hash 			|String          | トランザクションハッシュ
 gas_usage 			|Number 		 | GAS使用量
-ram_usage 		|Map          | RAM使用量status_code 		|String          | ステータスコード
+ram_usage 		|Map          | RAM使用量
+status_code 		|String          | ステータスコード
 message  		|String          | メッセージ
 returns 			|Array          | トランザクションの戻り値配列
 receipts 		|Array           | [Receiptオブジェクト](#receipt-object)配列

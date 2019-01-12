@@ -176,7 +176,6 @@ active permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
 ```
 ### コントラクトのパブリッシュ
 Javascriptのコントラクトをパブリッシュするためには、最初にABIファイルを生成します。次のステップでJavaScriptファイルとABIファイルをブロックチェーンにパブリッシュします。
-To publish javascript contract, first step is to generate abi file, second step is to publish javascript file and abi file onto blockchain.   
 #### ABIの生成
 Node.jsがインストールされていることを確認して、iwallet/contractフォルダ内で、`npm install`を実行します。
 

@@ -141,4 +141,4 @@ rpc.transaction.getTxByHash("5YdA8qPq5N6W47rZV4u31FdbQzeMt2QX9KGj4uPyERZa").then
 ```
 
 ## sendTx
-send transaction to IOST blockchain
+IOSTブロックチェーンにトランザクションを送信します。
