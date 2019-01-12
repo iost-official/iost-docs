@@ -10,6 +10,7 @@ Transactionクラスは、IOSTブロックチェーンやIOSTのスマートコ�
 constructorメソッドは、特殊なメソッドで、Transactionクラスを作成し、初期化します。
 ユーザは初期化<b>する必要はありません</b>。ユーザはrpc.transactionでTransactionクラスを使えます。
 
+## getTxByHash
 ブロックチェーンからハッシュを取得します。
 
 ### パラメータ
@@ -31,16 +32,15 @@ transaction |Object 		 | [Transactionオブジェクト](Blockchain-class.md#tra
 hash 			|String          | トランザクションハッシュ
 time 			|Number 		 | トランザクションのタイムスタンプ
 expiration 		|Number          | 有効期限gas_ratio 		|Number          | GAS比率gas_limit  		|Number          | GAS上限delay 			|Number          | 遅延時間(ナノ秒)
-gas_ratio 		|Number          | GASの割合
-gas_limit  		|Number          | 使用するGASの上限
-delay 			|Number          | delay nanoseconds
+gas_ratio              |Number          | GASの割合
+gas_limit              |Number          | 使用するGASの上限
+delay                  |Number          | delay nanoseconds
 actions 		|Array           | [Actionオブジェクト](#action-object)配列
 signers 		|Array           | 署名者の配列
 publisher 		|String          | トランザクションパブリッシャー
 referred_tx 	|String          | 参照トランザクションハッシュ
 amount_limit	|Array			 | [AmountLimitオブジェクト](#amountlimit-object)配列
 tx_receipt 		|Object          | [TxReceiptオブジェクト](#txreceipt-object)
-
 
 #### Actionオブジェクト
 名前             |型       |説明 
@@ -102,6 +102,7 @@ rpc.transaction.getTxByHash("5YdA8qPq5N6W47rZV4u31FdbQzeMt2QX9KGj4uPyERZa").then
 }*/
 ```
 
+## getTxReceiptByTxHash
 トランザクションハッシュからトランザクションを取得します。
 
 ### パラメータ

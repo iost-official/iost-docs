@@ -131,6 +131,9 @@
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
+      "assets/mainnet/README": {
+        "title": "assets/mainnet/README"
+      },
       "md-example": {
         "title": "Markdown example",
         "sidebar_label": "Markdown example"
@@ -554,6 +557,21 @@
       "version-2.1.7-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
+      },
+      "version-2.2.0-ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-2.2.0-Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
+      },
+      "version-2.2.0-SystemContract": {
+        "title": "SystemContract"
+      },
+      "version-2.2.0-TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
       }
     },
     "links": {

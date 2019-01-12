@@ -10,7 +10,8 @@ IOSTクラスは、IOSTブロックチェーンに送信するトランザクシ
 constructorメソッドは、特殊なメソッドで、IOSTクラスを作成し、初期化します。
 
 ### パラメータ
-名前             |型       |説明 
+
+名前                 |型       |説明 
 ----                |--         |--
 config |Object         | IOSTクラスの設定、詳細は次の通り。<br/> <b>gasRatio:</b> トランザクションのGAS代<br/> <b>gasLimit:</b> トランザクションのGAS上限<br/> <b>expiration:</b> トランザクションの有効期限(秒)
 

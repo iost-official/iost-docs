@@ -90,7 +90,7 @@ mode 					|Number          | パックモード
 thread 				|Number 		 | トランザクション実行中スレッド番号
 batch_index 			|Array          | 各バッチ実行のトランザクションインデックス
 
-### Example
+### 例
 ```javascript
 const rpc = new IOST.RPC(new IOST.HTTPProvider('http://127.0.0.1:30001'));
 rpc.blockchain.getBlockByNum(1, true).then(console.log);
@@ -287,7 +287,7 @@ language 	|String 		 | コントラクト使用言語
 version 	|String 		 | コントラクトのバージョン
 abis | Array | [ABIオブジェクト](#abi-object)の配列
 
-#### ABI Object
+#### ABIオブジェクト
 名前             |型       |説明 
 ----                |--         |--
 name 			|String          | コントラクトID
@@ -320,7 +320,6 @@ data 		|String          | データ
 ----                |--         |--
 anme 		|String          | アカウント名
 by_longest_chain 	|Boolean 		 | 最長のチェーンの先頭ブロック、または最終不可逆ブロックによるアカウントか
-
 
 ### 戻り値
 アカウント情報を返すPromise。

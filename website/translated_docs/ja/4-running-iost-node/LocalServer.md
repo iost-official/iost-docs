@@ -18,7 +18,7 @@ docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 
 ## IOSTサーバーをネイティブで起動
 
-[IOSTをビルド](4-running-iost-node/Building-IOST.md.md),した後、サーバーを実行できます。
+[IOSTをビルド](4-running-iost-node/Building-IOST.md),した後、サーバーを実行できます。
 ```
 iserver -f ./config/iserver.yml
 ```
