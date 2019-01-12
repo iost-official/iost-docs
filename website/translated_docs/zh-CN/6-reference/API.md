@@ -85,6 +85,7 @@ curl http://127.0.0.1:30001/getChainInfo
 {
 	"net_name": "debugnet",
 	"protocol_version": "1.0",
+	"chain_id": 1024,
 	"head_block": "16041",
 	"head_block_hash": "DLJVtko6nQnAdvQ7y6dXHo3WMdG324yRLz8tPKk9tGHu",
 	"lib_block": "16028",
@@ -97,6 +98,7 @@ curl http://127.0.0.1:30001/getChainInfo
 | :----: | :-----: | :------ |
 | net_name |string  | 网络名字，例如mainnet或testnet|
 | protocol_version |string  | iost协议版本 |
+| chain_id | uint32  | 网络 ID |
 | head_block |int64  | 最新块的块号 |
 | head\_block\_hash | string  | 最新块的hash |
 | lib_block |int64  | 不可逆块的高度 |
@@ -202,6 +204,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 		"gas_ratio": 1,
 		"gas_limit": 50000,
 		"delay": "0",
+		"chain_id": 1024,
 		"actions": [{
 			"contract": "ContractTBv8ZDKUhTyeS4MomdcHRrXnJMELa5usSMHP6QJntFQ",
 			"action_name": "transfer",
@@ -230,6 +233,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 | gas_ratio |double  | Gas费率，建议设置成1(1.00 ~ 100.00)，可以通过提高费率来让交易更容易被打包 |
 | gas_limit | double  | Gas上限,执行交易所消耗的Gas不会超过这个上限 |
 | delay | int64  | 延迟时间，交易会在延迟时间之后被执行，单位纳秒 |
+| chain_id | uint32  | 网络 ID |
 | actions |repeated [Action](#action)  | 交易的最小执行单元 |
 | signers |repeated string  | 交易的签名列表 |
 | publisher |string  | 交易提交者,承担交易的执行费用 |
@@ -486,7 +490,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 	"permissions": {
 		"active": {
 			"name": "active",
-			"groups": [],
+			"group_names": [],
 			"items": [{
 				"id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
 				"is_key_pair": true,
@@ -497,7 +501,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 		},
 		"owner": {
 			"name": "owner",
-			"groups": [],
+			"group_names": [],
 			"items": [{
 				"id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
 				"is_key_pair": true,
@@ -549,7 +553,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | 字段 | 类型 | 描述 |
 | :----: | :--------: | :------ |
 | name | string  | 	权限名字|
-| groups | repeated string   | 权限组|
+| group_names | repeated string   | 权限组名字|
 | items | repeated [Item](#item)   | 权限信息|
 | threshold | int64  | 权限阈值|
 
@@ -738,6 +742,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 | gas_ratio | double | GAS倍率。本交易按照默认GAS的 gas_ratio 倍来支付费用。倍率越高，越会被优先执行。合理的取值范围是 [1.0, 100.0] |
 | gas_limit | double | 交易最大允许的GAS，最少设置为 50000 |
 | delay | int64 | 延迟交易中使用。延迟执行的纳秒数。非延迟交易设为0 | 
+| chain_id | uint32 | 网络 ID |
 | actions | repeated [Action](#action) | 交易中的具体调用 | 
 | amount_limit | repeated [AmountLimit](#amountlimit) | 交易的 token 限制。可以指定多种 token 和对应的数量限制。如果交易超过这些限制，则执行失败 | 
 | publisher | string | 交易发送者的 ID | 
@@ -760,30 +765,29 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 
 * **交易结构体转字节数组**
 
-	交易结构体转字节数组算法为，将交易的每个字段按照声明顺序转成字节数组并转义后，在每一项前面添加分隔符``` ` ```，并拼接。各种字段类型转成字节数组的方式见下表：  
+	交易结构体转字节数组算法为，将交易的每个字段按照声明顺序转成字节数组，然后在不定长类型（比如 string 和结构体）前加上长度，并拼接。各种字段类型转成字节数组的方式见下表：  
 	
 	| 字段类型 | 转换方法 | 示例 |
 	| :----: | :-----: | :------ |
 	| int | 按照**大端序**转成字节数组 | 如 int64(1023) 对应的字节数组为 [0 0 0 0 0 0 3 255] |
-	| string | 将字符串中每个字符对应的字节进行拼接 | 如 "iost" 对应的字节数组为 [105 111 115 116] |
-	| 数组 | 将数组的每个元素转为字节数组后，在每项前面添加``` ^ ```字符，并拼接  | 如 ["iost" "iost"] 对应的字节数组为 [94 105 111 115 116 94 105 111 115 116]，即 "^iost^iost" |
-	| map | 将字典的每个 key:value 分别转成字节数组，并用``` < ```字符拼接 key 和 value 对应的字节数组，然后在每一项前面添加``` / ```字符，最后按照 key 升序排列后拼接  | 如 ["b":"iost", "a":"iost"] 对应的字节数组为 [47 97 60 105 111 115 116 47 98 60 105 111 115 116]，即 "/a<iost/b<iost" |
-
-	对于 int 和 string 类型的字段转成字节数组后，还需要进行转义。转义的方式为，在 ``` ` ```、``` ^ ```、``` < ```、``` / ```、``` \ ```等五个字符前添加转义符``` \ ```。 数组和字典类型转换后不需要再转义（转换的过程中已经转义过了）。  
-交易字段声明顺序为 "time"、"expiration"、"gas\_ratio"、"gas\_limit"、
-"delay"、"signers"、"actions"、"amount\_limit"、"signatures"，所以交易结构体转字节数组伪代码为：
+	| string | 将字符串中每个字符对应的字节进行拼接并在前面加上长度 | 如 "iost" 对应的字节数组为 [0 0 0 4 105 111 115 116] |
+	| 数组 | 将数组的每个元素转为字节数组并拼接，再在其前面加上数组的长度  | 如 ["iost" "iost"] 对应的字节数组为 [0 0 0 2 0 0 0 4 105 111 115 116 0 0 0 4 105 111 115 116] |
+	| map | 将字典的每对 key:value 分别转成字节数组并拼接, 然后按照 key 升序排列后拼接每一对，再在其前面加上 map 的长度 | 如 ["b":"iost", "a":"iost"] 对应的字节数组为 [0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116] |
+	  
+	交易字段声明顺序为 "time"、"expiration"、"gas\_ratio"、"gas\_limit"、
+"delay"、"chain\_id"、"signers"、"actions"、"amount\_limit"、"signatures"，所以交易结构体转字节数组伪代码为：
 
 	```
 	func TxToBytes(t transaction) []byte {
-		return '`' + Int64ToBytes(t.time) + '`' + Int64ToBytes(t. expiration) + 
-	'`' + Int64ToBytes(int64(t.gas_ratio * 100)) + '`' + Int64ToBytes(int64(t.gas_limit * 100)) +     // 注意 gas_ratio 和 gas_limit 需要乘以 100 并转成 int64
-	'`' + Int64ToBytes(t.delay) + '`' + ArrayToBytes(t.signers) +
-	'`' + ArrayToBytes(t.actions) + '`' + ArrayToBytes(t.amount_limit) +
-	'`' + ArrayToBytes(t.signatures)
+		return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) + 
+	 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // 注意 gas_ratio 和 gas_limit 需要乘以 100 并转成 int64
+ 			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) + 
+ 			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
+ 			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
 	}
 	```
 
-	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L314)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)。
+	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/master/core/tx/tx.go#L410)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)。
 
 * **使用 sha3 算法对字节数组计算哈希**
 
@@ -804,26 +808,32 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 		"time": 1544709662543340000,
 		"expiration": 1544709692318715000,
 		"gas_ratio": 1,
-		"gas_limit": 50000,
+		"gas_limit": 500000,
 		"delay": 0,
+		"chain_id": 1024,
 		"signers": [],
 		"actions": [
 			{
 				"contract": "token.iost",
-				"actionName": "transfer",
+				"action_name": "transfer",
 				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
 			},
 		],
-		"amount_limit": [],
+		"amount_limit": [
+			{
+				"token": "*",
+				"value": "unlimited",
+			},
+		],
 		"signatures": [],
 	}
 	```
 * **计算哈希**
 
-	利用上述算法序列化并 sha3 后，得到哈希值 "SEos66QidNOT+xOHYJOGpBs3g6YOPvzh7fujjaINpZA="。
+	利用上述算法序列化后并 sha3 后，得到哈希值 "nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU="。
 * **计算签名**
 
-	假设 testaccount 账户的公私钥算法为 ED25519，公钥为 "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ="，私钥为 "rwhlQzbvFdtsyZAkE5JkadxhGIhu2eMy+T89GC/7fsH1GF16d9NwSyD3eAq9FxwVggJq6D4fR58Gk4UvBp8RFA=="，利用私钥对上一步的哈希签名，得到 "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="
+	假设 testaccount 账户的公私钥算法为 ED25519，公钥为 "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY="，私钥为 "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg=="，利用私钥对上一步的哈希签名，得到 "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="
 	
 * **发送交易**
 
@@ -834,24 +844,30 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 		"time": 1544709662543340000,
 		"expiration": 1544709692318715000,
 		"gas_ratio": 1,
-		"gas_limit": 50000,
+		"gas_limit": 500000,
 		"delay": 0,
+		"chain_id": 1024,
 		"signers": [],
 		"actions": [
 			{
 				"contract": "token.iost",
-				"actionName": "transfer",
+				"action_name": "transfer",
 				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
 			},
 		],
-		"amount_limit": [],
+		"amount_limit": [
+			{
+				"token": "*",
+				"value": "unlimited",
+			},
+		],
 		"signatures": [],
 		"publisher": "testaccount",
 		"publisher_sigs": [
 			{
 				"algorithm": "ED25519",
-				"public_key": "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=",
-				"signature": "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg==",
+				"public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
+				"signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
 			},
 		],
 	}
@@ -860,7 +876,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 	对上述结构进行 json 序列化后，发送如下 rpc 请求即可：
 	
 	```
-	curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"actionName":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[],"delay":0,"expiration":1544709692318715000,"gas_limit":50000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=","signature":"OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="}],"signatures":[],"signers":[],"time":1544709662543340000}'
+	curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
 	```
 	
 
