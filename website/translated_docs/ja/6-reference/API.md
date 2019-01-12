@@ -43,10 +43,9 @@ curl http://127.0.0.1:30001/getNodeInfo
 
 キー             |型       |説明 
 ----                |--         |--
-build\_time |string         |'iserver'バイナリのビルド時間
-git\_hash       |string     |'iserver'バイナリのGitハッシュ
+build\_time |string         |'server'バイナリのビルド時間git\_hash       |string     |'iserver'バイナリのGitハッシュ
 mode            |string     |サーバーの実行中モード。 'ModeInit'、'ModeNormal'、'ModeSync'のいずれか
-network     |[NetworkInfo](#network)|ノードのネットワーク情報
+network     |[NetworkInfo](#network)|network|ノードのネットワーク情報
 
 ### NetworkInfo
 
@@ -61,7 +60,7 @@ peer\_info      |[PeerInfo]|ピアノードの情報
 キー             |型       |説明 
 ----                |--         |--
 id                  |string     |ピアノードID
-addr                |struct     |ピアノードアドレス
+addr                |struct     |idx番目のピアノードアドレス
 
 
 
@@ -71,7 +70,7 @@ addr                |struct     |ピアノードアドレス
 
 IOSTブロックチェーンの情報を取得します。
 
-### リクエスト
+### リクエスト 
 
 リクエストの例
 
@@ -105,7 +104,7 @@ head\_block         |int64      |最新ブロック番号
 head\_block\_hash|string        |最新ブロックのハッシュ
 lib\_block              |int64      |不可逆ブロックの高さ
 lib\_block\_hash    |int64      |不可逆ブロックのハッシュ
-witness\_list           |stringの繰り返し|のリスト
+witness\_list           |stringの繰り返し|ブロック生成ノードの公開鍵のリスト
 
 ## /getGasRatio
 ##### GET
@@ -285,8 +284,6 @@ receipts            |Receiptの繰り返し|イベント関数用レシート
 func_name       |string     |ABI関数名
 content         |string     |内容
 
-<!-- CONTINUE HERE: http://developers.iost.io/docs/zh-CN/next/6-reference/API/#gettxreceiptbytxhash-hash -->
-
 
 ## /getTxReceiptByTxHash/{hash}
 ##### GET
@@ -302,8 +299,8 @@ curl http://127.0.0.1:30001/getTxReceiptByTxHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4e
 ```
 
 キー                 |型       |説明 
-----                    |--         |--
-hash                |string     |レシートのハッシュ
+----                |--         |--
+hash                |string|トランザクションのレシート
 
 ### レスポンス
 
@@ -331,7 +328,8 @@ hash                |string     |レシートのハッシュ
 
 キー                 |型       |説明 
 ----                    |--         |--
-                        |TxReceipt|トランザクションのレシート
+|TxReceipt|トランザクションのレシート
+
 
 
 
@@ -350,8 +348,8 @@ curl http://127.0.0.1:30001/getBlockByHash/4c9GHyGLi6hUqB4d6zGFcywycYKucsmWsbgvh
 
 キー                 |型       |説明 
 ----                    |--         |--
-hash                |string     |ブロックのハッシュ
-complete            |bool       |true: 詳細表示する、false: 詳細表示しない
+hash                |string     |ブロックハッシュ
+complete            |bool       |true: ブロック内のトランザクションの詳細情報を表示、false: 表示しない
 
 ### レスポンス
 
@@ -425,7 +423,8 @@ curl http://127.0.0.1:30001/getBlockByNumber/3/false
 キー                 |型       |説明 
 ----                    |--         |--
 number          |int64      |ブロック番号
-complete            |bool       |true: 詳細表示する、false: 詳細表示しない
+complete            |bool       |true: ブロック内のトランザクションを詳細表示する、false: 詳細表示しない
+
 
 ### レスポンス
 
@@ -543,7 +542,8 @@ name                |string     |アカウント名
 balance         |double |アカウントの残高
 create\_time        |int64      |アカウント作成時刻
 gas\_info           |GasInfo    |GAS情報
-ram\_info           |RAMInfo    |RAM情報 permissions |map<string, Permission>    |パーミッション
+ram\_info           |RAMInfo    |RAM情報
+permissions |map<string, Permission>    |権限
 groups              |map<string, Group>         |権限グループ
 frozen\_balances    |FrozenBalanceの繰り返し |凍結した残高の情報
 
@@ -570,6 +570,8 @@ amount          |double |デポジット量
 キー                 |型       |説明 
 ----                    |--         |--
 available           |int64      |使用可能RAM(バイト)
+used           |int64      |使用済RAM(バイト)
+total           |int64      |総RAM(バイト)
 
 ### Permission
 
@@ -611,7 +613,7 @@ time                    |int64      |解凍時間
 ## /getTokenBalance/{account}/{token}/{by_longest_chain}
 ##### GET
 
-トークンのアカウント残高を取得します。
+指定したトークンのアカウント残高を取得します。
 
 ### リクエスト
 
@@ -625,7 +627,7 @@ curl http://127.0.0.1:30001/getTokenBalance/admin/iost/true
 ----                    |--         |--
 account         |string     |アカウント名
 token               |string     |トークン名
-by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得、false: 不可逆ブロックから出データを取得
+by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得、false: 不可逆ブロックからデータを取得
 
 ### レスポンス
 
@@ -643,7 +645,7 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
 キー                 |型       |説明 
 ----                    |--         |--
 balance             |double |残高
-frozen\_balances    |FrozenBalanceの繰り返し |凍結残高の情報
+frozen\_balances    |repeated FrozenBalance |凍結された残高
 
 
 
@@ -666,7 +668,7 @@ curl http://127.0.0.1:30001/getContract/base.iost/true
 ----                    |--         |--
 id                      |string     |コントラクトID
 by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得、false: 不可逆ブロックからデータを取得
-
+ｖ
 
 ### レスポンス
 
@@ -772,11 +774,11 @@ APIはトランザクションハッシュと署名を必要とし、直接呼�
 
 <!-- 可能需要更新以下链接 -->
 
-トランザクションを送信するには、[CLI tools](http://developers.iost.io/docs/zh-CN/6-reference/API/iwallet-example)を使うことを推奨します。
+ ユーザには、[CLI tools](4-running-iost-node/iWallet.md)を使って、トランザクションを送信することをお勧めします。
 
-開発者は[JavaScript SDK](https://github.com/iost-official/iost.js)を使って、トランザクションを送信できます。
+開発者は[JavaScript SDK](https://github.com/iost-official/iost.js)を使ってください。
 
-### リクエストパラメータ
+### リクエスト Parameters
 
 キー                 |型       |説明 
 ----                    |--         |--
@@ -788,7 +790,7 @@ delay               |int64      |トランザクションの遅延(ナノ秒)。
 actions         |Actionの繰り返し    |トランザクションの特定呼び出し
 amount\_limit   |AmountLimitの繰り返し   |トランザクションのトークンの制限。複数指定可能で、この制限を超えると実行は停止する
 publisher           |string     |トランザクションパブリッシャーID
-publisher\_sigs |Signatureの繰り返し |[ここで説明してあるように](/MISSING_URL_HERE)パブリッシャーの署名。パブリッシャーは、それぞれのパーミッションに複数署名を提供できる。パーミッションシステムのドキュメントを参照
+publisher\_sigs |Signatureの繰り返し |[ここで説明してあるように](/MISSING_URL_HERE.md)パブリッシャーの署名。パブリッシャーは、それぞれのパーミッションに複数署名を提供できる。パーミッションシステムのドキュメントを参照
 signers         |stringの繰り返し    |パブリッシャーではない署名者のID。空白のままも可
 signatures      |Signatureの繰り返し |署名者の署名。各署名者は１つ以上の署名が必要で、署名の数は署名者より少なくてはいけない
 
@@ -810,7 +812,7 @@ hash                |string     |トランザクションハッシュ
 
     アルゴリズムは、次のとおりです。宣言に従って、パラメータをバイト配列に変換し、次のようにエンコードし、項目ごとにセパレータとして<code>\`</code>を追加します。エンコード処理は、次のようになります。
     
-    型    |変換メソッド                          |例
+        型    |変換メソッド                          |例
     ---     |--------------                                 |--------------------
     int     |バイト配列にビッグエンディアンに変換 |int64(1023)は、\[0 0 0 0 0 0 3 255\]になる
     string  |文字列中の各文字をバイトに分ける    |"iost"ｊは、\[105 111 115 116\]になる
@@ -833,7 +835,7 @@ hash                |string     |トランザクションハッシュ
     ```
     
     Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L314)を参照してください。JavaScript実装については、、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)を参照してください。
-     
+    
 * **SHA3アルゴリズムでバイト配列のハッシュを計算**
     
     前のステップで取得したバイト配列のハッシュを計算するには、使用する言語のSHA3ライブラリを使ってください。

@@ -4,7 +4,7 @@ title: メトリクス
 sidebar_label: メトリクス
 ---
 
-メトリクスはシステムのパフォーマンスをモニターするツールです。IOST用には、[Prometheus](https://prometheus.io/)を使います。
+メトリクスはシステムのパフォーマンスをモニターするツールです。IOST用には、[Prometheus](https://prometheus.io)を使います。
 
 ## Prometheusのデプロイ
 

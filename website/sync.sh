@@ -1,6 +1,6 @@
 set -x
 #set -e
-func do_sync() {
+function do_sync() {
 LAN=$1
 V=$2
 echo $LAN $V
@@ -15,9 +15,9 @@ done
 }
 #LAN='zh-CN'
 #V="2.1.7"
-for L in ja ko
+for L in ja 
 do
-for v in 2.1.2 2.1.3 2.1.4 2.1.6 2.1.7
+for v in 2.2.0
 do
 do_sync $L $v
 done

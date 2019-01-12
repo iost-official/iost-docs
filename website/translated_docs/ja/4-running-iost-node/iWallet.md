@@ -1,107 +1,248 @@
 ---
 id: iWallet
-title: iWallet
-sidebar_label: iWallet
+title: コマンドラインウォレットツール
+sidebar_label: コマンドラインウォレットツール
 ---
 
-**IOSBlockchain**は、２つのプログラムで構成されています。`iServer`はコアプログラムで、複数の`iServer`でブロックチェーンネットワークを構成しています。`iWallet`は、ブロックチェーンである`iServer`とやり取りするためのコマンドラインツールです。
+iwalletは、IOSTはブロックチェーンのコマンドラインツールです。
+このツールで、ブロックチェーンに接続し、送金したり、アカウントを作成したり、残高を確認したり、コントラクトを呼び出したりできます。
 
-システムの`ビルド`に成功すると、`iWallet`が、プロジェクトディレクトリの`target/`フォルダに生成されます。
-
-![iwallet1](assets/4-running-iost-node/iWallet/iwallet.png)
-
-## コマンド
-
-|コマンド      |内容                                |説明
-|:-----------:|:--------------------------------------:|:--------------------------------------------|
-|help         |コマンドの説明                  | iwallet -h でさらに説明が表示されます
-|account      |アカウント管理                          |  ./iwallet account -n id
-|balance      |指定したアカウントの残高をチェック      |  ./iwallet balance ~/.iwallet/id_ed25519.pub
-|block        |ブロックの情報を表示、デフォルトではブロック番号   |  
-|call         |コントラクト内のメソッドの呼び出し          |  ./iwallet call "iost.system" "Transfer" '["fromID", "toID", 100]' -k SecKeyPath --expiration 50
-|compile      |スマートコントラクトファイルをコンパイル|  ./iwallet compile -e 3600 -l 100000 -p 1 ./test.js ./test.js.abi
-|net          |ネットワークIDの取得                         |  ./iwallet net
-|publish      |.sig ファイルを使って、.sc ファイルに署名してパブリッシュ     |./iwallet publish -k ~/.iwallet/id_ed25519 ./dashen.sc ./dashen.sig0 ./dashen.sig1
-|sign         |.sc ファイルに署名                       |  ./iwallet sign -k ~/.iwallet/id_ed25519 ./test.sc
-|transaction  |トランザクションハッシュによりトランザクションを見つける  |  ./iwallet transaction HUVdKWhstUHbdHKiZma4YRHGQZwVXerh75hKcXTdu39t
-
-## コマンドの例
-
-### help:
-
-`iwallet`のヘルプ情報を表示します。
+iwalletと[API](6-reference/API.md)は、RPC APIを内部で使っています。それは同様の機能を持っています。
+  
+## ビルド
+最初に、[IOSTをビルド](Building-IOST.md)する必要があります。
+ブロックチェーンにコントラクトをパブリッシュしたいなら、Node.jsとnpmをインストールし、次のコマンドを実行します。
+コントラクトをパブリッシュしないのなら、次のステップは省略できます。
+``` 
+cd $GOPATH/src/github.com/iost-official/go-iost
+cd iwallet/contract
+npm install
+```
+## 基本機能
+### アカウント情報の照会
+iwalletで、残高、RAM,GASなどのアカウント情報を調べることができます。
+出力形式は、[getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain)と同じです。
+コマンドの`--server`フラグには、リモートIOSTサーバーを指定します。もし、[ローカルでサーバーを起動](LocalServer.md)するなら、フラグなしでデフォルト値を使用できます(localhost:30002)。 
 
 ```
-./iwallet -h
+iwallet --server 127.0.0.1:30002 balance xxxx
+{
+    "name": "xxxx",
+    "balance": 993939670,
+    "createTime": "0",
+    "gasInfo": {
+        "currentTotal": 2994457,
+        "increaseSpeed": 11,
+        "limit": 3000000,
+        "pledgedInfo": [            {
+                "pledger": "xxxx",
+                "amount": 10
+            },
+            {
+                "pledger": "tttt",
+                "amount": 10
+            }
+        ],
+    },
+    "ramInfo": {
+        "available": "100000" 
+    },
+    "permissions": ...
+    "frozenBalances": [
+        {
+            "amount": 30,
+            "time": "1543817610001412000"
+        }
+    ]
+}
 ```
-
-### account:
-
-IOSTアカウントを作成します。アカウントの公開鍵と秘密鍵が`~/.iwallet/`ディレクトリに保存されます。
-
-```
-./iwallet account -n id
-return:
-the iost account ID is:
-IOSTPVgmuin4vxcqxLvNQ2XnRxPk64MtDkanQEZ4ttkysbjPD6XiW
-```
-
-### balance:
-
-アカウントの残高を表示します。
-
-```
-./iwallet balance IOSTPVgmuin4vxcqxLvNQ2XnRxPk64MtDkanQEZ4ttkysbjPD6XiW
-return:
-1000 iost
-```
-
-### block:
-
-ハッシュによりブロックを検索します。
-
-```
-# 查询0号block数据
-./iwallet block -m num 0
-return:
-{"head":{"txsHash":"bG7L/GLaF4l8AhMCzdl9r7uVvK6BwqBq/sMMuRqbUH0=","merkleHash":"cv7EfVzjHCzieYStfEm61Ew4zbNFYN80i/6J8Ijhbos=","witness":"IOST2FpDWNFqH9VuA8GbbVAwQcyYGHZxFeiTwSyaeyXnV84yJZAG7A"},"hash":"9NzDz2iueLZ4e8YDotIieJRZrlTMddbjaJAvSV23TFU=","txhash":["3u12deEbLcyP7kI5k+WIuxUrskAOu8UKUOPV+H51bjE="]}
-```
-
-### call:
-
-コントラクトのメソッドを呼び出します。
+### ブロックチェーン情報の照会
+ブロックチェーンとサーバーノードの情報を照会します。出力は、[getNodeInfo](6-reference/API.md#getnodeinfo)と[getChainInfo](6-reference/API.md#getchaininfo)を合わせたものになります。
 
 ```
-# Calls iost.system contract's Transfer method，Account IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP transfers Account IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk 100 token,
-# -k is private key，--expiration specifies timeout
-./iwallet call "iost.system" "Transfer" '["IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP", "IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk", 100]' -k ~/.iwallet/id_ed25519 --expiration 50
-return:
-ok
-8LaUT2gbZeTG8Ev988DELNjCWSMQ369uGHAhUUWEHxuV
+iwallet --server 127.0.0.1:30002 state
+{
+    "buildTime": "20181208_161822+0800",
+    "gitHash": "c949172cb8063e076b087d434465ecc4f11c3000",
+    "mode": "ModeNormal",
+    "network": {
+        "id": "12D3KooWK1ALkQ6arLJNd5vc49FLDLaPK931pggFr7X49EA5yhnr",
+        "peerCount": 0,
+        "peerInfo": [
+        ]
+    }
+    "netName": "debugnet",
+    "protocolVersion": "1.0",
+    "headBlock": "9408",
+    "headBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
+    "libBlock": "9408",
+    "libBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
+    "witnessList": [
+        "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+    ]
+}
+```
+  
+### コントラクトの呼び出し
+#### アカウントのインポート
+コントラクトを呼び出す前に、アカウントをインポートする必要があります。
+
+```
+# This command will copy private key to ~/.iwallet/YOUR_ACCOUNT_ID_ed25519. It is done locally without any interaction with blockchain. 
+iwallet account --import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY 
+```
+#### コマンドラインの使用法
+
+```
+iwallet --account <アカウント名> [other flags] call <コントラクト名> <アクション名> '["ARG1",ARG2,...]'
 ```
 
-### net:
+| フラグ  | 説明 | デフォルト |
+| :----: | :-----: | :------ |
+| server | 接続するためのiserverアドレス  | localhost:30002 |
+| account | コントラクトの呼び出し元 | なし、必要 |
+| gas_limit | 呼び出しに許容される最大GAS | 1000000 |
+| gas_ratio | gas_ratioを大きくするとより速く実行される | 1.0 |
+| amount_limit | トークン量の上限 | なし、必要。iost:300.0&#124;ram:2000に似ている。 "*:unlimited" は、無制限 |
 
-iserverのネットワークIDを取得します。
-
-```
-./iwallet net
-return:
-netId: 12D3KooWNdJgdRAAYoHvrYgCHhNEXS9p7LshjmJWJhDApMXCfahk
-
-```
-
-### transaction:
-
-トランザクションを照会します。
+#### サンプル：トークンの転送
+`admin`は'token.iost'コントラクトの'transfer'を呼び出します。
+コマンドの最後の引数は、'transfer'アクションのパラメータです。それは、トークンの型、支払い者、受診者、送信量、追加情報です。
 
 ```
-./iwallet transaction 8LaUT2gbZeTG8Ev988DELNjCWSMQ369uGHAhUUWEHxuV
-return:
-txRaw:<time:1537540108548894481 expiration:1537540158548891677 gasLimit:1000 gasPrice:1 actions:<contract:"iost.system" actionName:"Transfer" data:"[\"IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP\", \"IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk\", 100]" > publisher:<algorithm:2 sig:"\224iI\0300\317;\337N\030\031)'\277/xO\231\325\277\022\217M\017k.\260\205+*$\235\017}\353\007\206\352\367N(\203\343\333\017\374\361\230\313,\231\313* oK\270.f;6\371\332\010" pubKey:"_\313\236\251\370\270:\004\\\016\312\300\2739\304\317Jt\330\344P\347s\2413!\3725\3126\246\247" > > hash:"m\005\2613%\371\234\233\315\377@\016\253Aw\024\214IX@\0368\330\370T\241\267\342\256\252\354P"
-
+iwallet --account admin call 'token.iost' 'transfer' '["iost","admin","lispczz","100",""]' 
+sending tx Tx{
+	Time: 1543559175834283000,
+	Publisher: admin,
+	Action:
+		Action{Contract: token.iost, ActionName: transfer, Data: ["iost","admin","lispczz","100",""]}
+    AmountLimit:
+[],
+}
+send tx done
+the transaction hash is: GU4EHg4zE9VHu9A13JEwxqJSVbzij1VoqWGnQR5aV3Dv
+exec tx done.  {
+    "txHash": "GU4EHg4zE9VHu9A13JEwxqJSVbzij1VoqWGnQR5aV3Dv",
+    "gasUsage": 2172,
+    "ramUsage": {
+        "admin": "43"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[]"
+    ],
+    "receipts": [
+        {
+            "funcName": "token.iost/transfer",
+            "content": "[\"iost\",\"admin\",\"lispczz\",\"100\",\"\"]"
+        }
+    ]
+}
 ```
 
-### compile/publish/sign:
+### アカウントの作成
+#### コマンドラインの使用法
 
-[デプロイと呼び出し](../3-smart-contract/Deployment-and-invocation)を参照してください。
+```
+iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account --create <new_account_name> [other flags] 
+```
+
+| フラグ  | 説明 | デフォルト |
+| :----: | :-----: | :------ |
+| create | 新規アカウント名  | なし、必要 |
+| initial_ram | 新規アカウントの作成者が買うRAM量| 1024 |
+| initial\_gas\_pledge | 新規アカウントの作成者がプレッジするIOSTのGAS量| 10 |
+| initial_balance | アカウントの作成者に転送されるIOSTの量| 0 |
+新規アカウントの作成は、コントラクトの呼び出しが必要があるので、上記のフラグ以外にすべての[呼び出し](#command-line-usage)フラグも必要です。
+
+```
+# After creating account,  random keypair is generated, and private key will be saved to ~/.iwallet/$(new_account_name)_ed25519    
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit "ram:1000|iost:10" account --create lispczz3 --initial_balance 0 --initial_gas_pledge 10 --initial_ram 0
+...
+...
+    "groups": {
+    },
+    "frozenBalances": [
+    ]
+}
+your account private key is saved at:
+/Users/zhangzhuo/.iwallet/lispczz3_ed25519
+create account done
+the iost account ID is: lispczz3
+owner permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
+active permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K 
+```
+### コントラクトのパブリッシュ
+Javascriptのコントラクトをパブリッシュするためには、最初にABIファイルを生成します。次のステップでJavaScriptファイルとABIファイルをブロックチェーンにパブリッシュします。
+#### ABIの生成
+Node.jsがインストールされていることを確認して、iwallet/contractフォルダ内で、`npm install`を実行します。
+
+```
+# example.js.abi will be generated
+iwallet compile example.js
+```
+
+通常は、生成されたABIファイルは調整する必要があり、アクションパラメータ型とアクションでの量の制限は実際の使用法によって調整する必要があるかもしれません。
+
+#### コントラクトのパブリッシュ
+```
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit  "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
+...
+The contract id is ContractBgHM72pFxE9KbTpQWipvYcNtrfNxjEYdJD7dAEiEXXZh
+
+```
+最終行の`ContractXXX`はコントラクト名で、後でアップロードした新しいコントラクトを呼び出す場合に必要です。
+
+## 高度な機能
+### ブロックの照会
+
+```
+# Get information about block at height 10
+iwallet block --method num 10
+# Get information about block with hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+iwallet block --method hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+```
+### トランザクション情報の照会
+#### トランザクションの詳細の取得
+`transaction`は、[getTxByHash API](6-reference/API.md#gettxbyhash-hash])と同じです。
+
+```
+iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
+{
+    "status": "PACKED",
+    "transaction": {
+        "hash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
+        "time": "1545470082534696000",
+        "expiration": "1545470382534696000",
+        "gasRatio": 1,
+        "gasLimit": 1000000,
+        "delay": "0",
+        "actions": [
+            {
+                "contract": "token.iost",
+                "actionName": "transfer",
+                "data": "[\"iost\",\"admin\",\"admin\",\"10\",\"\"]"
+            }
+        ],
+# 
+```
+#### トランザクションハッシュによるトランザクションレシートの取得
+`receipt`は、[getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash)と同じです。
+
+```
+iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
+{
+    "txHash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
+    "gasUsage": 2577,
+    "ramUsage": {
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[]"
+    ],
+    "receipts": [
+    ]
+}
+```

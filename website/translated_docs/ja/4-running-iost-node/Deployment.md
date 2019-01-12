@@ -1,94 +1,39 @@
 ---
 id: Deployment
-title: デプロイ
-sidebar_label: デプロイ
+title: IOSTテストネットへの参加
+sidebar_label: IOSTテストネットへの参加
 ---
 
-## リポジトリの取得
+このドキュメントで、IOSTテストネットへ接続するサーバーをセットアップする方法を紹介します。デバッグやテストのためにローカルシングルサーバブロックチェーンネットをセットアップしたいだけなら、[ローカルサーバーの起動](LocalServer.md)を参照してください。
 
-次のコマンドでリポジトリを取得します。
+IOSTノードをデプロイするために、ここではDockerを使用しています。
 
-```
-git clone https://github.com/iost-official/go-iost.git && cd go-iost
-```
+## 前提条件
 
-## ビルド
+- [Docker CE 18.06以上](https://docs.docker.com/install) (旧バージョンはテストしていません)
+- (オプション) [Docker Compose](https://docs.docker.com/compose/install)
 
-次のコマンドでコンパイルして、`target`ディレクトリにファイルを生成します。
+## 設定ファイルの準備
 
-```
-git checkout v2.0.0
-make vmlib
-make build
-```
+iServerについては、[こちら](/4-running-iost-node/iServer.md)を参照してください。
 
-## 実行
-
-次のコマンドでローカルノードを起動してください。iServerの設定を[iServer](iServer)でチェックします。
-
-```
-./target/iserver -f config/iserver.yml
-```
-
-## Docker
-
-### 実行
-
-次のコマンドで、Dockerを使ってローカルノードを起動します。
-
-```
-docker run -d iostio/iost-node:2.0.0
-```
-
-### ボリュームのマウント
-
-`-v`フラグでボリュームをマウントします。
+最初に設定テンプレートを取得します。
 
 ```
 mkdir -p /data/iserver
-cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
-docker run -d -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/docker/iserver.yml -o /data/iserver/iserver.yml
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/genesis.yml -o /data/iserver/genesis.yml
 ```
 
-### ポートのバインド
+`/data/iserver`をデータボリュームとしてマウントしています。これは変更しても構いません。 
 
-`-p`フラグで、ポートをバインドします。
-
-```
-docker run -d -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
-```
-
-### Docker-Composeの利用
-
-Docker-Composeを使ってデプロイすることをお勧めします。
+*もし前のバージョンのiServerを実行しているなら、古いデータを確実に消してください*
 
 ```
-# docker-compose.yml
-
-version: "2.2"
-
-services:
-  iserver:
-    image: iostio/iost-node:2.0.0
-    restart: always
-    ports:
-      - "30000:30000"
-      - "30001:30001"
-      - "30002:30002"
-      - "30003:30003"
-    volumes:
-      - /data/iserver:/var/lib/iserver
+rm -rf /data/iserver/storage
 ```
 
-ノードを起動するには次のようにします。
-
- `docker-compose up -d`
-
-## テストネットへのアクセス
-
-### 設定の変更
-
-ジェネシスブロックの設定を次のように変更してください。
+Everest v2.1.0テストネットにアクセスするためには、ジェネシスファイル`/data/iserver/genesis.yml`を次のように変更する必要があります。
 
 ```
 creategenesis: true
@@ -151,21 +96,60 @@ p2p:
     - /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a
   chainid: 1024
   version: 1
-  datapath: /var/lib/iserver/p2p/
 ...
 ```
 
 設定中に、次のようにシードノードネットワークIDが変更されます。
 
-| 名前   | リージョン | ネットワークID                                                                              |
+| 名前   | リージョン | ネットワークID                                                                          |
 | ------ | ------ | --------------------------------------------------------------------------------------- |
 | node-7 | London | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | Paris  | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
 
-### iServerの実行
+### ノードの開始
 
-更新した設定でiServerを実行してテストネットへ接続してください。
+次のコマンドでノードを開始します。
+```
+docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
+```
+
+または、Docker-Composeを使ってください。
 
 ```
-./target/iserver -f config/iserver.yml
+# docker-compose.yml
+
+version: "2"
+
+services:
+  iserver:
+    image: iostio/iost-node:2.1.0
+    restart: always
+    ports:
+      - "30000-30003:30000-30003"
+    volumes:
+      - /data/iserver:/var/lib/iserver
+```
+
+次のようにノーを起動してください。
+
+`docker-compose up -d`
+
+起動、停止、再起動、削除するには、次のようにしてください。
+
+`docker-compose (start|stop|restart|down)`
+
+## ノードのチェック
+
+ログファイルは、`/data/iserver/logs/iost.log`にあります。増加する`confirmed`は、ブロックデータの同期が進んでいっていることを示しています。
+
+Docker内の`iwallet`を使って、次のように状態をチェックすることもできます。
+
+```
+docker-compose exec iserver ./iwallet state
+```
+
+`-s`とシードノードのIPで、ノードの最新のブロックチェーン情報を取得できます。
+
+```
+docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state
 ```

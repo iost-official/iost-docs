@@ -1,7 +1,7 @@
 ---
 id: Smart-Contract-Development-Toolkit
-title: Scaf: スマートコントラクト開発ツールキット
-sidebar_label: Scaf: スマートコントラクト開発ツールキット
+title: Scaf: 素晴らしいスマートコントラクト開発ツールキットt
+sidebar_label: Scaf: 素晴らしいスマートコントラクト開発ツールキット
 ---
 
 ## 機能
@@ -175,7 +175,7 @@ create file: ./test/helloContract_test1.js
 usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat test/helloContract_test1.js
 var helloContract = require('../contract/helloContract.js');
 ```
-次に、test/helloContract_test1.jsを編集します。
+Now edit test/helloContract_test1.js
 ```js
 usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ cat test/helloContract_test1.js
 var helloContract = require('../contract/helloContract.js');
@@ -190,7 +190,7 @@ ins0.hello("iost");
 scaf test <contract_name>
 ```
 
-このコマンドはコントラクトのすべてのテストを実行します。
+This command will run all the tests of specific contract.
 
 ```console
 usr@Tower [master]:~/nodecode/dapp/helloBlockChain$ scaf test helloContract

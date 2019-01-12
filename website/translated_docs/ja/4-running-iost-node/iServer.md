@@ -1,104 +1,26 @@
 ---
-id: iServer
-title: iServer
-sidebar_label: iServer
+id: LocalServer
+title: ローカルサーバーの起動
+sidebar_label: ローカルサーバーの起動
 ---
+ローカルサーバーを起動するには、Dockerとネイティブの２つの方法があります。
 
-## iServerの起動
-
-IOSTノードサービスであるiServerは、合意、同期、トランザクションプール、ネットワークなどのモジュールを持っています。IOSTノードをデプロイするためにはiServerサービスを起動する必要があります。
-
-* ルートディレクトリにプロジェクトをコンパイルして、次のコマンドを実行すると、実行ファイルがルートフォルダ内の`target` ディレクトリに保存されます。
-
-```
-make build
-```
-
-* 次のコマンドで、IOSTノードを起動します。
+## Dockerを使用したiServerの起動
+Dockerを使ってIOSTサーバーを起動するのは簡単です。これが推奨されます。
+次のコマンドは、シングルモードのネイティブIOSTブロックチェーンサーバーを起動します。
+これをデバッグやテストに使用できます。
+[Docker CE 18.06以上](https://docs.docker.com/install)が必要です。(古いバージョンはテストしていません)
 
 ```
-./target/iserver -f ./config/iserver.yml
+docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 ```
+![server_output](assets/5-lucky-bet/Lucky-Bet-Operation/server_output.png)
 
-* 設定ファイル./config/iserver.ymlを編集します。
+## IOSTサーバーをネイティブで起動
 
+[IOSTをビルド](Building-IOST.md)した後、サーバーを実行できます。
 ```
-acc:
-  id: YOUR_ID
-  seckey: YOUR_SECERT_KEY
-  algorithm: ed25519
+iserver -f ./config/iserver.yml
 ```
+![server_output](assets/5-lucky-bet/Lucky-Bet-Operation/server_output.png)
 
-* ノードのカウント情報を設定します。
-
-```
-genesis:
-  creategenesis: true
-  witnessinfo:
-  - IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C
-  - "21000000000"
-  votecontractpath: config/
-```
-
-* ジェネシスブロック情報とブロックと量を設定します。
-
-
-```
-vm:
-  jspath: vm/v8vm/v8/libjs/
-  loglevel: ""
-
-```
-
-
-```
-db:
-  ldbpath: storage/
-```
-
-データベースの位置を設定します。
-
-
-```
-p2p:
-  listenaddr: 0.0.0.0:30000
-  seednodes:
-  chainid: 1024
-  version: 1
-  datapath: p2p/
-```
-
-ネットワーク情報を設定します。ネットワークにアクセスするためのシードノードが必要です。
-
-```
-rpc:
-  jsonport: 30001
-  grpcport: 30002
-```
-
-RPCポートを設定します。
-
-
-```
-log:
-  filelog:
-    path: logs/
-    level: info
-    enable: true
-  consolelog:
-    level: info
-    enable: true
-  asyncwrite: true
-```
-
-ロギングサービス設定します。
-
-
-```
-metrics:
-  pushAddr:
-  username:
-  password:
-  enable: false
-  id: iost-testnet:visitor00
-```

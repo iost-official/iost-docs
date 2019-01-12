@@ -6,7 +6,6 @@ sidebar_label: Lucky Bet Javascriptコードの詳細
 
 ## チェーン情報の取得
 
-
 談合のリスクがありますが、チェーン上の情報で乱数を生成するのが最も容易です。Lucky Betは、次のようにして乱数を生成しています。
 
 ```javascript

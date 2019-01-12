@@ -18,7 +18,7 @@ git clone https://github.com/iost-official/go-iost.git
 
 ## ```Node```のインストール
 
-[公式ドキュメント](https://nodejs.org/zh-cn/download/package-manager/#macos)を参照してください。
+[公式ドキュメント](https://nodejs.org/zh-cn/download/package-manager#macos)を参照してください。
 
 ## ```npm```のインストール
 
@@ -30,6 +30,6 @@ npm install
 ## ```ダイナミックライブラリ```のインストール
 
 ```git
-cd go-iost/vm/v8vm/v8
-make deploy
+cd go-iost
+make vmlib
 ```

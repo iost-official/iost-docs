@@ -51,35 +51,16 @@ JavaScriptでスマートコントラクトを書いたら、チェーンにデ�
 }
 ```
 
-### .jsと.abiファイルを使って.scパッカーファイルを生成
-
-次に、jsと.js.abiファイルを使って.scファイルを生成します。
-
-```bash
-# Generate .sc for signsers to sign
-./iwallet compile -e $expire_time -l $gasLimit -p $gasPrice --signers "ID0, ID1..."
-# Example
-./iwallet compile -e 10000 -l 100000 -p 1 ./test.js ./test.js.abi --signers "ID"
-```
-
-### .scファイルを各署名者に配布し、署名者が.sigファイルを生成
-
-.scファイルを関係する署名者に配布し、署名者が.sigファイルを生成します。
-
-```bash
-# sign a .sc file with private key
-./iwallet sign -k path_of_seckey path_of_txFile
-# Example
-./iwallet sign -k ~/.iwallet/id_secp ./test.sc
-```
-
-### .sigファイルと.scファイルを集めてチェーンにパブリッシュ
-
-最後に、トランザクション内の.scファイルを.sigファイルと一緒にデプロイします。
+### .sigファイルと.scファイルを集めて、チェーンにパブリッシュ
+最後に、```.js```ファイルと```.abi```ファイルを使って、チェーンにデプロイします。
 
 ```bash
 # publish a transaction with .sig file from every signer
-./iwallet publish -k path_of_seckey path_of_txFile path_of_sig0 path_of_sig1 ...
+./iwallet --server serverIP --account acountName --amount_limit amountLimit publish jsFilePath abiFilePath
 # Example
-./iwallet publish -k ~/.iwallet/id_secp ./dashen.sc ./dashen.sig0 ./dashen.sig1
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit  "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
+...
+
+#Return
+The contract id is ContractBgHM72pFxE9KbTpQWipvYcNtrfNxjEYdJD7dAEiEXXZh
 ```

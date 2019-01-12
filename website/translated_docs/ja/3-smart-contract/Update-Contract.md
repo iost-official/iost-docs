@@ -8,7 +8,8 @@ sidebar_label: コントラクトの更新
 
 コントラクトをブロックチェーンにデプロイした後、バグをフィックスしたり、バージョンアップするために開発者はコントラクトを更新する必要があります。
 
-トランザクションを送信することにより、容易にスマートコントラクトを更新するメカニズムを提供します。さらに重要なのは、任意の権限の要求に対して、非常に柔軟な更新権限制御を提供します。
+トランザクションを送信することにより、容易にスマートコントラクトを更新するメカニズムを提供します。
+さらに重要なのは、任意の権限の要求に対して、非常に柔軟な更新権限制御を提供します。
 
 スマートコントラクトを更新するには、スマートコントラクト内に次のように実装する必要があります。
 ```js
@@ -26,92 +27,91 @@ can_update(data) {
 
 コントラクトの更新プロセスを示すために、単純なスマートコントラクトを例に挙げます。
 
-### コントラクトの作成
-
-最初に、`iwallet`コマンドを使ってアカウントを作成して、画面に表示されたアカウントIDを記録します。
-```console
-./iwallet account -n update
-return:
-the iost account ID is:
-IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h
-```
-
-次のように、新規のコントラクトファイルhelloContract.jsと関係するABIファイルhelloContract.jsonを作成します。
+コントラクトファイルhelloContract.jsを次のように作成します。
 ```js
 class helloContract
 {
-    constructor() {
-    }
     init() {
     }
     hello() {
-		const ret = storage.put("message", "hello block chain");
-        if (ret !== 0) {
-            throw new Error("storage put failed. ret = " + ret);
-        }
+        return "hello world";
     }
-	can_update(data) {
-		const adminID = "IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h";
-		const ret = BlockChain.requireAuth(adminID);
-		return ret;
-	}
+    can_update(data) {
+        return blockchain.requireAuth(blockchain.publisher(), "active");
+    }
 };
 module.exports = helloContract;
-```
-```json
-{
-    "lang": "javascript",
-    "version": "1.0.0",
-    "abi": [
-        {
-            "name": "hello",
-            "args": []
-        },
-		{
-			"name": "can_update",
-			"args": ["string"]
-		}
-    ]
-}
 ```
 コントラクトファイル内のcan_update()関数実装を見てください。adminIDアカウント認証があるときだけ、コントラクトが更新できるようになっています。
 
-### コントラクトのデプロイ
+### コントラクトのパブリッシュ
 
-[デプロイと呼び出し](../3-smart-contract/Deployment-and-invocation)を参照してください。
+[コントラクトのパブリッシュ](4-running-iost-node/iWallet.md#publish-contract)を参照してください。
+```
+$ export IOST_ACCOUNT=admin # replace with your own account name here
+$ iwallet compile hello.js
+$ iwallet --account $IOST_ACCOUNT publish hello.js hello.js.abi
+...
+The contract id is ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
+```
 
-ContractHDnNufJLz8YTfY3rQYUFDDxo6AN9F5bRKa2p2LUdqWVWのようなコントラクトIDをメモしてください。
+### 最初のコントラクトの呼び出し
+これで、アップロードしたコントラクト内の`hello`関数を呼び出すことができます。結果として、'hello world'が返ってきます。
+```
+$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+...
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"hello world\"]"
+    ],
+    "receipts": [
+    ]
+}
+```
 
 ### コントラクトの更新
-最初にコントラクトファイルhelloContract.jsを編集して、次のように書き換えてください。
+最初にコントラクトファイルhelloContract.jsを編集して、次のように書き換えます。
 ```js
 class helloContract
 {
-    constructor() {
-    }
     init() {
     }
     hello() {
-		const ret = storage.put("message", "update block chain");
-        if (ret !== 0) {
-            throw new Error("storage put failed. ret = " + ret);
-        }
+        return "hello iost";
     }
-	can_update(data) {
-		const adminID = "IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h";
-		const ret = BlockChain.requireAuth(adminID);
-		return ret;
-	}
+    can_update(data) {
+        return blockchain.requireAuth(blockchain.publisher(), "active");
+    }
 };
 module.exports = helloContract;
 ```
-hello()関数の実装を、"message"の内容として、"update block chain"をデータベースに書くように変更しました。
+hello()関数の実装を、'hello world'から'hello iost'に変更しました。
 
-次のコマンドでスマートコントラクトを更新できます。
+次のコマンドで、スマートコントラクトをアップグレードします。
 
 ```console
-./iwallet compile -u -e 3600 -l 100000 -p 1 ./helloContract.js ./helloContract.json <contract ID> <can_update parameter> -k ~/.iwallet/update_ed25519
+iwallet --account $IOST_ACCOUNT publish --update hello.js hello.js.abi ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
 ```
--uは、コントラクトを更新、-kは署名やパブリッシュのための秘密鍵、ここでは アカウント`update_ed25519`がトランザクションを承認するのに使われています。
 
-トランザクションを確認した後、iwalletを通してhello()関数を呼び出し、データベースの"message"の内容をチェックして、変更された内容を確認できます。
+### ２回目のコントラクト呼び出し
+トランザクションが確認された後は、iwalletを通してhello()関数を呼び出すと、'hello world'が'hello iost'に変わったのがわかります。
+```
+$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+...
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"hello iost\"]"
+    ],
+    "receipts": [
+    ]
+}
+```
+
+
+
+
+
+
+

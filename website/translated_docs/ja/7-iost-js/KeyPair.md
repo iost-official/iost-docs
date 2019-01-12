@@ -1,7 +1,7 @@
 ---
 id: KeyPair-class
 title: KeyPair
-sidebar_label: 
+sidebar_label: KeyPair
 ---
 
 KeyPairクラスは、IOSTアカウントを作成するためのクラスです。

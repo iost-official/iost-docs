@@ -13,7 +13,6 @@ CentOSは、https://www.centos.org/download/ からダウンロードできま�
 マニュアルインストールするなら、Minimal ISOを選択して、パーティションを作成せずにCentOSのドキュメントを参照してデフォルト設定でインストールしてください。ルートパーティション(/)をデフォルトのサイズから拡張するか、/var/lib/docker/ パーティションを追加してください。
 
 
-
 ## 依存性のインストール
 
 DockerのIOSTノードイメージを実行するには、CentOS7サーバーにいくつかアプリをインストールする必要があります。
@@ -30,8 +29,8 @@ https://docs.docker.com/install/linux/docker-ce/centos/#uninstall-old-versions �
 yum update -y
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum install -y  https://centos7.iuscommunity.org/ius-release.rpm
-yum install -y git2u docker-ce netstat
+yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+yum install -y git2u docker-ce
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod 755 /usr/local/bin/docker-compose
@@ -66,7 +65,7 @@ service iptables save
 
 firewalldを使うなら、次のコマンドで、必要なポートを有効にしてください。
 ```
-firewall-cmd --permanent --add-port=30000:30003/tcp
+firewall-cmd --permanent --add-port=30000-30003/tcp
 firewall-cmd --reload
 ```
 
@@ -158,13 +157,12 @@ p2p:
     - /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a
   chainid: 1024
   version: 1
-  datapath: /var/lib/iserver/p2p/
 ...
 ```
 
 設定中に、シードノードのネットワークIDが次のように置き換わります。
 
-| 名前   | リージョン | ネットワークID                                                                              |
+| 名前   | リージョン | ネットワークID                                                                          |
 | ------ | ------ | --------------------------------------------------------------------------------------- |
 | node-7 | London | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | Paris  | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
@@ -173,7 +171,6 @@ p2p:
 ### genesis.ymlの修正
 
 ジェネシスの設定を次のように変更します。
-
 ```
 creategenesis: true
 tokeninfo:
@@ -248,7 +245,9 @@ services:
 
 ノードを実行するには次のようにします。
 
-、`docker-compose up -d`
+```
+docker-compose up -d
+```
 
 
 ## 便利なコマンド
