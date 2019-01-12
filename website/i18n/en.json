@@ -17,6 +17,14 @@
         "title": "Account",
         "sidebar_label": "Account"
       },
+      "2-intro-of-iost/Community-operations": {
+        "title": "Community operations",
+        "sidebar_label": "Community operations"
+      },
+      "2-intro-of-iost/Consensus": {
+        "title": "Consensus",
+        "sidebar_label": "Consensus"
+      },
       "2-intro-of-iost/Database": {
         "title": "Database",
         "sidebar_label": "Database"
@@ -24,6 +32,14 @@
       "2-intro-of-iost/Economic-model": {
         "title": "Economic model",
         "sidebar_label": "Economic model"
+      },
+      "2-intro-of-iost/Features-and-performance": {
+        "title": "Features and performance",
+        "sidebar_label": "Features and performance"
+      },
+      "2-intro-of-iost/Infra": {
+        "title": "Infrastructure",
+        "sidebar_label": "Infrastructure"
       },
       "2-intro-of-iost/Network-layer": {
         "title": "Network layer",
@@ -41,95 +57,97 @@
         "title": "Vote",
         "sidebar_label": "Vote"
       },
-      "3-smart-contract/ContractStart": {
-        "title": "Smart Contract Quick Start",
-        "sidebar_label": "Smart Contract Quick Start"
-      },
-      "3-smart-contract/Generate-Receipt": {
-        "title": "Generate Receipt in Smart Contract",
-        "sidebar_label": "Generate Receipt in Smart Contract"
-      },
-      "3-smart-contract/How-to-write-a-smart-contract": {
-        "title": "How to Write a Smart Contract",
-        "sidebar_label": "How to Write a Smart Contract"
-      },
-      "3-smart-contract/Smart-Contract-Development-Toolkit": {
-        "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
-        "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
-      },
-      "3-smart-contract/Token": {
-        "title": "Create Token",
-        "sidebar_label": "Create Token"
-      },
-      "3-smart-contract/Update-Contract": {
-        "title": "Update Contract",
-        "sidebar_label": "Update Contract"
-      },
-      "4-running-iost-node/Building-IOST": {
+      "3-running-iost-node/Building-IOST": {
         "title": "Build IOST",
         "sidebar_label": "Build IOST"
       },
-      "4-running-iost-node/Deployment": {
+      "3-running-iost-node/Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
       },
-      "4-running-iost-node/Google-Compute-Platform": {
+      "3-running-iost-node/Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "4-running-iost-node/iWallet": {
+      "3-running-iost-node/iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
-      "4-running-iost-node/LocalServer": {
+      "3-running-iost-node/LocalServer": {
         "title": "Launch Local Server",
         "sidebar_label": "Launch Local Server"
       },
-      "4-running-iost-node/Metrics": {
+      "3-running-iost-node/Metrics": {
         "title": "Metrics",
         "sidebar_label": "Metrics"
       },
-      "5-lucky-bet/LuckyBet": {
+      "4-smart-contract/ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "4-smart-contract/Generate-Receipt": {
+        "title": "Generate Receipt in Smart Contract",
+        "sidebar_label": "Generate Receipt in Smart Contract"
+      },
+      "4-smart-contract/How-to-write-a-smart-contract": {
+        "title": "How to Write a Smart Contract",
+        "sidebar_label": "How to Write a Smart Contract"
+      },
+      "4-smart-contract/LuckyBet": {
         "title": "LuckyBet Example",
         "sidebar_label": "LuckyBet Example"
       },
-      "6-reference/API": {
-        "title": "API",
-        "sidebar_label": "API"
+      "4-smart-contract/Smart-Contract-Development-Toolkit": {
+        "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
+        "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
-      "6-reference/EconContract": {
+      "4-smart-contract/Token": {
+        "title": "Create Token",
+        "sidebar_label": "Create Token"
+      },
+      "4-smart-contract/Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
+      "5-built-in-contracts/EconContract": {
         "title": "Economic Contract",
         "sidebar_label": "Economic Contract"
+      },
+      "5-built-in-contracts/SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "5-built-in-contracts/TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
+      },
+      "6-reference/API": {
+        "title": "JSON RPC API",
+        "sidebar_label": "JSON RPC API"
       },
       "6-reference/GasChargeTable": {
         "title": "Gas Charge Table",
         "sidebar_label": "Gas Charge Table"
       },
-      "6-reference/SystemContract": {
-        "title": "6-reference/SystemContract"
-      },
-      "6-reference/TokenContract": {
-        "title": "Token Contract",
-        "sidebar_label": "Token Contract"
+      "6-reference/Glossary": {
+        "title": "Glossary",
+        "sidebar_label": "Glossary"
       },
       "7-iost-js/Blockchain-class": {
-        "title": "Blockchain",
-        "sidebar_label": "Blockchain"
+        "title": "Blockchain Class",
+        "sidebar_label": "Blockchain Class"
       },
       "7-iost-js/IOST-class": {
-        "title": "IOST",
-        "sidebar_label": "IOST"
+        "title": "IOST Class",
+        "sidebar_label": "IOST Class"
       },
       "7-iost-js/KeyPair-class": {
-        "title": "KeyPair",
-        "sidebar_label": "KeyPair"
-      },
-      "7-iost-js/RPC": {
-        "title": "7-iost-js/RPC"
+        "title": "KeyPair Class",
+        "sidebar_label": "KeyPair Class"
       },
       "7-iost-js/Transaction-class": {
-        "title": "Transaction",
-        "sidebar_label": "Transaction"
+        "title": "Transaction Class",
+        "sidebar_label": "Transaction Class"
       },
       "md-example": {
         "title": "Markdown example",
@@ -563,18 +581,23 @@
     },
     "categories": {
       "Getting started": "Getting started",
-      "IOST Design and Concepts": "IOST Design and Concepts",
-      "Smart Contract": "Smart Contract",
+      "IOST Basics": "IOST Basics",
+      "IOST Tech Details": "IOST Tech Details",
+      "Use IOST": "Use IOST",
       "Running IOST node": "Running IOST node",
-      "Examples": "Examples",
+      "Smart Contract Developing": "Smart Contract Developing",
+      "Built-in Contracts": "Built-in Contracts",
       "Reference": "Reference",
       "IOST Javascript SDK": "IOST Javascript SDK",
-      "IOST Tech Internals": "IOST Tech Internals",
       "First Category": "First Category",
+      "IOST Design and Concepts": "IOST Design and Concepts",
+      "Smart Contract": "Smart Contract",
+      "Examples": "Examples",
+      "IOST Tech Internals": "IOST Tech Internals",
       "Introduction of IOST blockchain": "Introduction of IOST blockchain",
-      "Lucky Bet": "Lucky Bet",
       "Example: Lucky Bet": "Example: Lucky Bet",
-      "IOST.js": "IOST.js"
+      "IOST.js": "IOST.js",
+      "Lucky Bet": "Lucky Bet"
     }
   },
   "pages-strings": {

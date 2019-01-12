@@ -1,7 +1,7 @@
 ---
 id: API
-title: API
-sidebar_label: API
+title: JSON RPC API
+sidebar_label: JSON RPC API
 ---
 
 
@@ -776,7 +776,7 @@ This API requires transaction hash and signature, and is tricky to be called dir
 
 <!-- 可能需要更新以下链接 -->
 
-We recommend users send transactions with our [CLI tools](4-running-iost-node/iWallet.md).
+We recommend users send transactions with our [CLI tools](3-running-iost-node/iWallet.md).
 
 Developers may send transactions with [JavaScript SDK](https://github.com/iost-official/iost.js).
 

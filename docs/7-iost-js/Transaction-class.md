@@ -1,7 +1,7 @@
 ---
 id: Transaction-class
-title: Transaction
-sidebar_label: Transaction
+title: Transaction Class
+sidebar_label: Transaction Class
 ---
 
 This is the main class that interact with IOST blockchain and IOST smart contracts to send and get transactions from them.

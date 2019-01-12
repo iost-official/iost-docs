@@ -1,7 +1,7 @@
 ---
 id: Blockchain-class
-title: Blockchain
-sidebar_label: Blockchain
+title: Blockchain Class
+sidebar_label: Blockchain Class
 ---
 
 This is the main class that interact with IOST blockchain and IOST smart contracts to get informations from them.

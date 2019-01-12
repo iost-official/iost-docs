@@ -9,7 +9,7 @@ You can use this tool to connect to the blockchain to transfer coins/create acco
 iwallet and [API](6-reference/API.md) use RPC API inside both. They have similar features.   
   
 ## Building
-You should [build IOST](4-running-iost-node/Building-IOST.md) firstly.   
+You should [build IOST](3-running-iost-node/Building-IOST.md) firstly.   
 If you plan to publish contracts onto the blockchain, you should install nodejs and npm firstly, then run the following command.   
 If you do not need publishing contracts, you can skip the following command.      
 ``` 
@@ -21,7 +21,7 @@ npm install
 ### Query Account
 iwallet can be used to query account information including balance, RAM, GAS etc.      
 Output format is same as [getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain) .     
-The `--server` flag inside the command indicates the remote IOST server. If you [launch server locally](4-running-iost-node/LocalServer.md)，yon can skip the flag, using the default value (localhost:30002).      
+The `--server` flag inside the command indicates the remote IOST server. If you [launch server locally](3-running-iost-node/LocalServer.md)，yon can skip the flag, using the default value (localhost:30002).      
 
 ```
 iwallet --server 127.0.0.1:30002 balance xxxx

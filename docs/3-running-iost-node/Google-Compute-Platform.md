@@ -19,7 +19,7 @@ You maybe entitled to a Free trial, the trial account has a variety of limitatio
 
 From the Compute menu you will be able to create a Virtual Machine (VM), if you do not have any existing Virtual Machines you will see the following, otherwise you will see standard *Create Instance*
 
-![create_instance](assets/4-running-iost-node/GoogleCloudPlatform/create_instance.png)
+![create_instance](assets/3-running-iost-node/GoogleCloudPlatform/create_instance.png)
 
 Click the *Create* button to continue
 
@@ -30,21 +30,21 @@ Next you will need to give your node a name, Region, Zone and Configure the Size
 
 You should give your instance a name that is distinguisable to you as well as a Region, it is recommended you choose a region that is nearer to your geographical location as this will help decentralize the IOST platform.
 
-![configure_instance](assets/4-running-iost-node/GoogleCloudPlatform/configure_instance.png)
+![configure_instance](assets/3-running-iost-node/GoogleCloudPlatform/configure_instance.png)
 
 ### Boot Disk
 
 Scroll down until you see *Boot disk*, click *Change* (the default type is Debian GNU/Linux 9). Select *CentOS 7*
 
-![configure_boot_disk](assets/4-running-iost-node/GoogleCloudPlatform/configure_boot_disk.png)
+![configure_boot_disk](assets/3-running-iost-node/GoogleCloudPlatform/configure_boot_disk.png)
 
 Scroll down to the bottom for Size and change *10* to a minimum of *100*, you can choose more if you prefer and this can be extended in the future if necessary.
 
-![configure_boot_disk_size](assets/4-running-iost-node/GoogleCloudPlatform/configure_boot_disk_size.png)
+![configure_boot_disk_size](assets/3-running-iost-node/GoogleCloudPlatform/configure_boot_disk_size.png)
 
 Once you have configured these two parameters hit *Select* at the bottom of the page, you are returned to the *New VM instance* main page and will see the following
 
-![configure_boot_disk_complete](assets/4-running-iost-node/GoogleCloudPlatform/configure_boot_disk_complete.png)
+![configure_boot_disk_complete](assets/3-running-iost-node/GoogleCloudPlatform/configure_boot_disk_complete.png)
 
 
 ### Firewall
@@ -56,12 +56,12 @@ From the initial creation of the instance you are not able to add the necessary 
 
 Just below the Firewall section you will see the *Management, security, disks, networking, sole tenancy* , click on this to show more
 
-![management](assets/4-running-iost-node/GoogleCloudPlatform/management.png)
+![management](assets/3-running-iost-node/GoogleCloudPlatform/management.png)
 
 
 From the Management tab you will be able to create an Automation script, this helps to simplify some of your work, see https://cloud.google.com/compute/docs/startupscript for more information
 
-Please refer to [Deployment Docker Centos](4-running-iost-node/Deployment-Docker-Centos.md) for where this script is derived from
+Please refer to [Deployment Docker Centos](3-running-iost-node/Deployment-Docker-Centos.md) for where this script is derived from
 
 Please note this script also attempts to attach your data disk, this script is not intended to be run multiple times , please **Remove it** after first initialization.
 
@@ -201,7 +201,7 @@ docker-compose up -d
 ```
 Once you populate this form it will look like
 
-![mangement_automation](assets/4-running-iost-node/GoogleCloudPlatform/management_automation.png)
+![mangement_automation](assets/3-running-iost-node/GoogleCloudPlatform/management_automation.png)
 
 
 
@@ -209,11 +209,11 @@ Once you populate this form it will look like
 
 Navigate to Disks tab and click *Add new disk*
 
-![disks_add_disk](assets/4-running-iost-node/GoogleCloudPlatform/disks_add_disk.png)
+![disks_add_disk](assets/3-running-iost-node/GoogleCloudPlatform/disks_add_disk.png)
 
 Next specify a Name and Size, please note that you will not be able to create disks in your region over *2048 GB if you are on a trial account* or without requesting a quota increase.
 
-![disks_configure](assets/4-running-iost-node/GoogleCloudPlatform/disks_configure.png)
+![disks_configure](assets/3-running-iost-node/GoogleCloudPlatform/disks_configure.png)
 
 At this point you can press the *Create* button at the bottom of the page to initiate the deployment of the virtual machine
 
@@ -224,15 +224,15 @@ Click on the name of your instance, this will bring you to *VM instance details*
 
 Click on *Create Firewall Rule* , give the rule a name
 
-![firewall_name](assets/4-running-iost-node/GoogleCloudPlatform/firewall_name.png)
+![firewall_name](assets/3-running-iost-node/GoogleCloudPlatform/firewall_name.png)
 
 Next you must specify the Target, Source and Destination ports, you could specify the target specifically being the service acccount linked to your current instance (more secure) but this example opens it up for all VM's in the VPC for simplicity.
 
-![firewal_ports](assets/4-running-iost-node/GoogleCloudPlatform/firewall_ports.png)
+![firewal_ports](assets/3-running-iost-node/GoogleCloudPlatform/firewall_ports.png)
 
 Click Create and you should now see the following rule
 
-![verify_ssh](assets/4-running-iost-node/GoogleCloudPlatform/firewall_confirm.png)
+![verify_ssh](assets/3-running-iost-node/GoogleCloudPlatform/firewall_confirm.png)
 
 To get back to your VM instance you must now click on the 3 lines beside *Google Cloud Platform* and navigate to *Compute Engine* , *VM Instannces*
 
@@ -240,7 +240,7 @@ To get back to your VM instance you must now click on the 3 lines beside *Google
 
 From the Compute console you will now see your node running, it will display your internal and external IP as well as option to connect via SSH, select *Open in browser window* which will connect from within the Google Compute Platform directly without the need to open SSH port to the Internet or to a defined IP.
 
-![verify_ssh](assets/4-running-iost-node/GoogleCloudPlatform/verify_ssh.png)
+![verify_ssh](assets/3-running-iost-node/GoogleCloudPlatform/verify_ssh.png)
 
 From the console you can become root and check some logs
 ```
@@ -249,7 +249,7 @@ docker ps
 tail -f /data/iserver/logs/iost.log
 ```
 You should see blocks syncing
-![verify_server](assets/4-running-iost-node/GoogleCloudPlatform/verify_server.png)
+![verify_server](assets/3-running-iost-node/GoogleCloudPlatform/verify_server.png)
 
 
 You may need to restart docker container if it was started before you applied the firewall rules in the VPC. Ensure you are in directory where docker-compose.yml exists.
@@ -274,7 +274,7 @@ docker exec -ti 1234abcd bash
 
 The following output should be visible , ensure your port shows 30000
 
-![verify_node](assets/4-running-iost-node/GoogleCloudPlatform/verify_server.png)
+![verify_node](assets/3-running-iost-node/GoogleCloudPlatform/verify_server.png)
 
 Remotely from another server you should also be able to retrieve a socket connection running telnet
 

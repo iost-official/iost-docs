@@ -1,7 +1,7 @@
 ---
 id: IOST-class
-title: IOST
-sidebar_label: IOST
+title: IOST Class
+sidebar_label: IOST Class
 ---
 
 This is the main class that create transactions to send to IOST blockchain and IOST smart contracts.

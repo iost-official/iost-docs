@@ -1,7 +1,7 @@
 ---
 id: KeyPair-class
-title: KeyPair
-sidebar_label: KeyPair
+title: KeyPair Class
+sidebar_label: KeyPair Class
 ---
 
 This is the main class that used to create IOST account keyPairs.

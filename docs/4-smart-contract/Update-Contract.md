@@ -46,7 +46,7 @@ Look at the can_update() function implementation in the contract file, which all
 
 ### Publish Contract
 
-Please refer to [Publish Contract](4-running-iost-node/iWallet.md#publish-contract) for more explanation.
+Please refer to [Publish Contract](3-running-iost-node/iWallet.md#publish-contract) for more explanation.
 ```
 $ export IOST_ACCOUNT=admin # replace with your own account name here
 $ iwallet compile hello.js

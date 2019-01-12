@@ -18,7 +18,7 @@ docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 
 ## Launch IOST Server Natively
 
-After finishing [building IOST](4-running-iost-node/Building-IOST.md), you can run the server.
+After finishing [building IOST](3-running-iost-node/Building-IOST.md), you can run the server.
 ```
 iserver -f ./config/iserver.yml
 ```

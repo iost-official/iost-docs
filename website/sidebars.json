@@ -4,48 +4,54 @@
       "1-getting-started/doc1",
       "1-getting-started/Quickstart"
     ],
-    "IOST Design and Concepts": [
-      "2-intro-of-iost/Account",
-      "2-intro-of-iost/Vote",
+    "IOST Basics": [
+      "2-intro-of-iost/Features-and-performance",
+      "2-intro-of-iost/Infra",
       "2-intro-of-iost/Economic-model",
-      "2-intro-of-iost/Smart-contract"
+      "2-intro-of-iost/Community-operations"
     ],
-    "Smart Contract": [
-      "3-smart-contract/ContractStart",
-      "3-smart-contract/How-to-write-a-smart-contract",
-      "3-smart-contract/Update-Contract",
-      "3-smart-contract/Generate-Receipt",
-      "3-smart-contract/Token",
-      "3-smart-contract/Smart-Contract-Development-Toolkit"
+    "IOST Tech Details": [
+      "2-intro-of-iost/Consensus",
+      "2-intro-of-iost/Database",
+      "2-intro-of-iost/Network-layer",
+      "2-intro-of-iost/Smart-contract",
+      "2-intro-of-iost/VM"
+    ],
+    "Use IOST": [
+      "2-intro-of-iost/Account",
+      "2-intro-of-iost/Vote"
     ],
     "Running IOST node": [
-      "4-running-iost-node/LocalServer",
-      "4-running-iost-node/Building-IOST",
-      "4-running-iost-node/iWallet",
-      "4-running-iost-node/Deployment",
-      "4-running-iost-node/Google-Compute-Platform",
-      "4-running-iost-node/Metrics"
+      "3-running-iost-node/LocalServer",
+      "3-running-iost-node/Building-IOST",
+      "3-running-iost-node/iWallet",
+      "3-running-iost-node/Deployment",
+      "3-running-iost-node/Google-Compute-Platform",
+      "3-running-iost-node/Metrics"
     ],
-    "Examples": [
-      "5-lucky-bet/LuckyBet"
+    "Smart Contract Developing": [
+      "4-smart-contract/ContractStart",
+      "4-smart-contract/How-to-write-a-smart-contract",
+      "4-smart-contract/Update-Contract",
+      "4-smart-contract/Generate-Receipt",
+      "4-smart-contract/Smart-Contract-Development-Toolkit",
+      "4-smart-contract/LuckyBet"
+    ],
+    "Built-in Contracts": [
+      "5-built-in-contracts/EconContract",
+      "5-built-in-contracts/SystemContract",
+      "5-built-in-contracts/TokenContract"
     ],
     "Reference": [
       "6-reference/API",
-      "6-reference/SystemContract",
-      "6-reference/EconContract",
-      "6-reference/TokenContract",
-      "6-reference/GasChargeTable"
+      "6-reference/GasChargeTable",
+      "6-reference/Glossary"
     ],
     "IOST Javascript SDK": [
       "7-iost-js/IOST-class",
       "7-iost-js/Blockchain-class",
       "7-iost-js/KeyPair-class",
       "7-iost-js/Transaction-class"
-    ],
-    "IOST Tech Internals": [
-      "2-intro-of-iost/VM",
-      "2-intro-of-iost/Database",
-      "2-intro-of-iost/Network-layer"
     ]
   },
   "docs-other": {
