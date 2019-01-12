@@ -4,19 +4,26 @@ title: Quickstart
 sidebar_label: Quickstart
 ---
 
-## Architecture Design
-- [Design of Smart Contract](2-intro-of-iost/Smart-contract.md)
-- [Design of VM](2-intro-of-iost/VM.md)   
-- [Design of Storage](2-intro-of-iost/Database.md)   
-- [Design of Network](2-intro-of-iost/Network-layer.md)   
+## Quick Example
+A step-by-step [realworld example](5-lucky-bet/LuckyBet.md) is provided for developers who want to develop smart contract on IOST.    
+It introduces how to write/deploy/run contracts.   
 
-## How to Start Contract Development
-For developers who want to develop smart contract on IOST, we provide a step-by-step [realworld example](5-lucky-bet/Design-Tech-data.md). It introduces how to deploy and run contracts.   
+## Help
+You can ask questions on [Slack](https://iost-community.slack.com) or [forum](https://forum.iost.io).
 
-You can also ask questions on our [official forum](https://forum.iost.io).
+## How to Run IOST
+You can choose to [Run Local Single-Node Net](4-running-iost-node/LocalServer.md) or [Join IOST Net](4-running-iost-node/Deployment.md).
+You can use [Command Line Tool](4-running-iost-node/iWallet.md) to play with IOST Blockchain.
 
+## SDK and API
+### javascript SDK
+* Source Code
+   - [Github Link](https://github.com/iost-official/iost.js)    
+* docs   
+   - [IOST](7-iost-js/IOST-class.md)   
+   - [Blockchain](7-iost-js/IOST-class.md)   
+   - [KeyPair](7-iost-js/KeyPair-class.md)   
+   - [Transaction](7-iost-js/Transaction-class.md)
 
-## How to join IOST Network
-For developers who want to join IOST network as a node，the [Access the Testnet](4-running-iost-node/Deployment.md) documentation may be helpful.
-
-If you want to publish smart contracts on IOST，you need some initial coins to pay for gas. You can apply for the initial coins [here](4-running-iost-node/Faucet.md).
+### JSON RPC API
+[Documentation](6-reference/API.md)    

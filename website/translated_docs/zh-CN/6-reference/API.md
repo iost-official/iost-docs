@@ -731,7 +731,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 用户在一段时间之后，可以使用这个收到的 Hash 通过 getTxByHash 或 getTxReceiptByTxHash 接口来查询本交易的状态，查看是否执行成功。   
 **注意:**   
 此接口需要先计算交易的哈希和签名，直接调用较为复杂。  
-普通用户可以使用 [命令行工具](./iwallet-example) 发送交易。  
+普通用户可以使用 [命令行工具](4-running-iost-node/iWallet.md) 发送交易。  
 开发者可以使用 [Javascript SDK](https://github.com/iost-official/iost.js) 中的函数接口发送交易。
 
 ### 请求参数

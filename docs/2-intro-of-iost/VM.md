@@ -25,7 +25,7 @@ As the payload of JavaScript smart contract execution, Sandbox interfaces with V
 
 Mainly for smart contract development and publishing, it has two features:
 
-* <font color="#0092ff">Contract Pack. </font>打包智能合约，基于webpack实现，会打包当前合约项目下的所有JavaScript代码，并自动完成依赖安装，使IOST V8VM开发大型合约项目变成可能。同时IOST V8VM和Node.js的模块系统完全兼容，可以无缝使用require、module.exports和exports等方法，赋予合约开发者原生JavaScript开发体验。
+* <font color="#0092ff">Contract Pack. </font>Pack smart contracts using webpack. It will pack all javascript source codes in the project and install all dependencies, making IOST V8VM easy to develop large projects. Besides, IOST V8VM shares almost all features of Node.js, so developers will feel familiar.
 * <font color="#0092ff">Contract Snapshot. </font>With the snapshot technology, compilation increases the performance of creating an isolate and contexts — an anti-serialization of the snapshot will achieve the result in runtime, and tremendously increase loading and execution speed of JavaScript.
 
 ### Execute Stage

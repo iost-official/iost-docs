@@ -1,263 +1,471 @@
 ---
-id: SystemContract
-title: System Contract
-sidebar_label: System Contract
+Id: SystemContract
+Title: System Contract
+Sidebar_label: System Contract
 ---
 
 ## vote_producer.iost
 ---
 
-### 简介
-超级节点竞选投票合约。
+### Description
+The Super Node campaigns for voting.
 
-### 基础信息
+### Info
 | contract_id | vote_producer.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
-#### ApplyRegister
-申请注册成为超级节点候选人。
+#### applyRegister
+Apply for registration to become a super node candidate.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
-| 公钥base58编码 | string |
-| 地理位置| string |
-| 网站 url | string |
-| 网络 id | string |
+| Account Name | string |
+| public key base58 encoding | string |
+| Location | string |
+| Website url | string |
+| network id | string |
+| is producer | bool |
 
-#### ApplyUnregister
-申请取消注册。
+#### applyUnregister
+Apply for cancellation.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
 
-#### Unregister
-取消注册，需要先调用 ApplyUnregister，审核通过后，才可调用本接口。
+#### unregister
+To cancel the registration, you need to call ApplyUnregister first. After the audit is passed, you can call this interface.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
-#### UpdateProducer
-更新注册信息。
+#### updateProducer
+Update registration information.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
-| 公钥base58编码 | string |
-| 地理位置| string |
-| 网站 url | string |
-| 网络 id | string |
+| Account Name | string |
+| public key base58 encoding | string |
+| Location | string |
+| Website url | string |
+| network id | string |
 
-#### LogInProducer
-上线，表示本节点目前可以提供服务。
+#### logInProducer
+Go online, indicating that the node is currently available for service.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
-#### LogOutProducer
-离线，表示本节点目前无法提供服务。
+#### logOutProducer
+Offline means that the node is currently unable to provide services.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
+| Account Name | string |
 
-#### VoteFor
-代别人投票，投票质押的 IOST 会从代理者账户扣除。
+#### voteFor
+Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 代理者账户名| string |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| Agent account name | string |
+| Voter Account Name | string |
+| Campaigner Account Name | string |
+| Number of votes | string |
 
-#### Vote
-投票。
+#### vote
+vote.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| Voter Account Name | string |
+| Campaigner Account Name | string |
+| Number of votes | string |
 
-#### Unvote
-取消投票。
+#### unvote
+Cancel the vote.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| Voter Account Name | string |
+| Campaigner Account Name | string |
+| Number of votes | string |
 
-#### VoterWithdraw
-投票者领取分红奖励。
+#### voterWithdraw
+Voters receive bonus awards.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 投票者账户名| string |
+| Voter Account Name | string |
 
-#### CandidateWithdraw
-竞选者领取分红奖励。
+#### candidateWithdraw
+The contestant receives a bonus award.
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 竞选者账户名| string |
+| Campaigner Account Name | string |
 
+## vote.iost
+---
+
+### Description
+A universal voting contract used to create votes, collect votes, and vote on statistics. You can implement your own voting function based on this contract.
+
+### Info
+| contract_id | vote.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+### API
+
+#### newVote
+Create a vote.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ | :------ |
+| Vote creator account name | string | Create a vote that requires pledge 1000 IOST, which will be deducted from the creator account, and the creator account has the admin privilege to vote |
+| Vote Description | string ||
+| Voting Settings | json object| contains 5 keys: <br>resultNumber —— number type, number of voting results, maximum 2000; <br> minVote —— number type, minimum number of votes, candidates with more votes than this number In order to enter the voting result set; <br>options - array type, candidate set, each item is a string, represents a candidate, the initial can be empty []; <br>anyOption - bool type, whether to allow The candidate in the non-options collection, passing false means that the user can only cast candidates in the options collection; <br>freezeTime - number type, cancel the token freeze time, in seconds;
+A successful call returns a globally unique vote ID.
+
+#### addOption
+Increase voting options.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ | :------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Options | string ||
+| Whether to clear the previous votes | bool ||
+
+#### removeOption
+Delete the voting option, but retain the result of the vote, delete it, and then add this option through AddOption to choose whether to restore the number of votes.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ | :------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Options | string ||
+Whether to force delete | bool | false means that the option is not deleted when it is in the result set, true means to force delete and update the result set |
+
+#### getOption
+Get the votes for the candidate.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ | :------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Options | string ||
+
+The result is a json object:
+
+| key | type | notes |
+| :----: | :------ | :------ |
+| votes| string | Votes |
+| deleted| bool | Is it marked as deleted |
+| clearTime| number | The block number where the number of votes was last cleared |
+
+#### voteFor
+Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ |:------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Agent account name | string ||
+| Voter Account Name | string ||
+| Options | string ||
+| Number of votes | string ||
+
+#### vote
+vote.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ |:------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Voter Account Name | string ||
+| Options | string ||
+| Number of votes | string ||
+
+#### unvote
+Cancel the vote.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ |:------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Voter Account Name | string ||
+| Options | string ||
+| Number of votes | string ||
+
+#### getVote
+Get an account vote record.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ |:------ |
+| Vote ID| string | ID returned by the NewVote interface|
+| Voter Account Name | string ||
+
+The result is a json array, each of which is the following object:
+
+| key | type | notes |
+| :----: | :------ | :------ |
+| option| string | options |
+| votes| string | Number of votes |
+| voteTime| number | Block number of the last vote |
+| clearedVotes| string | Number of votes cleared |
+
+#### getResult
+Get the voting result and return the option of resultNumber before the number of votes.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ |:------ |
+| Vote ID| string | ID returned by the NewVote interface|
+
+The result is a json array, each of which is the following object:
+
+| key | type | notes |
+| :----: | :------ | :------ |
+| option| string | options |
+| votes| string | Number of votes |
+
+#### delVote
+Delete the vote and return the IOST that was created during the voting to the creator account.
+
+| Parameter List | Parameter Type | Remarks |
+| :----: | :------ | :------ |
+| Vote ID| string | ID returned by the NewVote interface|
 
 ## auth.iost
 ---
 
-### 简介
-账号系统和权限管理
+### Description
+Account system and rights management
 
-### 基础信息
+### Info
 | contract_id | auth.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
-#### SignUp
-创建账号
+#### signUp
+Create an account
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
+| Username | string |
 | ownerKey | string |
 | activeKey | string |
 
-#### AddPermission
-向账号添加权限
+#### addPermission
+Add permissions to an account
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string | 
-| 权限名 | string |
-| 权限阈值 | number |
+| Username | string |
+| Permission name | string |
+| Permission threshold | number |
 
-#### DropPermission
-删除权限
+#### dropPermission
+Delete permission
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
+| Username | string |
+| Permission name | string |
 
-#### AssignPermission
-指定权限给item
+#### assignPermission
+Specify permissions for item
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限 | string |
+| Username | string |
+| Permissions | string |
 | item | string |
-| 权重 | number |
+| Weight | number |
 
 
-#### RevokePermission
-撤销权限
+#### revokePermission
+Revoke permission
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限 | string |
-| item | string |
-
-#### AddGroup
-添加权限组
-
-| 参数列表 | 参数类型 |
-| :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
-
-#### DropPermission
-删除权限组
-
-| 参数列表 | 参数类型 |
-| :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
-
-#### AssignGroup
-指定item给权限组
-
-| 参数列表 | 参数类型 |
-| :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
-| item | string |
-| 权重 | number |
-
-#### RevokeGroup
-撤销权限组的item
-
-| 参数列表 | 参数类型 |
-| :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| Username | string |
+| Permissions | string |
 | item | string |
 
+#### addGroup
+Add permission group
 
-#### AssignPermissionToGroup
-添加权限到组
-
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
-| 组名 | string |
+| Username | string |
+| Group name | string |
 
+#### dropGroup
+Delete permission group
 
-#### RevokePermissionInGroup
-删除组中的权限
-
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
-| 组名 | string |
+| Username | string |
+| Group name | string |
+
+#### assignGroup
+Specify item to the permission group
+
+| Parameter List | Parameter Type |
+| :----: | :------ |
+| Username | string |
+| Group name | string |
+| item | string |
+| Weight | number |
+
+#### revokeGroup
+Revoke the item of the permission group
+
+| Parameter List | Parameter Type |
+| :----: | :------ |
+| Username | string |
+| Group name | string |
+| item | string |
+
+
+#### assignPermissionToGroup
+Add permissions to the group
+
+| Parameter List | Parameter Type |
+| :----: | :------ |
+| Username | string |
+| Permission name | string |
+| Group name | string |
+
+
+#### revokePermissionInGroup
+Delete permissions in a group
+
+| Parameter List | Parameter Type |
+| :----: | :------ |
+| Username | string |
+| Permission name | string |
+| Group name | string |
 
 
 ## bonus.iost
-
 ---
 
-### 简介
+### Description
 
-正式节点造块奖励管理
+Formal node? Building block reward? Management
 
-### 基础信息
+### Info
 
 | contract_id | bonus.iost |
 | :----: | :------ |
 | language | javascript |
 | version | 1.0.0 |
 
-### 接口描述
+### API
 
-#### IssueContribute
+#### issueContribute
 
-发放贡献值，系统自动调用
+The contribution value is issued and the system automatically calls
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
 | data | json |
 
-#### ExchangeIOST
+#### exchangeIOST
 
-使用贡献值兑换IOST
+Use the contribution value to redeem IOST
 
-| 参数列表 | 参数类型 |
+| Parameter List | Parameter Type |
 | :----: | :------ |
-| 账户名 | string |
-| 数量 | string |
+| Account Name | string |
+| Quantity | string |
+
+
+## system.iost
+
+---
+
+### Description
+Base system contract for issuing and updating contracts and other basic system functions.
+
+### Info
+| contract_id | system.iost |
+| :----: | :------ |
+| language | native |
+| version | 1.0.0 |
+
+### API
+
+#### setCode (code)
+Deploy smart contracts.
+
+| Parameter Name | Parameter Description | Parameter Type |
+| :----: | :----: | :------ |
+| code | Smart Contract Code | string |
+
+| Return Value | Return Value Type |
+| :----: | :------ |
+| contractID | string |
+
+The smart contract code includes code and smart contract information, such as language and interface definitions. The code parameter supports two formats: json format and protobuf serialization encoding format.
+For developers, deployment contracts generally do not need to call this interface directly. It is recommended to use iwallet or related language SDK implementation.
+
+When deploying a smart contract, the system automatically calls the init() function of the smart contract. The developer can do some initialization work in the init function.
+
+Return value contractID is the smart contract ID, which is globally unique and generated by the hash of the deployment contract transaction. The contractID starts with "Contract" and consists of uppercase and lowercase letters and numbers. Only one smart contract can be deployed in a transaction.
+
+#### updateCode (code, data)
+Upgrade smart contracts.
+
+| Parameter Name | Parameter Description | Parameter Type |
+| :----: | :----: | :------ |
+| code | Smart Contract Code | string |
+| data | upgrade function parameters | string |
+
+| Return value | None |
+| :----: | :------ |
+
+Upgrade the smart contract, code is the smart contract code, the format is the same as the parameter in SetCode.
+
+When upgrading a smart contract, the system will automatically check the upgrade permission, that is, the can_update(data) function in the contract, and the parameter data is the second parameter in the UpdateCode, if and only if the can_update function exists and the call returns true.
+The contract upgrade will succeed, otherwise the upgrade will fail and it is determined that there is no upgrade permission.
+
+#### cancelDelaytx (txHash)
+Cancel a delayed transaction, call this function before the execution of the delayed transaction to cancel the delayed transaction.
+
+| Parameter Name | Parameter Description | Parameter Type |
+| :----: | :----: | :------ |
+| txHash | Transaction hash | string |
+
+| Return value | None |
+| :----: | :------ |
+
+#### requireAuth (acc, permission)
+Check if the transaction has the permission of the account.
+
+| Parameter Name | Parameter Description | Parameter Type |
+| :----: | :----: | :------ |
+| acc | account name | string |
+| permission | permission name | string |
+
+| Return value | Type |
+| :----: | :------ |
+| ok | bool |
+
+#### receipt (data)
+Generate a transaction receipt, the receipt is stored in the block, and can also be queried through the transaction hash.
+
+| Parameter Name | Parameter Description | Parameter Type |
+| :----: | :----: | :------ |
+| data | receipt content | string |
+
+| Return value | None |
+| :----: | :------ |
