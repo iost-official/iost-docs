@@ -89,6 +89,7 @@ A successful response looks like this:
 {
     "net_name": "debugnet",
     "protocol_version": "1.0",
+    "chain_id": 1024,
     "head_block": "16041",
     "head_block_hash": "DLJVtko6nQnAdvQ7y6dXHo3WMdG324yRLz8tPKk9tGHu",
     "lib_block": "16028",
@@ -101,6 +102,7 @@ Key                     |Type       |Description
 ----                        |--         |--
 net\_name           |string     |Network name, such as "mainnet" or "testnet"
 protocol\_version   |string     |iost protocol version
+chain\_id   | uint32     |iost chain id
 head\_block         |int64      |the lastest block height
 head\_block\_hash|string        |the hash of the lastest block
 lib\_block              |int64      |height of irreversible blocks
@@ -214,6 +216,7 @@ A successful response may look like this:
         "gas_ratio": 1,
         "gas_limit": 50000,
         "delay": "0",
+        "chain_id": 1024,
         "actions": [{
             "contract": "ContractTBv8ZDKUhTyeS4MomdcHRrXnJMELa5usSMHP6QJntFQ",
             "action_name": "transfer",
@@ -243,6 +246,7 @@ expiration      |int64      |the expiration of the transaction
 gas_ratio           |double |GAS ratio, we recommend it to be 1.00 (1.00 – 100.00). Raise the ratio to let the network pack it faster
 gas_limit           |double |Upper limits of GAS. This transaction will never cost more GAS than this amount
 delay               |int64      |Transactions will be delayed by this much, in nanosecond
+chain_id               |uint32      | id of blockchain on which the transaction could be executed
 actions         |repeated Action|the smallest transaction execution unit
 signers         |repeated string|list of transaction signatures
 publisher           |string     |sender of the transaction, who is responsible for fees
@@ -397,7 +401,8 @@ number          |int64      |block number
 witness         |string     |public key of the block producer
 time                    |int64      |time of block production
 gas\_usage      |double |total GAS consumption within the block
-tx\_count           |int64      |(This key is reserved.)
+tx\_count           |int64      |transaction number in the block
+info           | Info      |(This key is reserved.)
 transactions    |repeated Transaction   |all the transactions.
 
 ### Info
@@ -512,7 +517,7 @@ A successful response may look like this:
     "permissions": {
         "active": {
             "name": "active",
-            "groups": [],
+            "group_names": [],
             "items": [{
                 "id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
                 "is_key_pair": true,
@@ -523,7 +528,7 @@ A successful response may look like this:
         },
         "owner": {
             "name": "owner",
-            "groups": [],
+            "group_names": [],
             "items": [{
                 "id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
                 "is_key_pair": true,
@@ -580,7 +585,7 @@ total           |int64      |RAM bytes total
 Key                 |Type       |Description 
 ----                    |--         |--
 name                |string     |permission name
-groups              |repeated string    |permission group
+group_names              |repeated string    |permission group names
 items               |repeated Item  |permission information
 threshold           |int64      |permission threshold
 
@@ -789,6 +794,7 @@ expiration      |int64      |The time when the transaction expires, in nanosecon
 gas\_ratio          |double |GAS ratio. This transaction will be executed with default ratio, multiplied by this parameter. The higher the ratio, the faster the transaction gets executed. The value can be reasonably between 1.0 to 100.0
 gas\_limit          |double |Maximum GAS allowed by this transaction. Should not be lower than 50,000
 delay               |int64      |The nanoseconds of the transaction delay. Set to 0 for non-delayed transactions.
+chain_id               |uint32      |chain_id
 actions         |repeated Action    |Specific calls of the transaction
 amount\_limit   |repeated AmountLimit   |Limits on token of the transaction. More than one token limits may be specified; if the transaction exceeds theses limits, execution will halt.
 publisher           |string     |ID of the transaction publisher
@@ -797,6 +803,16 @@ signers         |repeated string    |The IDs of signers other than the publisher
 signatures      |repeated Signature |Signatures of the signers. Each signers should have one or many signatures, so the length of the signatures should not be less than that of the signers.
 
 <!-- 上表中需要提供 URL -->
+
+### Signature
+
+Key                 |Type       |Description 
+----                    |--         |--
+algorithm                |string     | "ED25519" or "SECP256K1"
+signature                    | string    |transaction's signature
+public\_key   |string   |The public key corresponding to the signature
+
+
 
 
 ### Response
@@ -812,30 +828,28 @@ There are three steps to sign a transaction: convert the transaction struct to b
 
 * **Convert transaction struct to byte array**
 
-    The algorithm is: convert parameters (in the order of their declaration) into byte arrays, encode them as instructed below, add a <code>\`</code> separator before each item, and concatenate them. Encoding process is listed here:
+    The algorithm is: convert each field of transaction into byte array in declarative order, and then add length before indefinite type (such as string and structure) and splice. The way the various field types are converted to byte arrays is shown in the table below.
     
     Type    |Conversion Method                          |Example
     ---     |--------------                                 |--------------------
     int     |Convert to byte array with Big-endian  |int64(1023) is converted to \[0 0 0 0 0 0 3 255\]
-    string  |Splice the byte of each character in the string    |"iost" is converted to \[105 111 115 116\]
-    array   |After converting each element of the array into a byte array, put them together and add `^` character before each of them      |\["iost" "iost"\] is converted to \[94 105 111 115 116 94 105 111 115 116\], or "^iost^iost"
-    map     |Convert keys and values to byte arrays, splice each key and its value with `<`, add `/` before each item, and concatenate the items in the ascending order of the keys.    |\["b":"iost", "a":"iost"\] converts to \[47 97 60 105 111 115 116 47 98 60 105 111 115 116\], or "/a<iost/b<iost"
+    string  |Splice the byte of each character in the string and add length before it    |"iost" is converted to \[0 0 0 4 105 111 115 116\]
+    array   | convert each element of the array into a byte array, add length before each array, put them together   |\["iost" "iost"\] is converted to \[0 0 0 2 0 0 0 4 105 111 115 116 0 0 0 4 105 111 115 116\]
+    map     |Each pair of keys: values in the dictionary is converted into byte arrays and spliced, then each pair is spliced in ascending order of keys, and the length of map is added to the front of each pair.    |\["b":"iost", "a":"iost"\] converts to \[0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116\] "
 
-    For int and strings, you need to encode the byte arrays. Add `\` before <code>\`</code>, `^`, `<`, `/`, or `\` to escape these characters. 
+    The transaction parameters are declared in this order: "time", "expiration", "gas\_ratio", "gas\_limit", "delay", "chain_id", "signers", "actions", "amount\_limit", and "signatures", so the pseudo-code converting a transaction struct to byte array is:   
 
-    The transaction parameters are "time", "expiration", "gas\_ratio", "gas\_limit", "delay", "signers", "actions", "amount\_limit", and "signatures", so the pseudo-code converting a transaction struct to byte array is:
+	```
+	func TxToBytes(t transaction) []byte {
+			return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) + 
+			 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
+		 			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) + 
+		 			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
+		 			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
+		}
+	```
     
-    ```
-    func TxToBytes(t transaction) []byte {
-            return '`' + Int64ToBytes(t.time) + '`' + Int64ToBytes(t. expiration) + 
-        '`' + Int64ToBytes(int64(t.gas_ratio * 100)) + '`' + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
-        '`' + Int64ToBytes(t.delay) + '`' + ArrayToBytes(t.signers) +
-        '`' + ArrayToBytes(t.actions) + '`' + ArrayToBytes(t.amount_limit) +
-        '`' + ArrayToBytes(t.signatures)
-        }
-    ```
-    
-    Refer to [go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L314) for golang implementation; refer to [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68) for JavaScript implementation.
+	Refer to [go-iost](https://github.com/iost-official/go-iost/blob/master/core/tx/tx.go#L410) for golang implementation; refer to [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68) for JavaScript implementation.
     
 * **Calculate the hash of the byte array with sha3 algorithm**
     
@@ -855,31 +869,37 @@ Assume account "testaccount" has a transaction that transfers 100 iost to the ac
 
     ```
     {
-        "time": 1544709662543340000,
-        "expiration": 1544709692318715000,
-        "gas_ratio": 1,
-        "gas_limit": 50000,
-        "delay": 0,
-        "signers": [],
-        "actions": [
-            {
-                "contract": "token.iost",
-                "actionName": "transfer",
-                "data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
-            },
-        ],
-        "amount_limit": [],
-        "signatures": [],
-    }
+		"time": 1544709662543340000,
+		"expiration": 1544709692318715000,
+		"gas_ratio": 1,
+		"gas_limit": 500000,
+		"delay": 0,
+		"chain_id": 1024,
+		"signers": [],
+		"actions": [
+			{
+				"contract": "token.iost",
+				"action_name": "transfer",
+				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
+			},
+		],
+		"amount_limit": [
+			{
+				"token": "*",
+				"value": "unlimited",
+			},
+		],
+		"signatures": [],
+	}
     ```
     
 * **Calculate hash**
 
-    After serializing and hashing the transaction, we obtain the hash "SEos66QidNOT+xOHYJOGpBs3g6YOPvzh7fujjaINpZA=".
+    After serializing and hashing the transaction, we obtain the hash "nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU=".
     
 * **Calculate signature**
 
-    Assume "testaccount" has a public key with ED25519 algorithm, the public key is "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=", and the private key is "rwhlQzbvFdtsyZAkE5JkadxhGIhu2eMy+T89GC/7fsH1GF16d9NwSyD3eAq9FxwVggJq6D4fR58Gk4UvBp8RFA==". Sign the hash with the private key and we get "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="
+    Assume "testaccount" has a public key with ED25519 algorithm, the public key is "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=", and the private key is "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg==". Sign the hash with the private key and we get "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="
 
 * **Publish transaction**
 
@@ -887,36 +907,42 @@ Assume account "testaccount" has a transaction that transfers 100 iost to the ac
     
     ```
     {
-        "time": 1544709662543340000,
-        "expiration": 1544709692318715000,
-        "gas_ratio": 1,
-        "gas_limit": 50000,
-        "delay": 0,
-        "signers": [],
-        "actions": [
-            {
-                "contract": "token.iost",
-                "actionName": "transfer",
-                "data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
-            },
-        ],
-        "amount_limit": [],
-        "signatures": [],
-        "publisher": "testaccount",
-        "publisher_sigs": [
-            {
-                "algorithm": "ED25519",
-                "public_key": "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=",
-                "signature": "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg==",
-            },
-        ],
-    }
+		"time": 1544709662543340000,
+		"expiration": 1544709692318715000,
+		"gas_ratio": 1,
+		"gas_limit": 500000,
+		"delay": 0,
+		"chain_id": 1024,
+		"signers": [],
+		"actions": [
+			{
+				"contract": "token.iost",
+				"action_name": "transfer",
+				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
+			},
+		],
+		"amount_limit": [
+			{
+				"token": "*",
+				"value": "unlimited",
+			},
+		],
+		"signatures": [],
+		"publisher": "testaccount",
+		"publisher_sigs": [
+			{
+				"algorithm": "ED25519",
+				"public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
+				"signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
+			},
+		],
+	}
     ```
     
     After we JSON-serialize the struct, we can send the following RPC:
     
     ```
-    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"actionName":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[],"delay":0,"expiration":1544709692318715000,"gas_limit":50000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=","signature":"OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="}],"signatures":[],"signers":[],"time":1544709662543340000}'
+    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
     ```
 
 
@@ -934,3 +960,42 @@ This API shares the same set of paramters with /sendTx.
 ### Response
 
 This API shares the same response format with /getTxReceiptByTxHash.
+
+## /subscribe
+##### **POST**
+Subscription events, including events triggered in smart contracts and transactions completed.
+
+### Request
+
+A request may look like this:
+
+```
+curl -X POST http://127.0.0.1:30001/subscribe -d '{"topics":["CONTRACT_RECEIPT"], "filter":{"contract_id":"token.iost"}}'
+```
+| Key | Type | Description |
+| :----: | :-----: | :------ |
+| topics |repeated enum  | topics，the enum is CONTRACT\_EVENT or CONTRACT\_RECEIPT|
+| filter | [Filter](#filter)  | Received events are filtered according to the fields in the filter. If this field is not passed, event data in all topics will be received. |
+### Filter
+| Key | Type | Description |
+| :----: | :-----: | :------ |
+| contract_id | string | contract id|
+
+
+
+### Response
+
+A successful response may look like this:
+
+```
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646637413936000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646637711757000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646638013188000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646638317840000"}}}
+...
+```
+| Key | Type | Description |
+| :----: | :--------: | :------ |
+| topic | enum  | topic，the enum is CONTRACT\_EVENT or CONTRACT\_RECEIPT|
+| data | string  |event data|
+| time | int64  | event timestamp|
