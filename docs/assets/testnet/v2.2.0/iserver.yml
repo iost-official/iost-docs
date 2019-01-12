@@ -1,0 +1,51 @@
+acc:
+  id:
+  seckey:
+  algorithm: ed25519
+genesis: /var/lib/iserver/genesis
+vm:
+  jspath: vm/v8vm/v8/libjs/
+  loglevel: ""
+db:
+  ldbpath: /var/lib/iserver/storage/
+p2p:
+  listenaddr: 0.0.0.0:30000
+  seednodes:
+    - 
+    - 
+  chainid: 1024
+  version: 1
+  datapath: /var/lib/iserver/p2p/
+  inboundConn: 18
+  outboundConn: 12
+  blackPID:
+  blackIP:
+  adminPort: 30005
+rpc:
+  enable: true
+  gatewayaddr: 0.0.0.0:30001
+  grpcaddr: 0.0.0.0:30002
+  trytx: true
+  allowOrigins:
+    - "*"
+log:
+  filelog:
+    path: /var/lib/iserver/logs/
+    level: info
+    enable: true
+  consolelog:
+    level: info
+    enable: true
+  asyncwrite: true
+  enablecontractlog: true
+metrics:
+  pushaddr: 
+  username: 
+  password: 
+  enable: false
+  id: testnet:visitor00
+debug:
+  listenaddr: 0.0.0.0:30003
+version:
+  netname: "debugnet"
+  protocolversion: "1.0"
