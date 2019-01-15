@@ -1,6 +1,6 @@
 ---
 id: Smart-Contract-Development-Toolkit
-title: Scaf: 素晴らしいスマートコントラクト開発ツールキットt
+title: Scaf: 素晴らしいスマートコントラクト開発ツールキット
 sidebar_label: Scaf: 素晴らしいスマートコントラクト開発ツールキット
 ---
 

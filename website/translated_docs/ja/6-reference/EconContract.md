@@ -7,7 +7,7 @@ sidebar_label: コントラクトの経済
 ## gas.iost
 ---
 
-GASのプレッジ、解約、転送を含むGAS関連のコントラクトです。
+GASのデポジット、解約、転送を含むGAS関連のコントラクトです。
 経済モデルの詳細は、[GASの経済モデル](2-intro-of-iost/Economic-model.md#gas奖励)を参照してください。
 
 ### 情報
@@ -19,34 +19,34 @@ GASのプレッジ、解約、転送を含むGAS関連のコントラクトで�
 ### API
 
 #### pledge
-IOSTのGASのプレッジ。最小のプレッジ量は1IOSTです。      
+IOSTのGASのデポジット。最小のデポジット量は1IOSTです。      
 ##### 例
-\["user1","user1","100"\]：user1は、100IOSTを自分にプレッジするので、user1は100IOST使って、いくらかのGASを得ます。   
-\["user1","user2","100"\]：uuser1は、100IOSTをuser2にプレッジするので、user1は100IOST使って、user2はいくらかのGASを得ます。
+\["user1","user1","100"\]：user1は、100IOSTを自分にデポジットするので、user1は100IOST使って、いくらかのGASを得ます。   
+\["user1","user2","100"\]：uuser1は、100IOSTをuser2にデポジットするので、user1は100IOST使って、user2はいくらかのGASを得ます。
 
 | 引数の意味 | 引数の型 |
 | :----: | :------ |
-| IOSTをプレッジする者。このアカウントの権限が必要 | string |
+| IOSTをデポジットする者。このアカウントの権限が必要 | string |
 | GASの受領者 | string |
-| プレッジするIOSTの量 | string |
+| デポジットするIOSTの量 | string |
 
 #### unpledge
-解約する。以前にプレッジしたIOSTが戻されます。最小解約量は1IOSTです。
+解約する。以前にデポジットしたIOSTが戻されます。最小解約量は1IOSTです。
 ##### 例
-\["user1","user1","100"\]：user1は、以前に自分にプレッジした100IOST解約します。
-\["user1","user2","100"\]：user1は、以前にuser2にプレッジした100IOST解約します。
+\["user1","user1","100"\]：user1は、以前に自分にデポジットした100IOST解約します。
+\["user1","user2","100"\]：user1は、以前にuser2にデポジットした100IOST解約します。
 
 | 引数の意味 | 引数の型 |
 | :----: | :------ |
 | IOSTの解約者。このアカウントの権限が必要 | string |
-| 現在のプレッジ外のIOSTのプレッジ量 | string |
+| 現在のデポジット外のIOSTのデポジット量 | string |
 | 解約IOST量 | string | 
 
 
 
 #### transfer
 GASの転送。最小転送量は1IOST。
-__注意__: プレッジから得たGASは転送できません。`transferable GAS`だけが、転送できます。ですから、一度転送した後の`transferable GAS`は、もう転送できません。
+__注意__: デポジットから得たGASは転送できません。`transferable GAS`だけが、転送できます。ですから、一度転送した後の`transferable GAS`は、もう転送できません。
 転送可能GASは、[transferable gas reward]から取得できます。(2-intro-of-iost/Economic-model/#流通gas奖励)
 
 #### 例
