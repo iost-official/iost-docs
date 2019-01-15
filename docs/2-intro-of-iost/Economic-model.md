@@ -13,7 +13,7 @@ The economic model is compared as follows:
  
  System | Model | Advantages | Disadvantages |
 | :---: | :----: | ----- | ----- |
-ETH | Ownership | 1. Create an account for free<br>2. Compete using resources in order to balance network usage<br>3.Gas charges are finer and more precise. 1. When the system is busy, the network usage price will be very expensive. And the price fluctuates greatly<br>2. The system performance is low, and the development, deployment and use of the network will continue to charge, it is difficult to support large-scale DAPP applications.<br>3. The storage space cannot issue a refund, and the user does not have the motivation to release the storage. Many garbage data<br>4.CPU resources and storage resources, unified payment with Gas, resulting in two resources affecting each other and low usage rate |
+ETH | Ownership | 1. Create an account for free<br>2. Compete using resources in order to balance network usage<br>3.Gas charges are finer and more precise. | 1. When the system is busy, the network usage price will be very expensive. And the price fluctuates greatly<br>2. The system performance is low, and the development, deployment and use of the network will continue to charge, it is difficult to support large-scale DAPP applications.<br>3. The storage space cannot issue a refund, and the user does not have the motivation to release the storage. Many garbage data<br>4.CPU resources and storage resources, unified payment with Gas, resulting in two resources affecting each other and low usage rate |
 EOS | Rental | 1. How many tokens in the whole network, how many resources are available in the whole network?<br>2. The system needs to pledge Token, does not consume Token, supports large-scale DAPP application<br>3. Leasing RAM, users have the motivation to release space, redeem Token, and alleviate blockchain data expansion problems | 1. Create complex accounts with high fees <br>2. When large customers pledge Token to obtain resources, it will lead to the dilution of retail resources, even when the network is at low useage level, retail investors can't afford transactions on EOS network.<br>3. There are too many types of resources to rent (NET, CPU and RAM), and the threshold for normal user operations is high.
 | IOST | Contribution | 1. Create an account is simple, low cost <br>2. The greater the contribution, the more system resources you can use.<br>3. The system needs to pledge Token to get GAS, it will not consume Token, really Free public chain<br>4. Using Gas pricing, it can effectively avoid EOS big pledge Token dilution of retail resources, much more fair <br>5. System resources are divided into CPU and storage, the resource division is more conducive to differentiated pricing To avoid the problem of low ETH resource usage rate | Economic model complexity is high |
 
@@ -60,7 +60,7 @@ rule:
 - IOST redemption can be initiated at any time. Tokens applying for redemption no longer generate GAS. Redemption requires 72 hours.
 - If the IOST is redeemed, the upper limit of the reward Gas is reduced accordingly, and the Gas exceeding the upper limit is destroyed. When the pledge is redeemed, Gas is cleared.
 
-### Gas use
+### Gas Use
 
 - Transaction execution requires consumption of Gas
 - Number of Gas consumed by the transaction = CGas (Command Gas) consumption of the command * Number of commands * Gas rate
