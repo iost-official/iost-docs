@@ -1,242 +1,242 @@
 ---
 id: TokenContract
-title: Token Contract
+title: トークンコントラクト
 sidebar_label: Token Contract
 ---
 
 ## token.iost
 ---
 
-### 简介
-代币合约, 用于代币创建,发行,转账和销毁, 支持冻结功能, 支持配置代币全称,小数位数,转账属性等。
+### 説明
+トークンコントラクトは、トークンの作成、配布、転送、破棄に使用され、しばらくの間トークンを凍結することができ、トークンのフルネーム、小数点以下の桁数、転送属性の設定もサポートします。
 
-### 基础信息
-| contract_id | token.iost |
+### 情報
+| コントラクトID | token.iost |
 | :----: | :------ |
-| language | native |
-| version | 1.0.0 |
+| 言語 | ネイティブ |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
 #### create (tokenSym, issuer, totalSupply, config)
-创建代币.
+トークンを作成します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符,合约内唯一 | string |
-| issuer   | 发行者,具有发行代币权限 | string |
-| totalSupply | 总发行量,整数 | number |
-| config | 配置 | json |
+| tokenSym | トークンコントラクトを識別する一意の識別子 | string |
+| issuer | トークン権限を持つ発行者 | string |
+| totalSupply | 総供給量で整数 | number |
+| config | 設定 | json |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
-tokenSym 长度应在 2~16 位, 使用 a-z, 0-9, _ 字符
+tokenSymには、2文字から16文字で、英小文字(a-z)、数字(0-9)、下線(_)だけが使えます。
 
-config 支持的配置项举例如下:
+configでサポートされている設定項目は次のとおりです。
 
 {
 
-   "fullName": "iost token",   // 代币全称, string
-   
-   "canTransfer": true,		// 是否可交易, bool
-   
-   "decimal": 8				// 小数位数, number
+   "fullName": "iost token", // トークンのフルネーム、string型
+
+   "canTransfer": true, // 取引可能かどうか、bool型
+
+   "decimal": 8 // 小数点以下の桁数、number型
 
 }
 
 #### issue (tokenSym, to, amount)
-发行代币.
+トークンを発行します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| to  | 代币接收账户 | string |
-| amount | 金额 | string |
+| tokenSym | トークンの識別子 | string |
+| to | トークン受信アカウント | string |
+| amount | 量 | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
-amount 金额为字符串类型, 可以是整数或小数, 如 "100", "1.22" 都是合法的金额
+amountパラメータは文字列で、"100"などの整数または10進数を指定できます。"1.22"は有効な数値です。
 
 #### transfer (tokenSym, from, to, amount, memo)
-代币转账.
+トークンを転送します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| to  | 代币接收账户 | string |
-| amount | 金额 | string |
-| memo | 附加信息 | string |
+| tokenSym | トークンの識別子 | string |
+| from | トークン送信アカウント | string |
+| to | トークン受信アカウント | string |
+| amount | 量 | string |
+| memo | 追加情報 | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
 #### transferFreeze (tokenSym, from, to, amount, ftime, memo)
-转账并冻结代币.
+トークンを転送し、凍結します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| to  | 代币接收账户 | string |
-| amount | 金额 | string |
-| ftime| 解冻时间,Unix时间戳的毫秒数 | number |
-| memo | 附加信息 | string |
+| tokenSym | トークンの識別子 | string |
+| from | トークン送信アカウント | string |
+| to | トークン受信アカウント | string |
+| amount | 量 | string |
+| ftime| 凍結解除までの時間(ミリ秒単位のUNIX時間) | number |
+| memo | 追加情報 | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
 #### destroy (tokenSym, from, amount)
-销毁代币.
+トークンを破棄します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| amount | 金额 | string |
+| tokenSym | トークンの識別子 | string |
+| from | トークンを破棄するアカウント | string |
+| amount | 量 | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
 #### balanceOf (tokenSym, from)
-获取代币余额.
+トークンの残高を取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币账户 | string |
+| tokenSym | トークンの識別子 | string |
+| from | トークンのアカウント | string |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| 账户余额 | number |
+| アカウントの残高 | string |
 
 #### supply (tokenSym)
-获取代币发行量,即已经issue且没有destroy的代币总额.
+トークンの流通量、つまり発行済みで破棄されていないトークンの合計数量を取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
+| tokenSym | トークンの識別子 | string |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| 发行量 | number |
+| 流通量 | string |
 
 #### totalSupply(tokenSym)
-获取代币总发行量.
+トークンの総供給量を取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
+| tokenSym | トークンの識別子 | string |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| 总发行量 | number |
+| 総供給量 | string |
 
 
 ## token721.iost
 ---
 
-### 简介
-不可交换代币合约, 用于不可交换代币创建,发行,转账和销毁.
+### 説明
+Token721コントラクトは、交換不可能なトークンの作成、配布、転送、破棄に使用します。
 
-### 基础信息
-| contract_id | token721.iost |
+### 情報
+| コントラクトID | token721.iost |
 | :----: | :------ |
-| language | native |
-| version | 1.0.0 |
+| 言語 | ネイティブ |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
 #### create (tokenSym, issuer, totalSupply)
-创建代币.
+トークンを作成します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符,合约内唯一 | string |
-| issuer   | 发行者,具有发行代币权限 | string |
-| totalSupply | 总发行量,整数 | number |
+| tokenSym | コントラクト内での一意のトークン識別子 | string |
+| issuer | トークンの発行権を持つ発行者 | string |
+| totalSupply | 総流通量で、整数 | number |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
-tokenSym 长度应在 2~16 位, 使用 a-z, 0-9, _ 字符
+tokenSymには、2文字から16文字で、英小文字(a-z)、数字(0-9)、下線(_)だけが使えます。
 
 #### issue (tokenSym, to, metaData)
-发行代币.
 
-| 参数名称 | 参数描述 | 参数类型 |
+トークンを発行します。
+
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| to  | 代币接收账户 | string |
-| metaData | 代币的meta数据 | string |
+| tokenSym | トークン識別子 | string |
+| to | トークン受信アカウント | string |
+| metaData | トークンのメタデータ | string |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| tokenID | string |
+| トークンID | string |
 
-tokenID 为代币编号,在某一代币中,系统会为发行的每个代币生成一个代币编号,同种代币中编号不会重复.
+tokenIDはトークンIDです。特定のトークンでは、システムが発行された各トークンに対してトークンIDを生成しますが、それは重複しません。
 
 #### transfer (tokenSym, from, to, tokenID)
-代币转账.
+トークンを転送します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币转出账户 | string |
-| to  | 代币接收账户 | string |
-| tokenID | 代币ID | string |
+| tokenSym | トークン識別子 | string |
+| from | トークン送信アカウント | string |
+| to | トークン受信アカウント | string |
+| tokenID | トークンID | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
 #### balanceOf (tokenSym, from)
-获取代币余额.
+トークンの残高を取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| from  | 代币账户 | string |
+| tokenSym | トークン識別子 | string |
+| from | トークンアカウント | string |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| 账户余额 | number |
+| アカウントの残高 | number |
 
 #### ownerOf (tokenSym, tokenID)
-获取某个特定代币的拥有者
+特殊なトークンのオーナーを取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| tokenID | 代币ID | string |
+| tokenSym | トークン識別子 | string |
+| tokenID | トークンID | string |
 
-| 返回值 | 类型|
+| 戻り値 | Type|
 | :----: | :------ |
-| 拥有者账户 | string |
+| オーナーのアカウント | string |
 
 #### tokenOfOwnerByIndex(tokenSym, owner, index)
-获取账户拥有的第index个代币
+アカウントが所有しているインデックス番目のトークンを取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| owner | 代币账户 | string |
-| index | 代币index,整数 | number |
+| tokenSym | トークン識別子 | string |
+| owner | トークンのアカウント | string |
+| index | トークンのインデックスで整数 | number |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| tokenID | string |
+| トークンID | string |
 
 #### tokenMetadata(tokenSym, tokenID)
-获取代币的meta数据
+トークンのメタデータを取得します。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| tokenSym | 代币标识符 | string |
-| tokenID | 代币ID | string |
+| tokenSym | トークン識別子 | string |
+| tokenID | トークンID | string |
 
-| 返回值 | 类型 |
+| 戻り値 | 型 |
 | :----: | :------ |
-| metaData | string |
-
+| メタデータ | string |
