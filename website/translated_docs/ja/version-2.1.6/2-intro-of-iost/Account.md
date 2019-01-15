@@ -1,8 +1,7 @@
 ---
-id: version-2.1.6-Account
+id: Account
 title: アカウント
 sidebar_label: アカウント
-original_id: Account
 ---
 
 
@@ -83,7 +82,7 @@ User0, perm4		|key8			|false		|権限グループの重みを計算するとき�
 
 ## アカウントの作成と管理
 
-アカウント管理は、`account.iost`のスマートコントラクトに基づいていて、そのABIは次のようになっています。
+アカウント管理は、`auth.iost`のスマートコントラクトに基づいていて、そのABIは次のようになっています。
 
 ```
 {

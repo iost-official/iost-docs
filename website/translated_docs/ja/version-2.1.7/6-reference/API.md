@@ -1,8 +1,7 @@
 ---
-id: version-2.1.7-API
+id: API
 title: API
 sidebar_label: API
-original_id: API
 ---
 
 
@@ -89,6 +88,7 @@ curl http://127.0.0.1:30001/getChainInfo
 {
     "net_name": "debugnet",
     "protocol_version": "1.0",
+    "chain_id": 1024,
     "head_block": "16041",
     "head_block_hash": "DLJVtko6nQnAdvQ7y6dXHo3WMdG324yRLz8tPKk9tGHu",
     "lib_block": "16028",
@@ -101,6 +101,7 @@ curl http://127.0.0.1:30001/getChainInfo
 ----                        |--         |--
 net\_name           |string     |ネットワーク名。"mainnet"または"testnet"
 protocol\_version   |string     |IOSTプロトコルのバージョン
+chain\_id   | uint32     |IOSTのチェーンID
 head\_block         |int64      |最新ブロック番号
 head\_block\_hash|string        |最新ブロックのハッシュ
 lib\_block              |int64      |不可逆ブロックの高さ
@@ -214,6 +215,7 @@ hash                |string     |トランザクションのハッシュ
         "gas_ratio": 1,
         "gas_limit": 50000,
         "delay": "0",
+        "chain_id": 1024,
         "actions": [{
             "contract": "ContractTBv8ZDKUhTyeS4MomdcHRrXnJMELa5usSMHP6QJntFQ",
             "action_name": "transfer",
@@ -243,6 +245,7 @@ expiration      |int64      |トランザクションの有効期限
 gas_ratio           |double |GAS比率、1.00 (1.00 – 100.00)を推奨。比率を上げるとネットワーク上でのパックが高速化
 gas_limit           |double |GASの上限。この値よりGAS代が大きくなることはない
 delay               |int64      |トランザクションの最大遅延(ナノ秒)
+chain_id               |uint32      | トランザクションを実行したブロックチェーンのID
 actions         |Actionの繰り返し|最小トランザクション実行単位
 signers         |stringの繰り返し|トランザクションの署名リスト
 publisher           |string     |トランザクションの送信者、手数料を支払う
@@ -284,8 +287,6 @@ receipts            |Receiptの繰り返し|イベント関数用レシート
 ----                    |--         |--
 func_name       |string     |ABI関数名
 content         |string     |内容
-
-<!-- CONTINUE HERE: http://developers.iost.io/docs/zh-CN/next/6-reference/API/#gettxreceiptbytxhash-hash -->
 
 
 ## /getTxReceiptByTxHash/{hash}
@@ -398,7 +399,8 @@ number          |int64      |ブロック番号
 witness         |string     |ブロックプロデューサーの公開鍵
 time                    |int64      |風呂奥生成時間
 gas\_usage      |double |ブロックの総GAS消費
-tx\_count           |int64      |(予約済)
+tx\_count           |int64      |ブロック内のトランザクション番号
+info           | Info      |(予約済)
 transactions    |Transactionの繰り返し   |すべてのトランザクション
 
 ### Info
@@ -513,7 +515,7 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
     "permissions": {
         "active": {
             "name": "active",
-            "groups": [],
+            "group_names": [],
             "items": [{
                 "id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
                 "is_key_pair": true,
@@ -547,7 +549,7 @@ create\_time        |int64      |アカウント作成時刻
 gas\_info           |GasInfo    |GAS情報
 ram\_info           |RAMInfo    |RAM情報
 permissions |map<string, Permission>    |権限
-groups              |map<string, Group>         |権限グループ
+group_names              |map<string, Group>         |権限グループ名
 frozen\_balances    |FrozenBalanceの繰り返し |凍結した残高の情報
 
 ### GasInfo
@@ -777,7 +779,7 @@ APIはトランザクションハッシュと署名を必要とし、直接呼�
 
 <!-- 可能需要更新以下链接 -->
 
- ユーザには、[CLI tools](http://developers.iost.io/docs/zh-CN/6-reference/API/iwallet-example)を使って、トランザクションを送信することをお勧めします。
+ ユーザには、[CLI tools](4-running-iost-node/iWallet.md)を使って、トランザクションを送信することをお勧めします。
 
 開発者は[JavaScript SDK](https://github.com/iost-official/iost.js)を使ってください。
 
@@ -790,6 +792,7 @@ expiration      |int64      |トランザクション有効時刻(UNIX時間、�
 gas\_ratio          |double |GAS比率、トランザクションはデフォルトの比率で実行され、このパラメーで乗算される。値は1.0から100.0。
 gas\_limit          |double |トランザクションで許可される最大GASで、50,000以上
 delay               |int64      |トランザクションの遅延(ナノ秒)。0にすると遅延なし
+chain_id               |uint32      |チェーンID
 actions         |Actionの繰り返し    |トランザクションの特定呼び出し
 amount\_limit   |AmountLimitの繰り返し   |トランザクションのトークンの制限。複数指定可能で、この制限を超えると実行は停止する
 publisher           |string     |トランザクションパブリッシャーID
@@ -799,6 +802,13 @@ signatures      |Signatureの繰り返し |署名者の署名。各署名者は�
 
 <!-- 上表中需要提供 URL -->
 
+### 署名
+
+Key                 |Type       |Description 
+----                    |--         |--
+algorithm                |string     | "ED25519"または"SECP256K1"
+signature                    | string    |トランザクションの署名
+public\_key   |string   |署名に関連する公開鍵
 
 ### レスポンス
 
@@ -813,31 +823,28 @@ hash                |string     |トランザクションハッシュ
 
 * **トランザクションの構造のバイト配列への変換**
 
-    アルゴリズムは、次のとおりです。宣言に従って、パラメータをバイト配列に変換し、次のようにエンコードし、項目ごとにセパレータとして<code>\`</code>を追加します。エンコード処理は、次のようになります。
+    アルゴリズムは、次のとおりです。トランザクションの各フィールドを宣言順にバイト配列に変換してから、不定型(文字列や構造体など)やspliceの前に長さを追加します。さまざまなフィールド型をバイト配列に変換する方法は次のようになります。
+
     
         型    |変換メソッド                          |例
     ---     |--------------                                 |--------------------
-    int     |バイト配列にビッグエンディアンに変換 |int64(1023)は、\[0 0 0 0 0 0 3 255\]になる
-    string  |文字列中の各文字をバイトに分ける    |"iost"ｊは、\[105 111 115 116\]になる
-    array   |配列の各要素をバイト配列に変換後、一つにまとめて、`^`をそれぞれの前に追加      |\["iost" "iost"\]は、\[94 105 111 115 116 94 105 111 115 116\]か、"^iost^iost"になる
-    map     |キーと値をバイト配列に変換、キーと値を`<`と`/`を項目の前に追加して、キーの昇順に項目を追加
-        |\["b":"iost", "a":"iost"\]は\[47 97 60 105 111 115 116 47 98 60 105 111 115 116\]か"/a<iost/b<iost"になる
+    int     |バイト配列にビッグエンディアンに変換 |int64(1023)は \[0 0 0 0 0 0 3 255\]
+    string  |文字列中の各文字をバイトに分けて、長さをその前に付与    |"iost" は \[0 0 0 4 105 111 115 116\]
+    array   | 配列の各要素をバイト配列に変換し、長さを配列の前に付与 |\["iost" "iost"\] は \[0 0 0 2 0 0 0 4 105 111 115 116 0 0 0 4 105 111 115 116\]
+    map     |ディクショナリ内のキーと値の各ペアをバイト配列に変換して分けておき、キーの昇順にして、各ペアの前に長さを付与 |\["b":"iost", "a":"iost"\] は \[0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116\] "
 
-    intとstringは、バイト配列にエンコードする必要があります。これらの文字をエスケープするために、`\`を<code>\`</code>、`^`、`<`、`/`、`\`の前に付けます。
-
-    トランザクションのパラメータは、"time"、"expiration"、"gas\_ratio"、"gas\_limit"、"delay"、"signers"、"actions"、"amount\_limit"、"signatures"で、トランザクションを変換する擬似コードは次のようになります。
-    
-    ```
-    func TxToBytes(t transaction) []byte {
-            return '`' + Int64ToBytes(t.time) + '`' + Int64ToBytes(t. expiration) + 
-        '`' + Int64ToBytes(int64(t.gas_ratio * 100)) + '`' + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
-        '`' + Int64ToBytes(t.delay) + '`' + ArrayToBytes(t.signers) +
-        '`' + ArrayToBytes(t.actions) + '`' + ArrayToBytes(t.amount_limit) +
-        '`' + ArrayToBytes(t.signatures)
-        }
-    ```
-    
-    Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L314)を参照してください。JavaScript実装については、、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)を参照してください。
+    トランザクションのパラメータは、 "time"、 "expiration"、 "gas_ratio"、 "gas_limit"、 "delay"、 "chain_id"、 "signers"、 "actions"、 "amount_limit"、"signature"の順に宣言されています。そのため、トランザクション構造体をバイト配列に変換する疑似コードは次のようになります。
+	```
+	func TxToBytes(t transaction) []byte {
+			return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) + 
+			 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
+		 			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) + 
+		 			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
+		 			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
+		}
+	```
+        
+    Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L410)を参照してください。JavaScript実装については、、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)を参照してください。
     
 * **SHA3アルゴリズムでバイト配列のハッシュを計算**
     
@@ -857,31 +864,37 @@ hash                |string     |トランザクションハッシュ
 
     ```
     {
-        "time": 1544709662543340000,
-        "expiration": 1544709692318715000,
-        "gas_ratio": 1,
-        "gas_limit": 50000,
-        "delay": 0,
-        "signers": [],
-        "actions": [
-            {
-                "contract": "token.iost",
-                "actionName": "transfer",
-                "data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
-            },
-        ],
-        "amount_limit": [],
-        "signatures": [],
-    }
+		"time": 1544709662543340000,
+		"expiration": 1544709692318715000,
+		"gas_ratio": 1,
+		"gas_limit": 500000,
+		"delay": 0,
+		"chain_id": 1024,
+		"signers": [],
+		"actions": [
+			{
+				"contract": "token.iost",
+				"action_name": "transfer",
+				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
+			},
+		],
+		"amount_limit": [
+			{
+				"token": "*",
+				"value": "unlimited",
+			},
+		],
+		"signatures": [],
+	}
     ```
     
 * **ハッシュの計算**
 
-    シリアライズしハッシュの計算をすると、"SEos66QidNOT+xOHYJOGpBs3g6YOPvzh7fujjaINpZA="というハッシュが得られます。
+    シリアライズしハッシュの計算をすると、"nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU="というハッシュが得られます。
     
 * **署名の計算**
 
-    ED25519アルゴリズムによる公開鍵"9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ="、秘密鍵"rwhlQzbvFdtsyZAkE5JkadxhGIhu2eMy+T89GC/7fsH1GF16d9NwSyD3eAq9FxwVggJq6D4fR58Gk4UvBp8RFA=="を"testaccount"が持っているとします。ハッシュを秘密鍵で署名すると、"OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="が得られます。
+    ED25519アルゴリズムによる公開鍵"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY="、秘密鍵"gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg=="を"testaccount"が持っているとします。ハッシュを秘密鍵で署名すると、"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="が得られます。
 
 * **トランザクションのパブリッシュ**
 
@@ -889,38 +902,43 @@ hash                |string     |トランザクションハッシュ
     
     ```
     {
-        "time": 1544709662543340000,
-        "expiration": 1544709692318715000,
-        "gas_ratio": 1,
-        "gas_limit": 50000,
-        "delay": 0,
-        "signers": [],
-        "actions": [
-            {
-                "contract": "token.iost",
-                "actionName": "transfer",
-                "data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
-            },
-        ],
-        "amount_limit": [],
-        "signatures": [],
-        "publisher": "testaccount",
-        "publisher_sigs": [
-            {
-                "algorithm": "ED25519",
-                "public_key": "9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=",
-                "signature": "OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg==",
-            },
-        ],
-    }
+		"time": 1544709662543340000,
+		"expiration": 1544709692318715000,
+		"gas_ratio": 1,
+		"gas_limit": 500000,
+		"delay": 0,
+		"chain_id": 1024,
+		"signers": [],
+		"actions": [
+			{
+				"contract": "token.iost",
+				"action_name": "transfer",
+				"data": "[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]",
+			},
+		],
+		"amount_limit": [
+			{
+				"token": "*",
+				"value": "unlimited",
+			},
+		],
+		"signatures": [],
+		"publisher": "testaccount",
+		"publisher_sigs": [
+			{
+				"algorithm": "ED25519",
+				"public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
+				"signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
+			},
+		],
+	}
     ```
     
     構造をJSONでシリアライズした後、次のRPCが送信できます。
     
     ```
-    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"actionName":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[],"delay":0,"expiration":1544709692318715000,"gas_limit":50000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"9RhdenfTcEsg93gKvRccFYICaug+H0efBpOFLwafERQ=","signature":"OCc68Q7Jq7DCZ2TP3yGQtWew/JmVzIFSlSOVgcRqQF9u6H3AKmKjuQi1SRtiT/HgmK04cze5XKnkgjXE8uAoAg=="}],"signatures":[],"signers":[],"time":1544709662543340000}'
+   curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
     ```
-
 
 ## /execTx
 ##### POST
@@ -936,3 +954,44 @@ hash                |string     |トランザクションハッシュ
 ### レスポンス
 
 このAPIは/getTxReceiptByTxHashのレスポンスと共通です。
+
+
+## /subscribe
+##### **POST**
+
+スマートコントラクト内で発生したイベントや完了したトランザクションを含むイベントをサブスクライブします。
+
+### リクエスト
+
+リクエストは次のようになります。
+
+```
+curl -X POST http://127.0.0.1:30001/subscribe -d '{"topics":["CONTRACT_RECEIPT"], "filter":{"contract_id":"token.iost"}}'
+```
+| キー | 型 | 説明 |
+| :----: | :-----: | :------ |
+| topics |enumの繰り返し  | トピック。列挙は CONTRACT\_EVENT または CONTRACT\_RECEIPT|
+| filter | [Filter](#filter)  | 受信イベントはフィルター内のフィールドに従ってフィルタリングされる。このフィールドを渡さないと、すべてのトピックを受け取る |
+### Filter
+| キー | 型 | 説明 |
+| :----: | :-----: | :------ |
+| contract_id | string | コントラクトID|
+
+
+
+### レスポンス
+
+成功レスポンスの例
+
+```
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646637413936000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646637711757000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646638013188000"}}}
+{"result":{"event":{"topic":"CONTRACT_RECEIPT","data":"[\"contribute\",\"producer00001\",\"900\"]","time":"1545646638317840000"}}}
+...
+```
+| キー | 型 | 説明 |
+| :----: | :--------: | :------ |
+| topic | 列挙  | トピック、topic，列挙は CONTRACT\_EVENT または CONTRACT\_RECEIPT|
+| data | string  |イベントデータ|
+| time | int64  | イベントのタイムスタンプ|

@@ -572,6 +572,10 @@
       "version-2.2.0-TokenContract": {
         "title": "Token Contract",
         "sidebar_label": "Token Contract"
+      },
+      "version-2.2.1-LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
       }
     },
     "links": {

@@ -28,7 +28,7 @@ Tx | トランザクション。トランザクションをサブミットする
 
 ### iwalletの使用とテストノード
 
-スマートコントラクトの開発には、iwalletが必要です。同時に、テストノードを開始することで、デバッグを促進できます。それには、次に挙げつ２つの方法の内の一つを選択してください。
+スマートコントラクトの開発には、iwalletが必要です。同時に、テストノードを開始することで、デバッグを促進できます。それには、次に挙げる２つの方法のどちらか選択してください。
 
 #### Docker環境 (推奨)
 
@@ -59,7 +59,7 @@ iwallet -h
 ```
 iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
-Dockerでは、Dockerイメージ内にインストールされていない"iwallet"の代わりに"./iwallet"を使用します。
+Dockerでは、Dockerイメージ内にインストールされていない"iwallet"の代わりに"./iwallet"を使用する必要があります。
 
 
 ## Hello world
@@ -158,7 +158,7 @@ exec tx done # The following output Tx is executed after txReceipt
 }
 ```
 
-この後、レシートtxReceiptを次のようにしていつでも取得できます。
+この後、レシートtxReceiptはいつでも次のようにして取得できます。
 ```
 iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
@@ -174,7 +174,7 @@ curl -X GET \
 
 スマートコントラクトの出力を(UXTOのコンセプトと同様の)使うのは不便です。IOSTはこのモードは使いません。IOSTはtxReceipt内のそれぞれのフィールドのインデックスを提供しませんし、スマートコントラクトは特定のTxReceiptにアクセスすることもできません。ブロックチェーンのステートマシンを維持するために、ステートを保持するブロックチェーンデータベースを使います。
 
-データベースは純粋なK-V(Key-Value)データベースで、値の型は文字列(string)です。各スマートコントラクトは、他のスマートコントラクトからsテータすデータを読むことができますが、自分のフィールド以外は書き込むことができません。
+データベースは純粋なK-V(Key-Value)データベースで、値の型は文字列(string)です。各スマートコントラクトは、他のスマートコントラクトからステータスデータを読むことができますが、自分のフィールド以外は書き込むことができません。
 
 ### コーディング
 ```

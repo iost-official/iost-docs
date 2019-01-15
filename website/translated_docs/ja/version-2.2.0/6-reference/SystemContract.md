@@ -1,470 +1,470 @@
 ---
-id: SystemContract
-title: System Contract
-sidebar_label: System Contract
+Id: SystemContract
+Title: システムコントラクト
+Sidebar_label: System Contract
 ---
 
 ## vote_producer.iost
 ---
 
-### 简介
-超级节点竞选投票合约。
+### 説明
+スーパーノードは投票にむけて、キャンペーンを行います。
 
-### 基础信息
-| contract_id | vote_producer.iost |
+### 情報
+| コントラクトID | vote_producer.iost |
 | :----: | :------ |
-| language | javascript |
-| version | 1.0.0 |
+| 言語 | JavaScript |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
-#### ApplyRegister
-申请注册成为超级节点候选人。
+#### applyRegister
+スーパーノードの候補になるために登録を申請します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
-| 公钥base58编码 | string |
-| 地理位置| string |
-| 网站 url | string |
-| 网络 id | string |
+| アカウント名 | string |
+| Base5８エンコードされた公開鍵 | string |
+| 所在地 | string |
+| WebサイトのURL | string |
+| ネットワークID | string |
+| プロデューサーかどうか | bool |
 
-#### ApplyUnregister
-申请取消注册。
+#### applyUnregister
+登録解除を申し込みます。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
+| アカウント名 | string |
 
 
-#### Unregister
-取消注册，需要先调用 ApplyUnregister，审核通过后，才可调用本接口。
+#### unregister
+登録を解除するには、まずapplyUnregisterを呼び出す必要があります。監査にパスしたら、このインタフェースを呼び出すことができます。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
+| アカウント名 | string |
 
-#### UpdateProducer
-更新注册信息。
+#### updateProducer
+登録情報を更新します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
-| 公钥base58编码 | string |
-| 地理位置| string |
-| 网站 url | string |
-| 网络 id | string |
+| アカウント名 | string |
+| Base5８エンコードされた公開鍵 | string |
+| 所在地 | string |
+| WebサイトのURL | string |
+| ネットワークID | string |
 
-#### LogInProducer
-上线，表示本节点目前可以提供服务。
+#### logInProducer
+オンラインにして、ノードが現在サービスを受けることができることを示します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
+| アカウント名| string |
 
-#### LogOutProducer
-离线，表示本节点目前无法提供服务。
+#### logOutProducer
+オフラインは、現在ノードがサービスを提供できないことを意味します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
+| アカウント名| string |
 
-#### VoteFor
-代别人投票，投票质押的 IOST 会从代理者账户扣除。
+#### voteFor
+他人に代わって投票すると、投票権分のIOSTが代理人のアカウントから差し引かれます。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 代理者账户名| string |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| 代理人 アカウント名| string |
+| 投票者 アカウント名| string |
+| キャンペーン実施者 アカウント名| string |
+| 投票数 | string |
 
-#### Vote
-投票。
+#### vote
+投票します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| 投票者 アカウント名| string |
+| キャンペーン実施者 アカウント名| string |
+| 投票数 | string |
 
-#### Unvote
-取消投票。
+#### unvote
+投票をキャンセルします。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
+| 投票者 アカウント名| string |
+| キャンペーン実施者 アカウント名| string |
+| 投票数 | string |
 
-#### VoterWithdraw
-投票者领取分红奖励。
+#### voterWithdraw
+投票者がボーナス報酬を受け取ります。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 投票者账户名| string |
+| 投票者 アカウント名| string |
 
-#### CandidateWithdraw
-竞选者领取分红奖励。
+#### candidateWithdraw
+競技者がボーナス報酬を受け取ります。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 竞选者账户名| string |
+| キャンペーン実施者 アカウント名| string |
 
 ## vote.iost
 ---
 
-### 简介
-通用投票合约，用于创建投票、收集投票、统计投票。可以基于本合约实现你自己想要的投票功能。
+### 説明
+投票の作成、投票の収集、投票の集計に使われる普遍的な投票規約です。この規約に基づいて投票機能を実装できます。
 
-### 基础信息
-| contract_id | vote.iost |
+### 情報
+| コントラクトID | vote.iost |
 | :----: | :------ |
-| language | javascript |
-| version | 1.0.0 |
+| 言語 | JavaScript |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
-#### NewVote
-创建投票。
+#### newVote
+投票を作成します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ | :------ |
-| 投票创建者账户名| string | 创建投票需要质押 1000 IOST，会从创建者账户扣除，创建者账户拥有投票的 admin 权限|
-| 投票描述| string ||
-| 投票设置| json 对象 |包含 5 个 key: <br>resultNumber —— number 类型，投票结果数量，最大为 2000;<br> minVote —— number 类型，最低得票数，得票数大于这个数量的候选者才能进入投票结果集合; <br>options —— 数组类型，候选者集合，每一项为字符串，代表一个候选者，初始可以传空 []; <br>anyOption —— bool 类型，是否允许投非 options 集合中的候选项，传 false 表示用户只能投 options 集合中的候选项; <br>freezeTime —— number 类型，取消投票后 token 冻结时间，单位秒;|
-调用成功会返回全局唯一的投票 ID。
+| 投票作成者 アカウント名| string | 投票の作成には、1000IOSTのデポジットが必要です。これは作成者アカウントから差し引かれます。作成者アカウントには、投票するための管理者権限があります。 |
+| 投票の説明 | string ||
+| 投票設定 | JSONオブジェクト| 5つのキーがあります。 <br>resultNumber —— number型。投票結果の数で最大2000、<br> minVote —— number型で、投票結果を入れる候補者の最小投票数 <br>options - 文字列の配列型。候補者のセット。初期値は空([])も可、<br>anyOption - bool型。候補者以外の候補者を許可するかどうかで、falseにするとユーザーは候補者コレクション内の候補者のみに投票できることを意味します。
+ whether to allow The candidate in the non-options collection, passing false means that the user can only cast candidates in the options collection; <br>freezeTime - number型。トークンの凍結時間を解除します。(秒単位)
+ 　呼び出しが成功すると、一意の投票IDが返ります。
 
-#### AddOption
-增加投票选项。
+#### addOption
+投票候補者を追加します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 选项| string ||
-| 是否清除以前得票数| bool ||
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 候補者 | string ||
+| 前の投票をクリアするかどうか | bool ||
 
-#### RemoveOption
-删除投票选项，但保留得票结果，删除后，再通过 AddOption 添加该选项能选择是否恢复得票数。
+#### removeOption
+投票候補者を削除しますが、投票の結果は保持して削除し、addOptionの候補者で投票数を元に戻すかどうかを選択します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 选项| string ||
-| 是否强制删除| bool | false 表示当该选项在结果集中时不删除，true 表示强制删除并更新结果集|
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 候補者 | string ||
+強制削除かどうか | bool | falseなら候補者が結果セット内にあるときには削除しない、trueなら結果セットを強制的に削除および更新する |
 
-#### GetOption
-获取候选项的得票情况。
+#### getOption
+候補者に投票します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 选项| string ||
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 候補者 | string ||
 
-返回结果为 json 对象：
+結果はJSONオブジェクトです。
 
-| key | 类型 | 备注 |
+| キー | 型 | メモ |
 | :----: | :------ | :------ |
-| votes| string | 得票数|
-| deleted| bool | 是否被标记为删除 |
-| clearTime| number | 票数上次被清零的区块号 |
+| votes| string | 投票 |
+| deleted| bool | 削除済みか |
+| clearTime| number | 投票数が最後にクリアされたブロック番号 |
 
-#### VoteFor
-代别人投票，投票质押的 IOST 会从代理者账户扣除。
+#### voteFor
+他人に代わって投票すると、投票権分のIOSTが代理人アカウントから差し引かれます。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 代理者账户名| string ||
-| 投票者账户名| string ||
-| 选项 | string ||
-| 投票数量 | string ||
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 代理人 アカウント名| string ||
+| 投票者 アカウント名| string ||
+| 候補者 | string ||
+| 投票数 | string ||
 
-#### Vote
-投票。
+#### vote
+投票します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 投票者账户名| string ||
-| 选项 | string ||
-| 投票数量 | string ||
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 投票者 アカウント名| string ||
+| 候補者 | string ||
+| 投票数 | string ||
 
-#### Unvote
-取消投票。
+#### unvote
+投票をキャンセルします。
 
-| 参数列表 | 参数类型 |备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 投票者账户名| string ||
-| 选项 | string ||
-| 投票数量 | string ||
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 投票者 アカウント名| string ||
+| 候補者 | string ||
+| 投票数 | string ||
 
-#### GetVote
-获取某账户投票记录。
+#### getVote
+アカウントの投票記録を取得します。
 
-| 参数列表 | 参数类型 |备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
-| 投票者账户名| string ||
+| 投票ID| string | newVoteインターフェースで返ってきたID|
+| 投票者 アカウント名| string ||
 
-返回结果为 json 数组，每一项为下面的对象：
+結果はJSON配列になり、それぞれ次のオブジェクトになります。
 
-| key | 类型 | 备注 |
+| キー | 型 | メモ |
 | :----: | :------ | :------ |
-| option| string | 选项 |
-| votes| string | 投票数量 |
-| voteTime| number | 上次投票的区块号 |
-| clearedVotes| string | 被清零的投票数量 |
+| option| string | 候補者 |
+| votes| string | 投票数 |
+| voteTime| number | 最終投票ブロック番号 |
+| clearedVotes| string | クリアされた投票数 |
 
-#### GetResult
-获取投票结果，返回得票数前 resultNumber 的选项。
+#### getResult
+投票結果を取得し、候補者と投票数の配列を返します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ |:------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
+| 投票ID| string | newVoteインターフェースで返ってきたID|
 
-返回结果为 json 数组，每一项为下面的对象：
+結果はJSON配列になり、それぞれ次のオブジェクトになります。
 
-| key | 类型 | 备注 |
+| キー | 型 | メモ |
 | :----: | :------ | :------ |
-| option| string | 选项 |
-| votes| string | 投票数量 |
+| option| string | 候補者 |
+| votes| string | 投票数 |
 
-#### DelVote
-删除投票，退换创建投票时质押的 IOST 到创建者账户。
+#### delVote
+投票を削除し、投票中に作成されたIOSTを作成者アカウントに返します。
 
-| 参数列表 | 参数类型 | 备注 |
+| パラメータリスト | パラメータの型 | 備考 |
 | :----: | :------ | :------ |
-| 投票 ID| string | NewVote 接口返回的 ID|
+| 投票ID| string | newVoteインターフェースで返ってきたID|
 
 ## auth.iost
 ---
 
-### 简介
-账号系统和权限管理
+### 説明
+アカウントシステムと権利管理
 
-### 基础信息
-| contract_id | auth.iost |
+### 情報
+| コントラクトID | auth.iost |
 | :----: | :------ |
-| language | javascript |
-| version | 1.0.0 |
+| 言語 | JavaScript |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
-#### SignUp
-创建账号
+#### signUp
+アカウントを作成します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
+| Username | string |
 | ownerKey | string |
 | activeKey | string |
 
-#### AddPermission
-向账号添加权限
+#### addPermission
+アカウントに権限を追加します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string | 
-| 权限名 | string |
-| 权限阈值 | number |
+| ユーザ名 | string |
+| 権限名 | string |
+| 権限のしきい値 | number |
 
-#### DropPermission
-删除权限
+#### dropPermission
+アカウントの権限を削除します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
+| ユーザ名 | string |
+| 権限名 | string |
 
-#### AssignPermission
-指定权限给item
+#### assignPermission
+項目に権限を指定します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 权限 | string |
-| item | string |
-| 权重 | number |
+| ユーザ名 | string |
+| 権限名 | string |
+| 項目 | string |
+| 重み | number |
 
 
-#### RevokePermission
-撤销权限
+#### revokePermission
+権限を剥奪します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 权限 | string |
-| item | string |
+| ユーザ名 | string |
+| 権限名 | string |
+| 項目 | string |
 
-#### AddGroup
-添加权限组
+#### addGroup
+権限グループを追加します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| ユーザ名 | string |
+| グループ名 | string |
 
-#### DropPermission
-删除权限组
+#### dropGroup
+権限グループを削除します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
+| ユーザ名 | string |
+| グループ名 | string |
 
-#### AssignGroup
-指定item给权限组
+#### assignGroup
+項目に権限グループを指定します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
-| item | string |
-| 权重 | number |
+| ユーザ名 | string |
+| グループ名 | string |
+| 項目 | string |
+| 重み | number |
 
-#### RevokeGroup
-撤销权限组的item
+#### revokeGroup
+権限グループから項目を削除します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 组名 | string |
-| item | string |
+| ユーザ名 | string |
+| グループ名 | string |
+| 項目 | string |
 
 
-#### AssignPermissionToGroup
-添加权限到组
+#### assignPermissionToGroup
+グループに権限を追加します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
-| 组名 | string |
+| ユーザ名 | string |
+| 権限名 | string |
+| グループ名 | string |
 
 
-#### RevokePermissionInGroup
-删除组中的权限
+#### revokePermissionInGroup
+グループの権限を削除します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 用户名 | string |
-| 权限名 | string |
-| 组名 | string |
+| ユーザ名 | string |
+| 権限名 | string |
+| グループ名 | string |
 
 
 ## bonus.iost
 ---
 
-### 简介
+### 説明
 
-正式节点造块奖励管理
+公式な**ノード作成報酬**管理
 
-### 基础信息
+### 情報
 
-| contract_id | bonus.iost |
+| コントラクトID | bonus.iost |
 | :----: | :------ |
-| language | javascript |
-| version | 1.0.0 |
+| 言語 | JavaScript |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
-#### IssueContribute
+#### issueContribute
 
-发放贡献值，系统自动调用
+貢献値を計算します。これはシステムが自動的に呼び出します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| data | json |
+| data | JSON |
 
-#### ExchangeIOST
+#### exchangeIOST
 
-使用贡献值兑换IOST
+貢献値に応じて、IOSTと交換します。
 
-| 参数列表 | 参数类型 |
+| パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| 账户名 | string |
-| 数量 | string |
+| アカウント名| string |
+| 量 | string |
 
 
 ## system.iost
 
 ---
 
-### 简介
-基础系统合约,用于发行更新合约以及其他基本系统函数.
+### 説明
+発行と更新、基本的な関数のための、基本システムコントラクト
 
-### 基础信息
-| contract_id | system.iost |
+### 情報
+| コントラクトID | system.iost |
 | :----: | :------ |
-| language | native |
-| version | 1.0.0 |
+| 言語 | ネイティブ |
+| バージョン | 1.0.0 |
 
-### 接口描述
+### API
 
-#### SetCode (code)
-部署智能合约.
+#### setCode (code)
+スマートコントラクトをデプロイする。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| code | 智能合约代码 | string |
+| code | スマートコントラクトのコード | string |
 
-| 返回值 | 返回值类型 |
+| 戻り値 | 戻り値の型 |
 | :----: | :------ |
 | contractID | string |
 
-智能合约代码中包括代码和智能合约信息, 如语言和接口定义, code参数支持两种格式: json格式和protobuf序列化的编码格式
-对于开发者来说, 部署合约一般不需要直接调用该接口, 建议使用iwallet或相关语言的SDK实现
+スマートコントラクトのコードには、言語やインタフェースの定義などのコードとスマートコントラクトの情報が含まれます。コードのパラメータは、JSON形式とprotobufシリアライゼーションエンコーディング形式の2つの形式をサポートします。開発者がコントラクトをデプロイするために、普通はこのインターフェースを直接呼び出す必要はありません。iwalletまたは関連する言語のSDKを使用することをお勧めします。
 
-部署智能合约时,系统会自动调用智能合约的init()函数,开发者可以在init函数中做一些初始化工作.
+スマートコントラクトをデプロイすると、システムは自動的にスマートコントラクトのinit()関数を呼び出します。開発者はinit関数で初期化を行うことができます。
 
-返回值 contractID 是智能合约ID, 全局唯一, 由部署合约交易的hash生成,以Contract开头包含大小写字母和数字, 一个交易中只能部署一个智能合约
+戻り値のcontractIDは、グローバルに固有なスマートコントラクトIDで、コントラクトをデプロするトランザクションのハッシュから生成されます。contractIDは "Contract"で始まり、大文字と小文字、および数字で構成されています。1つのトランザクションにデプロイできるスマートコントラクトは1つだけです。
 
-#### UpdateCode (code, data)
-升级智能合约.
+#### updateCode (code, data)
+スマートコントラクトをアップグレードします。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| code | 智能合约代码 | string |
-| data | 升级函数参数 | string |
+| code | スマートコントラクトのコード | string |
+| data | アップグレード関数のパラメータ | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
-升级智能合约, code为智能合约代码, 格式与 SetCode 中参数格式相同.
+スマートコントラクトをアップグレードします。codeはスマートコントラクトのコードです。形式はsetCodeのパラメータと同じです。
 
-升级智能合约时, 系统会自动检查升级权限, 即调用合约中的can_update(data)函数, 参数data即为UpdateCode中的第二个参数, 当且仅当can_update函数存在且调用返回结果为true时,
-合约升级才会成功, 否则升级失败,判定为没有升级权限.
+スマートコントラクトをアップグレードする場合、システムは自動的にアップグレード権限をコントラクトのcan_update(data)関数でチェックします。パラメータdataは、updateCode内の2番目のパラメータで、can_update関数が存在していて、呼び出しがtrueの場合のみ使われます。結果はコントラクトのアップグレードが成功するか、アップグレード権限がないと判断されアップグレードが失敗するかどちからになります。
 
-#### CancelDelaytx (txHash)
-取消延迟交易, 在延迟交易执行前调用该函数可以取消延迟交易.
+#### cancelDelaytx (txHash)
+遅延トランザクションを取り消します。遅延トランザクションを実行する前にこの関数を呼び出して、遅延トランザクションを取り消してください。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| txHash | 交易hash | string |
+| txHash | トランザクションハッシュ | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |
 
-#### RequireAuth (acc, permission)
-检查该交易是否有acc账户的permission权限签名.
+#### requireAuth (acc, permission)
+トランザクションがアカウントの権限があるかどうかをチェックします。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| acc | 账户名 | string |
-| permission | 权限名 | string |
+| acc | アカウント名| string |
+| permission | 権限名 | string |
 
-| 返回值 | 类型 |
+| 戻り値 | Type |
 | :----: | :------ |
 | ok | bool |
 
-#### Receipt (data)
-生成交易收据, 收据存放在block中, 也可通过交易hash查询到.
+#### receipt (data)
+トランザクションのレシートを生成します。レシートはブロックに格納されますので、トランザクションハッシュを通して照会することができます。
 
-| 参数名称 | 参数描述 | 参数类型 |
+| パラメータ名 | パラメータの説明 | パラメータの型 |
 | :----: | :----: | :------ |
-| data | 收据内容 | string |
+| data | レシートの内容 | string |
 
-| 返回值 | 无 |
+| 戻り値 | なし |
 | :----: | :------ |

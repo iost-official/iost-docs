@@ -1,8 +1,7 @@
 ---
-id: version-1.0.6-Smart-Contract-Development-Toolkit
-title: Scaf: 素晴らしいスマートコントラクト開発ツールキットt
+id: Smart-Contract-Development-Toolkit
+title: Scaf: 素晴らしいスマートコントラクト開発ツールキット
 sidebar_label: Scaf: 素晴らしいスマートコントラクト開発ツールキット
-original_id: Smart-Contract-Development-Toolkit
 ---
 
 ## 機能

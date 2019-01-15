@@ -1,8 +1,7 @@
 ---
-id: version-2.1.7-How-to-write-a-smart-contract
+id: How-to-write-a-smart-contract
 title: スマートコントラクトの書き方
 sidebar_label: スマートコントラクトの書き方
-original_id: How-to-write-a-smart-contract
 ---
 
 ## 基本情報
@@ -25,7 +24,7 @@ IOST内では、スマートコントラクトはJavaScriptの`class`として�
 
 スマートコントラクトのクラスは、`init`関数を持たなければいけません。
 
-- `init`は、コントラクトがデプロイされたときに実行されます。それはコントラクトのプロパティを初期化するのに使います。
+- `init`は、コントラクトがデプロイされたときに実行されます。それはコントラクトのプロパティを初期化するために使います。
 
 これらの２つの関数とは別に、必要であれば開発者は他の関数も定義できます。`transfer`関数を使ったシンプルなスマートコントラクトのテンプレートを次に示します。
 
