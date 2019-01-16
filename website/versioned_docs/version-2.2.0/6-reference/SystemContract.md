@@ -80,7 +80,7 @@ Vote on behalf of others, the IOST of the voting pledge will be deducted from th
 | :----: | :------ |
 | Agent account name | string |
 | Voter Account Name | string |
-| Campaigner Account Name | string |
+| Candidate Account Name | string |
 | Number of votes | string |
 
 #### vote
@@ -89,7 +89,7 @@ vote.
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Voter Account Name | string |
-| Campaigner Account Name | string |
+| Candidate Account Name | string |
 | Number of votes | string |
 
 #### unvote
@@ -98,7 +98,7 @@ Cancel the vote.
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Voter Account Name | string |
-| Campaigner Account Name | string |
+| Candidate Account Name | string |
 | Number of votes | string |
 
 #### voterWithdraw
@@ -113,7 +113,7 @@ The contestant receives a bonus award.
 
 | Parameter List | Parameter Type |
 | :----: | :------ |
-| Campaigner Account Name | string |
+| Candidate Account Name | string |
 
 ## vote.iost
 ---
