@@ -15,27 +15,30 @@ function update_language()
 		exit 1
 	fi
 	updates=`git diff --name-only $last_commit HEAD|grep "^$head_dir"|grep -v version|grep "md$"`
-	echo $updates
 	for item in $updates
 	do
 		doc_name=`echo $item|gsed "s#$head_dir/##"`
-		echo update $doc_name
 		if [ "$language" == "en" ]
 		then
+			#cd $git_root/$head_dir
+			#git diff --no-color --no-prefix --relative=$head_dir $last_commit HEAD $doc_name > $tmpfile 
+			#patch -p0 < $tmpfile
 			cd $git_root/website/versioned_docs
 			version=`find version* |grep $doc_name|sort|tail -n 1|cut -d/ -f1`
-			tmpfile=/tmp/lispczz_`basename $doc_name`
-			git diff --no-color --no-prefix --relative=$head_dir $last_commit HEAD $doc_name > $tmpfile 
-			#echo update at version $version 
+			echo update $doc_name at version $version 
 			cd $version
-			patch -p0 < $tmpfile
+			tmpfile=/tmp/lispczz_`basename $doc_name`
+			head -n 6 $doc_name > $tmpfile
+			tail -n +6 $git_root/$head_dir/$doc_name >> $tmpfile
+			cp $tmpfile $doc_name
 		else
 			cd $git_root/$head_dir 
 			version=`find version* |grep $doc_name|sort|tail -n 1|cut -d/ -f1`
-			cp $f $version/$f
+			echo update $doc_name at version $version 
+			cp $doc_name $version/$doc_name
 		fi
 	done
 }
 
 update_language zh-CN
-update_language en
+#update_language en

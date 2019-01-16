@@ -62,6 +62,12 @@ blockchain 所有接口见[代码](https://github.com/iost-official/go-iost/blob
 合约中可直接使用这两个对象，获得交易信息和区块信息。   
 这两个对象的含义见[代码](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/sandbox.cc#L29)
 
+### encrypt 对象
+合约中可以直接使用 ```_IOSTCrypto``` Class 的对应 ```sha3(string)``` 方法来获取对应的sha3哈希值。
+##### 例子
 
+```js
+IOSTCrypto.sha3(msg)
+```
 
 
