@@ -1,92 +1,39 @@
 ---
 id: Deployment
-title: Развертывание
-sidebar_label: Развертывание
+title: Присоединяйтесь к тестовой сети IOST
+sidebar_label: Присоединяйтесь к тестовой сети IOST
 ---
 
-## Получить репозиторий
+Документация описывает, как настроить работающий сервер, подключающийся к тестовой сети IOST, если вы хотите просто настроить локальный одиночный сервер сети блокчейна для отладки/тестирования, вам лучше обратиться к [Запуску локального сервера](LocalServer)   
 
-Запустите команду, чтобы получить репозиторий:
+Мы используем Докер для развертывания узла IOST.
 
-```
-git clone https://github.com/iost-official/go-iost.git && cd go-iost
-```
+## Необходимо
 
-## Сборка
+- [Docker CE 18.06 или новее](https://docs.docker.com/install/) (старые версии не тестировались)
+- (Опционально) [Docker Compose](https://docs.docker.com/compose/install/)
 
-Запустите команду для компиляции и создания файла в `target` директории:
+## Подготовка файла конфигурации
 
-```
-git checkout v2.0.0
-make vmlib
-make build
-```
+Для более детальной информации о iServer, см. [здесь](/4-running-iost-node/iServer/).
 
-## Запуск
-
-Запустите команду для запуска локального узла. Проверьте конфигурацию iServer здесь: [iServer](iServer).
-
-```
-./target/iserver -f config/iserver.yml
-```
-
-## Докер
-
-### Запуск
-
-Запустите команду для запуска локального узла, используя докер:
-
-```
-docker run -d iostio/iost-node:2.0.0
-```
-
-### Монтирование тома
-
-Использование флага `-v` для монтирования тома:
+Сначала получите шаблоны конфигурации:
 
 ```
 mkdir -p /data/iserver
-cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
-docker run -d -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/docker/iserver.yml -o /data/iserver/iserver.yml
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/genesis.yml -o /data/iserver/genesis.yml
 ```
 
-### Порт привязки
+`/data/iserver` будет монтироваться как том данных, вы можете изменить путь в соответствии с вашими потребностями.
 
-Использование флага `-p` для сопоставления портов:
-
-```
-docker run -d -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
-```
-
-### Использование docker-compose
-
-Рекомендуется развертывать, используя docker-compose:
+*Если вы уже запускали предыдущую версию iServer, убедитесь, что старые данные удалены:*
 
 ```
-# docker-compose.yml
-
-version: "2.2"
-
-services:
-  iserver:
-    image: iostio/iost-node:2.0.0
-    restart: always
-    ports:
-      - "30000:30000"
-      - "30001:30001"
-      - "30002:30002"
-      - "30003:30003"
-    volumes:
-      - /data/iserver:/var/lib/iserver
+rm -rf /data/iserver/storage
 ```
 
-Для запуска узла: `docker-compose up -d`
-
-## Доступ к тестовой сети
-
-### Обновить конфигурацию
-
-Измените настройки генезиса, как показано ниже:
+Для получения доступа к тестовой сети Everest v2.1.0, файл генезиса `/data/iserver/genesis.yml` необходимо изменить как показано ниже:
 
 ```
 creategenesis: true
@@ -139,7 +86,7 @@ foundationinfo:
 initialtimestamp: "2006-01-02T15:04:05Z"
 ```
 
-Измените раздел `p2p.seednodes` в `iserver.yml` как показано ниже:
+Кроме этого, раздел `p2p.seednodes` в `/data/iserver/iserver.yml` также необходимо изменить:
 
 ```
 ...
@@ -152,17 +99,52 @@ p2p:
 ...
 ```
 
-Среди настроек, можно заменить сетевые ID начальных узлов, как показано ниже:
+В настройках можно заменить сетевые IDs начальных узлов, как показано ниже:
 
 | Name   | Region | Network ID                                                                              |
 | ------ | ------ | --------------------------------------------------------------------------------------- |
 | node-7 | London | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | Paris  | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
 
-### Запуск iServer
+## Запуск узла
 
-Подключитесь к тестовой сети, запустив iServer с обновленной конфигурацией:
+Запустите следующую команду, чтобы запустить узел
+```
+docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
+```
+
+Или при использовании docker-compose:
 
 ```
-./target/iserver -f config/iserver.yml
+# docker-compose.yml
+
+version: "2"
+
+services:
+  iserver:
+    image: iostio/iost-node:2.1.0
+    restart: always
+    ports:
+      - "30000-30003:30000-30003"
+    volumes:
+      - /data/iserver:/var/lib/iserver
+```
+
+Для запуска узла: `docker-compose up -d`
+
+Для запуска, остановки, перезапуска или удаления: `docker-compose (start|stop|restart|down)`
+
+## Проверка узла
+
+Файл логов находится по этому пути `/data/iserver/logs/iost.log`.
+Растущие значения `confirmed` означают синхронизацию данных блока.
+
+Вы также можете проверить состояние узла, используя инструмент `iwallet` внутри докера
+```
+docker-compose exec iserver ./iwallet state
+```
+
+Используйте флаг `-s` вместе с IP-адресом начального узла для получения последней информации о блокчейне с этого узла
+```
+docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state
 ```

@@ -22,12 +22,11 @@ sidebar_label: Как написать смарт-контракт
 
 #### Структура смарт-контракта
 
-Класс смарт-контракта должен включать в себя функции `Init` и `Constructor`.
+Класс смарт-контракта должен включать в себя функцию `Init`.
 
-- `Init` запускается при развертывании контракта. Обычно он содержит код для инициализации свойств контракта.
-- `Construct` запускается при вызове контракта. Обычно он используется для инициализации классов смарт-контракта и чтения постоянных данных смарт-контракта.
+- `Init` запускается при развертывании контракта. Обычно она содержит код для инициализации свойств контракта.
 
-Помимо этих двух функций, разработчики могут определять другие функции по мере необходимости. Ниже приведен шаблон простого смарт-контракта, в котором есть `Transfer` функциональность.
+Помимо этой функции, разработчики могут определять другие функции по мере необходимости. Ниже приведен шаблон простого смарт-контракта, в котором есть `transfer` функциональность.
 
 ```javascript
 class Test {
@@ -35,304 +34,35 @@ class Test {
         //Execute once when contract is packed into a block
     }
 
-    constructor() {
-        //Execute everytime the contract class is called
-    }
-
     transfer(from, to, amount) {
         //Function called by other
-        BlockChain.transfer(from, to, amount)
-
+        blockchain.transfer(from, to, amount, "");
     }
 
 };
 module.exports = Test;
 ```
 
-## Использование внутреннего класса
+## IOST BlockChain API
+Объекты ниже могут быть доступны внутри кода контракта.
 
-### Класс IOSTContractStorage
+### storage object (Объект storage)
 
-Все переменные будут сохранены в памяти во время выполнения. IOST предоставляет `IOSTContractStorage` класс, чтобы помочь разработчикам сохранить данные в смарт-контрактах.
+Все переменные будут храниться в памяти во время выполнения. IOST предоставляет объект `storage`, чтобы помочь разработчикам сохранять данные в смарт-контрактах.
 
-Разработчики могут использовать этот класс для синхронизации данных во время нескольких вызовов контракта.
-
-```javascript
-let IOSTContractStorage = (function () {
-
-    let storage = new IOSTStorage;
-
-    let simpleStorage = function () {
-        this.put = function (k, v) {
-            if (typeof v !== 'string') {
-                throw new Error("storage put must be string");
-            }
-            return storage.put(k, v);
-        };
-        this.get = function (k) {
-            return storage.get(k);
-        };
-        this.del = function (k) {
-            return storage.del(k);
-        }
-    };
-    let simpleStorageObj = new simpleStorage;
-
-    let mapStorage = function () {
-        this.mapPut = function (k, f, v) {
-            if (typeof v !== 'string') {
-                throw new Error("storage mapPut must be string");
-            }
-            return storage.mapPut(k, f, v);
-        };
-        this.mapHas = function (k, f) {
-            return storage.mapHas(k, f);
-        };
-        this.mapGet = function (k, f) {
-            return storage.mapGet(k, f);
-        };
-        this.mapKeys = function (k) {
-            return JSON.parse(storage.mapKeys(k));
-        };
-        this.mapDel = function (k, f) {
-            return storage.mapDel(k, f);
-        }
-    };
-    let mapStorageObj = new mapStorage;
-
-    let globalStorage = function () {
-        this.get = function (key) {
-            return storage.globalGet(c, k);
-        }
-    };
-    let globalStorageObj = new globalStorage;
-
-    return {
-        // simply put a k-v pair, value must be string!
-        // put(key, value)
-        put: simpleStorageObj.put,
-        // simply get a value using key.
-        // get(key)
-        get: simpleStorageObj.get,
-        // simply del a k-v pair using key.
-        // del(key)
-        del: simpleStorageObj.del,
-        // map put a (k, f, value) pair. use k + f to find value.
-        // mapPut(key, field, value)
-        mapPut: mapStorageObj.mapPut,
-        // map check a (k, f) pair existence. use k + f to check.
-        // mapHas(key, field)
-        mapHas: mapStorageObj.mapHas,
-        // map Get a (k, f) pair. use k + f to find value.
-        // mapGet(key, field)
-        mapGet: mapStorageObj.mapGet,
-        // map Get fields inside a key.
-        // mapKeys(key)
-        mapKeys: mapStorageObj.mapKeys,
-        // map Delete a (k, f) pair. use k + f to delete value.
-        // mapDel(key, field)
-        mapDel: mapStorageObj.mapDel,
-        // currently not suportted, dont't use.
-        globalGet: globalStorageObj.get,
-    }
-})();
-
-module.exports = IOSTContractStorage;
-
-```
-
-### Класс BlockChain
-
-Класс BlockChain предоставляет все методы для вызова системных функций и помогает пользователю вызывать официальные API-интерфейсы, включая, помимо прочего, передачу, перевод средств, вызов других контрактов и поиск блока или транзакции.
-
-Подробные интерфейсы перечислены ниже:
-
-```javascript
-let BlockChain = (function () {
-    let bc = new IOSTBlockchain;
-    return {
-        // transfer IOS
-        transfer: function (from, to, amount) {
-            if (!(amount instanceof Int64)) {
-                amount = new Int64(amount);
-            }
-            return bc.transfer(from, to, amount.toString());
-        },
-        // withdraw IOST
-        withdraw: function (to, amount) {
-            if (!(amount instanceof Int64)) {
-                amount = new Int64(amount);
-            }
-            return bc.withdraw(to, amount.toString());
-        },
-        // deposit IOST
-        deposit: function (from, amount) {
-            if (!(amount instanceof Int64)) {
-                amount = new Int64(amount);
-            }
-            return bc.deposit(from, amount.toString());
-        },
-        // put IOST into contract
-        topUp: function (contract, from, amount) {
-            if (!(amount instanceof Int64)) {
-                amount = new Int64(amount);
-            }
-            return bc.topUp(contract, from, amount.toString());
-        },
-        // get IOST from contract
-        countermand: function (contract, to, amount) {
-            if (!(amount instanceof Int64)) {
-                amount = new Int64(amount);
-            }
-            return bc.countermand(contract, to, amount.toString());
-        },
-        // get blockInfo
-        blockInfo: function () {
-            return bc.blockInfo();
-        },
-        // get transactionInfo
-        txInfo: function () {
-            return bc.txInfo();
-        },
-        // call contract's api using args
-        call: function (contract, api, args) {
-            return bc.call(contract, api, args);
-        },
-        // call contract's api using args with receipt
-        callWithReceipt: function (contract, api, args) {
-            return bc.callWithReceipt(contract, api, args);
-        },
-        //
-        requireAuth: function (pubKey) {
-            return bc.requireAuth(pubKey);
-        },
-        // not supportted
-        grantServi: function (pubKey, amount) {
-            return bc.grantServi(pubKey, amount.toString());
-        }
-    }
-})();
-
-module.exports = BlockChain;
-```
+Разработчики могут использовать этот класс для синхронизации данных во время множества вызовов контракта.
+API [здесь](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/libjs/storage.js)
 
 
-### Тип Int64
 
-В настоящее время IOST поддерживает только целые числа типа данных `Int64`. Пожалуйста, воздержитесь от использования других типов чисел.
+### blockchain object (Объект blockchain)
 
-```javascript
-'use strict';
+Объект blockchain предоставляет все методы для системных вызовов и помогает пользователю вызывать официальные API, включая, помимо прочего, перевод средств, вызов других контрактов и поиск блока или транзакции.
 
-const MaxInt64 = new BigNumber('9223372036854775807');
-const MinInt64 = new BigNumber('-9223372036854775808');
+Подробные интерфейсы приведены [здесь](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/libjs/blockchain.js).
 
-class Int64 {
-    constructor(n, base) {
-        this.number = new BigNumber(n, base);
-        this._validate();
-    }
 
-    // Check is int64 (Interger that greater than MinInt64, less than MaxInt64)
-    _validate() {
-        if (!this.number.isInteger()) {
-            throw new Error('Int64: ' + this.number + ' is not an integer');
-        }
-
-        if (this.number.gt(MaxInt64)) {
-            throw new Error('Int64: ' + this.number + ' overflow int64');
-        }
-
-        if (this.number.lt(MinInt64)) {
-            throw new Error('Int64: ' + this.number + ' underflow int64');
-        }
-    }
-
-    // Check is argument int64
-    _checkArgument(arg) {
-        if (typeof arg === 'undefined' || arg == null) {
-            throw new Error('Int64 argument: ' + arg + ' is empty');
-        }
-
-        if (!(arg instanceof Int64) || arg.constructor !== this.constructor) {
-            arg = new this.constructor(arg);
-        }
-
-        arg._validate();
-
-        return arg
-    }
-
-    // plus n
-    plus(n) {
-        let arg = this._checkArgument(n);
-        let rs = this.number.plus(arg.number);
-        return new this.constructor(rs);
-    }
-
-    // minus n
-    minus(n) {
-        let arg = this._checkArgument(n);
-        let rs = this.number.minus(arg.number);
-        return new this.constructor(rs);
-    }
-
-    // Multi n
-    multi(n) {
-        let arg = this._checkArgument(n);
-        let rs = this.number.times(arg.number);
-        return new this.constructor(rs);
-    }
-
-    // Div n
-    div(n) {
-        let arg = this._checkArgument(n);
-        let rs = this.number.idiv(arg.number);
-        return new this.constructor(rs);
-    }
-
-    // Mod n
-    mod(n) {
-        let arg = this._checkArgument(n);
-        let rs = this.number.mod(arg.number);
-        return new this.constructor(rs);
-    }
-
-    // Power n
-    pow(n) {
-        let arg = this._checkArgument(n);
-        let rs = this.number.pow(arg.number);
-        return new this.constructor(rs);
-    }
-
-    // Check equal n
-    eq(n) {
-        this._checkArgument(n);
-        return this.number.eq(n.number);
-    }
-
-    // Check greater than n
-    gt(n) {
-        this._checkArgument(n);
-        return this.number.gt(n.number);
-    }
-
-    // Check less than n
-    lt(n) {
-        this._checkArgument(n);
-        return this.number.lt(n.number);
-    }
-
-    // Check is Zero
-    isZero() {
-        return this.number.isZero();
-    }
-
-    // convert to String
-    toString() {
-        return this.number.toString();
-    }
-}
-
-module.exports = Int64;
-```
+### tx object и block object (Объекты tx и block)
+Объект tx содержит информацию о текущей транзакции.   
+Объект block содержит информацию о текущем блоке.   
+API [здесь](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/sandbox.cc#L29)

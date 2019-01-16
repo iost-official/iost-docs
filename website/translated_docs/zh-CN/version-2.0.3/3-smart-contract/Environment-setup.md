@@ -30,6 +30,6 @@ npm install
 
 ```git
 cd go-iost
-make deploy
+make vmlib
 ```
 

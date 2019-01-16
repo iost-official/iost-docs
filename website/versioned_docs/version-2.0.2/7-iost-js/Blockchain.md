@@ -313,7 +313,7 @@ get account info from blockchain
 ### Parameters
 Name             |Type       |Description 
 ----                |--         |--
-anme 		|String          | account name
+name 		|String          | account name
 by_longest_chain 	|Boolean 		 | get account by longest chain's head block or last irreversible block
 
 ### Returns

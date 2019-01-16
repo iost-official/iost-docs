@@ -15,6 +15,8 @@ IOST的账户由账户名（ID）和权限（permission）组成。一个账户�
 
 公钥ID是 “IOST”前缀 + 公钥的Base58编码 + crc32校验位 的一串字符串，表示一个公钥。
 
+而当公钥ID是另一个账户的权限对时，表示方式为 用户名@权限名
+
 每个item都拥有一定的权重，而对应的，每个权限有一个阈值。当一笔交易中包含的item的权重之和大于阈值时，就认为这笔交易拥有这个权限。
 
 判断是否拥有这个item的标准就是交易的签名是否包含这个item中公钥对应的签名（当这个item是一个公钥时），或迭代地判断该交易是否包含这个item
@@ -32,7 +34,7 @@ active权限可以提供除了owner之外的所有权限，owner权限同样可�
 
 在智能合约层面，有非常简单的API可供使用
 ```
-BlockChain.requireAuth(id, permission_string)
+blockchain.requireAuth(id, permission_string)
 ```
 它将返回一个bool，需要判断是否成立来进行下一步操作。
 
@@ -83,7 +85,7 @@ User1
 
 ## 账户的创建和管理
 
-账户的管理基于智能合约```account.iost```，其ABI如下：
+账户的管理基于智能合约```auth.iost```，其ABI如下：
 
 ```javascript
 {

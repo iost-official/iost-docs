@@ -1,104 +1,25 @@
 ---
-id: iServer
-title: iServer
-sidebar_label: iServer
+id: LocalServer
+title: Запуск локального сервера
+sidebar_label: Запуск локального сервера
 ---
+Существует два способа запуска локального сервера: с помощью Докера или нативно.
 
-## Запуск iServer
-
-iServer - это служба узлов IOST, которая включает в себя консенсус, синхронизацию, пул транзакций и сетевые модули. Запустите службу iServer для развертывания узлов IOST.
-
-* Выполните следующую команду, чтобы скомпилировать проект в корневой директории, и исполняемые файлы будут сохранены в `target` директории в корневой папке.
-
-```
-make build
-```
-
-* Используйте комманду ниже для запуска узла IOST
+## Запуск сервера IOST используя Докер
+Запустить сервер IOST с помощью докера очень просто. Этот способ рекомендуется.    
+Следующая команда запустит сервер одного-узла блокчейна IOST.   
+Вы можете использовать его для отладки и тестирования.  
+Необходим [Docker CE 18.06 или новее](https://docs.docker.com/install/) (старые версии не тестировались).
 
 ```
-./target/iserver -f ./config/iserver.yml
+docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
 ```
+![server_output](assets/5-lucky-bet/Lucky-Bet-Operation/server_output.png)
 
-* Измените файл конфигурации ./config/iserver.yml
+## Нативный запуск сервера IOST
 
+После окончания [сборки IOST](Building-IOST), вы можете запустить сервер.
 ```
-acc:
-  id: YOUR_ID
-  seckey: YOUR_SECERT_KEY
-  algorithm: ed25519
+iserver -f ./config/iserver.yml
 ```
-
-* Настройте информацию об аккаунте узла
-
-```
-genesis:
-  creategenesis: true
-  witnessinfo:
-  - IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C
-  - "21000000000"
-  votecontractpath: config/
-```
-
-* Настройте информацию о генезисном блоке, производителе блоков и сумме токенов.
-
-
-```
-vm:
-  jspath: vm/v8vm/v8/libjs/
-  loglevel: ""
-
-```
-
-
-```
-db:
-  ldbpath: storage/
-```
-
-Настройте расположения базы данных.
-
-
-```
-p2p:
-  listenaddr: 0.0.0.0:30000
-  seednodes:
-  chainid: 1024
-  version: 1
-  datapath: p2p/
-```
-
-Настройте сетевую информацию. Это требует настройки начальных узлов для доступа к сети.
-
-```
-rpc:
-  jsonport: 30001
-  grpcport: 30002
-```
-
-Настройте порты RPC.
-
-
-```
-log:
-  filelog:
-    path: logs/
-    level: info
-    enable: true
-  consolelog:
-    level: info
-    enable: true
-  asyncwrite: true
-```
-
-Настройте службы регистрации.
-
-
-```
-metrics:
-  pushAddr:
-  username:
-  password:
-  enable: false
-  id: iost-testnet:visitor00
-```
+![server_output](assets/5-lucky-bet/Lucky-Bet-Operation/server_output.png)

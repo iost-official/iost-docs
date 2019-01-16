@@ -26,92 +26,84 @@ can_update(data) {
 
 下面我们以一个简单的智能合约为例, 说明合约更新的过程
 
-### 创建合约
-
-首先使用 iwallet 创建账户 update, 记录屏幕上返回的账户ID
-```console
-./iwallet account -n update
-return:
-the iost account ID is:
-IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h
-```
-
-新建合约文件 helloContract.js 和相应的ABI文件 helloContract.json 并写入以下内容
+新建合约文件 helloContract.js 并写入以下内容
 ```js
 class helloContract
 {
-    constructor() {
-    }
     init() {
     }
     hello() {
-		const ret = storage.put("message", "hello block chain");
-        if (ret !== 0) {
-            throw new Error("storage put failed. ret = " + ret);
-        }
+        return "hello world";
     }
-	can_update(data) {
-		const adminID = "IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h";
-		const ret = BlockChain.requireAuth(adminID);
-		return ret;
-	}
+    can_update(data) {
+        return blockchain.requireAuth(blockchain.publisher(), "active");
+    }
 };
 module.exports = helloContract;
 ```
-```json
-{
-    "lang": "javascript",
-    "version": "1.0.0",
-    "abi": [
-        {
-            "name": "hello",
-            "args": []
-        },
-		{
-			"name": "can_update",
-			"args": ["string"]
-		}
+观察合约文件中的 can_update() 函数实现, 即只有在使用合约拥有者账户授权时才允许合约更新.
+
+### 部署合约
+参见 [发布合约](../4-running-iost-node/iWallet#发布合约)
+
+```
+$ export IOST_ACCOUNT=admin # replace with your own account name here
+$ iwallet compile hello.js
+$ iwallet --account $IOST_ACCOUNT publish hello.js hello.js.abi
+...
+The contract id is ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
+```
+
+
+### 第一次调用
+第一次调用返回 'hello world'   
+```
+$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+...
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"hello world\"]"
+    ],
+    "receipts": [
     ]
 }
 ```
-观察合约文件中的 can_update() 函数实现, 即只有在使用 adminID 账户授权时才允许合约更新.
-
-### 部署合约
-
-参见 [Deployment-and-invocation](../3-smart-contract/Deployment-and-invocation)
-
-记录部署的合约ID, 例如 ContractHDnNufJLz8YTfY3rQYUFDDxo6AN9F5bRKa2p2LUdqWVW
-
 ### 升级合约
 首先编辑合约文件 helloContract.js 生成新的合约代码如下:
 ```js
 class helloContract
 {
-    constructor() {
-    }
     init() {
     }
     hello() {
-		const ret = storage.put("message", "update block chain");
-        if (ret !== 0) {
-            throw new Error("storage put failed. ret = " + ret);
-        }
+        return "hello iost";
     }
-	can_update(data) {
-		const adminID = "IOSTURXazDVc1hJ9R9HdFxt2PivzKxUdUaN1A7rgRkoBDMJZ9qj2h";
-		const ret = BlockChain.requireAuth(adminID);
-		return ret;
-	}
+    can_update(data) {
+        return blockchain.requireAuth(blockchain.publisher(), "active");
+    }
 };
 module.exports = helloContract;
 ```
 
-我们修改了hello()函数的实现, 将写入数据库的"message"的内容修改为"update block chain"
+我们修改了hello()函数的实现, 将hello函数返回值从 hello world 改成 hello iost。   
 
 使用如下命令升级智能合约:
 ```console
-./iwallet compile -u -e 3600 -l 100000 -p 1 ./helloContract.js ./helloContract.json <合约ID> <can_update 参数> -k ~/.iwallet/update_ed25519
+iwallet --account $IOST_ACCOUNT publish --update hello.js hello.js.abi ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
 ```
--u 表示更新合约, -k 表示用于签名和发布的私钥, 这里使用update账户授权该交易
 
-该交易确认后, 即可通过 iwallet 调用 hello() 函数, 并检查数据库 "message" 内容, 可看到内容变化
+### 第二次调用
+第二次调用，看到返回值从 'hello world' 变成 'hello iost'
+```
+$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+...
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"hello iost\"]"
+    ],
+    "receipts": [
+    ]
+}
+```

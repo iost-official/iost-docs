@@ -57,25 +57,11 @@ Transactions support multiple signatures. Within a contract, you can use `Requir
 
 Smart contracts can check the stack of calling, and answer questions such as "Who invoked this ABI." This allows for certain operations to exist.
 
-Smart contracts have special permissions, such as upgrading and removal. These can be implemented with `can_update()` and `can_destroy()`.
+Smart contracts have special permissions, such as upgrading. These can be implemented with `can_update()`.
 
 ## Result of a Call
 
-After execution, the smart contract will generate a `TxReceipt` into the block and seek consensus. You can use RPC to track the TxReceipts of on-chain transactions.
+After execution, the smart contract will generate a `TxReceipt` into the block and seek consensus. You can use [RPC](../6-reference/API#gettxreceiptbytxhash-hash) to track the TxReceipts of on-chain transactions.
 
-```sh
-$ curl -X GET \
-  http://52.192.65.220:30001/getTxReceiptByTxHash/G62UQbq9u8MP8cNLD9HUpMFtstTvRUAJ4avzKiAJc86f \
-  -H 'Cache-Control: no-cache' \
-  -H 'Postman-Token: 2442fe9c-0c80-4459-a9e6-0001bbde3dbb'l
-{
-    "txReceiptRaw": {
-        "txHash": "4CjfeOvtjmhdZep9WG5pPoEoLPu90avQkbGKefTKNaw=",
-        "gasUsage": "1129",
-        "status": {},
-        "succActionNum": 1
-    },
-    "hash": "eU9xHGM15gfDInAG7Y8q3RB9mMm1Pekmj4RUUHWFkqU="
-}
 
-```
+

@@ -37,21 +37,17 @@
         "title": "VM",
         "sidebar_label": "VM"
       },
-      "3-smart-contract/Contract-Testing": {
-        "title": "Testing",
-        "sidebar_label": "Testing"
-      },
-      "3-smart-contract/Deployment-and-invocation": {
-        "title": "Deployment and invocation",
-        "sidebar_label": "Deployment and invocation"
-      },
-      "3-smart-contract/Environment-setup": {
-        "title": "Environment setup",
-        "sidebar_label": "Environment setup"
+      "2-intro-of-iost/Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
       },
       "3-smart-contract/Generate-Receipt": {
         "title": "Generate Receipt in Smart Contract",
         "sidebar_label": "Generate Receipt in Smart Contract"
+      },
+      "3-smart-contract/ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
       },
       "3-smart-contract/How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
@@ -69,49 +65,53 @@
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "4-running-iost-node/Deployment-Docker-Centos": {
-        "title": "Deployment Docker Centos",
-        "sidebar_label": "Deployment Docker Centos"
-      },
       "4-running-iost-node/Deployment": {
-        "title": "Deployment",
-        "sidebar_label": "Deployment"
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
       },
-      "4-running-iost-node/Environment-Configuration": {
-        "title": "Environment & Configuration",
-        "sidebar_label": "Environment & Configuration"
+      "4-running-iost-node/Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
       },
-      "4-running-iost-node/Faucet": {
-        "title": "Faucet - how to get IOST token",
-        "sidebar_label": "Faucet - how to get IOST token"
+      "4-running-iost-node/Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
       },
-      "4-running-iost-node/iServer": {
-        "title": "iServer",
-        "sidebar_label": "iServer"
+      "4-running-iost-node/LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
       },
       "4-running-iost-node/iWallet": {
-        "title": "iWallet",
-        "sidebar_label": "iWallet"
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
       },
       "4-running-iost-node/Metrics": {
         "title": "Metrics",
         "sidebar_label": "Metrics"
       },
-      "5-lucky-bet/Design-Tech-data": {
-        "title": "Lucky Bet Smart Contract",
-        "sidebar_label": "Lucky Bet Smart Contract"
-      },
-      "5-lucky-bet/Lucky-Bet-Js": {
-        "title": "Lucky Bet Javascript Code Details",
-        "sidebar_label": "Lucky Bet Javascript Code Details"
-      },
-      "5-lucky-bet/Lucky-Bet-Operation": {
-        "title": "Step-by-Step Commands to Deploy and Run",
-        "sidebar_label": "Step-by-Step Commands to Deploy and Run"
+      "5-lucky-bet/LuckyBet": {
+        "title": "LuckyBet Example",
+        "sidebar_label": "LuckyBet Example"
       },
       "6-reference/API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "6-reference/EconContract": {
+        "title": "Economic Contract",
+        "sidebar_label": "Economic Contract"
+      },
+      "6-reference/GasChargeTable": {
+        "title": "Gas Charge Table",
+        "sidebar_label": "Gas Charge Table"
+      },
+      "6-reference/SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "6-reference/TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
       },
       "7-iost-js/Blockchain-class": {
         "title": "Blockchain",
@@ -371,6 +371,126 @@
       "version-2.0.3-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-2.0.4-Deployment-Docker-Centos": {
+        "title": "Deployment Docker Centos",
+        "sidebar_label": "Deployment Docker Centos"
+      },
+      "version-2.0.4-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
+      },
+      "version-2.0.4-Environment-Configuration": {
+        "title": "Environment & Configuration",
+        "sidebar_label": "Environment & Configuration"
+      },
+      "version-2.0.4-Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
+      "version-2.0.4-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-2.0.5-Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
+      "version-2.1.0-Contract-Testing": {
+        "title": "Testing",
+        "sidebar_label": "Testing"
+      },
+      "version-2.1.0-Deployment": {
+        "title": "Deployment",
+        "sidebar_label": "Deployment"
+      },
+      "version-2.1.0-Environment-Configuration": {
+        "title": "Environment & Configuration",
+        "sidebar_label": "Environment & Configuration"
+      },
+      "version-2.1.0-Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
+      "version-2.1.2-Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
+      "version-2.1.2-EconContract": {
+        "title": "Econ Contract",
+        "sidebar_label": "Econ Contract"
+      },
+      "version-2.1.2-SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "version-2.1.3-SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "version-2.1.4-Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
+      "version-2.1.6-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-2.1.6-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-2.1.6-Smart-contract": {
+        "title": "Smart Contract",
+        "sidebar_label": "Smart Contract"
+      },
+      "version-2.1.6-ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-2.1.6-How-to-write-a-smart-contract": {
+        "title": "How to Write a Smart Contract",
+        "sidebar_label": "How to Write a Smart Contract"
+      },
+      "version-2.1.6-Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
+      "version-2.1.6-Deployment": {
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
+      },
+      "version-2.1.6-Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
+      },
+      "version-2.1.6-LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
+      },
+      "version-2.1.6-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-2.1.6-LuckyBet": {
+        "title": "LuckyBet Example",
+        "sidebar_label": "LuckyBet Example"
+      },
+      "version-2.1.6-EconContract": {
+        "title": "Economic Contract",
+        "sidebar_label": "Economic Contract"
+      },
+      "version-2.1.6-GasChargeTable": {
+        "title": "Gas Charge Table",
+        "sidebar_label": "Gas Charge Table"
+      },
+      "version-2.1.6-SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "version-2.1.6-TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
       }
     },
     "links": {
@@ -380,13 +500,17 @@
     },
     "categories": {
       "Getting started": "Getting started",
-      "Introduction of IOST blockchain": "Introduction of IOST blockchain",
+      "IOST Design and Concepts": "IOST Design and Concepts",
       "Smart Contract": "Smart Contract",
       "Running IOST node": "Running IOST node",
-      "Example: Lucky Bet": "Example: Lucky Bet",
+      "Examples": "Examples",
       "Reference": "Reference",
-      "IOST.js": "IOST.js",
+      "IOST Javascript SDK": "IOST Javascript SDK",
+      "IOST Tech Internals": "IOST Tech Internals",
       "First Category": "First Category",
+      "Introduction of IOST blockchain": "Introduction of IOST blockchain",
+      "Example: Lucky Bet": "Example: Lucky Bet",
+      "IOST.js": "IOST.js",
       "Lucky Bet": "Lucky Bet"
     }
   },

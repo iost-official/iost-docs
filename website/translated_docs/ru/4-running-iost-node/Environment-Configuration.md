@@ -1,89 +1,42 @@
 ---
-id: Environment-Configuration
-title: Среда и Настройка
-sidebar_label: Среда и Настройка
+id: Building-IOST
+title: Сборка IOST
+sidebar_label: Сборка IOST
 ---
-
-## Предварительно необходимы
-
-* Go 1.9 или новее (Go 1.11 рекомендованный)
-* `git-lfs` (v2.5.2 рекомендованный)
-* Rocksdb v5.14.3 или новее
-* Docker v18.06.0-ce или новее (старые версии не тестировались)
-
-## Среда
-
-В настоящее время вы можете разрабатывать и развертывать в следующих средах:
-
-* [Mac OS X](#mac-os-x)
-* [Ubuntu/Linux](#ubuntu-linux)
-* [Docker](#docker)
-
-## Mac OS X
-
-### Установка git-lfs
-
+### Установите Golang
+Необходим Go 1.11 или новее.
+После установки проверьте версию
 ```
-brew install git-lfs
-git lfs install
+go version
+```
+При правильной установке выдаст "go version go1.11".
+
+### Установите Git LFS
+Необходим Git LFS (v2.5.2 или новее).
+
+Установка на MacOS
+```
+brew install git-lfs && git lfs install
+```
+Установка на Ubuntu
+```
+# see also: https://github.com/git-lfs/git-lfs/wiki/Installation
+sudo apt install -y git-lfs && git lfs install
 ```
 
-### Установка rocksdb
-
+Установка на CentOS
 ```
-brew install rocksdb
-```
-
-### Компиляция и модульные тесты
-
-```
-git clone git@github.com:iost-official/go-iost.git
-make build
-make test
+yum --enablerepo=epel install -y git-lfs && git lfs install
 ```
 
-## Ubuntu/Linux
-
-### Установка git-lfs
+### Клонируйте код
 
 ```
-brew install git-lfs
-git lfs install
+go get -d github.com/iost-official/go-iost
 ```
 
-### Установка rocksdb
-
+### Сборка IOST
 ```
-apt install -y libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev
-git clone -b "v5.14.3" https://github.com/facebook/rocksdb.git && \
-cd rocksdb && make static_lib && make install-static
-```
-
-### Компиляция и модульные тесты
-
-```
-git clone git@github.com:iost-official/go-iost.git
-make build
-make test
-```
-
-## Докер
-
-### Установка докера
-
-#### Mac OS X
-
-Ссылка на [Официальную Документацию](https://docs.docker.com/docker-for-mac/install/) для установки на Mac OS X.
-
-#### Ubuntu/Linux
-
-Ссылка на [Официальную Документацию](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository) для установки на Ubuntu.
-
-### Компиляция и модульные тесты
-
-```
-git clone git@github.com:iost-official/go-iost.git
-cd go-iost
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:1.0.0 make build
-docker run -it --rm -v $(pwd):/gopath/src/github.com/iost-official/go-iost iostio/iost-dev:1.0.0 make test
+cd $GOPATH/src/github.com/iost-official/go-iost
+make build install
 ```

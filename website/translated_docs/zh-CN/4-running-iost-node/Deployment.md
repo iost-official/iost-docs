@@ -3,90 +3,32 @@ id: Deployment
 title: 部署
 sidebar_label: 部署
 ---
+本文介绍如何加入IOST官方网。如果只是测试调试，建议部署[本地单节点网络](LocalServer)
 
-## Get repo
+## 依赖
 
-执行如下命令获取代码仓库：
+- [Docker CE 18.06 以上](https://docs.docker.com/install/)
+- (Optional) [Docker Compose](https://docs.docker.com/compose/install/)
 
-```
-git clone https://github.com/iost-official/go-iost.git && cd go-iost
-```
+## 配置*创世块*和 iServer
 
-## Build
-
-执行如下命令进行编译，生成`target`目录：
-
-```
-git checkout v2.0.0
-make build
-```
-
-## Run
-
-执行如下命令可以跑一个单机节点，iserver的具体配置可以参见：[iServer](iServer)
-
-```
-./target/iserver -f config/iserver.yml
-```
-
-## Docker
-
-### Run
-
-执行如下命令可以用docker跑一个单机节点
-
-```
-docker run -d iostio/iost-node:2.0.0
-```
-
-### Mount volume
-
-通过-v选项可以将数据目录挂载出来，例如：
+获取配置模版：
 
 ```
 mkdir -p /data/iserver
-cp config/{docker/iserver.yml,genesis.yml} /data/iserver/
-docker run -d -v /data/iserver:/var/lib/iserver iostio/iost-node:2.0.0
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/docker/iserver.yml -o /data/iserver/iserver.yml
+curl https://raw.githubusercontent.com/iost-official/go-iost/v2.1.0/config/genesis.yml -o /data/iserver/genesis.yml
 ```
 
-### Bind port
+这里 `/data/iserver` 是数据目录，可以根据实际情况自行修改。
 
-通过`-p`选项可以将端口绑定出来，例如：
-
-```
-docker run -d -p 30000:30000 -p 30001:30001 -p 30002:30002 -p 30003:30003 iostio/iost-node:2.0.0
-```
-
-### Using docker-compose
-
-推荐使用 docker-compose 进行部署：
+*如果运行过以前版本的测试网，请清空数据:*
 
 ```
-# docker-compose.yml
-
-version: "2.2"
-
-services:
-  iserver:
-    image: iostio/iost-node:2.0.0
-    restart: always
-    ports:
-      - "30000:30000"
-      - "30001:30001"
-      - "30002:30002"
-      - "30003:30003"
-    volumes:
-      - /data/iserver:/var/lib/iserver
+rm -rf /data/iserver/storage
 ```
 
-启动节点：`docker-compose up -d`
-
-
-## 接入测试网络
-
-### Update config
-
-将 genesis.yml 修改为如下：
+修改*创世块*配置文件(位于`/data/iserver/genesis.yml`)：
 
 ```
 creategenesis: true
@@ -152,17 +94,55 @@ p2p:
 ...
 ```
 
-其中种子节点Network ID可以进行替换，测试网络提供的种子节点列表如下：
+其中种子节点 Network ID 可以进行替换，测试网络提供的种子节点列表如下：
 
 | Name   | Region | Network ID                                                                              |
 | ------ | ------ | --------------------------------------------------------------------------------------- |
 | node-7 | 伦敦 | /ip4/35.176.129.71/tcp/30000/ipfs/12D3KooWSCfx6q7w8FVg9P8CwREkcjd5hihmujdQKttuXgAGWh6a |
 | node-8 | 巴黎 | /ip4/35.180.171.246/tcp/30000/ipfs/12D3KooWMBoNscv9tKUioseQemmrWFmEBPcLatRfWohAdkDQWb9w |
 
-### Run iserver
+## 运行
 
-跑iserver时指定修改后的配置，即可连上testnet
+启动一个单机节点：
 
 ```
-./target/iserver -f config/iserver.yml
+docker run -d iostio/iost-node:2.1.0
 ```
+
+通常，iServer 需要持久化存储并且向外界暴露端口：
+
+```
+docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node:2.1.0
+```
+
+如果使用 docker-compose: 
+
+```
+# docker-compose.yml
+
+version: "2"
+
+services:
+  iserver:
+    image: iostio/iost-node:2.1.0
+    restart: always
+    ports:
+      - "30000-30003:30000-30003"
+    volumes:
+      - /data/iserver:/var/lib/iserver
+```
+
+创建节点: `docker-compose up -d`
+
+*开始/停止/重启/删除*节点: `docker-compose (start|stop|restart|down)`
+
+## 检查节点
+
+日志文件位于 `/data/iserver/logs/iost.log`.
+其中 `confirmed` 值持续快速增长说明节点正在同步。
+
+也可以使用钱包工具(`iwallet`)查看**本地**节点信息：
+`docker-compose exec iserver ./iwallet state`
+
+使用 `-s` 参数查看全网信息：
+`docker-compose exec iserver ./iwallet -s 35.176.129.71:30002 state`
