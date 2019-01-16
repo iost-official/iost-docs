@@ -1,9 +1,7 @@
 ---
-Id: SystemContract
-Title: System Contract
-Sidebar_label: System Contract
 id: version-2.2.0-SystemContract
 title: SystemContract
+sidebar_label: System Contract
 original_id: SystemContract
 ---
 
