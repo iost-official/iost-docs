@@ -567,7 +567,8 @@
         "sidebar_label": "Build IOST"
       },
       "version-2.2.0-SystemContract": {
-        "title": "SystemContract"
+        "title": "SystemContract",
+        "sidebar_label": "System Contract"
       },
       "version-2.2.0-TokenContract": {
         "title": "Token Contract",
