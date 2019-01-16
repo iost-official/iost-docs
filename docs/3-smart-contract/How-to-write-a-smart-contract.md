@@ -66,3 +66,12 @@ Detailed interfaces are listed [here](https://github.com/iost-official/go-iost/b
 tx object contains current transaction information.   
 block object contrains current block information.   
 API [Here](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/sandbox.cc#L29)
+
+### encrypt object
+You can directly use ```IOSTCrypto``` object's ```sha3(String)``` Function to get the sha3 Hash。
+
+##### Example
+
+```js
+IOSTCrypto.sha3(msg)
+```
