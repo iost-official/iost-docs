@@ -10,7 +10,7 @@ We are using Docker to deploy an IOST node.
 
 ## Prerequisites
 
-- [Docker CE 18.06 or newer](https://docs.docker.com/install) (older versions are not tested)
+- [Docker 1.13/Docker CE 18.06 or newer](https://docs.docker.com/install) (older versions are not tested)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Prepare Config File
