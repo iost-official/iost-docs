@@ -68,14 +68,14 @@ In docker, You shoudl use "./iwallet" instead of "iwallet", which is not install
 First prepare a JavaScript class
 ```
 // HelloWorld.js
-Class HelloWorld {
-Init() {} // needs to provide an init function that will be called during deployment
-    Hello(someone) {
-        Return "hello, "+ someone
+class HelloWorld {
+    init() {} // needs to provide an init function that will be called during deployment
+    hello(someone) {
+        return "hello, "+ someone
     }
 }
 
-Module.exports = HelloWorld;
+module.exports = HelloWorld;
 ```
 The smart contract contains an interface that receives an input and then outputs ```hello, + enter ```. In order to allow this interface to be called outside the smart contract, you need to prepare the abi file.
 ```
