@@ -17,7 +17,7 @@ We are using Docker to deploy an IOST node.
 
 ## Before start
 
-By default, `/opt/iserver` is going to mount as the data volume, you might change the path to suit your needs.
+By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
 We refer to `PREFIX` hereafter.
 
 *If you have already run previous version of iServer, make sure the old data has been purged:*

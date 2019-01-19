@@ -8,7 +8,7 @@
 
 set -ue
 
-PREFIX=${PREFIX:="/opt/iserver"}
+PREFIX=${PREFIX:="/data/iserver"}
 VERSION=${VERSION:="latest"}
 
 PRODUCER_KEY_FILE=keypair

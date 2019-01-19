@@ -14,8 +14,8 @@ sidebar_label: 部署
 
 ## 启动之前
 
-默认情况下 `/opt/iserver` 是数据目录，可以根据实际情况自行修改。
-下文用 `$PREFIX` 指代数据目录。
+默认情况下 `/data/iserver` 是数据目录，可以根据实际情况自行修改。
+下文用 `PREFIX` 指代数据目录。
 
 
 *如果运行过以前版本的测试网，请清空数据:*
@@ -74,4 +74,51 @@ docker-compose exec iserver ./iwallet state
 
 访问[区块链浏览器](https://explorer.iost.io)获取当前区块高度。
 
-## Servi Node
+## 超级节点
+
+运行超级节点需要一个IOST账户(用来接收分红)和一个*生产者*节点(用来造块)。   
+**生产者造块推荐使用不同于账户的公私钥对。**
+
+### 创建IOST账户
+
+如果还没有账户，你需要：
+
+- 用 iWallet 生成*公私钥对*
+- 用生成的*公私钥对*在[区块链浏览器](https://explorer.iost.io)上注册账户
+
+最后用 iWallet 导入账户。
+
+### 启动节点
+
+请参考[启动节点](#start-the-node)执行以下命令:
+
+```
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
+```
+
+生产者*公私钥对*在 `$PREFIX/keypair`.
+访问 `http://localhost:30001/getNodeInfo` 的 `.network.id` 字段获取网络 ID.
+
+### 注册申请
+
+用 iWallet 发起一个交易：
+
+```
+iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '["<your-account>","<pubkey-of-producer>","<location>","<website>","<network-ID>",true]' --amount_limit '*:unlimited'
+```
+
+完整 API 文档请参阅 [`vote_producer.iost`](6-reference/SystemContract.html#vote-produceriost).
+
+## 操作超级节点
+
+当 **admin** 批准超级节点注册申请，且节点准备好造块后，发起一个“上线”请求让节点上线：
+
+```
+iwallet --account <your-account> call 'vote_producer.iost' 'logInProducer' '["<your-account>"]' --amount_limit '*:unlimited'
+```
+
+下线节点：
+
+```
+iwallet --account <your-account> call 'vote_producer.iost' 'logOutProducer' '["<your-account>"]' --amount_limit '*:unlimited'
+```
