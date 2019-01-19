@@ -8,18 +8,15 @@ iwallet 是 IOST 的客户端命令行工具。可以使用本工具连接IOST�
 iwallet 和 [API](6-reference/API.md) 都是通过 RPC API 来和区块链交互。两者的功能和接口都是基本一致的。
   
 ## 安装
-首先需要安装 golang 环境。需要版本不低于 1.11。   
-可以参考 [Step-by-Step Commands to Deploy and Run](5-lucky-bet/Lucky-Bet-Operation.md) 中的 安装 golang 部分。   
-之后 clone 代码，并且编译 iwallet。
+首先需要[安装golang](4-running-iost-node/Building-IOST.html#install-golang)。
 
+安装完golang之后，你可以执行如下命令安装iwallet：
 ```
-go get -d github.com/iost-official/go-iost   
-cd $GOPATH/src/github.com/iost-official/go-iost  
-make iwallet   
-go install ./cmd/iwallet/  
-cd iwallet/contract
-npm install
+go get github.com/iost-official/go-iost/iwallet
 ```
+
+如果你计划部署智能合约到区块链上，你应该首先安装[nodejs](https://nodejs.org/en/download/)，然后再运行下面的命令。
+
 ## 基本功能
 ### 查询账号信息
 使用 iwallet 可以查看指定账户目前的账号信息，包括余额，可用RAM数量，GAS总量等等。   

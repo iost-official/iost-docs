@@ -67,7 +67,7 @@ In docker, You shoudl use "./iwallet" instead of "iwallet", which is not install
 First prepare a JavaScript class. e.g HelloWorld.js
 ```
 class HelloWorld {
-    init() {} // needs to provide an init function that will be called during deployment
+    init() {} // needs to provide an init function that will be called during deployment
     hello(someone) {
         return "hello, "+ someone
     }
