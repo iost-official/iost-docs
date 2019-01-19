@@ -22,9 +22,9 @@ In IOST, smart contracts will be coded into a JavaScript `class`. When using it,
 
 #### Structure of a smart contract
 
-A smart contract class must include `Init` functions.
+A smart contract class must include `init` functions.
 
-- `Init` is run when a contract is deployed. It usually contains code to initialize properties of the contract.
+- `init` is run when a contract is deployed. It usually contains code to initialize properties of the contract.
 
 Apart from these functions, developers can define other functions as needed. Below is a template of a simple smart contract that has `transfer` functionalities.
 
