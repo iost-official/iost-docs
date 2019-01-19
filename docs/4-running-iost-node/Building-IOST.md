@@ -5,11 +5,18 @@ sidebar_label: Build IOST
 ---
 ### Install Golang
 Go 1.11 or newer is needed.
-After installing, running
+You can refer to [here](https://golang.org/doc/install) for installation. After installing, running
 ```
 go version
 ```
 You will see outputs contains "go version go1.11".
+
+> You may need to add the following environment variables to make your golang work better.
+> ```
+> # Golang
+> export GOPATH=$(go env GOPATH)
+> export PATH=$PATH:$GOPATH/bin
+> ```
 
 ### Install Git LFS
 Git LFS (v2.5.2 or newer) is needed.

@@ -8,15 +8,16 @@ iwallet is the command line tool for IOST blockchain.
 You can use this tool to connect to the blockchain to transfer coins/create accounts/query balance/call contracts.     
 iwallet and [API](6-reference/API.md) use RPC API inside both. They have similar features.   
   
-## Building
-You should [build IOST](4-running-iost-node/Building-IOST.md) firstly.   
-If you plan to publish contracts onto the blockchain, you should install nodejs and npm firstly, then run the following command.   
-If you do not need publishing contracts, you can skip the following command.      
-``` 
-cd $GOPATH/src/github.com/iost-official/go-iost
-cd iwallet/contract
-npm install
+## Install
+You should [install golang](4-running-iost-node/Building-IOST.html#install-golang) firstly.
+
+After installing golang, you can install iwallet with the following command:
 ```
+go get github.com/iost-official/go-iost/iwallet
+```
+
+If you plan to publish contracts onto the blockchain, you should install [nodejs](https://nodejs.org/en/download/) firstly, then run the following command.
+
 ## Basic Features
 ### Query Account
 iwallet can be used to query account information including balance, RAM, GAS etc.      
