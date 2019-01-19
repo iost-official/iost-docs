@@ -229,7 +229,7 @@ iwallet \
 例
 ```
 if (!blockchain.requireAuth("someone", "active")) {
-    Throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
+    throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
 }
 ```
 次の点に注意してください。
@@ -267,7 +267,7 @@ iwallet \
 
 上記のように、最初にローカルノードを開始します。Dockerなら、次のコマンドでログを表示することができます。
 ```
-Docker ps -f <コンテナID>
+docker ps -f <コンテナID>
 ```
 
 この時点で、console.log()を追加することでコードに必要なログを追加できます。以下はストレージサンプルの実行中に出力されたログです。
