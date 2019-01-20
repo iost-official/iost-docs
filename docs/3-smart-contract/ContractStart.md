@@ -69,7 +69,7 @@ First prepare a JavaScript class. e.g HelloWorld.js
 class HelloWorld {
     init() {} // needs to provide an init function that will be called during deployment
     hello(someone) {
-        Return "hello, "+ someone
+        return "hello, "+ someone
     }
 }
 
