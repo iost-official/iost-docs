@@ -11,5 +11,7 @@
   "devDependencies": {
     "docusaurus": "^1.6.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "npm": "^6.6.0"
+  }
 }

@@ -577,6 +577,10 @@
       "version-2.2.1-LocalServer": {
         "title": "Launch Local Server",
         "sidebar_label": "Launch Local Server"
+      },
+      "version-2.3.0-How-to-write-a-smart-contract": {
+        "title": "How to Write a Smart Contract",
+        "sidebar_label": "How to Write a Smart Contract"
       }
     },
     "links": {

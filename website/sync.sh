@@ -1,4 +1,4 @@
-set -x
+#set -x
 #set -e
 function do_sync() {
 LAN=$1
@@ -17,7 +17,7 @@ done
 #V="2.1.7"
 for L in ja zh-CN 
 do
-for v in 2.2.1
+for v in 2.3.0
 do
 do_sync $L $v
 done

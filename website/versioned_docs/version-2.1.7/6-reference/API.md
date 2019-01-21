@@ -540,7 +540,8 @@ A successful response may look like this:
         }
     },
     "groups": {},
-    "frozen_balances": []
+    "frozen_balances": [],
+    "vote_infos": []
 }
 ```
 
@@ -554,6 +555,7 @@ ram\_info           |RAMInfo    |Ram information
 permissions |map<string, Permission>    |permissions
 groups              |map<string, Group>         |permission groups
 frozen\_balances    |repeated FrozenBalance |information on the frozen balance
+vote\_infos    |repeated VoteInfo |information of vote
 
 ### GasInfo
 
@@ -613,8 +615,13 @@ Key                 |Type       |Description
 amount          |double |the amount
 time                    |int64      |the time when the amount is unfrozen
 
+### VoteInfo
 
-
+Key                 |Type       |Description 
+----                    |--         |--
+option          |string |candidate
+votes                    |string      |number of votes
+cleared_votes                    |string      |number of votes cleared
 
 
 
@@ -747,7 +754,7 @@ Key                 |Type       |Description
 ----                    |--         |--
 id                      |string     |ID of the smart contract
 field                   |string     |the values from StateDB; if StateDB\[key\] is a map then it is required to configure field to obtain values of StateDB\[key\]\[field\]
-key                 |struct     |the key of StateDB
+key                 |string     |the key of StateDB
 by\_longest\_chain  |bool   |true - get data from the longest chain; false - get data from irreversible blocks
 
 ### Response
@@ -766,6 +773,36 @@ A successful response may look like this:
         "registerFee": "200000000"
     }
 "}
+```
+
+## /getContractStorageFields
+##### POST
+
+Get contract storage key list of map, up to 256 are returned
+
+### Request
+
+A request may look like this:
+
+```
+curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.iost","key":"TIiost","by_longest_chain":true}'
+```
+
+Key                 |Type       |Description 
+----                    |--         |--
+id                      |string     |ID of the smart contract
+key                 |string     |the key of StateDB
+by\_longest\_chain  |bool   |true - get data from the longest chain; false - get data from irreversible blocks
+
+### Response
+
+A successful response may look like this:
+
+```
+200 OK
+{
+	"fields": ["issuer","totalSupply","supply","canTransfer","onlyIssuerCanTransfer","defaultRate","decimal","fullName"]
+}
 ```
 
 
