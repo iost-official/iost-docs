@@ -77,7 +77,7 @@ Sidebar_label: System Contract
 | :----: | :------ |
 | 代理人 アカウント名| string |
 | 投票者 アカウント名| string |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 | 投票数 | string |
 
 #### vote
@@ -86,7 +86,7 @@ Sidebar_label: System Contract
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
 | 投票者 アカウント名| string |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 | 投票数 | string |
 
 #### unvote
@@ -95,7 +95,7 @@ Sidebar_label: System Contract
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
 | 投票者 アカウント名| string |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 | 投票数 | string |
 
 #### voterWithdraw
@@ -110,7 +110,7 @@ Sidebar_label: System Contract
 
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 
 ## vote.iost
 ---
