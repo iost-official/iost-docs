@@ -9,15 +9,16 @@ iwalletは、IOSTはブロックチェーンのコマンドラインツールで
 
 iwalletと[API](6-reference/API.md)は、RPC APIを内部で使っています。それは同様の機能を持っています。
   
-## ビルド
-最初に、[IOSTをビルド](Building-IOST.md)する必要があります。
-ブロックチェーンにコントラクトをパブリッシュしたいなら、Node.jsとnpmをインストールし、次のコマンドを実行します。
-コントラクトをパブリッシュしないのなら、次のステップは省略できます。
-``` 
-cd $GOPATH/src/github.com/iost-official/go-iost
-cd iwallet/contract
-npm install
+## インストール
+最初に、[Go言語をインストール](4-running-iost-node/Building-IOST.html#install-golang)する必要があります。
+
+Go言語をインストールしたら、次のコマンドでiwalletをインストールできます。
 ```
+go get github.com/iost-official/go-iost/iwallet
+```
+
+ブロックチェーンにコントラクトをパブリッシュしたいなら、[Nodejs](https://nodejs.org/en/download/) を先にインストールしてから、次のコマンドを実行してください。
+
 ## 基本機能
 ### アカウント情報の照会
 iwalletで、残高、RAM,GASなどのアカウント情報を調べることができます。
