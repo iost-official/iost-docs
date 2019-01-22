@@ -15,8 +15,7 @@
       "3-smart-contract/How-to-write-a-smart-contract",
       "3-smart-contract/Update-Contract",
       "3-smart-contract/Generate-Receipt",
-      "3-smart-contract/Token",
-      "3-smart-contract/Smart-Contract-Development-Toolkit"
+      "3-smart-contract/Token"
     ],
     "Running IOST node": [
       "4-running-iost-node/LocalServer",
