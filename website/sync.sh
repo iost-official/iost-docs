@@ -17,7 +17,7 @@ done
 #V="2.1.7"
 for L in ja zh-CN 
 do
-for v in 2.3.0
+for v in 2.3.1
 do
 do_sync $L $v
 done

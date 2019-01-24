@@ -69,6 +69,10 @@
         "title": "Build IOST",
         "sidebar_label": "Build IOST"
       },
+      "4-running-iost-node/Configuration": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
       "4-running-iost-node/Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
@@ -581,6 +585,18 @@
       "version-2.3.0-How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
         "sidebar_label": "How to Write a Smart Contract"
+      },
+      "version-2.3.1-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-2.3.1-Configuration": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
+      "version-2.3.1-API": {
+        "title": "API",
+        "sidebar_label": "API"
       }
     },
     "links": {
