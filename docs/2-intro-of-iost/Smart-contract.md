@@ -61,7 +61,7 @@ Smart contracts have special permissions, such as upgrading. These can be implem
 
 ## Result of a Call
 
-After execution, the smart contract will generate a `TxReceipt` into the block and seek consensus. You can use [RPC](../6-reference/API#gettxreceiptbytxhash-hash) to track the TxReceipts of on-chain transactions.
+After execution, the smart contract will generate a `TxReceipt` into the block and seek consensus. You can use [RPC](6-reference/API.md#gettxreceiptbytxhash-hash) to track the TxReceipts of on-chain transactions.
 
 
 

@@ -37,7 +37,7 @@ class helloContract
         return "hello world";
     }
     can_update(data) {
-        return blockchain.requireAuth(blockchain.publisher(), "active");
+        return blockchain.requireAuth(blockchain.contractOwner(), "active");
     }
 };
 module.exports = helloContract;
@@ -46,7 +46,7 @@ module.exports = helloContract;
 
 ### Публикация контракта
 
-Пожалуйста, обратитесь к [Publish Contract](../4-running-iost-node/iWallet#publish-contract), где объяснено больше.
+Пожалуйста, обратитесь к [Publish Contract](4-running-iost-node/iWallet.md#publish-contract), где объяснено больше.
 ```
 $ export IOST_ACCOUNT=admin # replace with your own account name here
 $ iwallet compile hello.js
@@ -81,7 +81,7 @@ class helloContract
         return "hello iost";
     }
     can_update(data) {
-        return blockchain.requireAuth(blockchain.publisher(), "active");
+        return blockchain.requireAuth(blockchain.contractOwner(), "active");
     }
 };
 module.exports = helloContract;

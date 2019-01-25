@@ -61,7 +61,7 @@ Just below the Firewall section you will see the *Management, security, disks, n
 
 From the Management tab you will be able to create an Automation script, this helps to simplify some of your work, see https://cloud.google.com/compute/docs/startupscript for more information
 
-Please refer to [Deployment Docker Centos](Deployment-Docker-Centos) for where this script is derived from
+Please refer to [Deployment Docker Centos](4-running-iost-node/Deployment-Docker-Centos.md) for where this script is derived from
 
 Please note this script also attempts to attach your data disk, this script is not intended to be run multiple times , please **Remove it** after first initialization.
 

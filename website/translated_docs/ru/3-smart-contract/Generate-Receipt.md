@@ -54,11 +54,11 @@ module.exports = Contract;
 ### Запрос квитанции по хешу транзакции
 Квитанция, сгенерированная конкретной транзакцией, может быть запрошена с помощью хеша этой транзакции через интерфейсы rpc.
 
-Пожалуйста, обратитесь к [/getTxReceiptByHash](../6-reference/API#gettxreceiptbyhash-hash)
+Пожалуйста, обратитесь к [/getTxReceiptByHash](6-reference/API.md#gettxreceiptbyhash-hash)
 
 
 ### Запрос квитанции по данным блока
 Полные данные блока содержат все транзакции и соответствующие им квитанции, можно загрузить данные блока и проанализировать, чтобы получить все квитанции, сгенерированные в этом блоке.
 
-Пожалуйста, обратитесь к [ /getBlockByHash](../6-reference/API#getblockbyhash-hash-complete) и [/getBlockByNumber](../6-reference/API#getblockbynumber-number-complete)
+Пожалуйста, обратитесь к [ /getBlockByHash](6-reference/API.md#getblockbyhash-hash-complete) и [/getBlockByNumber](6-reference/API.md#getblockbynumber-number-complete)
 и установите `complete` в параметрах запроса как `true`

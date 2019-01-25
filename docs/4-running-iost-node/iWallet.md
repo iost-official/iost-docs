@@ -6,10 +6,10 @@ sidebar_label: Command Line Wallet Tool
 
 iwallet is the command line tool for IOST blockchain.   
 You can use this tool to connect to the blockchain to transfer coins/create accounts/query balance/call contracts.     
-iwallet and [API](../6-reference/API) use RPC API inside both. They have similar features.   
+iwallet and [API](6-reference/API.md) use RPC API inside both. They have similar features.   
 
 ## Building
-You should [build IOST](Building-IOST) firstly.   
+You should [build IOST](4-running-iost-node/Building-IOST.md) firstly.   
 If you plan to publish contracts onto the blockchain, you should install nodejs and npm firstly, then run the following command.   
 If you do not need publishing contracts, you can skip the following command.      
 ```
@@ -20,8 +20,8 @@ npm install
 ## Basic Features
 ### Query Account
 iwallet can be used to query account information including balance, RAM, GAS etc.      
-Output format is same as [getAccountInfo API](../6-reference/API#getaccount-name-by-longest-chain) .     
-The `--server` flag inside the command indicates the remote IOST server. If you [launch server locally](LocalServer)，yon can skip the flag, using the default value (localhost:30002).      
+Output format is same as [getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain) .     
+The `--server` flag inside the command indicates the remote IOST server. If you [launch server locally](4-running-iost-node/LocalServer.md)，yon can skip the flag, using the default value (localhost:30002).      
 
 ```
 iwallet --server 127.0.0.1:30002 balance xxxx
@@ -56,7 +56,7 @@ iwallet --server 127.0.0.1:30002 balance xxxx
 }
 ```
 ### Query Blockchain information
-Query information of blockchain and server node. The output is combination of [getNodeInfo](../6-reference/API#getnodeinfo) and [getChainInfo](../6-reference/API#getchaininfo).  
+Query information of blockchain and server node. The output is combination of [getNodeInfo](6-reference/API.md#getnodeinfo) and [getChainInfo](6-reference/API.md#getchaininfo).  
 
 ```
 iwallet --server 127.0.0.1:30002 state
@@ -204,7 +204,7 @@ iwallet block --method hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
 ```
 ### Query Transaction Information
 #### Get Transaction Detail
-`transaction` is same as [getTxByHash API](../6-reference/API#gettxbyhash-hash])
+`transaction` is same as [getTxByHash API](6-reference/API.md#gettxbyhash-hash])
 
 ```
 iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
@@ -227,7 +227,7 @@ iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
 #
 ```
 #### Get transaction receipt by transaction hash
-`receipt` is same as [getTxReceiptByTxHash API](../6-reference/API#gettxreceiptbytxhash-hash)
+`receipt` is same as [getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash)
 
 ```
 iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx

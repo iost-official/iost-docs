@@ -12,7 +12,7 @@ sidebar_label: Как написать смарт-контракт
 
 ### Среда выполнения
 
-Внутри IOST работает [Chrome V8](https://developers.google.com/v8/) движок для выполнения контрактов.
+Внутри IOST работает [Chrome V8](https://developers.google.com/v8) движок для выполнения контрактов.
 
 ## Руководство по программированию смарт-контрактов
 
@@ -65,4 +65,13 @@ API [здесь](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8
 ### tx object и block object (Объекты tx и block)
 Объект tx содержит информацию о текущей транзакции.   
 Объект block содержит информацию о текущем блоке.   
-API [здесь](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/sandbox.cc#L29)
+API [Здесь](https://github.com/iost-official/go-iost/blob/master/vm/v8vm/v8/sandbox.cc#L29)
+
+### encrypt object (Объект шифрования)
+Вы можете напрямую использовать Функцию ```sha3(String)``` объекта ```IOSTCrypto```для получения Хеша sha3。
+
+##### Пример
+
+```js
+IOSTCrypto.sha3(msg)
+```

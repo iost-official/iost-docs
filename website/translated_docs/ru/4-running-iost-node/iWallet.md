@@ -1,107 +1,247 @@
 ---
 id: iWallet
-title: iWallet
-sidebar_label: iWallet
+title: Инструмент командной строки iWallet
+sidebar_label: Инструмент командной строки iWallet
 ---
 
-**IOSBlockchain** имеет две программы: `iServer` является основной программой и несколько `iServer` формируют сеть блокчейна. `iWallet` это инструмент командной строки для взаимодействия с `iServer` блокчейна.
+iwallet это инструмент командной строки для блокчейна IOST.   
+Вы можете использовать этот инструмент для подключения к блокчейну для перевода монет/создания аккаунтов/запроса баланса/вызова контрактов.     
+iwallet и [API](6-reference/API.md) используют RPC API внутри себя. У них есть похожий функционал.   
 
-После успешной `build`ing(постройки) системы, `iWallet` находится в папке `target/` в директории проекта.
-
-![iwallet1](assets/4-running-iost-node/iWallet/iwallet.png)
-
-## Команды
-
-|Команда      |Содержание                              |Описание
-|:-----------:|:--------------------------------------:|:--------------------------------------------|
-|help         |Помощь по любой команде                 |  используйте iwallet -h для получения дополнительной информации
-|account      |Управление аккаунтом                    |  ./iwallet account -n id
-|balance      |проверка баланса указанного аккаунта    |  ./iwallet balance ~/.iwallet/id_ed25519.pub
-|block        |печатает информацию о блоке, по умолчанию находит по номеру блока   |  
-|call         |Вызов метода в каком-либо контракте         |  ./iwallet call "iost.system" "Transfer" '["fromID", "toID", 100]' -k SecKeyPath --expiration 50
-|compile      |Компилирует файлы контракта в смарт-контракт|  ./iwallet compile -e 3600 -l 100000 -p 1 ./test.js ./test.js.abi
-|net          |Получить id сети                          |  ./iwallet net
-|publish      |подписывает .sc файлы с помощью .sig файлов, и публикует их        |./iwallet publish -k ~/.iwallet/id_ed25519 ./dashen.sc ./dashen.sig0 ./dashen.sig1
-|sign         |Подписать файл .sc                        |  ./iwallet sign -k ~/.iwallet/id_ed25519 ./test.sc
-|transaction  |найти транзакцию по хешу транзакции    |  ./iwallet transaction HUVdKWhstUHbdHKiZma4YRHGQZwVXerh75hKcXTdu39t
-
-## Примеры команд
-
-### help:
-
-Посмотреть информацию о помощи `iwallet`
+## Сборка
+Вначале вам необходимо заняться [сборкой IOST](4-running-iost-node/Building-IOST.md).   
+Если вы планируете развертывать контракты в блокчейне, вначале вам необходимо установить nodejs и npm, а затем запустить следующую команду.   
+Если вам не нужно развертывать контракты, вы можете пропустить следующую команду.      
+```
+cd $GOPATH/src/github.com/iost-official/go-iost
+cd iwallet/contract
+npm install
+```
+## Базовый функционал
+### Запрос аккаунта
+iwallet можно использовать для запроса информации аккаунта включая баланс, RAM(количество оперативной памяти), GAS(количество доступного газа) и др.      
+Формат вывода такой же как [getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain) .     
+Флаг `--server` внутри команды указывает на удаленный сервер IOST. Если вы [запускаете сервер локально](4-running-iost-node/LocalServer.md)，вы можете пропустить флаг, используя значение по умолчанию (localhost:30002).      
 
 ```
-./iwallet -h
+iwallet --server 127.0.0.1:30002 balance xxxx
+{
+    "name": "xxxx",
+    "balance": 993939670,
+    "createTime": "0",
+    "gasInfo": {
+        "currentTotal": 2994457,
+        "increaseSpeed": 11,
+        "limit": 3000000,
+        "pledgedInfo": [            {
+                "pledger": "xxxx",
+                "amount": 10
+            },
+            {
+                "pledger": "tttt",
+                "amount": 10
+            }
+        ],
+    },
+    "ramInfo": {
+        "available": "100000"
+    },
+    "permissions": ...
+    "frozenBalances": [
+        {
+            "amount": 30,
+            "time": "1543817610001412000"
+        }
+    ]
+}
 ```
-
-### account:
-
-Создать аккаунт IOST, с соответствующими публичным и приватным ключами сохранеными в директории `~/.iwallet/`.
-
-```
-./iwallet account -n id
-return:
-the iost account ID is:
-IOSTPVgmuin4vxcqxLvNQ2XnRxPk64MtDkanQEZ4ttkysbjPD6XiW
-```
-
-### balance:
-
-Просмотр баланса аккаунта:
-
-```
-./iwallet balance IOSTPVgmuin4vxcqxLvNQ2XnRxPk64MtDkanQEZ4ttkysbjPD6XiW
-return:
-1000 iost
-```
-
-### block:
-
-Просмотр блока с хешем:
-
-```
-# 查询0号block数据
-./iwallet block -m num 0
-return:
-{"head":{"txsHash":"bG7L/GLaF4l8AhMCzdl9r7uVvK6BwqBq/sMMuRqbUH0=","merkleHash":"cv7EfVzjHCzieYStfEm61Ew4zbNFYN80i/6J8Ijhbos=","witness":"IOST2FpDWNFqH9VuA8GbbVAwQcyYGHZxFeiTwSyaeyXnV84yJZAG7A"},"hash":"9NzDz2iueLZ4e8YDotIieJRZrlTMddbjaJAvSV23TFU=","txhash":["3u12deEbLcyP7kI5k+WIuxUrskAOu8UKUOPV+H51bjE="]}
-```
-
-### call:
-
-Вы можете `call` (вызывать) методы контракта в блокчейне, например метод трансфера.
+### Запрос информации о блокчейне
+Запрос информации о блокчейне и узле сервера. Вывод в данном случае комбинация из [getNodeInfo](6-reference/API.md#getnodeinfo) и [getChainInfo](6-reference/API.md#getchaininfo).  
 
 ```
-# Calls iost.system contract's Transfer method，Account IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP transfers Account IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk 100 token,
-# -k is private key，--expiration specifies timeout
-./iwallet call "iost.system" "Transfer" '["IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP", "IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk", 100]' -k ~/.iwallet/id_ed25519 --expiration 50
-return:
-ok
-8LaUT2gbZeTG8Ev988DELNjCWSMQ369uGHAhUUWEHxuV
+iwallet --server 127.0.0.1:30002 state
+{
+    "buildTime": "20181208_161822+0800",
+    "gitHash": "c949172cb8063e076b087d434465ecc4f11c3000",
+    "mode": "ModeNormal",
+    "network": {
+        "id": "12D3KooWK1ALkQ6arLJNd5vc49FLDLaPK931pggFr7X49EA5yhnr",
+        "peerCount": 0,
+        "peerInfo": [
+        ]
+    }
+    "netName": "debugnet",
+    "protocolVersion": "1.0",
+    "headBlock": "9408",
+    "headBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
+    "libBlock": "9408",
+    "libBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
+    "witnessList": [
+        "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+    ]
+}
 ```
 
-### net:
-
-команда `net` получает сетевой адрес iserver.
-
-```
-./iwallet net
-return:
-netId: 12D3KooWNdJgdRAAYoHvrYgCHhNEXS9p7LshjmJWJhDApMXCfahk
+### Вызов контракта
+#### Импорт аккаунта
+Аккаунт должен быть импортирован до вызова каких-либо контрактов.   
 
 ```
-
-### transaction:
-
-команда `transaction` используется для получения информации о транзакции
+# This command will copy private key to ~/.iwallet/YOUR_ACCOUNT_ID_ed25519. It is done locally without any interaction with blockchain.
+iwallet account --import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY
+```
+#### Использование командной строки
 
 ```
-./iwallet transaction 8LaUT2gbZeTG8Ev988DELNjCWSMQ369uGHAhUUWEHxuV
-return:
-txRaw:<time:1537540108548894481 expiration:1537540158548891677 gasLimit:1000 gasPrice:1 actions:<contract:"iost.system" actionName:"Transfer" data:"[\"IOSTjBxx7sUJvmxrMiyjEQnz9h5bfNrXwLinkoL9YvWjnrGdbKnBP\", \"IOSTEj4hBu1b3WwGKscUpcdE7ULtMAPbazt1VeALcvf28CDHc5oAk\", 100]" > publisher:<algorithm:2 sig:"\224iI\0300\317;\337N\030\031)'\277/xO\231\325\277\022\217M\017k.\260\205+*$\235\017}\353\007\206\352\367N(\203\343\333\017\374\361\230\313,\231\313* oK\270.f;6\371\332\010" pubKey:"_\313\236\251\370\270:\004\\\016\312\300\2739\304\317Jt\330\344P\347s\2413!\3725\3126\246\247" > > hash:"m\005\2613%\371\234\233\315\377@\016\253Aw\024\214IX@\0368\330\370T\241\267\342\256\252\354P"
-
+iwallet --account <ACCOUNT_NAME> [other flags] call <CONTRACT_NAME> <ACTION_NAME> '["ARG1",ARG2,...]'
 ```
 
-### компиляция/публикация/подпись:
+| Флаг  | Описание | По умолчанию |
+| :----: | :-----: | :------ |
+| server | адрес iserver для подключения  | localhost:30002 |
+| account | кто вызывает контракт | None, needed |
+| gas_limit | максимальное количество газа разрешенное для вызова | 1000000 |
+| gas_ratio | транзакция с большим коэффицентом газа будет выполнена ранее | 1.0 |
+| amount_limit | все лимиты количества токенов | None, needed. Like iost:300.0&#124;ram:2000. "*:unlimited" means no limit |
 
-Пожалуйста, обратитесь к [Развертывание-и-вызов](../3-smart-contract/Deployment-and-invocation)
+#### Пример：перевод токенов
+`admin` вызывает функцию 'transfer' контракта 'token.iost'    
+Последний аргумент команды это параметры функции 'transfer'. Параметры этой функции по порядку: тип токена, плательщик, получатель, сумма и дополнительная информация здесь.   
+
+```
+iwallet --account admin call 'token.iost' 'transfer' '["iost","admin","lispczz","100",""]'
+sending tx Tx{
+	Time: 1543559175834283000,
+	Publisher: admin,
+	Action:
+		Action{Contract: token.iost, ActionName: transfer, Data: ["iost","admin","lispczz","100",""]}
+    AmountLimit:
+[],
+}
+send tx done
+the transaction hash is: GU4EHg4zE9VHu9A13JEwxqJSVbzij1VoqWGnQR5aV3Dv
+exec tx done.  {
+    "txHash": "GU4EHg4zE9VHu9A13JEwxqJSVbzij1VoqWGnQR5aV3Dv",
+    "gasUsage": 2172,
+    "ramUsage": {
+        "admin": "43"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[]"
+    ],
+    "receipts": [
+        {
+            "funcName": "token.iost/transfer",
+            "content": "[\"iost\",\"admin\",\"lispczz\",\"100\",\"\"]"
+        }
+    ]
+}
+```
+
+### Создание аккаунта
+#### Использование командной строки
+
+```
+iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account --create <new_account_name> [other flags]
+```
+
+| Флаг  | Описание | По умолчанию |
+| :----: | :-----: | :------ |
+| create | имя нового аккаунта  | None, needed |
+| initial_ram | количество ram купленного для нового аккаунта создателем| 1024 |
+| initial\_gas\_pledge | количество IOST заложенного для gas создателем для нового аккаунта| 10 |
+| initial_balance | сумма IOST переведенная на новый аккаунт создателем| 0 |
+Для создания нового аккаунта требуется вызов контрактов, поэтому помимо указанных выше флагов также необходимы все флаги [вызова](#command-line-usage).   
+
+```
+# After creating account,  random keypair is generated, and private key will be saved to ~/.iwallet/$(new_account_name)_ed25519    
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit "ram:1000|iost:10" account --create lispczz3 --initial_balance 0 --initial_gas_pledge 10 --initial_ram 0
+...
+...
+    "groups": {
+    },
+    "frozenBalances": [
+    ]
+}
+your account private key is saved at:
+/Users/zhangzhuo/.iwallet/lispczz3_ed25519
+create account done
+the iost account ID is: lispczz3
+owner permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
+active permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
+```
+### Развертывание контракта
+Публикация javascript контракта в два шага, первый шаг это генерация файла abi, второй шаг это публикация файла javascript и файла abi в блокчейне.   
+#### Генерация abi
+Убедитесь, что node.js установлен и команда `npm install` внутри директории iwallet/contract была запущена.
+
+```
+# example.js.abi will be generated
+iwallet compile example.js
+```
+
+Обычно создаваемый файл abi необходимо корректировать, параметры функции тип и лимит суммы могут быть скорректированы в соответствии с актуальным для вас использованием.
+
+#### Публикация контракта
+```
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit  "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
+...
+The contract id is ContractBgHM72pFxE9KbTpQWipvYcNtrfNxjEYdJD7dAEiEXXZh
+
+```
+`ContractXXX` последняя строка вывода это имя контракта, которое необходимо если позже кто-нибудь захочет вызвать новозагруженный контракт.   
+
+## Расширенные возможности
+### Запрос блока
+
+```
+# Get information about block at height 10
+iwallet block --method num 10
+# Get information about block with hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+iwallet block --method hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+```
+### Запрос информации о транзакции
+#### Получите детали транзакции
+`transaction` это тоже, что и [getTxByHash API](6-reference/API.md#gettxbyhash-hash])
+
+```
+iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
+{
+    "status": "PACKED",
+    "transaction": {
+        "hash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
+        "time": "1545470082534696000",
+        "expiration": "1545470382534696000",
+        "gasRatio": 1,
+        "gasLimit": 1000000,
+        "delay": "0",
+        "actions": [
+            {
+                "contract": "token.iost",
+                "actionName": "transfer",
+                "data": "[\"iost\",\"admin\",\"admin\",\"10\",\"\"]"
+            }
+        ],
+#
+```
+#### Получите receipt(квитанцию) транзакции по ее хешу
+`receipt` это тоже, что и [getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash)
+
+```
+iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
+{
+    "txHash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
+    "gasUsage": 2577,
+    "ramUsage": {
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[]"
+    ],
+    "receipts": [
+    ]
+}
+```
