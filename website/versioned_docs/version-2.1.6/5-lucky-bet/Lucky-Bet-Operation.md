@@ -4,7 +4,7 @@ title: LuckyBet Example
 sidebar_label: LuckyBet Example
 original_id: LuckyBet
 ---
-The tutorial is designed to demonstrate smart contract coding and deployment.   
+The tutorial is designed to demonstrate smart contract coding and deployment.
 It will give you instructions to deploy one IOST node locally(just for development, not connecting to the actual chain). Then a smart contract(a gambling game named 'Lucky Bet') will be deployed onto the node.
 
 ## Step1: Run Local Server

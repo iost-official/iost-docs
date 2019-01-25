@@ -14,19 +14,19 @@ constructor method is a special method for creating and initializing Transaction
 get tx by hash from blockchain
 
 ### Parameters
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 hash 		|String          | base58 encode txHash
 
 ### Returns
 Promise returns transaction object.
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 status 		|String          | transaction status
 transaction |Object 		 | [Transaction Object](7-iost-js/Blockchain-class.md#transaction-object)
 
 #### Transaction Object
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 hash 			|String          | transaction hash
 time 			|Number 		 | transaction timestamp
@@ -42,20 +42,20 @@ amount_limit	|Array			 | array of [AmountLimit Object](#amountlimit-object)
 tx_receipt 		|Object          | [TxReceipt Object](#txreceipt-object)
 
 #### Action Object
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 contract 			|String          | contract name
 action_name 			|String 		 | action name
 data 		|String          | data
 
 #### AmountLimit Object
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 token 			|String          | token name
 value 			|Number 		 | limit value
 
 #### TxReceipt Object
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 tx_hash 			|String          | transaction hash
 gas_usage 			|Number 		 | gas usage
@@ -66,7 +66,7 @@ returns 			|Array          | transaction returns
 receipts 		|Array           | array of [Receipt Object](#receipt-object)
 
 #### Receipt Object
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 func_name 			|String          | function name
 content 			|String 		 | content
@@ -105,7 +105,7 @@ rpc.transaction.getTxByHash("5YdA8qPq5N6W47rZV4u31FdbQzeMt2QX9KGj4uPyERZa").then
 get transaction receipt by transaction hash
 
 ### Parameters
-Name             |Type       |Description 
+Name             |Type       |Description
 ----                |--         |--
 hash 		|String          | base58 encode txHas
 

@@ -6,7 +6,7 @@ sidebar_label: Command Line Wallet Tool
 
 iwallet is the command line tool for IOST blockchain.   
 You can use this tool to connect to the blockchain to transfer coins/create accounts/query balance/call contracts.     
-iwallet and [API](6-reference/API.md) use RPC API inside both. They have similar features.   
+iwallet and [API](6-reference/API.md) use RPC API inside both. They have similar features. 
   
 ## Install
 You should [install golang](4-running-iost-node/Building-IOST.html#install-golang) firstly.
@@ -45,7 +45,7 @@ iwallet --server 127.0.0.1:30002 balance xxxx
         ],
     },
     "ramInfo": {
-        "available": "100000" 
+        "available": "100000"
     },
     "permissions": ...
     "frozenBalances": [
@@ -82,14 +82,14 @@ iwallet --server 127.0.0.1:30002 state
     ]
 }
 ```
-  
+
 ### Call Contract
 #### Import Account
 An account must be imported before calling any contracts.   
 
 ```
-# This command will copy private key to ~/.iwallet/YOUR_ACCOUNT_ID_ed25519. It is done locally without any interaction with blockchain. 
-iwallet account --import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY 
+# This command will copy private key to ~/.iwallet/YOUR_ACCOUNT_ID_ed25519. It is done locally without any interaction with blockchain.
+iwallet account --import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY
 ```
 #### Command Line Usage
 
@@ -110,7 +110,7 @@ iwallet --account <ACCOUNT_NAME> [other flags] call <CONTRACT_NAME> <ACTION_NAME
 The last argument of the command is parameters for 'transfer' the action. They are token type, payer, receiver, amount, and additional info here.   
 
 ```
-iwallet --account admin call 'token.iost' 'transfer' '["iost","admin","lispczz","100",""]' 
+iwallet --account admin call 'token.iost' 'transfer' '["iost","admin","lispczz","100",""]'
 sending tx Tx{
 	Time: 1543559175834283000,
 	Publisher: admin,
@@ -145,7 +145,7 @@ exec tx done.  {
 #### Command Line Usage
 
 ```
-iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account --create <new_account_name> [other flags] 
+iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account --create <new_account_name> [other flags]
 ```
 
 | Flag  | Description | Default |
@@ -171,7 +171,7 @@ your account private key is saved at:
 create account done
 the iost account ID is: lispczz3
 owner permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
-active permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K 
+active permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
 ```
 ### Publish Contract
 To publish javascript contract, first step is to generate abi file, second step is to publish javascript file and abi file onto blockchain.   
@@ -225,7 +225,7 @@ iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
                 "data": "[\"iost\",\"admin\",\"admin\",\"10\",\"\"]"
             }
         ],
-# 
+#
 ```
 #### Get transaction receipt by transaction hash
 `receipt` is same as [getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash)
