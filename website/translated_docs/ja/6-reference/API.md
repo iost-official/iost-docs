@@ -497,7 +497,6 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
 {
     "name": "admin",
     "balance": 982678652,
-    "create_time": "0",
     "gas_info": {
         "current_total": 53102598634,
         "transferable_gas": 60000,
@@ -546,7 +545,6 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
 ----                    |--         |--
 name                |string     |アカウント名
 balance         |double |アカウントの残高
-create\_time        |int64      |アカウント作成時刻
 gas\_info           |GasInfo    |GAS情報
 ram\_info           |RAMInfo    |RAM情報
 permissions |map<string, Permission>    |権限
