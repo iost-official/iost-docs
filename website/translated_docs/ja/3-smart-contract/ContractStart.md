@@ -75,7 +75,7 @@ class HelloWorld {
     }
 }
 
-Module.exports = HelloWorld;
+module.exports = HelloWorld;
 ```
 このスマートコントラクトには入力を受け取って、```hello, + 入力した値 ```を出力するインターフェースがあります。このインターフェースで、スマートコントラクトの外部から呼び出すことができるように、ABIファイルを用意します。
 ```

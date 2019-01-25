@@ -34,9 +34,9 @@ The development and deployment of smart contracts requires iwallet. At the same 
 Start docker and enter the docker environment. There will also be a local test node being started.
 
 ```
-Docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-Docker ps # the last column of the output is the docker container name, which will be used in next command
-Docker exec -it <container_name> /bin/bash # you will enter docker
+docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
+docker ps # the last column of the output is the docker container name, which will be used in next command
+docker exec -it <container_name> /bin/bash # you will enter docker
 ./iwallet -h
 ```
 
@@ -45,18 +45,18 @@ Docker exec -it <container_name> /bin/bash # you will enter docker
 Need go 1.11 or above
 
 ```
-Go get -u iost-official/go-iost
-Cd $GOPATH/src/github.com/iost-official/go-iost
-Make install
+go get -u iost-official/go-iost
+cd $GOPATH/src/github.com/iost-official/go-iost
+make install
 # Check the configuration config/
-Iserver -f config/iserver.yml # Start the test node, no need
-Iwallet -h
+iserver -f config/iserver.yml # Start the test node, no need
+iwallet -h
 ```
 ### Importing the initial account ```admin``` for iwallet
 
 In order to complete the test, you need to import the secret key for iwallet. The corresponding key is in the admininfo field of config/genesis.yml.
 ```
-Iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 In docker, You shoudl use "./iwallet" instead of "iwallet", which is not installed inside docker image.
 
@@ -66,14 +66,14 @@ In docker, You shoudl use "./iwallet" instead of "iwallet", which is not install
 ### Preparing the code
 First prepare a JavaScript class. e.g HelloWorld.js
 ```
-Class HelloWorld {
-Init() {} // needs to provide an init function that will be called during deployment
-    Hello(someone) {
-        Return "hello, "+ someone
+class HelloWorld {
+    init() {} // needs to provide an init function that will be called during deployment
+    hello(someone) {
+        return "hello, "+ someone
     }
 }
 
-Module.exports = HelloWorld;
+module.exports = HelloWorld;
 ```
 The smart contract contains an interface that receives an input and then outputs ```hello, + enter ```. In order to allow this interface to be called outside the smart contract, you need to prepare the abi file. e.g HelloWorld.abi
 ```
@@ -96,12 +96,12 @@ The name field of abi corresponds to the function name of js, and the args list 
 
 Publish smart contracts
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Publish helloworld.js helloworld.abi
+ publish helloworld.js helloworld.abi
 ```
 Sample output
 ```
@@ -127,12 +127,12 @@ The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf # This i
 Test ABI call
 
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Call "Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf" "hello" '["developer"]' # contract id needs to be changed to the id you received
+ call "Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf" "hello" '["developer"]' # contract id needs to be changed to the id you received
 ```
 
 Output
@@ -157,12 +157,12 @@ Exec tx done # The following output Tx is executed after TxReceipt
 
 After that, you can get TxReceipt at any time by the following command.
 ```
-Iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
+iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
 Can also be obtained through http
 ```
-Curl -X GET \
-  Http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
+curl -X GET \
+  http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
 
 It can be considered that this call will be permanently recorded by IOST and cannot be tampered with.
@@ -194,8 +194,8 @@ Abi skip
 ### Using state storage
 After deploying the code, you can get the storage by the following method
 ```
-Curl -X POST \
-  Http://localhost:30001/getContractStorage \
+curl -X POST \
+  http://localhost:30001/getContractStorage \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -d '{
@@ -212,12 +212,12 @@ This post will return a json
 ```
 This value can be modified by calling change.
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Call "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e" "change" '["foobaz"]'
+ call "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e" "change" '["foobaz"]'
 ```
 
 ## Permission Control and Smart Contract Failure
@@ -226,8 +226,8 @@ The basis of permission control can be found at:
 
 Example
 ```
-If (!blockchain.requireAuth("someone", "active")) {
-    Throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
+if (!blockchain.requireAuth("someone", "active")) {
+    throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
 }
 ```
 Need to pay attention to the following points
@@ -238,12 +238,12 @@ When throw, the transaction fails to run, this smart contract call is completely
 
 You can observe a failed transaction with a simple test.
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
+ call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
 ```
 The result will be
 ```
@@ -265,7 +265,7 @@ The result will be
 
 First start the local node as described above. If you use docker, you can use the following command to print the log.
 ```
-Docker ps -f <container>
+docker ps -f <container>
 ```
 
 At this point, you can add the required log in the code by adding console.log(), the following is the log output in the storage example.

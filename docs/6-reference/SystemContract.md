@@ -70,16 +70,6 @@ Offline means that the node is currently unable to provide services.
 | :----: | :------ |
 | Account Name | string |
 
-#### voteFor
-Vote on behalf of others, the IOST of the voting pledge will be deducted from the agent account.
-
-| Parameter List | Parameter Type |
-| :----: | :------ |
-| Agent account name | string |
-| Voter Account Name | string |
-| Candidate Account Name | string |
-| Number of votes | string |
-
 #### vote
 vote.
 

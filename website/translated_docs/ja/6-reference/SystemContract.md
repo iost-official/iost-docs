@@ -70,23 +70,13 @@ Sidebar_label: System Contract
 | :----: | :------ |
 | アカウント名| string |
 
-#### voteFor
-他人に代わって投票すると、投票権分のIOSTが代理人のアカウントから差し引かれます。
-
-| パラメータリスト | パラメータの型 |
-| :----: | :------ |
-| 代理人 アカウント名| string |
-| 投票者 アカウント名| string |
-| キャンペーン実施者 アカウント名| string |
-| 投票数 | string |
-
 #### vote
 投票します。
 
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
 | 投票者 アカウント名| string |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 | 投票数 | string |
 
 #### unvote
@@ -95,7 +85,7 @@ Sidebar_label: System Contract
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
 | 投票者 アカウント名| string |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 | 投票数 | string |
 
 #### voterWithdraw
@@ -110,7 +100,7 @@ Sidebar_label: System Contract
 
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
-| キャンペーン実施者 アカウント名| string |
+| 候補者 アカウント名| string |
 
 ## vote.iost
 ---

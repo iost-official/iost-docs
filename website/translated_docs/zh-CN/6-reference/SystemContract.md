@@ -70,16 +70,6 @@ sidebar_label: System Contract
 | :----: | :------ |
 | 账户名 | string |
 
-#### voteFor
-代别人投票，投票质押的 IOST 会从代理者账户扣除。
-
-| 参数列表 | 参数类型 |
-| :----: | :------ |
-| 代理者账户名| string |
-| 投票者账户名| string |
-| 竞选者账户名 | string |
-| 投票数量 | string |
-
 #### vote
 投票。
 

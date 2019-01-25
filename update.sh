@@ -1,7 +1,7 @@
 set -u
 set -e
 
-last_commit=b10f95b142cc64bd1612cb0718af5a214d312a27
+last_commit=cd2583d5949a6bf1d51c344dd1482784dac02b60
 git_root=$(git rev-parse --show-toplevel)
 
 function update_language()
@@ -40,5 +40,6 @@ function update_language()
 	done
 }
 
-update_language zh-CN
+update_language ja
+#update_language zh-CN
 #update_language en

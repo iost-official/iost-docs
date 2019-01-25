@@ -1,8 +1,7 @@
 ---
-id: version-2.1.7-Update-Contract
+id: Update-Contract
 title: コントラクトの更新
 sidebar_label: コントラクトの更新
-original_id: Update-Contract
 ---
 
 ## 機能
@@ -38,7 +37,7 @@ class helloContract
         return "hello world";
     }
     can_update(data) {
-        return blockchain.requireAuth(blockchain.publisher(), "active");
+        return blockchain.requireAuth(blockchain.contractOwner(), "active");
     }
 };
 module.exports = helloContract;
@@ -82,7 +81,7 @@ class helloContract
         return "hello iost";
     }
     can_update(data) {
-        return blockchain.requireAuth(blockchain.publisher(), "active");
+        return blockchain.requireAuth(blockchain.contractOwner(), "active");
     }
 };
 module.exports = helloContract;

@@ -512,7 +512,8 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 		}
 	},
 	"groups": {},
-	"frozen_balances": []
+	"frozen_balances": [],
+	"vote_infos": []
 }
 ```
 
@@ -525,6 +526,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | permissions |map<string, [Permission](#permission)>   | 权限 |
 | groups |map<string, [Group](#group)>   | 权限组 |
 | frozen_balances |repeated [FrozenBalance](#frozenbalance)   | 冻结余额信息 |
+| vote_infos |repeated [VoteInfo](#voteinfo)   | 投票信息 |
 
 ### GasInfo
 | 字段 | 类型 | 描述 |
@@ -576,6 +578,14 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 | :----: | :--------: | :------ |
 | amount | double   | 金额|
 | time | int64   | 解冻时间|
+
+### VoteInfo
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| option | string   | 候选人|
+| votes | string   | 投票数|
+| cleared_votes | string   | 被清零投票数|
+
 
 ## /getTokenBalance/{account}/{token}/{by\_longest\_chain}
 ---
@@ -699,7 +709,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 | :----: | :-----: | :------ |
 | id |string  | 智能合约的ID |
 | field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
-| key |struct  | StateDB的key |
+| key |string  | StateDB的key |
 | by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
 
 
@@ -720,6 +730,39 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 	}
 "}
 ```
+
+## /getContractStorageFields
+---
+
+
+##### **POST**
+**概要:** 获取合约存储中 map 的 key 列表，最多返回 256 条。
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.iost","key":"TIiost","by_longest_chain":true}'
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| id |string  | 智能合约的ID |
+| key |struct  | StateDB的key |
+| by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{
+	"fields": ["issuer","totalSupply","supply","canTransfer","onlyIssuerCanTransfer","defaultRate","decimal","fullName"]
+}
+```
+
+
 
 ## /sendTx
 ---

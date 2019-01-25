@@ -497,7 +497,6 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
 {
     "name": "admin",
     "balance": 982678652,
-    "create_time": "0",
     "gas_info": {
         "current_total": 53102598634,
         "transferable_gas": 60000,
@@ -537,7 +536,8 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
         }
     },
     "groups": {},
-    "frozen_balances": []
+    "frozen_balances": [],
+    "vote_infos": []
 }
 ```
 
@@ -545,12 +545,12 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
 ----                    |--         |--
 name                |string     |アカウント名
 balance         |double |アカウントの残高
-create\_time        |int64      |アカウント作成時刻
 gas\_info           |GasInfo    |GAS情報
 ram\_info           |RAMInfo    |RAM情報
 permissions |map<string, Permission>    |権限
 group_names              |map<string, Group>         |権限グループ名
 frozen\_balances    |FrozenBalanceの繰り返し |凍結した残高の情報
+vote\_infos    |VoteInfoの繰り返し |投票の情報
 
 ### GasInfo
 
@@ -610,8 +610,13 @@ items               |Itemの繰り返し  |権限グループ情報
 amount          |double |量
 time                    |int64      |解凍時間
 
+### VoteInfo
 
-
+キー                 |型       |説明 
+----                    |--         |--
+option          |string |候補者
+votes                    |string      |得票数
+cleared_votes                    |string      |クリアした得票数
 
 
 
@@ -744,7 +749,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 ----                    |--         |--
 id                      |string     |スマートコントラクトのID
 field                   |string     |StateDBの値。StateDBの\[キー\]が マップなら、StateDB\[key\]\[field\]の値を取得するために fieldを設定する必要がある
-key                 |struct     |StateDBのキー
+key                 |string     |StateDBのキー
 by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得、false: 不可逆ブロックからデータを取得
 
 ### レスポンス
@@ -765,6 +770,35 @@ by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得
 "}
 ```
 
+## /getContractStorageFields
+##### POST
+
+最大256までのマップのコントラクトストレージのキーリストを取得します。
+
+### リクエスト
+
+リクエストの例
+
+```
+curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.iost","key":"TIiost","by_longest_chain":true}'
+```
+
+キー                 |型       |説明 
+----                    |--         |--
+id                      |string     |スマートコントラクトID
+key                 |string     |ステートDBのキー
+by\_longest\_chain  |bool   |true: 最長のチェーンからデータを取得、false: 不可逆ブロックからデータを取得
+
+### レスポンス
+
+成功レスポンスの例
+
+```
+200 OK
+{
+	"fields": ["issuer","totalSupply","supply","canTransfer","onlyIssuerCanTransfer","defaultRate","decimal","fullName"]
+}
+```
 
 ## /sendTx
 ##### POST
