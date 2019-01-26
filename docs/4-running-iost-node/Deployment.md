@@ -47,7 +47,10 @@ To start, stop or restart the node, change directory to `$PREFIX` and execute: `
 
 ## Checking the node
 
-The log file is located at `$PREFIX/logs/iost.log`.
+The log file is located at `$PREFIX/logs/iost.log`. However, it is disabled by default.
+You can enable it, as long as you remember to delete old log files.
+
+You are able to get logs using `(docker|docker-compose) logs iserver`.
 An increasing value of `confirmed` like below means that it is syncing the block data:
 
 ```
