@@ -8,6 +8,15 @@ The documentation introduces how to setup a running server connecting to IOST te
 
 We are using Docker to deploy an IOST node.
 
+## Machine requirements
+
+If you want to run a full-node connection test network, your physical machine needs to meet the following requirements:
+
+- CPU: CPU requires 8 cores and above (Recommend 8 cores)
+- Memory: Memory requires 8GB and above (Recommend 16GB)
+- Disk: Disk requires 5TB and above (Recommend 5TB HDD)
+- Network: Need to be able to connect to the Internet and open port 30000 (Recommend open port 30000,30001,30002)
+
 ## Prerequisites
 
 - Curl (any version you like)
@@ -39,7 +48,6 @@ We refer to `PREFIX` hereafter.
 ```
 rm -rf $PREFIX/storage
 ```
-
 
 #### Start
 Run the command to start a node:
