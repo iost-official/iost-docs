@@ -4,10 +4,10 @@ title: Become Servi Node
 sidebar_label: Become Servi Node
 ---
 
-A Servi node, a.k.a. Super node, is able to generate blocks only when being a *producer*, which requires an IOST account and a full node. 
+A Servi node is able to generate blocks only when being a *producer*, which requires an IOST account and a full node. 
 
 # Start a full node
-Run the boot script to start a full node. See also [Start the node](4-running-iost-node/Deployment).
+Run the boot script to start a full node. See also [Start the node](4-running-iost-node/Deployment.md).
 
 ```
 curl https://developers.iost.io/docs/assets/boot.sh | sh
@@ -21,7 +21,7 @@ You can get *network ID* of the node in section `network.id` by the command `cur
 
 If you do not have an account yet, follow these steps:
 
-- [Install iwallet](4-running-iost-node/iWallet/#install)
+- [Install iwallet](4-running-iost-node/iWallet.md#install)
 - Generate a *keypair* using iWallet: `iwallet keys`
 - Using the *pubkey* generated to create testnet account by [blockchain explorer](https://explorer.iost.io/applyIOST).
 
@@ -33,7 +33,7 @@ You could register your account as servi node using iwallet:
 ```
 iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '["<your-account>","<pubkey-of-producer>","<location>","<website>","<network-ID>",<is-producer>]'
 ```
-See API doc of `vote_producer.iost` [here](6-reference/SystemContract.html#vote-produceriost).
+See API doc of `vote_producer.iost` [here](6-reference/SystemContract.md#vote-produceriost).
 
 - `<your-account>`: The account used to register the servi node
 - `<pubkey-of-producer>`: The pubkey of the full node producer
