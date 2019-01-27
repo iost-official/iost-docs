@@ -70,16 +70,6 @@ Sidebar_label: Системный контракт
 | :----: | :------ |
 | Account Name | string |
 
-#### voteFor
-Голосовать за других, IOST заложенные для голосования будет вычтено с аккаунта агента.
-
-| Список параметров | Тип данных параметров |
-| :----: | :------ |
-| Agent account name | string |
-| Voter Account Name | string |
-| Candidate Account Name | string |
-| Number of votes | string |
-
 #### vote
 Проголосовать.
 

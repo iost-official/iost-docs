@@ -1,7 +1,8 @@
 ---
-id: How-to-write-a-smart-contract
+id: version-2.3.0-How-to-write-a-smart-contract
 title: Как написать смарт-контракт
 sidebar_label: Как написать смарт-контракт
+original_id: How-to-write-a-smart-contract
 ---
 
 ## Основная информация
