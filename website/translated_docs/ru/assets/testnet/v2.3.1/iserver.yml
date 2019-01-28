@@ -8,6 +8,9 @@ vm:
   loglevel: ""
 db:
   ldbpath: /var/lib/iserver/storage/
+snapshot:
+  enable: false
+  filepath: storage/snapshot.tar.gz
 p2p:
   listenaddr: 0.0.0.0:30000
   seednodes:
@@ -33,7 +36,7 @@ log:
   filelog:
     path: /var/lib/iserver/logs/
     level: info
-    enable: true
+    enable: false
   consolelog:
     level: info
     enable: true
