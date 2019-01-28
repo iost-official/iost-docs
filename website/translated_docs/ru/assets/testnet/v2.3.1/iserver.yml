@@ -36,7 +36,7 @@ log:
   filelog:
     path: /var/lib/iserver/logs/
     level: info
-    enable: true
+    enable: false
   consolelog:
     level: info
     enable: true

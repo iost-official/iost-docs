@@ -8,6 +8,15 @@ sidebar_label: Присоединяйтесь к тестовой сети IOST
 
 Мы используем Докер для развертывания узла IOST.
 
+## Требования к машине
+
+Если вы хотите запустить соединение полного узла с тестовой сетью, ваша физическая машина должна соответствовать следующим требованиям:
+
+- CPU: требуется процессор 8-ми ядерный и выше (Рекомендуется 8 ядер)
+- Memory: требуется память 8GB и выше (Рекомендуется 16GB)
+- Disk: требуется диск 5TB и выше (Рекомендуется 5TB жесткого диска)
+- Network: нужно иметь возможность подключения к Internet и открыть порт 30000 (Рекомендуется открыть порт 30000,30001,30002)
+
 ## Необходимо
 
 - Curl (любая версия, которая вам нравится)
@@ -15,7 +24,21 @@ sidebar_label: Присоединяйтесь к тестовой сети IOST
 - [Docker 1.13/Docker CE 17.03 или новее](https://docs.docker.com/install) (старые версии не тестировались)
 - (Опционально) [Docker Compose](https://docs.docker.com/compose/install)
 
-## Перед началом
+## Старт узла
+
+### Используя *boot*(загрузочный) скрипт:
+
+```
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
+```
+
+Этот скрипт очищает `$PREFIX` и запускает новый свежий полный узел, подключающийся к тестовой сети IOST.
+Он также генерирует пару ключей *producer* ("производителя блоков") для генерации блоков.
+
+Для запуска, остановки и перезапуска узла измените директорию на `$PREFIX` и выполните команду: `docker-compose (start|stop|restart|down)`
+
+### Руководство:
+#### Перед стартом
 
 По умолчанию, `/data/iserver` монтируется как том данных, вы можете изменить путь в соответствии с вашими потребностями.
 Мы будем вдальнейшем ссылаться на `PREFIX` в качестве пути.
@@ -26,28 +49,19 @@ sidebar_label: Присоединяйтесь к тестовой сети IOST
 rm -rf $PREFIX/storage
 ```
 
-## Старт узла
-
+## Старт
 Выполните команду для запуска узла:
 
 ```
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
-Или используя скрипт *boot*(загрузки):
-
-```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
-```
-
-Этот скрипт очищает `$PREFIX` и запускает новый свежий полный узел, подключающийся к сети IOST.
-Он также генерирует пару ключей *producer* ("производителя блоков") для генерации блоков.
-
-Для запуска, остановки и перезапуска узла измените директорию на `$PREFIX` и выполните команду: `docker-compose (start|stop|restart|down)`
-
 ## Проверка узла
 
-Файл логов расположен по пути `$PREFIX/logs/iost.log`.
+Файл логов расположен по пути `$PREFIX/logs/iost.log`. Однако, он отключен по умолчанию.
+Вы можете включить его, но не забывайте удалять старые файлы логов.
+
+Вы можете получить логи с помощью команды `(docker|docker-compose) logs iserver`.
 Растущие значения `confirmed`, как к примеру ниже, означают синхронизацию данных блоков:
 
 ```
@@ -67,61 +81,11 @@ Info 2019-01-19 08:36:37.521 pob.go:456 Rec block - @5 id:EkRgHNoeeP..., num:114
 ...
 ```
 
-Вы также можете проверить состояние узла используя инструмент `iwallet`.
+Вы также можете проверить состояние узла с помощью инструмента `iwallet`.
 См. также [iWallet](4-running-iost-node/iWallet.md).
 
 ```
-docker-compose exec iserver ./iwallet state
+docker exec -it iserver iwallet state
 ```
 
-Последняя информация о блокчейне также показана на [blockchain explorer](https://explorer.iost.io).
-
-## Servi Node (Узел Servi)
-
-Узел Servi, так же известен как Super узел, может генерировать блоки только когда является *producer*,
-что требует аккаунт IOST и полный узел.   
-**Настоятельно рекомендуется использовать другую пару ключей из вашего аккаунта для producer.**
-
-### Создание аккаунта IOST
-
-Если у вас пока нет аккаунта, следуйте этим шагам:
-
-- Сгенерируйте *keypair*(пару ключей) с помощью iWallet.
-- Зарегистрируйтесь в [blockchain explorer](https://explorer.iost.io) используя сгенерированную *keypair*(пару ключей).
-
-Не забудьте импортировать ваш аккаунт с помощью iWallet.
-
-### Запуск узла
-
-Запустите загрузочный скрипт, чтобы запустить полный узел. См. также [Старт узла](#start-the-node).
-
-```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
-```
-
-Пара ключей (*keypair*) производителя расположена по пути `$PREFIX/keypair`.
-Вы можете получить *network ID*(сетевой ID) узла в разделе `.network.id` `http://localhost:30001/getNodeInfo`.
-
-### Подача заявки на регистрацию
-
-Проведите tx (транзакцию) для регистрации вашего узла с помощью iWallet:
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '["<your-account>","<pubkey-of-producer>","<location>","<website>","<network-ID>",true]' --amount_limit '*:unlimited'
-```
-
-См. документацию API `vote_producer.iost` [здесь](6-reference/SystemContract.md#vote-produceriost).
-
-## Оператор для узла Servi
-
-После утверждения **admin**(администратором), когда узел готов, переведите его в онлайн режим:
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logInProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```
-
-Для остановки генерации блоков узлом выполните команду:
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logOutProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```
+Последняя информация о блокчейне также показана в [blockchain explorer](https://explorer.iost.io).

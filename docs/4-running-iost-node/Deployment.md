@@ -8,6 +8,15 @@ The documentation introduces how to setup a running server connecting to IOST te
 
 We are using Docker to deploy an IOST node.
 
+## Machine requirements
+
+If you want to run a full-node connection test network, your physical machine needs to meet the following requirements:
+
+- CPU: CPU requires 8 cores and above (Recommend 8 cores)
+- Memory: Memory requires 8GB and above (Recommend 16GB)
+- Disk: Disk requires 5TB and above (Recommend 5TB HDD)
+- Network: Need to be able to connect to the Internet and open port 30000 (Recommend open port 30000,30001,30002)
+
 ## Prerequisites
 
 - Curl (any version you like)
@@ -15,7 +24,21 @@ We are using Docker to deploy an IOST node.
 - [Docker 1.13/Docker CE 17.03 or newer](https://docs.docker.com/install) (older versions are not tested)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
-## Before start
+## Start the node
+
+### Using *boot* script:
+
+```
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
+```
+
+This script purges `$PREFIX` and starts a fresh new full node connecting to IOST testnet network.
+It also generates a keypair for *producer* in order to prepare for generating blocks.
+
+To start, stop or restart the node, change directory to `$PREFIX` and execute: `docker-compose (start|stop|restart|down)`
+
+### Manual:
+#### Before start
 
 By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
 We refer to `PREFIX` hereafter.
@@ -26,28 +49,19 @@ We refer to `PREFIX` hereafter.
 rm -rf $PREFIX/storage
 ```
 
-## Start the node
-
+#### Start
 Run the command to start a node:
 
 ```
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
-Or using *boot* script:
-
-```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
-```
-
-This script purges `$PREFIX` and starts a fresh new full node connecting to IOST network.
-It also generates a keypair for *producer* in order to prepare for generating blocks.
-
-To start, stop or restart the node, change directory to `$PREFIX` and execute: `docker-compose (start|stop|restart|down)`
-
 ## Checking the node
 
-The log file is located at `$PREFIX/logs/iost.log`.
+The log file is located at `$PREFIX/logs/iost.log`. However, it is disabled by default.
+You can enable it, as long as you remember to delete old log files.
+
+You are able to get logs using `(docker|docker-compose) logs iserver`.
 An increasing value of `confirmed` like below means that it is syncing the block data:
 
 ```
@@ -71,58 +85,8 @@ You may also check the state of the node using `iwallet` tool.
 See also [iWallet](4-running-iost-node/iWallet.md).
 
 ```
-docker-compose exec iserver ./iwallet state
+docker exec -it iserver iwallet state
 ```
 
 The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
 
-## Servi Node
-
-A Servi node, a.k.a. Super node, is able to generate blocks only when being a *producer*,
-which requires an IOST account and a full node.   
-**It's highly recommended to use a different keypair from your account for the producer.**
-
-### Creating IOST Account
-
-If you do not have an account yet, follow these steps:
-
-- Generate a *keypair* using iWallet.
-- Sign up [blockchain explorer](https://explorer.iost.io) using the *keypair* generated.
-
-Do not forget to import your account using iWallet.
-
-### Starting the node
-
-Run the boot script to start a full node. See also [Start the node](#start-the-node).
-
-```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
-```
-
-The *keypair* of producer is located at `$PREFIX/keypair`.
-You can get *network ID* of the node in the section `.network.id`
-of `http://localhost:30001/getNodeInfo`.
-
-### Apply for Registraton
-
-Propose a tx to register your node using iWallet:
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '["<your-account>","<pubkey-of-producer>","<location>","<website>","<network-ID>",true]' --amount_limit '*:unlimited'
-```
-
-See API doc of `vote_producer.iost` [here](6-reference/SystemContract.html#vote-produceriost).
-
-## Operator for Servi Node
-
-After being approved by **admin**, set the node online when the node is ready:
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logInProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```
-
-You might want to stop producing blocks:
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logOutProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```

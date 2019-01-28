@@ -46,7 +46,10 @@ curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
 
 ## 检查节点
 
-日志文件位于 `$PREFIX/logs/iost.log`,
+日志文件位于 `$PREFIX/logs/iost.log`.
+日志文件默认关闭。如果打开日志文件，请及时清理日志数据。
+
+通过 `(docker|docker-compose) logs iserver` 命令获取日志。
 其中 `confirmed` 值持续快速增长说明节点正在同步：
 
 ```

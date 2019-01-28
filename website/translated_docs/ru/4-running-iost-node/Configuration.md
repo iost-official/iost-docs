@@ -4,7 +4,7 @@ title: Конфигурация
 sidebar_label: Конфигурация
 ---
 
-Эта страница демонстрирует подробною информацию о конфигурации.
+Эта страница демонстрирует подробную информацию о конфигурации.
 Вы можете получить последнюю конфигурацию по ссылкам ниже:
 
 - genesis.tgz: https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz
@@ -164,7 +164,7 @@ witnessinfo:
     balance: 0
 ```
 
-Witnesses являются producers(производителями блоков) на вершине генезиса.   
+Witnesses являются producers(производителями блоков) на этапе генезиса.   
 Producer будут чередоваться с поступлением новых узлов Servi.
 
 - admininfo & foundationinfo
