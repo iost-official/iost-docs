@@ -156,10 +156,30 @@ init_prefix
 do_system_check
 
 #
+# Build compose file
+#
+
+cat <<EOF >docker-compose.yml
+version: "2.2"
+
+services:
+  iserver:
+    image: iostio/iost-node:$VERSION
+    container_name: iserver
+    restart: on-failure
+    ports:
+      - "30000-30003:30000-30003"
+    volumes:
+      - $PREFIX:/var/lib/iserver:Z
+EOF
+
+docker-compose pull
+
+#
 # Generate key producer pair
 #
 
-( docker run --rm iostio/iost-node:$VERSION ./iwallet key; ) >> $PRODUCER_KEY_FILE
+( docker run --rm iostio/iost-node:$VERSION iwallet key; ) >> $PRODUCER_KEY_FILE
 
 #
 # Get genesis info
@@ -179,22 +199,8 @@ PRIKEY=$(cat $PRODUCER_KEY_FILE | ${PYTHON} -c 'import sys,json;print(json.load(
 sed -i.bak 's/  seckey: .*$/  seckey: '$PRIKEY'/g' iserver.yml
 
 #
-# Ready to start iServer
+# Start iServer
 #
-
-cat <<EOF >docker-compose.yml
-version: "2.2"
-
-services:
-  iserver:
-    image: iostio/iost-node:$VERSION
-    container_name: iserver
-    restart: on-failure
-    ports:
-      - "30000-30003:30000-30003"
-    volumes:
-      - $PREFIX:/var/lib/iserver:Z
-EOF
 
 docker-compose up -d
 
