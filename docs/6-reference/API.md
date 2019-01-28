@@ -872,19 +872,20 @@ There are three steps to sign a transaction: convert the transaction struct to b
     array   | convert each element of the array into a byte array, add length before each array, put them together   |\["iost" "iost"\] is converted to \[0 0 0 2 0 0 0 4 105 111 115 116 0 0 0 4 105 111 115 116\]
     map     |Each pair of keys: values in the dictionary is converted into byte arrays and spliced, then each pair is spliced in ascending order of keys, and the length of map is added to the front of each pair.    |\["b":"iost", "a":"iost"\] converts to \[0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116\] "
 
-    The transaction parameters are declared in this order: "time", "expiration", "gas\_ratio", "gas\_limit", "delay", "chain_id", "signers", "actions", "amount\_limit", and "signatures", so the pseudo-code converting a transaction struct to byte array is:   
+    The transaction parameters are declared in this order: "time", "expiration", "gas\_ratio", "gas\_limit", "delay", "chain_id", "reserved", "signers", "actions", "amount\_limit", and "signatures", so the pseudo-code converting a transaction struct to byte array is:   
 
 	```
 	func TxToBytes(t transaction) []byte {
 			return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) + 
 			 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
 		 			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) + 
+		 			BytesToBytes(t.reserved) + // reserved is a reserved field. It only needs to write an empty byte array when serialized. Don't send this field in RPC request parameters.
 		 			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
 		 			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
 		}
 	```
     
-	Refer to [go-iost](https://github.com/iost-official/go-iost/blob/master/core/tx/tx.go#L410) for golang implementation; refer to [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68) for JavaScript implementation.
+	Refer to [go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686) for golang implementation; refer to [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73) for JavaScript implementation.
     
 * **Calculate the hash of the byte array with sha3 algorithm**
     
@@ -930,11 +931,11 @@ Assume account "testaccount" has a transaction that transfers 100 iost to the ac
     
 * **Calculate hash**
 
-    After serializing and hashing the transaction, we obtain the hash "nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU=".
+    After serializing and hashing the transaction, we obtain the hash "/gB8TJQibGI7Kem1v4vJPcJ7vHP48GuShYfd/7NhZ3w=".
     
 * **Calculate signature**
 
-    Assume "testaccount" has a public key with ED25519 algorithm, the public key is "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=", and the private key is "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg==". Sign the hash with the private key and we get "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="
+    Assume "testaccount" has a public key with ED25519 algorithm, the public key is "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=", and the private key is "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg==". Sign the hash with the private key and we get "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="
 
 * **Publish transaction**
 
@@ -968,7 +969,7 @@ Assume account "testaccount" has a transaction that transfers 100 iost to the ac
 			{
 				"algorithm": "ED25519",
 				"public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
-				"signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
+				"signature": "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA==",
 			},
 		],
 	}
@@ -977,7 +978,7 @@ Assume account "testaccount" has a transaction that transfers 100 iost to the ac
     After we JSON-serialize the struct, we can send the following RPC:
     
     ```
-    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
+  	curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1544709692318715000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="}],"signatures":[],"signers":[],"time": 1544709662543340000}'
     ```
 
 
