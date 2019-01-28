@@ -13,6 +13,36 @@ VERSION=${VERSION:="latest"}
 
 PRODUCER_KEY_FILE=keypair
 CURL="curl -fsSL"
+PYTHON=${PYTHON:=python}
+
+#
+# function
+#
+
+_SYS_MIN_CPU=4          # 4 cpu
+_SYS_REC_CPU=8          # 8 cpu
+_SYS_MIN_MEM=8          # 8G ram
+_SYS_REC_MEM=16         # 16G ram
+_SYS_MIN_STO=100        # 100G storage
+_SYS_REC_STO=1000       # 1T storage
+
+print_requirements() {
+    {
+        printf "\nWarning: please consider upgrading your hardware to get better performance."
+        printf "\n"
+        printf "\nSystem requirements to run IOST node:\n\n"
+        printf "\tMinimal: \t$_SYS_MIN_CPU cpu / ${_SYS_MIN_MEM}G ram / ${_SYS_MIN_STO}G storage\n"
+        printf "\tRecommended: \t$_SYS_REC_CPU cpu / ${_SYS_REC_MEM}G ram / ${_SYS_REC_STO}G storage\n"
+        printf "\n"
+    }>&2
+}
+
+print_minimal_fail() {
+    {
+        echo Minimal requirements not satisfied. Stopped.
+    }>&2
+    return 1
+}
 
 install_docker() {
     $CURL https://get.docker.com | sudo sh
@@ -31,27 +61,99 @@ install_docker_compose() {
     return 1
 }
 
-#
-# Pre-check
-#
-
-{
+pre_check() {
     curl --version &>/dev/null
-    python -V &>/dev/null
+    ${PYTHON} -V &>/dev/null || { >&2 echo "Python not found. You might need to set '$PYTHON' manually."; return 1; }
     docker version &>/dev/null || install_docker
     docker-compose version &>/dev/null || install_docker_compose
 }
 
-if [ -d "$PREFIX" ]; then
-    >&2 echo Warning: path \"$PREFIX\" exists\; this script will remove it.
-    >&2 echo You may press Ctrl+C now to abort this script.
-    ( set -x; sleep 20 )
-fi
+init_prefix() {
+    if [ -d "$PREFIX" ]; then
+        {
+            echo Warning: path \"$PREFIX\" exists\; this script will remove it.
+            echo You may press Ctrl+C now to abort this script.
+        }>&2
+        ( set -x; sleep 20 )
+    fi
+    ( set -x; sudo rm -rf $PREFIX)
+    sudo mkdir -p $PREFIX
+    sudo chown -R $(id -nu):$(id -ng) $PREFIX
+    cd $PREFIX
+}
 
-sudo rm -rf $PREFIX
-sudo mkdir -p $PREFIX
-sudo chown -R $(id -nu):$(id -ng) $PREFIX
-cd $PREFIX
+do_system_check() {
+    >&2 printf 'Checking system ... '
+
+    _SYS_WARN=0
+    _SYS_STOP=0
+    _SYS=$(uname)
+    _CPU=$(getconf _NPROCESSORS_ONLN)
+    _STO=$(df -k $PREFIX | awk 'NR==2 {print int($4/1000^2)}')
+    if [ x$_SYS = x"Linux" ]; then
+        _MEM=$(awk '/MemTotal/{print int($2/1000^2)}' /proc/meminfo)
+    elif [ x$_SYS = x"Darwin" ]; then
+        _MEM=$(sysctl hw.memsize | awk '{print int($2/1000^3)}')
+    else
+        >&2 echo System not recognized !
+    fi
+
+    if [ $_CPU -lt $_SYS_MIN_CPU ]; then
+        _SYS_STOP=1
+    elif [ $_CPU -lt $_SYS_REC_CPU ]; then
+        _SYS_WARN=1
+    fi
+
+    if [ $_MEM -lt $_SYS_MIN_MEM ]; then
+        _SYS_STOP=1
+    elif [ $_MEM -lt $_SYS_REC_MEM ]; then
+        _SYS_WARN=1
+    fi
+
+    if [ "$_STO" -lt $_SYS_MIN_STO ]; then
+        _SYS_STOP=1
+    elif [ $_STO -lt $_SYS_REC_STO ]; then
+        _SYS_WARN=1
+    fi
+
+    if [ $_SYS_STOP -eq 1 ]; then
+        print_requirements
+        print_minimal_fail
+    fi
+    if [ $_SYS_WARN -eq 1 ]; then
+        print_requirements
+    fi
+}
+
+print_servi() {
+    {
+        echo If you want to register Servi node, exec:
+        printf "\n\t"
+        echo "iwallet --account <your-account> --amount_limit '*:unlimited' call 'vote_producer.iost' 'applyRegister' '[\"<your-account>\",\"$PUBKEY\",\"\",\"\",\""$NETWORK_ID"\",true]'"
+        echo
+        echo To set the Servi node online:
+        printf "\n\t"
+        echo "iwallet --acount <your-account> --amount_limit '*:unlimited' call 'vote_producer.iost' 'logInProducer' '[\"<your-account>\"]'"
+        echo
+        echo See full doc at https://developers.iost.io
+        echo
+    }>&2
+}
+
+print_bye() {
+    {
+        echo Happy hacking !
+        echo
+    }>&2
+}
+
+#
+# main
+#
+
+pre_check
+init_prefix
+do_system_check
 
 #
 # Generate key producer pair
@@ -70,8 +172,8 @@ $CURL "https://developers.iost.io/docs/assets/testnet/$VERSION/iserver.yml" -o $
 # Config producer
 #
 
-#PUBKEY=$(cat $PRODUCER_KEY_FILE | python -c 'import sys,json;print(json.load(sys.stdin)["Pubkey"]'))
-PRIKEY=$(cat $PRODUCER_KEY_FILE | python -c 'import sys,json;print(json.load(sys.stdin)["Seckey"])')
+PUBKEY=$(cat $PRODUCER_KEY_FILE | ${PYTHON} -c 'import sys,json;print(json.load(sys.stdin)["Pubkey"])')
+PRIKEY=$(cat $PRODUCER_KEY_FILE | ${PYTHON} -c 'import sys,json;print(json.load(sys.stdin)["Seckey"])')
 
 #sed -i.bak 's/  id: .*$/  id: '$PUBKEY'/g' iserver.yml
 sed -i.bak 's/  seckey: .*$/  seckey: '$PRIKEY'/g' iserver.yml
@@ -97,9 +199,17 @@ EOF
 docker-compose up -d
 
 until $($CURL localhost:30001/getNodeInfo &>/dev/null); do
-    printf '.'
+    >&2 printf '.'
     sleep 2
 done
 
->&2 echo Your network ID is:
-( set -x; $CURL localhost:30001/getNodeInfo | python -c 'import json,sys;print(json.load(sys.stdin)["network"]["id"])' )
+NETWORK_ID=$($CURL localhost:30001/getNodeInfo | ${PYTHON} -c 'import json,sys;print(json.load(sys.stdin)["network"]["id"])')
+{
+    echo
+    echo Your network ID is:
+    echo $NETWORK_ID
+    echo
+}>&2
+
+print_servi
+print_bye

@@ -29,7 +29,7 @@ If you want to run a full-node connection test network, your physical machine ne
 ### Using *boot* script:
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
 ```
 
 This script purges `$PREFIX` and starts a fresh new full node connecting to IOST testnet network.

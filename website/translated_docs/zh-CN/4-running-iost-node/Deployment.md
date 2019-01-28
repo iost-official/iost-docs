@@ -36,7 +36,7 @@ docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iosti
 如果使用 docker-compose:
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
 ```
 
 启动脚本会清除 `$PREFIX`，然后启动一个全新的全节点，并加入 IOST 网络。

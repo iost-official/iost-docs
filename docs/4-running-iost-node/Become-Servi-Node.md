@@ -10,7 +10,7 @@ A Servi node is able to generate blocks only when being a *producer*, which requ
 Run the boot script to start a full node. See also [Start the node](4-running-iost-node/Deployment.md).
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | sh
+curl https://developers.iost.io/docs/assets/boot.sh | bash
 ```
 
 The *keypair* of producer is located at `/data/iserver/keypair`. You could get the public key of producer in here.
