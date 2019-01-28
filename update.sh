@@ -41,5 +41,5 @@ function update_language()
 }
 
 update_language ja
-#update_language zh-CN
-#update_language en
+update_language zh-CN
+update_language en

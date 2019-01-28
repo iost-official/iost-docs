@@ -70,28 +70,7 @@ rule:
 ### Gas Collection
 
 - Each time a transaction is initiated, first calculate the amount of Gas the user currently has, and then use the latest Gas balance to pay for the transaction.
-
-# Invitation
-
-### Circulation GAS rewards
-
-When the user invited by the official node and the partner node consumes Gas, the tradable Gas can be obtained.
-
-The account creator automatically becomes the inviter of the created account and cannot be modified.
-
-- Obtain
-   - If the inviter is a formal node or a partner node, the account consumes 10% of the GAS, and the reward is given to the inviting person in circulate Gas
-   - There is no cap on the Circulation Gas
-   - Holds Circulation Gas doesn't need pledge Token
-   
-- Use
-   - Circulating Gas can be given to others once, it's not tradeable
-   - Circulating Gas can be used as normal Gas, and account priory use non-distributable Gas
-
-### Fee Bonus
-- 30% of the invitee's RAM fee is awarded to the official node or partner node inviter
-- Creating an account requires 10 tokens to be mortgaged, 30% of the pledge is awarded to the official node or the partner node inviter, and the reward Token is from the issuance
-   
+  
 # Resources
     
 System resources are divided into NET, CPU and RAM. We abstract the NET and CPU into GAS payment. The use of RAM requires pledge Token.
