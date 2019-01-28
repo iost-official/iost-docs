@@ -818,19 +818,20 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 	| map | 将字典的每对 key:value 分别转成字节数组并拼接, 然后按照 key 升序排列后拼接每一对，再在其前面加上 map 的长度 | 如 ["b":"iost", "a":"iost"] 对应的字节数组为 [0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116] |
 	  
 	交易字段声明顺序为 "time"、"expiration"、"gas\_ratio"、"gas\_limit"、
-"delay"、"chain\_id"、"signers"、"actions"、"amount\_limit"、"signatures"，所以交易结构体转字节数组伪代码为：
+"delay"、"chain\_id"、"reserved"、"signers"、"actions"、"amount\_limit"、"signatures"，所以交易结构体转字节数组伪代码为：
 
 	```
 	func TxToBytes(t transaction) []byte {
 		return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) + 
 	 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // 注意 gas_ratio 和 gas_limit 需要乘以 100 并转成 int64
  			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) + 
+ 			BytesToBytes(t.reserved) + // reserved 为预留字段，只需要在序列化的时候写入空字节数组即可，RPC 请求参数不需要带上此字段
  			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
  			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
 	}
 	```
 
-	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/master/core/tx/tx.go#L410)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)。
+	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73)。
 
 * **使用 sha3 算法对字节数组计算哈希**
 
@@ -873,10 +874,10 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 	```
 * **计算哈希**
 
-	利用上述算法序列化后并 sha3 后，得到哈希值 "nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU="。
+	利用上述算法序列化后并 sha3 后，得到哈希值 "/gB8TJQibGI7Kem1v4vJPcJ7vHP48GuShYfd/7NhZ3w="。
 * **计算签名**
 
-	假设 testaccount 账户的公私钥算法为 ED25519，公钥为 "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY="，私钥为 "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg=="，利用私钥对上一步的哈希签名，得到 "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="
+	假设 testaccount 账户的公私钥算法为 ED25519，公钥为 "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY="，私钥为 "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg=="，利用私钥对上一步的哈希签名，得到 "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="
 	
 * **发送交易**
 
@@ -910,7 +911,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 			{
 				"algorithm": "ED25519",
 				"public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
-				"signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
+				"signature": "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA==",
 			},
 		],
 	}
@@ -919,7 +920,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 	对上述结构进行 json 序列化后，发送如下 rpc 请求即可：
 	
 	```
-	curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
+	curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1544709692318715000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="}],"signatures":[],"signers":[],"time": 1544709662543340000}'
 	```
 	
 
