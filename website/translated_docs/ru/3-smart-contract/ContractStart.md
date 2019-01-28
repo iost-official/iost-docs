@@ -8,7 +8,7 @@ sidebar_label: Смарт-контракт Быстрый старт
 # Начало разработки DApp (Decentralized Application - Децентрализованное Приложение)
 
 ## Основы IOST DApp
-Абстрагируясь блокчейн можно представить как машину состояний, которая синхронизируется через сеть. Смарт-контракт это код, который исполняется в системе блокчейна и изменяет состояние в машине состояний вследствие транзакций. Благодаря характеристикам блокчейна вызов смарт-контракта может быть гарантированно последовательным и глобально согласованным.
+Абстрагируясь блокчейн можно представить как машину состояний, которая синхронизируется через сеть. Смарт-контракт это код, который исполняется в системе блокчейна и изменяет состояние в машине состояний вследствии транзакций. Благодаря характеристикам блокчейна вызов смарт-контракта может быть гарантированно последовательным и глобально согласованным.
 
 Смарт-контракты IOST в настоящее время разрабатываются на языке JavaScript (ES6).
 
@@ -34,9 +34,9 @@ Tx | транзакция, состояние в блокчейне должно
 Запустите докер и войдите в среду докера. Локальный тестовый узел также будет запущен.
 
 ```
-Docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-Docker ps # the last column of the output is the docker container name, which will be used in next command
-Docker exec -it <container_name> /bin/bash # you will enter docker
+docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
+docker ps # the last column of the output is the docker container name, which will be used in next command
+docker exec -it <container_name> /bin/bash # you will enter docker
 ./iwallet -h
 ```
 
@@ -45,18 +45,18 @@ Docker exec -it <container_name> /bin/bash # you will enter docker
 Необходим go версии 1.11 или выше
 
 ```
-Go get -u iost-official/go-iost
-Cd $GOPATH/src/github.com/iost-official/go-iost
-Make install
+go get -u iost-official/go-iost
+cd $GOPATH/src/github.com/iost-official/go-iost
+make install
 # Check the configuration config/
-Iserver -f config/iserver.yml # Start the test node, no need
-Iwallet -h
+iserver -f config/iserver.yml # Start the test node, no need
+iwallet -h
 ```
 ### Импорт исходного аккаунта ```admin``` для iwallet
 
 Для завершения теста вам необходимо импортировать секретный ключ для iwallet. Соответствующий ключ находится в поле admininfo в config/genesis.yml.
 ```
-Iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 В докере вам необходимо использовать "./iwallet" вместо "iwallet", который не установлен внутри образа докера.
 
@@ -66,14 +66,14 @@ Iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBW
 ### Подготовка кода
 Сначала подготовьте класс JavaScript, например HelloWorld.js
 ```
-Class HelloWorld {
-Init() {} // needs to provide an init function that will be called during deployment
-    Hello(someone) {
-        Return "hello, "+ someone
+class HelloWorld {
+init() {} // needs to provide an init function that will be called during deployment
+    hello(someone) {
+        return "hello, "+ someone
     }
 }
 
-Module.exports = HelloWorld;
+module.exports = HelloWorld;
 ```
 Смарт-контракт содержит интерфейс, который получает входные данные и затем выводит ```hello, + веденные данные ```. Для того, чтобы этот интерфейс вызывался вне смарт-контракта, вам необходимо подготовить файл abi. Например, HelloWorld.abi
 ```
@@ -96,12 +96,12 @@ Module.exports = HelloWorld;
 
 Опубликуйте смарт-контракты
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Publish helloworld.js helloworld.abi
+ publish helloworld.js helloworld.abi
 ```
 Пример вывода
 ```
@@ -127,12 +127,12 @@ The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf # This i
 Тестовый вызов ABI
 
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Call "Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf" "hello" '["developer"]' # contract id needs to be changed to the id you received
+ call "Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf" "hello" '["developer"]' # contract id needs to be changed to the id you received
 ```
 
 Выходные данные
@@ -157,12 +157,12 @@ Exec tx done # The following output Tx is executed after TxReceipt
 
 После этого вы можете получить TxReceipt в любое время с помощью следующей команды.
 ```
-Iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
+iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
 Также TxReceipt может быть получена через http
 ```
-Curl -X GET \
-  Http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
+curl -X GET \
+  http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
 
 Можно считать, что этот вызов будет постоянно записываться IOST и не может быть подделан.
@@ -195,8 +195,8 @@ Abi пропустим
 ### Использование state storage
 После развертывания кода вы можете получить хранилище следующим способом
 ```
-Curl -X POST \
-  Http://localhost:30001/getContractStorage \
+curl -X POST \
+  http://localhost:30001/getContractStorage \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -d '{
@@ -213,12 +213,12 @@ Curl -X POST \
 ```
 Это значение можно изменить, вызвав change.
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Call "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e" "change" '["foobaz"]'
+ call "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e" "change" '["foobaz"]'
 ```
 
 ## Контроль разрешений и невыполнение(отказ) смарт-контракта
@@ -227,8 +227,8 @@ Iwallet \
 
 Примере
 ```
-If (!blockchain.requireAuth("someone", "active")) {
-    Throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
+if (!blockchain.requireAuth("someone", "active")) {
+    throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
 }
 ```
 Необходимо обратить внимание на следующие моменты
@@ -239,12 +239,12 @@ If (!blockchain.requireAuth("someone", "active")) {
 
 Вы можете наблюдать неудачную транзакцию с помощью простого теста.
 ```
-Iwallet \
+iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
- Call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
+ call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
 ```
 Результат будет
 ```
@@ -266,7 +266,7 @@ Iwallet \
 
 Сначала запустите локальный узел, как описано выше. Если вы используете докер, вы можете использовать следующую команду для печати логов.
 ```
-Docker ps -f <container>
+docker ps -f <container>
 ```
 
 На этом этапе вы можете добавить требуемый лог в код, добавив console.log(), ниже приведен вывод лога в примере хранилища.

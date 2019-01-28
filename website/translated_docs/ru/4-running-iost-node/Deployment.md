@@ -8,70 +8,84 @@ sidebar_label: Присоединяйтесь к тестовой сети IOST
 
 Мы используем Докер для развертывания узла IOST.
 
+## Требования к машине
+
+Если вы хотите запустить соединение полного узла с тестовой сетью, ваша физическая машина должна соответствовать следующим требованиям:
+
+- CPU: требуется процессор 8-ми ядерный и выше (Рекомендуется 8 ядер)
+- Memory: требуется память 8GB и выше (Рекомендуется 16GB)
+- Disk: требуется диск 5TB и выше (Рекомендуется 5TB жесткого диска)
+- Network: нужно иметь возможность подключения к Internet и открыть порт 30000 (Рекомендуется открыть порт 30000,30001,30002)
+
 ## Необходимо
 
-- [Docker CE 18.06 или новее](https://docs.docker.com/install) (старые версии не тестировались)
+- Curl (любая версия, которая вам нравится)
+- Python (любая версия, которая вам нравится)
+- [Docker 1.13/Docker CE 17.03 или новее](https://docs.docker.com/install) (старые версии не тестировались)
 - (Опционально) [Docker Compose](https://docs.docker.com/compose/install)
 
-## Подготовка файла конфигурации
+## Старт узла
 
-Для более детальной информации об iServer, см. [здесь](4-running-iost-node/LocalServer.md).
-
-Сначала получите шаблоны конфигурации:
+### Используя *boot*(загрузочный) скрипт:
 
 ```
-mkdir -p /data/iserver
-curl https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz | tar zxC /data/iserver
-curl https://developers.iost.io/docs/assets/testnet/latest/iserver.yml -o /data/iserver/iserver.yml
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
 ```
 
-`/data/iserver` будет монтироваться как том данных, вы можете изменить путь в соответствии с вашими потребностями.
+Этот скрипт очищает `$PREFIX` и запускает новый свежий полный узел, подключающийся к тестовой сети IOST.
+Он также генерирует пару ключей *producer* ("производителя блоков") для генерации блоков.
 
-*Если вы уже запускали предыдущую версию iServer, убедитесь, что старые данные удалены:*
+Для запуска, остановки и перезапуска узла измените директорию на `$PREFIX` и выполните команду: `docker-compose (start|stop|restart|down)`
+
+### Руководство:
+#### Перед стартом
+
+По умолчанию, `/data/iserver` монтируется как том данных, вы можете изменить путь в соответствии с вашими потребностями.
+Мы будем вдальнейшем ссылаться на `PREFIX` в качестве пути.
+
+*Если вы уже запускали предыдущие версии iServer, убедитесь, что старые данные были удалены:*
 
 ```
-rm -rf /data/iserver/storage
+rm -rf $PREFIX/storage
 ```
 
-## Запуск узла
-
-Запустите следующую команду, чтобы запустить узел
+## Старт
+Выполните команду для запуска узла:
 
 ```
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
-Или при использовании docker-compose:
-
-```
-# docker-compose.yml
-
-version: "2"
-
-services:
-  iserver:
-    image: iostio/iost-node
-    restart: always
-    ports:
-      - "30000-30003:30000-30003"
-    volumes:
-      - /data/iserver:/var/lib/iserver
-```
-
-Для запуска узла: `docker-compose up -d`
-
-Для запуска, остановки, перезапуска или удаления: `docker-compose (start|stop|restart|down)`
-
 ## Проверка узла
 
-Файл логов находится по этому пути `/data/iserver/logs/iost.log`.
-Растущие значения `confirmed` означают синхронизацию данных блока.
+Файл логов расположен по пути `$PREFIX/logs/iost.log`. Однако, он отключен по умолчанию.
+Вы можете включить его, но не забывайте удалять старые файлы логов.
 
-Вы также можете проверить состояние узла, используя инструмент `iwallet` внутри докера.
+Вы можете получить логи с помощью команды `(docker|docker-compose) logs iserver`.
+Растущие значения `confirmed`, как к примеру ниже, означают синхронизацию данных блоков:
+
+```
+...
+Info 2019-01-19 08:36:34.249 pob.go:456 Rec block - @4 id:Dy3X54QSkZ..., num:1130, t:1547886994201273330, txs:1, confirmed:1095, et:48ms
+Info 2019-01-19 08:36:34.550 pob.go:456 Rec block - @5 id:Dy3X54QSkZ..., num:1131, t:1547886994501284335, txs:1, confirmed:1095, et:49ms
+Info 2019-01-19 08:36:34.850 pob.go:456 Rec block - @6 id:Dy3X54QSkZ..., num:1132, t:1547886994801292955, txs:1, confirmed:1095, et:49ms
+Info 2019-01-19 08:36:35.150 pob.go:456 Rec block - @7 id:Dy3X54QSkZ..., num:1133, t:1547886995101291970, txs:1, confirmed:1095, et:48ms
+Info 2019-01-19 08:36:35.450 pob.go:456 Rec block - @8 id:Dy3X54QSkZ..., num:1134, t:1547886995401281644, txs:1, confirmed:1095, et:48ms
+Info 2019-01-19 08:36:35.750 pob.go:456 Rec block - @9 id:Dy3X54QSkZ..., num:1135, t:1547886995701294638, txs:1, confirmed:1095, et:48ms
+Info 2019-01-19 08:36:36.022 pob.go:456 Rec block - @0 id:EkRgHNoeeP..., num:1136, t:1547886996001223210, txs:1, confirmed:1105, et:21ms
+Info 2019-01-19 08:36:36.324 pob.go:456 Rec block - @1 id:EkRgHNoeeP..., num:1137, t:1547886996301308669, txs:1, confirmed:1105, et:23ms
+Info 2019-01-19 08:36:36.624 pob.go:456 Rec block - @2 id:EkRgHNoeeP..., num:1138, t:1547886996601304333, txs:1, confirmed:1105, et:23ms
+Info 2019-01-19 08:36:36.921 pob.go:456 Rec block - @3 id:EkRgHNoeeP..., num:1139, t:1547886996901318752, txs:1, confirmed:1105, et:20ms
+Info 2019-01-19 08:36:37.224 pob.go:456 Rec block - @4 id:EkRgHNoeeP..., num:1140, t:1547886997201327191, txs:1, confirmed:1105, et:23ms
+Info 2019-01-19 08:36:37.521 pob.go:456 Rec block - @5 id:EkRgHNoeeP..., num:1141, t:1547886997501297659, txs:1, confirmed:1105, et:20ms
+...
+```
+
+Вы также можете проверить состояние узла с помощью инструмента `iwallet`.
 См. также [iWallet](4-running-iost-node/iWallet.md).
 
 ```
-docker-compose exec iserver ./iwallet state
+docker exec -it iserver iwallet state
 ```
 
-Последняя информация о блокчейне также отображается на [blockchain explorer](https://explorer.iost.io).
+Последняя информация о блокчейне также показана в [blockchain explorer](https://explorer.iost.io).
