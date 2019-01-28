@@ -69,14 +69,22 @@ p2p:
   chainid: 1024
   version: 1
   datapath: p2p/
-  inboundConn: 15
-  outboundConn: 15
+  inboundConn: 18
+  outboundConn: 12
   blackPID:
   blackIP:
   adminPort: 30005
 ```
 
-*** To be completed ***
+listenaddr 为 p2p 网络监听的地址，如果节点部署在云服务上，请务必在安全组中打开该端口。  
+seednodes 为 p2p 网络发现的种子节点，可以填任意已知的节点列表。  
+chainid 用于隔离不同的网络。  
+version 为网络协议版本号。  
+datapath 为 p2p 路由表，节点私钥等数据的存储目录。  
+inboundConn 为最大连入的连接数。  
+outboundConn 为最大连出的连接时。  
+blackPID, blackIP 分别为网络黑名单的节点 ID 和节点 IP，配置后，节点会拒绝黑名单节点的 p2p 网络连接。  
+adminPort 为网络管理端口，只能通过 localhost 访问。
 
 - rpc
 
@@ -85,12 +93,16 @@ rpc:
   enable: true
   gatewayaddr: 0.0.0.0:30001
   grpcaddr: 0.0.0.0:30002
-  trytx: false
+  trytx: true
   allowOrigins:
     - "*"
 ```
 
-*** To be completed ***
+enable 表示是否开启 RPC 服务。  
+gatewayaddr 为 JSON RPC 的监听地址。  
+grpcaddr 为 GRPC 监听地址。  
+trytx 表示是否预执行交易。  
+allowOrigins 为跨域设置。
 
 - log
 
@@ -133,7 +145,7 @@ version:
   protocolversion: "1.0"
 ```
 
-*** To be completed ***
+节点信息的描述。
 
 ## 创世配置
 

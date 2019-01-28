@@ -76,8 +76,15 @@ p2p:
   adminPort: 30005
 ```
 
-Each iServer has a network ID for the p2p network.
-*** To be completed ***
+listenaddr is the address that the p2p network listens on. If the node is deployed on a cloud service, be sure to open the port in the security group.  
+seednodes are seed nodes discovered by the p2p network and can be populated with any known list of nodes.  
+chainid is used to isolate different networks.  
+version is the network protocol version number.  
+datapath is the storage directory of the p2p routing table, node private key and other data.  
+inboundConn is the maximum number of connections that are connected.  
+outboundConn is the maximum connected connection.  
+blackPID and blackIP are the node ID and node IP of the blacklist. With the configuration, the node rejects the p2p network connection of the blacklist node.  
+adminPort is the network management port and can only be accessed through localhost.
 
 - rpc
 
@@ -91,7 +98,11 @@ rpc:
     - "*"
 ```
 
-*** To be completed ***
+enable indicates whether to enable the RPC service.  
+gatewayaddr is the listening address of JSON RPC.  
+grpcaddr is the GRPC listening address.  
+trytx indicates whether the transaction is pre-executed.  
+allowOrigins is a cross-domain setting.  
 
 - log
 
@@ -134,7 +145,7 @@ version:
   protocolversion: "1.0"
 ```
 
-*** To be completed ***
+Description of the node information.
 
 ## Config Genesis
 
