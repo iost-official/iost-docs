@@ -601,6 +601,25 @@
       "version-2.3.1-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-2.4.0-Become-Servi-Node": {
+        "title": "Become Servi Node",
+        "sidebar_label": "Become Servi Node"
+      },
+      "version-2.4.0-Deployment": {
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
+      },
+      "version-2.4.0-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-2.4.0-SystemContract": {
+        "title": "SystemContract"
+      },
+      "version-2.4.0-Transaction-class": {
+        "title": "Transaction",
+        "sidebar_label": "Transaction"
       }
     },
     "links": {
