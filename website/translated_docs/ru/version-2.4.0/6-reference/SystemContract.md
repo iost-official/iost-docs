@@ -1,7 +1,8 @@
 ---
-id: SystemContract
+id: version-2.4.0-SystemContract
 title: Системный контракт
 sidebar_label: Системный контракт
+original_id: SystemContract
 ---
 
 ## vote_producer.iost

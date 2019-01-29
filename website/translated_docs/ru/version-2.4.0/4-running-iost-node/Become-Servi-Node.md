@@ -1,7 +1,8 @@
 ---
-id: Become-Servi-Node
+id: version-2.4.0-Become-Servi-Node
 title: Станьте Узлом Servi
-sidebar_label: Станьте Узлом Servi  
+sidebar_label: Станьте Узлом Servi
+original_id: Become-Servi-Node
 ---
 
 Узел Servi может генерировать блоки только являясь *producer*(производителем блоков), для чего требуется аккаунт IOST и полный узел.

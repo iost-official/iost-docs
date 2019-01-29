@@ -872,19 +872,20 @@ hash                |string     |хеш транзакции
     array   |Конвертировать каждый элемент массива в байтовый массив, добавить длину перед каждым массивом, собрать их вместе      |\["iost" "iost"\] конвертируется в \[0 0 0 2 0 0 0 4 105 111 115 116 0 0 0 4 105 111 115 116\]
     map     |Каждая пара ключей: значения в словаре конвертируются в байтовый массив и сращиваются, затем каждая пара сращивается в порядке возрастания ключей, и длина map добавляется к передней части каждой пары.    |\["b":"iost", "a":"iost"\] конвертируется в \[0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116\]
 
-    Параметры транзакции декларируются в следующем порядке: "time", "expiration", "gas\_ratio", "gas\_limit", "delay", "chain_id", "signers", "actions", "amount\_limit", и "signatures", таким образом псевдокод, преобразующий структуру транзакции в байтовый массив выглядит следующим образом:
+    Параметры транзакции декларируются в следующем порядке: "time", "expiration", "gas\_ratio", "gas\_limit", "delay", "chain_id", "reserved", "signers", "actions", "amount\_limit", и "signatures", таким образом псевдокод, преобразующий структуру транзакции в байтовый массив выглядит следующим образом:
 
     ```
   	func TxToBytes(t transaction) []byte {
   			return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) +
   			 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
   		 			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) +
+            BytesToBytes(t.reserved) + // reserved это зарезервированое поле. Оно нужно только для написания пустого байтового массива при сериализации. Не отправляйте запрос RPC с этим полем в параметрах.
   		 			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
   		 			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
   		}
   	```
 
-    Обратитесь к [go-iost](https://github.com/iost-official/go-iost/blob/master/core/tx/tx.go#L410) для реализации golang; обратитесь к [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68) для реализации JavaScript.
+    Обратитесь к [go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686) для реализации golang; обратитесь к [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73) для реализации JavaScript.
 
 * **Вычислить хеш byte array(байтового массива) с помощью алгоритма sha3**
 
@@ -930,11 +931,11 @@ hash                |string     |хеш транзакции
 
 * **Вычисляем хеш**
 
-    После сериализации и хеширования транзакции получаем хеш "nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU=".
+    После сериализации и хеширования транзакции получаем хеш "/gB8TJQibGI7Kem1v4vJPcJ7vHP48GuShYfd/7NhZ3w=".
 
 * **Подписываем транзакцию**
 
-    Предположим "testaccount" имеет публичный ключ с алгоритмом  ED25519, публичный ключ - "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=", и приватный ключ - "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg==". Подписываем хеш приватным ключом и получаем  "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="
+    Предположим "testaccount" имеет публичный ключ с алгоритмом  ED25519, публичный ключ - "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=", и приватный ключ - "gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg==". Подписываем хеш приватным ключом и получаем  "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="
 
 * **Публикуем транзакцию**
 
@@ -968,7 +969,7 @@ hash                |string     |хеш транзакции
         {
           "algorithm": "ED25519",
           "public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
-          "signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
+          "signature": "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA==",
         },
       ],
     }
@@ -977,7 +978,7 @@ hash                |string     |хеш транзакции
     После того, как мы JSON-сериализовали структуру, мы можем отправить следующий RPC:
 
     ```
-    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
+    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1544709692318715000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="}],"signatures":[],"signers":[],"time": 1544709662543340000}'
     ```
 
 
