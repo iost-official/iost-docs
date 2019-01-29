@@ -161,17 +161,6 @@ Sidebar_label: System Contract
 | deleted| bool | 削除済みか |
 | clearTime| number | 投票数が最後にクリアされたブロック番号 |
 
-#### voteFor
-他人に代わって投票すると、投票権分のIOSTが代理人アカウントから差し引かれます。
-
-| パラメータリスト | パラメータの型 | 備考 |
-| :----: | :------ |:------ |
-| 投票ID| string | newVoteインターフェースで返ってきたID|
-| 代理人 アカウント名| string ||
-| 投票者 アカウント名| string ||
-| 候補者 | string ||
-| 投票数 | string ||
-
 #### vote
 投票します。
 
