@@ -867,18 +867,19 @@ hash                |string     |トランザクションハッシュ
     array   | 配列の各要素をバイト配列に変換し、長さを配列の前に付与 |\["iost" "iost"\] は \[0 0 0 2 0 0 0 4 105 111 115 116 0 0 0 4 105 111 115 116\]
     map     |ディクショナリ内のキーと値の各ペアをバイト配列に変換して分けておき、キーの昇順にして、各ペアの前に長さを付与 |\["b":"iost", "a":"iost"\] は \[0 0 0 2 0 0 0 1 97 0 0 0 4 105 111 115 116 0 0 0 1 98 0 0 0 4 105 111 115 116\] "
 
-    トランザクションのパラメータは、 "time"、 "expiration"、 "gas_ratio"、 "gas_limit"、 "delay"、 "chain_id"、 "signers"、 "actions"、 "amount_limit"、"signature"の順に宣言されています。そのため、トランザクション構造体をバイト配列に変換する疑似コードは次のようになります。
+    トランザクションのパラメータは、 "time"、 "expiration"、 "gas_ratio"、 "gas_limit"、 "delay"、 "chain_id"、 "reserved"、　"signers"、 "actions"、 "amount_limit"、"signature"の順に宣言されています。そのため、トランザクション構造体をバイト配列に変換する疑似コードは次のようになります。
 	```
 	func TxToBytes(t transaction) []byte {
 			return Int64ToBytes(t.time) + Int64ToBytes(t. expiration) + 
 			 		Int64ToBytes(int64(t.gas_ratio * 100)) + Int64ToBytes(int64(t.gas_limit * 100)) +     // Node that gas_ratio and gas_limit need to be multiplied by 100 and convert to int64
 		 			Int64ToBytes(t.delay) + Int32ToBytes(t.chain_id) + 
+		 			BytesToBytes(t.reserved) + // reserved is a reserved field. It only needs to write an empty byte array when serialized. Don't send this field in RPC request parameters.
 		 			ArrayToBytes(t.signers) + ArrayToBytes(t.actions)  +
 		 			ArrayToBytes(t.amount_limit) + ArrayToBytes(t.signatures)
 		}
 	```
         
-    Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/develop/core/tx/tx.go#L410)を参照してください。JavaScript実装については、、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L68)を参照してください。
+    Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686)を参照してください。JavaScript実装については、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73)を参照してください。
     
 * **SHA3アルゴリズムでバイト配列のハッシュを計算**
     
@@ -924,11 +925,11 @@ hash                |string     |トランザクションハッシュ
     
 * **ハッシュの計算**
 
-    シリアライズしハッシュの計算をすると、"nVJUdaE7JoWAA2htD8e/5QL+PoaUqgo+tLWpNfFI5OU="というハッシュが得られます。
+    シリアライズしハッシュの計算をすると、"/gB8TJQibGI7Kem1v4vJPcJ7vHP48GuShYfd/7NhZ3w="というハッシュが得られます。
     
 * **署名の計算**
 
-    ED25519アルゴリズムによる公開鍵"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY="、秘密鍵"gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg=="を"testaccount"が持っているとします。ハッシュを秘密鍵で署名すると、"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="が得られます。
+    ED25519アルゴリズムによる公開鍵"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY="、秘密鍵"gkpobuI3gbFGstgfdymLBQAGR67ulguDzNmLXEJSWaGUNL5J0z5qJUdsPJdqm+uyDIrEWD2Ym4dY9lv8g0FFZg=="を"testaccount"が持っているとします。ハッシュを秘密鍵で署名すると、"/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="が得られます。
 
 * **トランザクションのパブリッシュ**
 
@@ -962,7 +963,7 @@ hash                |string     |トランザクションハッシュ
 			{
 				"algorithm": "ED25519",
 				"public_key": "lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=",
-				"signature": "yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg==",
+				"signature": "/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=",
 			},
 		],
 	}
@@ -971,7 +972,7 @@ hash                |string     |トランザクションハッシュ
     構造をJSONでシリアライズした後、次のRPCが送信できます。
     
     ```
-   curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1547288372121046000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"yhk086dBH1dwG4tgRri33bk5lbs8OoT9o7Ar6wMrTPQwVQQoWUgswnhEgXvNz9DOdXQrDFDHNs9qrF5pwaqxCg=="}],"signatures":[],"signers":[],"time": 1547288214916966000}'
+    curl -X POST http://127.0.0.1:30001/sendTx -d '{"actions":[{"action_name":"transfer","contract":"token.iost","data":"[\"iost\", \"testaccount\", \"anothertest\", \"100\", \"this is an example transfer\"]"}],"amount_limit":[{"token":"*","value":"unlimited"}],"delay":0,"chain_id":1024, "expiration": 1544709692318715000,"gas_limit":500000,"gas_ratio":1,"publisher":"testaccount","publisher_sigs":[{"algorithm":"ED25519","public_key":"lDS+SdM+aiVHbDyXapvrsgyKxFg9mJuHWPZb/INBRWY=","signature":"/K1HM0OEbfJ4+D3BmalpLmb03WS7BeCz4nVHBNbDrx3/A31aN2RJNxyEKhv+VSoWctfevDNRnL1kadRVxSt8CA=="}],"signatures":[],"signers":[],"time": 1544709662543340000}'
     ```
 
 ## /execTx

@@ -8,12 +8,33 @@ sidebar_label: IOSTテストネットへの参加
 
 IOSTノードをデプロイするために、ここではDockerを使用しています。
 
+## マシン要件
+フルノードで接続するテストネットワークを実行する場合は、物理的に次の要件を満たす必要があります。
+
+CPU：CPUは8コア以上（8コア推奨）
+メモリ：メモリは8GB以上（16GB推奨）
+ディスク：ディスクには5TB以上（5TB HDD推奨）
+ネットワーク：インターネットに接続して、ポート30000を開く（30000、30001、30002ポートを開くことを推奨）。
+
 ## 前提条件
 
 - [Docker 1.13/Docker CE 18.06以上](https://docs.docker.com/install) (旧バージョンはテストしていません)
 - (オプション) [Docker Compose](https://docs.docker.com/compose/install)
 
-## 事前準備
+## ノードの開始
+
+### *boot*スクリプトの使用
+
+```
+curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
+```
+
+このスクリプトは$PREFIXを破棄して、IOSTテストネットネットワークに接続する新しいフルノードを起動します。ブロックを生成する準備として、*プロデューサー*のための鍵ペアを生成します。
+
+ノードを起動、停止、または再起動するには、ディレクトリを$PREFIXに変更して、docker-compose (start|stop|restart|down) を実行します。
+
+### マニュアル
+#### 事前準備
 
 デフォルトでは、`/data/iserver`はdataボリュームにマウントされます。これは変更しても構いません。ここでは`PREFIX`を参照します。
 
@@ -23,26 +44,20 @@ IOSTノードをデプロイするために、ここではDockerを使用して�
 rm -rf $PREFIX/storage
 ```
 
-### ノードの開始
+### 開始
 
 次のコマンドでノードを開始します。
 ```
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
-または、*boot*スクリプトを使ってください。
-
-```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
-```
-
-このスクリプトは`$PREFIX`を破棄し、IOSTネットワークに接続している新しい新しいフルノードを起動します。またブロックを生成するために*プロデューサー*のキーペアを生成します。
-
-ノードを起動、停止、または再起動するには、`$PREFIX`にディレクトリをに変更して、`docker-compose (start|stop|restart|down)`を実行します。
-
 ## ノードの確認
 
-ログファイルは、`$PREFIX/logs/iost.log`にあります。次のような増加する`confirmed`は、ブロックデータの同期が進んでいっていることを示しています。
+ログファイルは、`$PREFIX/logs/iost.log`にありますが、デフォルトでは無効になっています。古いログを消してから有効にしてください。
+
+ログは、`(docker|docker-compose) logs iserver`で、取得することができます。
+
+次のような増加する`confirmed`は、ブロックデータの同期が進んでいっていることを示しています。
 
 ```
 ...
@@ -63,55 +78,8 @@ Info 2019-01-19 08:36:37.521 pob.go:456 Rec block - @5 id:EkRgHNoeeP..., num:114
 `iwallet`ツールを使って、ノードの状態を確認することもできます。[iWallet](4-running-iost-node/iWallet.md)もご覧ください。
 
 ```
-docker-compose exec iserver ./iwallet state
+docker exec -it iserver iwallet state
 ```
 
 最新のブロックチェーン情報は、[ブロックチェーンエクスプローラ](https://explorer.iost.io)にも表示されます。
 
-## Servi Node
-
-Serviノード(別名スーパーノード)は、*プロデューサー*である場合にのみブロックを生成でき、IOSTアカウントとフルノードが必要です。
-**プロデューサーのアカウントとは違うキーペアを使用することを強くお勧めします。**
-
-### IOSTアカウントの作成
-
-アカウントのない場合は、次のステップに従って作成してください。
-
-- iWalletを使用して、*キーペア*を作成します。
-- 作成した*キーペア*で、[blockchain explorer](https://explorer.iost.io)にサインアップします。
-
-iWalletを使ってあなたのアカウントをインポートすることを忘れないでください。
-
-### ノードの開始
-
-起動スクリプトを実行して、フルノードを起動します。[ノードの開始](#start-the-node)も参照してください。
-
-```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
-```
-
-プロデューサーの鍵ペアは、`$PREFIX/keypair`にあります。 `http://localhost:30001/getNodeInfo`の`.network.id`セクションで、ネットワークIDを取得できます。
-
-### 登録の申請
-
-iWalletを使って自分のノードを登録するためのトランザクション(tx)を投げます。
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '["<your-account>","<pubkey-of-producer>","<location>","<website>","<network-ID>",true]' --amount_limit '*:unlimited'
-```
-
-`vote_producer.iost`のAPIドキュメントは[ここ](6-reference/SystemContract.html#vote-produceriost)にあります。
-
-## Serviノードのオペレーター
-
-**admin**に承認後、ノードの準備ができたらノードをオンラインにします。
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logInProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```
-
-ブロックの生成を止めるには次のようにします。
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logOutProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```
