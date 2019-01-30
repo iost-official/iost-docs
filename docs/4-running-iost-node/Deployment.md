@@ -10,21 +10,24 @@ We are using Docker to deploy an IOST node.
 
 ## Machine requirements
 
-If you want to run a full-node connection test network, your physical machine needs to meet the following requirements:
+If you want to run a full node connected to IOST network, your machine must meet the following requirements:
 
-- CPU: CPU requires 8 cores and above (Recommend 8 cores)
-- Memory: Memory requires 8GB and above (Recommend 16GB)
-- Disk: Disk requires 5TB and above (Recommend 5TB HDD)
-- Network: Need to be able to connect to the Internet and open port 30000 (Recommend open port 30000,30001,30002)
+- CPU: 4 cores or more (8 cores recommended)
+- Memory: 8GB or more (16GB recommended)
+- Disk: 1TB or more (5TB HDD recommended)
+- Network: access to Internet with port tcp:30000-30002 opened
 
 ## Prerequisites
 
 - Curl (any version you like)
 - Python (any version you like)
-- [Docker 1.13/Docker CE 17.03 or newer](https://docs.docker.com/install) (older versions are not tested)
+- [Docker 1.13/Docker CE 17.03 or newer](https://docs.docker.com/install)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Start the node
+
+By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
+We refer to `PREFIX` hereafter.
 
 ### Using *boot* script:
 
@@ -32,24 +35,27 @@ If you want to run a full-node connection test network, your physical machine ne
 curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
 ```
 
-This script purges `$PREFIX` and starts a fresh new full node connecting to IOST testnet network.
+You might set python executable using environment variable.
+E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
+
+This script purges `$PREFIX` and starts a fresh new full node connected to IOST testnet network.
 It also generates a keypair for *producer* in order to prepare for generating blocks.
+If you want to be a **Servi Node**, follow next steps [here](4-running-iost-node/Become-Servi-Node.md).
 
-To start, stop or restart the node, change directory to `$PREFIX` and execute: `docker-compose (start|stop|restart|down)`
+To start, stop or restart the node, change directory to `$PREFIX` and execute: `docker-compose (start|stop|restart)`
 
-### Manual:
+### Manually
+
 #### Before start
 
-By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
-We refer to `PREFIX` hereafter.
-
-*If you have already run previous version of iServer, make sure the old data has been purged:*
+If you have already run previous version of iServer, make sure the old data has been purged:
 
 ```
 rm -rf $PREFIX/storage
 ```
 
 #### Start
+
 Run the command to start a node:
 
 ```
