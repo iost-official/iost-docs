@@ -9,6 +9,7 @@
 set -ue
 
 PREFIX=${PREFIX:="/data/iserver"}
+INET=${PREFIX:="testnet"}
 VERSION=${VERSION:="latest"}
 
 PRODUCER_KEY_FILE=keypair
@@ -185,8 +186,8 @@ docker-compose pull
 # Get genesis info
 #
 
-$CURL "https://developers.iost.io/docs/assets/testnet/$VERSION/genesis.tgz" | tar zxC $PREFIX
-$CURL "https://developers.iost.io/docs/assets/testnet/$VERSION/iserver.yml" -o $PREFIX/iserver.yml
+$CURL "https://developers.iost.io/docs/assets/$INET/$VERSION/genesis.tgz" | tar zxC $PREFIX
+$CURL "https://developers.iost.io/docs/assets/$INET/$VERSION/iserver.yml" -o $PREFIX/iserver.yml
 
 #
 # Config producer
