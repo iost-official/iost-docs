@@ -24,8 +24,8 @@ _SYS_MIN_CPU=4          # 4 cpu
 _SYS_REC_CPU=8          # 8 cpu
 _SYS_MIN_MEM=8          # 8G ram
 _SYS_REC_MEM=16         # 16G ram
-_SYS_MIN_STO=100        # 100G storage
-_SYS_REC_STO=1000       # 1T storage
+_SYS_MIN_STO=200        # 200G storage
+_SYS_REC_STO=5000       # 5T storage
 
 print_requirements() {
     {
@@ -101,18 +101,26 @@ do_system_check() {
 
     if [ $_CPU -lt $_SYS_MIN_CPU ]; then
         _SYS_STOP=1
+        >&2 echo Insufficient CPU cores: $_CPU !!!
     elif [ $_CPU -lt $_SYS_REC_CPU ]; then
         _SYS_WARN=1
     fi
 
     if [ $_MEM -lt $_SYS_MIN_MEM ]; then
         _SYS_STOP=1
+        if [ x$_SYS = x"Linux" ]; then
+            _MEM=$(awk '/MemTotal/{print int($2)}' /proc/meminfo)
+        elif [ x$_SYS = x"Darwin" ]; then
+            _MEM=$(sysctl hw.memsize | awk '{print int($2)}')
+        fi
+        >&2 echo Insufficient ram: $_MEM !!!
     elif [ $_MEM -lt $_SYS_REC_MEM ]; then
         _SYS_WARN=1
     fi
 
     if [ "$_STO" -lt $_SYS_MIN_STO ]; then
         _SYS_STOP=1
+        >&2 echo Insufficient storage: $(df -k $PREFIX | awk 'NR==2 {print int($4)}') !!!
     elif [ $_STO -lt $_SYS_REC_STO ]; then
         _SYS_WARN=1
     fi

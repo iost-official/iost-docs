@@ -32,7 +32,7 @@ sidebar_label: Присоединяйтесь к тестовой сети IOST
 ### Используя *boot*(загрузочный) скрипт:
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
+curl https://developers.iost.io/docs/assets/boot.sh | bash
 ```
 
 Вы можете установить исполняемый файл python, используя переменную окружения.
@@ -46,7 +46,7 @@ curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
 
 ### Вручную:
 
-#### Перед стартом
+#### Удаление данных
 
 Если вы уже запускали предыдущие версии iServer, убедитесь, что старые данные были удалены:
 
@@ -54,11 +54,24 @@ curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
 rm -rf $PREFIX/storage
 ```
 
+#### Конфигурация
+
+Получите последнюю конфигурацию:
+
+```
+# get genesis
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX
+
+# get iserver config
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
+```
+
 ## Старт
 
 Выполните команду для запуска узла:
 
 ```
+docker pull iostio/iost-node
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 

@@ -32,7 +32,7 @@ We refer to `PREFIX` hereafter.
 ### Using *boot* script:
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
+curl https://developers.iost.io/docs/assets/boot.sh | bash
 ```
 
 You might set python executable using environment variable.
@@ -46,7 +46,7 @@ To start, stop or restart the node, change directory to `$PREFIX` and execute: `
 
 ### Manually
 
-#### Before start
+#### Clean data
 
 If you have already run previous version of iServer, make sure the old data has been purged:
 
@@ -54,11 +54,24 @@ If you have already run previous version of iServer, make sure the old data has 
 rm -rf $PREFIX/storage
 ```
 
+#### Config
+
+Fetch latest config:
+
+```
+# get genesis
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX
+
+# get iserver config
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
+```
+
 #### Start
 
 Run the command to start a node:
 
 ```
+docker pull iostio/iost-node
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
