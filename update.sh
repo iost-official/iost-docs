@@ -1,12 +1,13 @@
 set -u
 set -e
 
-last_commit=4539e21a64369d1c84ad897dc2ff92caa53a1ebc
+last_commit=852b9ed7a6dbb2ae36615f1b4c0ddd920e857ce5
 git_root=$(git rev-parse --show-toplevel)
 
 function update_language()
 {
 	language=$1
+	echo update for $language
 	head_dir=website/translated_docs/$language
 	[[ $language = "en" ]] && head_dir=docs
 	if [ ! -d $git_root/$head_dir ]
@@ -40,6 +41,6 @@ function update_language()
 	done
 }
 
-update_language ja
-update_language zh-CN
 update_language en
+update_language zh-CN
+update_language ja
