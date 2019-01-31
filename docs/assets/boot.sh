@@ -89,12 +89,12 @@ do_system_check() {
     _SYS_WARN=0
     _SYS_STOP=0
     _SYS=$(uname)
-    _CPU=$(getconf _NPROCESSORS_ONLN)
-    _STO=$(df -k $PREFIX | awk 'NR==2 {print int($4/1000^2)}')
+    _CPU=$(($(getconf _NPROCESSORS_ONLN)+1))
+    _STO=$(df -k $PREFIX | awk 'NR==2 {print int($4/1000^2)+10}')
     if [ x$_SYS = x"Linux" ]; then
-        _MEM=$(awk '/MemTotal/{print int($2/1000^2)}' /proc/meminfo)
+        _MEM=$(awk '/MemTotal/{print int($2/1000^2)+1}' /proc/meminfo)
     elif [ x$_SYS = x"Darwin" ]; then
-        _MEM=$(sysctl hw.memsize | awk '{print int($2/1000^3)}')
+        _MEM=$(sysctl hw.memsize | awk '{print int($2/1000^3)+1}')
     else
         >&2 echo System not recognized !
     fi
