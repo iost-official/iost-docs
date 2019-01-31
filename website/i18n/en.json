@@ -139,9 +139,6 @@
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "assets/mainnet/README": {
-        "title": "assets/mainnet/README"
-      },
       "md-example": {
         "title": "Markdown example",
         "sidebar_label": "Markdown example"
@@ -620,6 +617,22 @@
       "version-2.4.0-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
+      },
+      "version-2.5.0-Become-Servi-Node": {
+        "title": "Become Servi Node",
+        "sidebar_label": "Become Servi Node"
+      },
+      "version-2.5.0-Configuration": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
+      "version-2.5.0-Deployment": {
+        "title": "Join IOST Testnet",
+        "sidebar_label": "Join IOST Testnet"
+      },
+      "version-2.5.0-API": {
+        "title": "API",
+        "sidebar_label": "API"
       }
     },
     "links": {

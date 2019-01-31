@@ -9,7 +9,7 @@
 set -ue
 
 PREFIX=${PREFIX:="/data/iserver"}
-INET=${PREFIX:="testnet"}
+INET=${INET:="testnet"}
 VERSION=${VERSION:="latest"}
 
 PRODUCER_KEY_FILE=keypair
@@ -24,8 +24,8 @@ _SYS_MIN_CPU=4          # 4 cpu
 _SYS_REC_CPU=8          # 8 cpu
 _SYS_MIN_MEM=8          # 8G ram
 _SYS_REC_MEM=16         # 16G ram
-_SYS_MIN_STO=100        # 100G storage
-_SYS_REC_STO=1000       # 1T storage
+_SYS_MIN_STO=200        # 200G storage
+_SYS_REC_STO=5000       # 5T storage
 
 print_requirements() {
     {
@@ -89,30 +89,38 @@ do_system_check() {
     _SYS_WARN=0
     _SYS_STOP=0
     _SYS=$(uname)
-    _CPU=$(getconf _NPROCESSORS_ONLN)
-    _STO=$(df -k $PREFIX | awk 'NR==2 {print int($4/1000^2)}')
+    _CPU=$(($(getconf _NPROCESSORS_ONLN)+1))
+    _STO=$(df -k $PREFIX | awk 'NR==2 {print int($4/1000^2)+10}')
     if [ x$_SYS = x"Linux" ]; then
-        _MEM=$(awk '/MemTotal/{print int($2/1000^2)}' /proc/meminfo)
+        _MEM=$(awk '/MemTotal/{print int($2/1000^2)+1}' /proc/meminfo)
     elif [ x$_SYS = x"Darwin" ]; then
-        _MEM=$(sysctl hw.memsize | awk '{print int($2/1000^3)}')
+        _MEM=$(sysctl hw.memsize | awk '{print int($2/1000^3)+1}')
     else
         >&2 echo System not recognized !
     fi
 
     if [ $_CPU -lt $_SYS_MIN_CPU ]; then
         _SYS_STOP=1
+        >&2 echo Insufficient CPU cores: $_CPU !!!
     elif [ $_CPU -lt $_SYS_REC_CPU ]; then
         _SYS_WARN=1
     fi
 
     if [ $_MEM -lt $_SYS_MIN_MEM ]; then
         _SYS_STOP=1
+        if [ x$_SYS = x"Linux" ]; then
+            _MEM=$(awk '/MemTotal/{print int($2)}' /proc/meminfo)
+        elif [ x$_SYS = x"Darwin" ]; then
+            _MEM=$(sysctl hw.memsize | awk '{print int($2)}')
+        fi
+        >&2 echo Insufficient ram: $_MEM !!!
     elif [ $_MEM -lt $_SYS_REC_MEM ]; then
         _SYS_WARN=1
     fi
 
     if [ "$_STO" -lt $_SYS_MIN_STO ]; then
         _SYS_STOP=1
+        >&2 echo Insufficient storage: $(df -k $PREFIX | awk 'NR==2 {print int($4)}') !!!
     elif [ $_STO -lt $_SYS_REC_STO ]; then
         _SYS_WARN=1
     fi
@@ -130,11 +138,11 @@ print_servi() {
     {
         echo If you want to register Servi node, exec:
         printf "\n\t"
-        echo "iwallet --account <your-account> --amount_limit '*:unlimited' call 'vote_producer.iost' 'applyRegister' '[\"<your-account>\",\"$PUBKEY\",\"\",\"\",\""$NETWORK_ID"\",true]'"
+        echo "iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '[\"<your-account>\",\"$PUBKEY\",\"\",\"\",\""$NETWORK_ID"\",true]'"
         echo
         echo To set the Servi node online:
         printf "\n\t"
-        echo "iwallet --acount <your-account> --amount_limit '*:unlimited' call 'vote_producer.iost' 'logInProducer' '[\"<your-account>\"]'"
+        echo "iwallet --acount <your-account> call 'vote_producer.iost' 'logInProducer' '[\"<your-account>\"]'"
         echo
         echo See full doc at https://developers.iost.io
         echo

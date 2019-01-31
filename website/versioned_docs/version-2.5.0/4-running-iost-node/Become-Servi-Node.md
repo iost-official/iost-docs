@@ -1,7 +1,8 @@
 ---
-id: Become-Servi-Node
+id: version-2.5.0-Become-Servi-Node
 title: Become Servi Node
 sidebar_label: Become Servi Node
+original_id: Become-Servi-Node
 ---
 
 A Servi Node requires an IOST account, to receive reward, and a full node, to generate blocks.

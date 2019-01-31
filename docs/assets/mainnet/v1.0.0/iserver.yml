@@ -11,7 +11,14 @@ snapshot:
 p2p:
   listenaddr: 0.0.0.0:30000
   seednodes:
-    - /ip4/18.210.100.170/tcp/30000/ipfs/12D3KooWA2QZHXCLsVL9rxrtKPRqBSkQj7mCdHEhRoW8eJtn24ht
+    - /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP   # N. Virginia
+    - /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA    # Seoul
+    - /ip4/13.239.153.239/tcp/30000/ipfs/12D3KooWEavwbgwrgah2sc7pfdJMcEkbEB38DETnE8zwQj8EU1Fg   # Sydney
+    - /ip4/52.197.100.115/tcp/30000/ipfs/12D3KooWGBbN2VBUVWPygcm6AwX8WM8jGXFf4QhCbaKdfAeahePJ   # Tokyo
+    - /ip4/35.182.211.144/tcp/30000/ipfs/12D3KooWQMUkJECpA3cwyN4UaWEHE4bTFkAn8xZUDFchZe8omXk2   # Central, Canada
+    - /ip4/35.157.137.25/tcp/30000/ipfs/12D3KooWDsTP7KxBSj7rKuVKm6J6fbJCC2e77Ftix21nZZXsiCcb    # Frankfurt
+    - /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp     # London
+    - /ip4/35.181.10.219/tcp/30000/ipfs/12D3KooWHjBMcSFxAcCE3kfbuQBSchYbrvt5aRHTRpRFA5x5NYDz    # Paris
   chainid: 1024
   version: 1
   datapath: /var/lib/iserver/p2p/
