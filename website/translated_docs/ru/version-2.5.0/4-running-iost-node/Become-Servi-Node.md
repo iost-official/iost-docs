@@ -1,7 +1,8 @@
 ---
-id: Become-Servi-Node
+id: version-2.5.0-Become-Servi-Node
 title: Станьте Узлом Servi
-sidebar_label: Станьте Узлом Servi  
+sidebar_label: Станьте Узлом Servi
+original_id: Become-Servi-Node
 ---
 
 Для Узла Servi требуется аккаунт IOST для получения вознаграждения и полный узел для генерации блоков.

@@ -1,7 +1,8 @@
 ---
-id: API
+id: version-2.5.0-API
 title: API
 sidebar_label: API
+original_id: API
 ---
 
 

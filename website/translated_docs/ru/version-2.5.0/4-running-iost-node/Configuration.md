@@ -1,7 +1,8 @@
 ---
-id: Configuration
+id: version-2.5.0-Configuration
 title: Конфигурация
 sidebar_label: Конфигурация
+original_id: Configuration
 ---
 
 Эта страница демонстрирует подробную информацию о конфигурации.

@@ -108,4 +108,3 @@ docker exec -it iserver iwallet state
 ```
 
 The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
-
