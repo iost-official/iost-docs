@@ -228,7 +228,7 @@ iwallet --account admin --amount_limit "ram:100000" publish contract/lucky_bet.j
     The transaction hash is: 2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
     Checking transaction receipt...
     SUCCESS!
-    The contract id is Contract2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
+    The contract id is: Contract2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
 
 `ContractXXX` of the last line in output is the contract name, which would be needed if one wants to call this new contract later.
 
