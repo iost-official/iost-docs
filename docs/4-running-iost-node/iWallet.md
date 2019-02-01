@@ -4,9 +4,8 @@ title: Command Line Wallet Tool
 sidebar_label: Command Line Wallet Tool
 ---
 
-`iwallet` is the command line tool for IOST blockchain.
+`iwallet` is the command line tool for IOST blockchain. You can use this tool to connect IOST blockchain to transfer coins, create accounts, query balance or call contracts.
 
-You can use this tool to connect IOST blockchain to transfer coins, create accounts, query balance or call contracts.
 Both `iwallet` and [API](6-reference/API.md) use RPC API inside and they have similar features.
 
 ## Install
@@ -63,6 +62,7 @@ iwallet
 ### Query Account
 
 `iwallet` can be used to query account information including balance, RAM, GAS etc.
+
 Output format will be same as [getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain).
 
 The `--server` flag inside the following command indicates the remote IOST server. If you [launch server locally](4-running-iost-node/LocalServer.md), yon can skip this flag to use default value (localhost:30002) - we will omit this flag in following sections.
@@ -97,7 +97,9 @@ iwallet --server 127.0.0.1:30002 balance xxxx
 
 ### Query Blockchain Information
 
-Query information of blockchain and server node. The output is combination of [getNodeInfo](6-reference/API.md#getnodeinfo) and [getChainInfo](6-reference/API.md#getchaininfo).
+Query information of blockchain and server node.
+
+The output is combination of [getNodeInfo](6-reference/API.md#getnodeinfo) and [getChainInfo](6-reference/API.md#getchaininfo).
 
 ```
 iwallet state
@@ -127,8 +129,8 @@ iwallet state
 
 #### Import Account
 
-An account must be imported before calling any contracts.
-(This command will copy private key to `~/.iwallet/YOUR_ACCOUNT_ID_ed25519`. It is done locally without any interaction with blockchain.)
+An account must be imported before calling any contracts.  
+This command will copy private key to `~/.iwallet/YOUR_ACCOUNT_ID_ed25519`. It is done locally without any interaction with blockchain.
 
 ```
 iwallet account import <account_id> <private_key>
@@ -150,8 +152,8 @@ iwallet --account <account_name> [flags] call <contract_name> <function_name> '[
 
 #### Sample - Transfer token by calling contract
 
-Call function "transfer" of contract "token.iost" by account "admin".
-The last argument of this command is the parameters for function "transfer" which are token type, payer, receiver, amount and optional memo here.
+Call function "transfer" of contract "token.iost" by account "admin".  
+The last argument of this command is the parameters for function "transfer" which are token type, payer, receiver, amount and optional memo.
 
 ```
 iwallet --account admin call 'token.iost' 'transfer' '["iost","admin","lispczz","100",""]'
