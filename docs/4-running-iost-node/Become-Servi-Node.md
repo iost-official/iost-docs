@@ -66,7 +66,7 @@ iwallet --account account000 call ram.iost buy '["account000","account000",200]'
 
 If you don't have enough iost, please contact us.
 
-# Register the servi node
+# Register the Servi Node
 
 Register the Servi Node, i.e. bind the node to your account, using iWallet:
 
@@ -94,6 +94,13 @@ Login your servi node using iWallet:
 
 ```
 iwallet sys plogin --account <your-account>
+```
+
+# View your Servi Node Account Information
+
+If you want to check your servi node account information, you could execute follow command:
+```
+iwallet sys pinfo <your-account>
 ```
 
 # Logout the Servi Node
