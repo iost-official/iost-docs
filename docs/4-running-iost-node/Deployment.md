@@ -8,7 +8,7 @@ The documentation introduces how to setup a running server connecting to IOST te
 
 We are using Docker to deploy an IOST node.
 
-## Machine requirements
+# Machine requirements
 
 If you want to run a full node connected to IOST network, your machine must meet the following requirements:
 
@@ -17,19 +17,19 @@ If you want to run a full node connected to IOST network, your machine must meet
 - Disk: 1TB or more (5TB HDD recommended)
 - Network: access to Internet with port tcp: 30000 opened (If you want to enable rpc for node, please open port 30001, 30002)
 
-## Prerequisites
+# Prerequisites
 
 - Curl (any version you like)
 - Python (any version you like)
 - [Docker 1.13/Docker CE 17.03 or newer](https://docs.docker.com/install)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
-## Start the node
+# Start the node
 
 By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
 We refer to `$PREFIX` hereafter.
 
-### Using *boot* script:
+## Using *boot* script:
 
 You can automatically deploy a full node with the following command:
 
@@ -39,6 +39,9 @@ curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/boot.
 
 You might set python executable using environment variable.
 E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
+
+If you don't install docker, the script will automatically install docker.  
+You need to make sure you are in the docker group, then re-run the boot script.
 
 This script purges directory `$PREFIX` and starts a fresh new full node connected to IOST testnet network.  
 It also generates a keypair for *full node* in order to prepare for generating blocks.  
@@ -55,9 +58,9 @@ docker stop iserver
 docker restart iserver
 ```
 
-### Manually
+## Manually
 
-#### Data
+### Data
 
 If you have already run previous version of iServer, make sure the old data has been purged:
 
@@ -65,7 +68,7 @@ If you have already run previous version of iServer, make sure the old data has 
 rm -rf $PREFIX/storage
 ```
 
-#### Config
+### Config
 
 Fetch latest config:
 
@@ -77,7 +80,7 @@ curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" |
 curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
-#### Run
+### Run
 
 Run the command to start a node:
 
@@ -86,7 +89,7 @@ docker pull iostio/iost-node
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
-## Checking the node
+# Checking the node
 
 The log file is located at `$PREFIX/logs/iost.log`. However, it is disabled by default.
 You can enable it, as long as you remember to delete old log files.
@@ -120,3 +123,42 @@ docker exec -it iserver iwallet state
 
 The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
 
+# Seed Node List
+
+The seed node information of the testnet is as follows:
+
+| Location | GRPC-URL | HTTP-URL | P2P-URL |
+| :------: | :------: | :------: | :-----: |
+| United States | 13.52.105.102:30002 | http://13.52.105.102:30001 | /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE |
+| Japan | 13.115.202.226:30002| http://13.115.202.226:30001 | /ip4/13.115.202.226/tcp/30000/ipfs/12D3KooWHRi93eskqrYzxfToHccmgd4Ng7u2QH1e7Cz3X2M6dHVR |
+| Japan | 54.199.158.64:30002 | http://54.199.158.64:30001 | /ip4/54.199.158.64/tcp/30000/ipfs/12D3KooWKyh6BH5i66g4bBFgbJoNF97jvB1soXSg17zw8Hj1Mq5j |
+
+## GRPC
+If you want to use the GRPC API of testnet, for example:
+
+```
+# Get the node information
+iwallet -s 13.52.105.102:30002 state
+iwallet -s ${GRPC-URL} state
+```
+
+## HTTP
+If you want to use the HTTP API of testnet, for example:
+
+```
+# Get the block information by block height
+curl http://13.52.105.102:30001/getBlockByNumber/3/true
+curl ${HTTP-URL}/getBlockByNumber/3/true
+```
+
+## P2P
+If you want to modify the seed node of the iserver, you could edit the file `/data/iserver/iserver.yml`, for example:
+
+```
+p2p:
+  listenaddr: 0.0.0.0:30000
+  seednodes:
+    - /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE
+    - ${P2P-URL}
+    - ...
+```

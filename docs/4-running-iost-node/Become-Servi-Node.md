@@ -4,11 +4,11 @@ title: Become Servi Node
 sidebar_label: Become Servi Node
 ---
 
-A Servi Node requires an IOST account, to receive reward, and a full node, to generate blocks.
-You need to start the node first, then bind the node to your account.
-Each IOST account can be bound to *at most* one Servi Node.
-Each full node can be bound to *at most* one Servi Node.
-Servi Node signs blocks it generates using the privkey in the config file of iServer.
+A Servi Node requires an IOST account, to receive reward, and a full node, to generate blocks.  
+You need to start the node first, then bind the node to your account.  
+Each IOST account can be bound to *at most* one Servi Node.  
+Each full node can be bound to *at most* one Servi Node.  
+Servi Node signs blocks it generates using the privkey in the config file of iServer.  
 **Your account and full node will have different keypairs.**
 
 # Create IOST account
@@ -51,8 +51,16 @@ See full doc at https://developers.iost.io
 This script will generated a new keypair and network ID for the node. Please set down the **Public key** and **Network ID**.
 
 If you forget them, you can view them as follows:
-- The *keypair* of the node is located at `$PREFIX/keypair`, so is **Public key**.
+- The *keypair* of the node is located at `/data/iserver/keypair`, so is **Public key**.
 - You can get **Network ID** of the node in section `network.id` by the command `curl http://localhost:30001/getNodeInfo`
+
+# IWallet with testnet
+Iwallet will connect to the local node by default. If you want to connect to testnet, please refer to [Seed Node List](4-running-iost-node/Deployment.md#seed-node-list).  
+For example:
+
+```
+iwallet -s ${GRPC-URL} state
+```
 
 # Pledge gas and Buy ram
 
@@ -94,6 +102,23 @@ Login your servi node using iWallet:
 
 ```
 iwallet sys plogin --account <your-account>
+```
+
+# Vote for your Servi Node
+
+If you have enough IOST, you could vote for your servi node by follow command:
+
+```
+iwallet sys vote <your-servi-node-account> 2100000 --account <your-account>
+```
+
+- <your-servi-node-account>: Voted servi node account
+- <your-account>: Voting account
+
+If you want to cancel the vote, you can use the following command:
+
+```
+iwallet sys unvote <your-servi-node-account> 2100000 --account <your-account>
 ```
 
 # View your Servi Node Account Information
