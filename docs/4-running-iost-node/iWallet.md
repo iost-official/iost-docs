@@ -10,7 +10,17 @@ Both `iwallet` and [API](6-reference/API.md) use RPC API inside and they have si
 
 ## Install
 
-You could run `iwallet` and get the following usage information once you finish the steps in [building IOST](4-running-iost-node/Building-IOST.md).
+You should [install golang](4-running-iost-node/Building-IOST.html#install-golang) firstly.
+
+After installing golang, you can install iwallet with the following command:
+
+```
+go get github.com/iost-official/go-iost/cmd/iwallet
+```
+
+If you plan to publish contracts onto the blockchain, you should install [nodejs](https://nodejs.org/en/download/) firstly.
+
+You could run `iwallet` and get the following usage information once you finish the steps above:
 
 ```
 iwallet
