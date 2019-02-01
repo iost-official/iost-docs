@@ -9,45 +9,60 @@ sidebar_label: IOSTテストネットへの参加
 IOSTノードをデプロイするために、ここではDockerを使用しています。
 
 ## マシン要件
-フルノードで接続するテストネットワークを実行する場合は、物理的に次の要件を満たす必要があります。
+IOSTネットワークにフルノードで接続する場合は、物理的に次の要件を満たす必要があります。
 
-CPU：CPUは8コア以上（8コア推奨）
+CPU：CPUは4コア以上（8コア推奨）
 メモリ：メモリは8GB以上（16GB推奨）
-ディスク：ディスクには5TB以上（5TB HDD推奨）
-ネットワーク：インターネットに接続して、ポート30000を開く（30000、30001、30002ポートを開くことを推奨）。
+ディスク：ディスクには1TB以上（5TB HDD推奨）
+ネットワーク：インターネット接続のため、TCPポート30000-30002ポートを開く
+
 
 ## 前提条件
 
-- [Docker 1.13/Docker CE 18.06以上](https://docs.docker.com/install) (旧バージョンはテストしていません)
+- [Docker 1.13/Docker CE 18.06以上](https://docs.docker.com/install)
 - (オプション) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## ノードの開始
 
+デフォルトでは、`/data/iserver`はdataボリュームにマウントされます。これは変更しても構いません。ここでは`PREFIX`を参照します。
+
 ### *boot*スクリプトの使用
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
+curl https://developers.iost.io/docs/assets/boot.sh | bash
 ```
 
+環境変数を使って、Pythonの実行ファイルを設定できます。
+例えば、PythonがインストールされていないUbuntuのために、`curl ... | PYTHON=python3 bash` が使えます。
 このスクリプトは$PREFIXを破棄して、IOSTテストネットネットワークに接続する新しいフルノードを起動します。ブロックを生成する準備として、*プロデューサー*のための鍵ペアを生成します。
+**Serviノード**になりたい場合は、[ここ](4-running-iost-node/Become-Servi-Node.md)に従ってください。
 
-ノードを起動、停止、または再起動するには、ディレクトリを$PREFIXに変更して、docker-compose (start|stop|restart|down) を実行します。
+ノードを起動、停止、または再起動するには、ディレクトリを$PREFIXに変更して、docker-compose (start|stop|restart) を実行します。
 
 ### マニュアル
-#### 事前準備
+#### データのクリア
 
-デフォルトでは、`/data/iserver`はdataボリュームにマウントされます。これは変更しても構いません。ここでは`PREFIX`を参照します。
-
-*もし前のバージョンのiServerを実行しているなら、古いデータを確実に消してください*
+もし前のバージョンのiServerを実行しているなら、古いデータを確実に消してください
 
 ```
 rm -rf $PREFIX/storage
+```
+#### 設定
+
+最新の設定を取得してください。
+
+```
+# get genesis
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX
+# get iserver config
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
 ### 開始
 
 次のコマンドでノードを開始します。
 ```
+docker pull iostio/iost-node
 docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
