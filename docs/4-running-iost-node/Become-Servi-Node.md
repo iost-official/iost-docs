@@ -7,6 +7,7 @@ sidebar_label: Become Servi Node
 A Servi Node requires an IOST account, to receive reward, and a full node, to generate blocks.
 You need to start the node first, then bind the node to your account.
 Each IOST account can be bound to *at most* one Servi Node.
+Each full node can be bound to *at most* one Servi Node.
 Servi Node signs blocks it generates using the privkey in the config file of iServer.
 **Your account and full node will have different keypairs.**
 
@@ -27,7 +28,7 @@ If you do not have an IOST account yet, follow these steps:
 Run the boot script to start a full node. See also [Start the node](4-running-iost-node/Deployment.md).
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | bash
+curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/boot.sh | bash
 ```
 
 If nothing goes wrong, it will outputs something like this:
@@ -45,10 +46,10 @@ To set the Servi node online:
 See full doc at https://developers.iost.io
 ```
 
-This script will generated a new keypair and network ID for the node. Please set down the **Pubkey** and **Network ID**.
+This script will generated a new keypair and network ID for the node. Please set down the **Public key** and **Network ID**.
 
 If you forget them, you can view them as follows:
-- The *keypair* of the node is located at `$PREFIX/keypair`, so is **Pubkey**.
+- The *keypair* of the node is located at `$PREFIX/keypair`, so is **Public key**.
 - You can get **Network ID** of the node in section `network.id` by the command `curl http://localhost:30001/getNodeInfo`
 
 # Pledge gas and Buy ram
@@ -72,7 +73,7 @@ iwallet sys register <pubkey-of-producer> --location <location> --url <website> 
 ```
 
 - `<your-account>`: The account used to register the servi node
-- `<pubkey-of-producer>`: The pubkey of the node
+- `<pubkey-of-producer>`: The public key of the node
 - `<location>`: The location of your full node
 - `<website>`: Your official homepage
 - `<network-ID>`: The network ID of the node

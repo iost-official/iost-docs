@@ -15,7 +15,7 @@ If you want to run a full node connected to IOST network, your machine must meet
 - CPU: 4 cores or more (8 cores recommended)
 - Memory: 8GB or more (16GB recommended)
 - Disk: 1TB or more (5TB HDD recommended)
-- Network: access to Internet with port tcp:30000-30002 opened
+- Network: access to Internet with port tcp: 30000 opened (If you want to enable rpc for node, please open port 30001, 30002)
 
 ## Prerequisites
 
@@ -27,26 +27,37 @@ If you want to run a full node connected to IOST network, your machine must meet
 ## Start the node
 
 By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
-We refer to `PREFIX` hereafter.
+We refer to `$PREFIX` hereafter.
 
 ### Using *boot* script:
 
+You can automatically deploy a full node with the following command:
+
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | bash
+curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/boot.sh | bash
 ```
 
 You might set python executable using environment variable.
 E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
 
-This script purges `$PREFIX` and starts a fresh new full node connected to IOST testnet network.
-It also generates a keypair for *producer* in order to prepare for generating blocks.
+This script purges directory `$PREFIX` and starts a fresh new full node connected to IOST testnet network.  
+It also generates a keypair for *full node* in order to prepare for generating blocks.  
 If you want to be a **Servi Node**, follow next steps [here](4-running-iost-node/Become-Servi-Node.md).
 
-To start, stop or restart the node, change directory to `$PREFIX` and execute: `docker-compose (start|stop|restart)`
+To start, stop or restart the node, you could execute follow command:
+
+```
+# start
+docker start iserver
+# stop
+docker stop iserver
+# restart
+docker restart iserver
+```
 
 ### Manually
 
-#### Clean data
+#### Data
 
 If you have already run previous version of iServer, make sure the old data has been purged:
 
@@ -60,13 +71,13 @@ Fetch latest config:
 
 ```
 # get genesis
-curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX
+curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX/
 
 # get iserver config
 curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
-#### Start
+#### Run
 
 Run the command to start a node:
 
