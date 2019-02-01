@@ -25,11 +25,13 @@ If you do not have an IOST account yet, follow these steps:
 
 # Start a full node
 
-Run the boot script to start a full node. See also [Start the node](4-running-iost-node/Deployment.md).
+Run the boot script to start a full node:
 
 ```
 curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/boot.sh | bash
 ```
+
+If you encounter any problems, you can see the detailed documentation [Start the node](4-running-iost-node/Deployment.md).
 
 If nothing goes wrong, it will outputs something like this:
 
