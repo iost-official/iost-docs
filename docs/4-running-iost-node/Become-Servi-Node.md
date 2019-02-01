@@ -7,8 +7,8 @@ sidebar_label: Become Servi Node
 A Servi Node requires an IOST account, to receive reward, and a full node, to generate blocks.
 You need to start the node first, then bind the node to your account.
 Each IOST account can be bound to *at most* one Servi Node.
-Servi Node signs blocks it generates using the privkey in the config file of iServer.   
-**It's highly recommended to use a different keypair from your account for the Servi Node.**
+Servi Node signs blocks it generates using the privkey in the config file of iServer.
+**Your account and full node will have different keypairs.**
 
 # Create IOST account
 
@@ -19,8 +19,8 @@ If you do not have an IOST account yet, follow these steps:
 - Using the *pubkey* generated to create account by [blockchain explorer](https://explorer.iost.io/applyIOST).
 
 > Do not forget to import your account to iWallet: `iwallet account import $YOUR_ACCOUNT_NAME $YOUR_PRIVATE_KEY`
-
-For safety reason it's recommended to keep your IOST account in a secret place different from the Servi Node.
+>
+> For safety reason it's recommended to keep your IOST account in a secret place different from the Servi Node.
 
 # Start a full node
 
@@ -45,11 +45,11 @@ To set the Servi node online:
 See full doc at https://developers.iost.io
 ```
 
-This script will generated a new keypair for the node. Please set down the **pubkey** and **network ID**.
+This script will generated a new keypair and network ID for the node. Please set down the **Pubkey** and **Network ID**.
 
-The *keypair* of the node is located at `$PREFIX/keypair`, so is **pubkey**.
-
-You can get **network ID** of the node in section `network.id` by the command `curl http://localhost:30001/getNodeInfo`
+If you forget them, you can view them as follows:
+- The *keypair* of the node is located at `$PREFIX/keypair`, so is **Pubkey**.
+- You can get **Network ID** of the node in section `network.id` by the command `curl http://localhost:30001/getNodeInfo`
 
 # Pledge gas and Buy ram
 
@@ -60,6 +60,8 @@ iwallet --account account000 call gas.iost pledge '["account000","account000","5
 # buy ram
 iwallet --account account000 call ram.iost buy '["account000","account000",200]'
 ```
+
+If you don't have enough iost, please contact us.
 
 # Register the servi node
 
