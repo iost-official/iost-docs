@@ -4,245 +4,304 @@ title: Command Line Wallet Tool
 sidebar_label: Command Line Wallet Tool
 ---
 
-iwallet is the command line tool for IOST blockchain.   
-You can use this tool to connect to the blockchain to transfer coins/create accounts/query balance/call contracts.     
-iwallet and [API](6-reference/API.md) use RPC API inside both. They have similar features. 
-  
+`iwallet` is the command line tool for IOST blockchain.
+
+You can use this tool to connect IOST blockchain to transfer coins, create accounts, query balance or call contracts.
+Both `iwallet` and [API](6-reference/API.md) use RPC API inside and they have similar features.
+
 ## Install
-You should [install golang](4-running-iost-node/Building-IOST.html#install-golang) firstly.
 
-After installing golang, you can install iwallet with the following command:
+You could run `iwallet` and get the following usage information once you finish the steps in [building IOST](4-running-iost-node/Building-IOST.md).
+
 ```
-go get github.com/iost-official/go-iost/iwallet
+iwallet
 ```
 
-If you plan to publish contracts onto the blockchain, you should install [nodejs](https://nodejs.org/en/download/) firstly, then run the following command.
+    An IOST RPC client
+
+    Usage:
+      iwallet [command]
+
+    Available Commands:
+      account     KeyPair manager
+      balance     Check the information of a specified account
+      block       Print block info
+      call        Call the method in contracts
+      compile     Generate contract abi
+      help        Help about any command
+      key         Create a key pair
+      publish     Publish a contract
+      receipt     Find receipt
+      save        Save a transaction request with given actions to a file
+      sign        Sign a tx loaded from given file and save the signature as a binary file
+      state       Get blockchain and node state
+      system      Send system contract action to blockchain
+      transaction Find transactions
+
+    Flags:
+          --account string                 which account to use
+          --amount_limit string            amount limit for one transaction (e.g. "iost:300.00|ram:2000" or "*:unlimited" for no limits) (default "*:unlimited")
+          --chain_id uint32                chain id which distinguishes different network (default 1024)
+          --check_result                   check publish/call status after sending to chain (default true)
+          --check_result_delay float32     rpc checking will occur at [checkResultDelay] seconds after sending to chain. (default 3)
+          --check_result_max_retry int32   max times to call grpc to check tx status (default 20)
+          --config string                  configuration file (default $HOME/.iwallet.yaml)
+      -e, --expiration int                 expiration time for a transaction in seconds (default 300)
+      -l, --gas_limit float                gas limit for a transaction (default 1e+06)
+      -p, --gas_ratio float                gas ratio for a transaction (default 1)
+      -h, --help                           help for iwallet
+      -s, --server string                  set server of this client (default "localhost:30002")
+          --sign_algo string               sign algorithm (default "ed25519")
+          --tx_time string                 use the special tx time instead of now, format: 2019-01-22T17:00:39+08:00
+          --use_longest                    get info on longest chain
+      -v, --verbose                        print verbose information
+
+    Use "iwallet [command] --help" for more information about a command.
 
 ## Basic Features
+
 ### Query Account
-iwallet can be used to query account information including balance, RAM, GAS etc.      
-Output format is same as [getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain) .     
-The `--server` flag inside the command indicates the remote IOST server. If you [launch server locally](4-running-iost-node/LocalServer.md)，yon can skip the flag, using the default value (localhost:30002).      
+
+`iwallet` can be used to query account information including balance, RAM, GAS etc.
+Output format will be same as [getAccountInfo API](6-reference/API.md#getaccount-name-by-longest-chain).
+
+The `--server` flag inside the following command indicates the remote IOST server. If you [launch server locally](4-running-iost-node/LocalServer.md), yon can skip this flag to use default value (localhost:30002) - we will omit this flag in following sections.
 
 ```
 iwallet --server 127.0.0.1:30002 balance xxxx
-{
-    "name": "xxxx",
-    "balance": 993939670,
-    "createTime": "0",
-    "gasInfo": {
-        "currentTotal": 2994457,
-        "increaseSpeed": 11,
-        "limit": 3000000,
-        "pledgedInfo": [            {
-                "pledger": "xxxx",
-                "amount": 10
-            },
-            {
-                "pledger": "tttt",
-                "amount": 10
-            }
-        ],
-    },
-    "ramInfo": {
-        "available": "100000"
-    },
-    "permissions": ...
-    "frozenBalances": [
-        {
-            "amount": 30,
-            "time": "1543817610001412000"
-        }
-    ]
-}
 ```
-### Query Blockchain information
-Query information of blockchain and server node. The output is combination of [getNodeInfo](6-reference/API.md#getnodeinfo) and [getChainInfo](6-reference/API.md#getchaininfo).  
 
-```
-iwallet --server 127.0.0.1:30002 state
-{
-    "buildTime": "20181208_161822+0800",
-    "gitHash": "c949172cb8063e076b087d434465ecc4f11c3000",
-    "mode": "ModeNormal",
-    "network": {
-        "id": "12D3KooWK1ALkQ6arLJNd5vc49FLDLaPK931pggFr7X49EA5yhnr",
-        "peerCount": 0,
-        "peerInfo": [
+    {
+        "name": "xxxx",
+        "balance": 993939670,
+        "createTime": "0",
+        "gasInfo": {
+            "currentTotal": 2994457,
+            "increaseSpeed": 11,
+            "limit": 3000000,
+            "pledgedInfo": ...
+        },
+        "ramInfo": {
+            "available": "90000",
+            "used": "10000",
+            "total": "100000"
+        },
+        "permissions": ...
+        "groups": {
+        },
+        "frozenBalances": [
+        ],
+        "voteInfos": [
         ]
     }
-    "netName": "debugnet",
-    "protocolVersion": "1.0",
-    "headBlock": "9408",
-    "headBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
-    "libBlock": "9408",
-    "libBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
-    "witnessList": [
-        "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
-    ]
-}
+
+### Query Blockchain Information
+
+Query information of blockchain and server node. The output is combination of [getNodeInfo](6-reference/API.md#getnodeinfo) and [getChainInfo](6-reference/API.md#getchaininfo).
+
 ```
+iwallet state
+```
+
+    {
+        "buildTime": "20181208_161822+0800",
+        "gitHash": "c949172cb8063e076b087d434465ecc4f11c3000",
+        "mode": "ModeNormal",
+        "network": {
+            "id": "12D3KooWK1ALkQ6arLJNd5vc49FLDLaPK931pggFr7X49EA5yhnr",
+            "peerCount": 0,
+        }
+        "netName": "debugnet",
+        "protocolVersion": "1.0",
+        "chainId": 1024,
+        "headBlock": "9408",
+        "headBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
+        "libBlock": "9408",
+        "libBlockHash": "FKtcg2qgUnfuXNe6Zz6p2CJMLSUjDSSK2PrvzPtpA3jp",
+        "witnessList": [
+            "IOSTfQFocqDn7VrKV7vvPqhAQGyeFU9XMYo5SNn5yQbdbzC75wM7C"
+        ]
+    }
 
 ### Call Contract
+
 #### Import Account
-An account must be imported before calling any contracts.   
+
+An account must be imported before calling any contracts.
+(This command will copy private key to `~/.iwallet/YOUR_ACCOUNT_ID_ed25519`. It is done locally without any interaction with blockchain.)
 
 ```
-# This command will copy private key to ~/.iwallet/YOUR_ACCOUNT_ID_ed25519. It is done locally without any interaction with blockchain.
-iwallet account --import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY
+iwallet account import <account_id> <private_key>
 ```
-#### Command Line Usage
+
+#### Usage - Call contract
 
 ```
-iwallet --account <ACCOUNT_NAME> [other flags] call <CONTRACT_NAME> <ACTION_NAME> '["ARG1",ARG2,...]'
+iwallet --account <account_name> [flags] call <contract_name> <function_name> '["arg1","arg2",...]'
 ```
 
 | Flag  | Description | Default |
 | :----: | :-----: | :------ |
-| server | iserver address to connect  | localhost:30002 |
-| account | who calls the contract | None, needed |
+| account | who calls the contract | *< user specified >* |
 | gas_limit | max gas allowed for the calling | 1000000 |
 | gas_ratio | transaction with bigger gas_ratio will be exectuted sooner | 1.0 |
-| amount_limit | all token amount limits | None, needed. Like iost:300.0&#124;ram:2000. "*:unlimited" means no limit |
+| amount_limit | all token amount limits (e.g. iost:300.0&#124;ram:2000) | \*:unlimited |
+| verbose | print verbose infomation | false |
 
-#### Sample：transfer token
-`admin` call function 'transfer' of contract 'token.iost'    
-The last argument of the command is parameters for 'transfer' the action. They are token type, payer, receiver, amount, and additional info here.   
+#### Sample - Transfer token by calling contract
+
+Call function "transfer" of contract "token.iost" by account "admin".
+The last argument of this command is the parameters for function "transfer" which are token type, payer, receiver, amount and optional memo here.
 
 ```
 iwallet --account admin call 'token.iost' 'transfer' '["iost","admin","lispczz","100",""]'
-sending tx Tx{
-	Time: 1543559175834283000,
-	Publisher: admin,
-	Action:
-		Action{Contract: token.iost, ActionName: transfer, Data: ["iost","admin","lispczz","100",""]}
-    AmountLimit:
-[],
-}
-send tx done
-the transaction hash is: GU4EHg4zE9VHu9A13JEwxqJSVbzij1VoqWGnQR5aV3Dv
-exec tx done.  {
-    "txHash": "GU4EHg4zE9VHu9A13JEwxqJSVbzij1VoqWGnQR5aV3Dv",
-    "gasUsage": 2172,
-    "ramUsage": {
-        "admin": "43"
-    },
-    "statusCode": "SUCCESS",
-    "message": "",
-    "returns": [
-        "[]"
-    ],
-    "receipts": [
-        {
-            "funcName": "token.iost/transfer",
-            "content": "[\"iost\",\"admin\",\"lispczz\",\"100\",\"\"]"
-        }
-    ]
-}
 ```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: CzQi1ro44E6ysVq6o6c6UEqYNrPbN7HruAjewoGfRTBy
+    Checking transaction receipt...
+    SUCCESS!
 
 ### Create Account
-#### Command Line Usage
+
+Creating account would generate a random keypair and save the private key to `~/.iwallet/YOUR_ACCOUNT_ID_ed25519`.
+
+#### Usage - Create account
+
+All [flags for calling contract](#usage-call-contract) are needed since creating new account needs calling contracts.
 
 ```
-iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account --create <new_account_name> [other flags]
+iwallet --account <account_name> [flags] account create <new_account_name>
 ```
 
 | Flag  | Description | Default |
 | :----: | :-----: | :------ |
-| create | new account name  | None, needed |
+| account | who create the new account | *< user specified >* |
 | initial_ram | ram amount bought for new account by creator| 1024 |
 | initial\_gas\_pledge | IOST amount pledged for gas for new account by creator| 10 |
 | initial_balance | IOST amount transferred to new account by creator| 0 |
-Creating new account needs calling contracts, so besides the above flags, all [call](#command-line-usage) flags are also needed.   
+
+#### Sample - Create account
 
 ```
-# After creating account,  random keypair is generated, and private key will be saved to ~/.iwallet/$(new_account_name)_ed25519    
-iwallet --server 127.0.0.1:30002 --account admin --amount_limit "ram:1000|iost:10" account --create lispczz3 --initial_balance 0 --initial_gas_pledge 10 --initial_ram 0
-...
-...
-    "groups": {
-    },
-    "frozenBalances": [
-    ]
-}
-your account private key is saved at:
-/Users/zhangzhuo/.iwallet/lispczz3_ed25519
-create account done
-the iost account ID is: lispczz3
-owner permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
-active permission key: IOSTGdkyjGmhvpM435wvSkPt2m3TVUM6npU8wbRZYcmkdprpvp92K
+iwallet --account admin --amount_limit "ram:1000|iost:10" account create lispczz3 --initial_balance 0 --initial_gas_pledge 10 --initial_ram 0
 ```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: 6519HCdkDpB29FqMeGWQVY82fjicWyjbwdV99CPNeRCW
+    Checking transaction receipt...
+    SUCCESS!
+    Account info of < test1 >:
+    {
+    ...
+    }
+    The IOST account ID is: test1
+    Owner permission key: 7Z9US64vfcyopQpyEwV1FF52HTB8maEacjU4SYeAUrt1
+    Active permission key: 7Z9US64vfcyopQpyEwV1FF52HTB8maEacjU4SYeAUrt1
+    Your account private key is saved at: /Users/iost/.iwallet/lispczz3_ed25519
+
 ### Publish Contract
-To publish javascript contract, first step is to generate abi file, second step is to publish javascript file and abi file onto blockchain.   
+
+To publish a javascript contract, you need to generate abi file firstly, and then publish javascript file and abi file onto blockchain.
+
 #### Generate abi
-Make sure node.js has been installed, and `npm install` inside iwallet/contract folder has been run.
+
+The following command will generate file `example.js.abi`.
+(Note that make sure you have installed `node.js` and already ran the command `npm install` inside folder `iwallet/contract`.)
 
 ```
-# example.js.abi will be generated
 iwallet compile example.js
 ```
 
-Usually abi file generated needed to be adjusted, action parameter type and action amount limit may be adjusted according to your actual usage.
+Usually you need to adjust the abi file that just generated since the parameter type and amount limit of action always need to be adjusted according to your actual usage.
 
 #### Publish Contract
-```
-iwallet --server 127.0.0.1:30002 --account admin --amount_limit  "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
-...
-The contract id is ContractBgHM72pFxE9KbTpQWipvYcNtrfNxjEYdJD7dAEiEXXZh
 
 ```
-`ContractXXX` of last line output is the contract name, which is needed if one wants to call the new uploaded contract later.   
+iwallet --account admin --amount_limit "ram:100000" publish contract/lucky_bet.js contract/lucky_bet.js.abi
+```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: 2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
+    Checking transaction receipt...
+    SUCCESS!
+    The contract id is Contract2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
+
+`ContractXXX` of the last line in output is the contract name, which would be needed if one wants to call this new contract later.
 
 ## Advanced features
+
 ### Query Block
 
+Get information about the block at height 10
+
 ```
-# Get information about block at height 10
 iwallet block --method num 10
-# Get information about block with hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+```
+
+Get information about the block with hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+
+```
 iwallet block --method hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
 ```
+
 ### Query Transaction Information
+
 #### Get Transaction Detail
-`transaction` is same as [getTxByHash API](6-reference/API.md#gettxbyhash-hash])
+
+Output format will be same as [getTxByHash API](6-reference/API.md#gettxbyhash]).
 
 ```
 iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
-{
-    "status": "PACKED",
-    "transaction": {
-        "hash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
-        "time": "1545470082534696000",
-        "expiration": "1545470382534696000",
-        "gasRatio": 1,
-        "gasLimit": 1000000,
-        "delay": "0",
-        "actions": [
-            {
-                "contract": "token.iost",
-                "actionName": "transfer",
-                "data": "[\"iost\",\"admin\",\"admin\",\"10\",\"\"]"
-            }
-        ],
-#
 ```
+
+    {
+        "status": "IRREVERSIBLE",
+        "transaction": {
+            "hash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
+            "time": "1545470082534696000",
+            "expiration": "1545470382534696000",
+            "gasRatio": 1,
+            "gasLimit": 1000000,
+            "delay": "0",
+            "chainId": 1024,
+            "actions": [
+                {
+                    "contract": "token.iost",
+                    "actionName": "transfer",
+                    "data": "[\"iost\",\"admin\",\"admin\",\"10\",\"\"]"
+                }
+            ],
+            "signers": [
+            ],
+            "publisher": "admin",
+            "referredTx": "",
+            "amountLimit": ...
+            "txReceipt": ...
+        }
+    }
+
 #### Get transaction receipt by transaction hash
-`receipt` is same as [getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash)
+
+Output format will be same as [getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash).
 
 ```
 iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
-{
-    "txHash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
-    "gasUsage": 2577,
-    "ramUsage": {
-    },
-    "statusCode": "SUCCESS",
-    "message": "",
-    "returns": [
-        "[]"
-    ],
-    "receipts": [
-    ]
-}
 ```
+
+    {
+        "txHash": "3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx",
+        "gasUsage": 2577,
+        "ramUsage": {
+        },
+        "statusCode": "SUCCESS",
+        "message": "",
+        "returns": [
+            "[]"
+        ],
+        "receipts": [
+        ]
+    }
