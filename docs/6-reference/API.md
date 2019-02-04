@@ -885,7 +885,7 @@ There are three steps to sign a transaction: convert the transaction struct to b
 		}
 	```
     
-	Refer to [go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686) for golang implementation; refer to [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73) for JavaScript implementation.
+	Refer to [go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L668) for golang implementation; refer to [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73) for JavaScript implementation.
     
 * **Calculate the hash of the byte array with sha3 algorithm**
     

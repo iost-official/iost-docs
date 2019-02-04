@@ -52,13 +52,13 @@ $ export IOST_ACCOUNT=admin # replace with your own account name here
 $ iwallet compile hello.js
 $ iwallet --account $IOST_ACCOUNT publish hello.js hello.js.abi
 ...
-The contract id is ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
+The contract id is: ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
 ```
 
 ### Call the Contract First Time
 Now you call the `hello` function inside the contract you just uploaded, you will get 'hello world' as return.   
 ```
-$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+$ iwallet --account $IOST_ACCOUNT -v call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
 ...
     "statusCode": "SUCCESS",
     "message": "",
@@ -97,7 +97,7 @@ iwallet --account $IOST_ACCOUNT publish --update hello.js hello.js.abi ContractE
 ### Call the Contract Second Time
 After the transaction is confirmed, you can call the hello() function via iwallet again and find that the return changes from 'hello world' to 'hello iost'
 ```
-$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+$ iwallet --account $IOST_ACCOUNT -v call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
 ...
     "statusCode": "SUCCESS",
     "message": "",

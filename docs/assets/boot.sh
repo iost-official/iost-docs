@@ -138,11 +138,11 @@ print_servi() {
     {
         echo If you want to register Servi node, exec:
         printf "\n\t"
-        echo "iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '[\"<your-account>\",\"$PUBKEY\",\"\",\"\",\""$NETWORK_ID"\",true]'"
+        echo "iwallet --account <your-account> sys register $PUBKEY --net_id $NETWORK_ID"
         echo
         echo To set the Servi node online:
         printf "\n\t"
-        echo "iwallet --acount <your-account> call 'vote_producer.iost' 'logInProducer' '[\"<your-account>\"]'"
+        echo "iwallet --account <your-account> sys plogin"
         echo
         echo See full doc at https://developers.iost.io
         echo

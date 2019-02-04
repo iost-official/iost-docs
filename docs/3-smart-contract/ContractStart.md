@@ -56,7 +56,7 @@ iwallet -h
 
 In order to complete the test, you need to import the secret key for iwallet. The corresponding key is in the admininfo field of config/genesis.yml.
 ```
-iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 In docker, You shoudl use "./iwallet" instead of "iwallet", which is not installed inside docker image.
 
@@ -104,25 +104,13 @@ iwallet \
  publish helloworld.js helloworld.abi
 ```
 Sample output
-```
-{
-    "txHash": "96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf",
-    "gasUsage": 36361,
-    "ramUsage": {
-        "admin": "356",
-        "system.iost": "148"
-    },
-    "statusCode": "SUCCESS",
-    "message": "",
-    "returns": [
-        "[\"Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf\"]"
-    ],
-    "receipts": [
-    ]
-}
-The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf # This is the contract id of the deployment
 
-```
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: 2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
+    Checking transaction receipt...
+    SUCCESS!
+    The contract id is: Contract2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
 
 Test ABI call
 
@@ -136,24 +124,12 @@ iwallet \
 ```
 
 Output
-```
-Send tx done
-The transaction hash is: GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
-Exec tx done # The following output Tx is executed after TxReceipt
-{
-    "txHash": "GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc",
-    "gasUsage": 33084,
-    "ramUsage": {
-    },
-    "statusCode": "SUCCESS",
-    "message": "",
-    "returns": [
-        "[\"hello, developer\"]" # returned the required string
-    ],
-    "receipts": [
-    ]
-}
-```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: CzQi1ro44E6ysVq6o6c6UEqYNrPbN7HruAjewoGfRTBy
+    Checking transaction receipt...
+    SUCCESS!
 
 After that, you can get TxReceipt at any time by the following command.
 ```
@@ -246,20 +222,12 @@ iwallet \
  call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
 ```
 The result will be
-```
-{
-    "txHash": "GCB9UdAKyT3QdFh5WGujxsyczRLtXX3KShzRsTaVNMns",
-    "gasUsage": 2864,
-	"ramUsage": {
-     },
-     "statusCode": "RUNTIME_ERROR",
-     "message": "running action Action{Contract: token.iost, ActionName: transfer, Data: [\"iost\",\"someone\",\"me\",\"10000.00\",\"trasfer . .. error: invalid account someone",
-     "returns": [
-     ],
-     "receipts": [
-     ]
-}
-```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: 6KY4h4gKHFwuovXZJEDzvPtN9YYcJ5kUFHLf84gktYYu
+    Checking transaction receipt...
+    running action Action{Contract: token.iost, ActionName: transfer, Data: ["iost", "someone", "me". "10000.00", "this... error: prepare contract: error in data: invalid character '.' after array element, ["iost", "someone", "me". "10000.00", "this is steal"]
 
 ## Debugging
 
