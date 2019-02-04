@@ -52,13 +52,13 @@ $ export IOST_ACCOUNT=admin # replace with your own account name here
 $ iwallet compile hello.js
 $ iwallet --account $IOST_ACCOUNT publish hello.js hello.js.abi
 ...
-The contract id is ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
+The contract id is: ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax
 ```
 
 ### 最初のコントラクトの呼び出し
 これで、アップロードしたコントラクト内の`hello`関数を呼び出すことができます。結果として、'hello world'が返ってきます。
 ```
-$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+$ iwallet --account $IOST_ACCOUNT -v call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
 ...
     "statusCode": "SUCCESS",
     "message": "",
@@ -97,7 +97,7 @@ iwallet --account $IOST_ACCOUNT publish --update hello.js hello.js.abi ContractE
 ### ２回目のコントラクト呼び出し
 トランザクションが確認された後は、iwalletを通してhello()関数を呼び出すと、'hello world'が'hello iost'に変わったのがわかります。
 ```
-$ iwallet --account $IOST_ACCOUNT call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
+$ iwallet --account $IOST_ACCOUNT -v call ContractEg5zFjJrSPdgCR5mYXQLfHXripq64q17MuJoaWKTaaax hello "[]"
 ...
     "statusCode": "SUCCESS",
     "message": "",
