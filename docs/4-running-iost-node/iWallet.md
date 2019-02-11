@@ -10,15 +10,13 @@ Both `iwallet` and [API](6-reference/API.md) use RPC API inside and they have si
 
 ## Install
 
-You should [install golang](4-running-iost-node/Building-IOST.html#install-golang) firstly.
-
-After installing golang, you can install iwallet with the following command:
+You need to [install golang](Building-IOST.html#install-golang) firstly before you get `iwallet` by the following command:
 
 ```
 go get github.com/iost-official/go-iost/cmd/iwallet
 ```
 
-If you plan to publish contracts onto the blockchain, you should install [nodejs](https://nodejs.org/en/download/) firstly.
+Please install [Node.js](https://nodejs.org/en/download/) if you want to [publish contracts onto the blockchain](#publish-contract).
 
 You could run `iwallet` and get the following usage information once you finish the steps above:
 
@@ -205,11 +203,11 @@ iwallet --account admin --amount_limit "ram:1000|iost:10" account create lispczz
     The transaction hash is: 6519HCdkDpB29FqMeGWQVY82fjicWyjbwdV99CPNeRCW
     Checking transaction receipt...
     SUCCESS!
-    Account info of < test1 >:
+    Account info of < lispczz3 >:
     {
     ...
     }
-    The IOST account ID is: test1
+    The IOST account ID is: lispczz3
     Owner permission key: 7Z9US64vfcyopQpyEwV1FF52HTB8maEacjU4SYeAUrt1
     Active permission key: 7Z9US64vfcyopQpyEwV1FF52HTB8maEacjU4SYeAUrt1
     Your account private key is saved at: /Users/iost/.iwallet/lispczz3_ed25519
