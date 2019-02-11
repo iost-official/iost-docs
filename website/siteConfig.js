@@ -35,8 +35,8 @@ const siteConfig = {
   algolia: {
     apiKey: '31556a769e30bb94f63be6ddcc49f071',
     indexName: 'iost',
-    algoliaOptions: {   
-      facetFilters: [ "language:LANGUAGE", "version:VERSION" ] 
+    algoliaOptions: {
+      facetFilters: [ "language:LANGUAGE", "version:VERSION" ]
     }
   },
   // For top-level user or org sites, the organization is still the same.
@@ -91,7 +91,12 @@ const siteConfig = {
   },
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
+    '/js/code-block-buttons.js',
+  ],
+  stylesheets: ['/css/code-block-buttons.css'],
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
@@ -103,7 +108,7 @@ const siteConfig = {
   twitterImage: 'img/logo.png',
   twitter: 'true',
   twitterUsername: 'IOSToken',
-  
+
   gaTrackingId: "UA-126034939-1",
   gaGtag: true,
 
