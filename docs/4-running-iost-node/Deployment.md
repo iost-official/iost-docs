@@ -1,10 +1,10 @@
 ---
 id: Deployment
-title: Join IOST Testnet
-sidebar_label: Join IOST Testnet
+title: Join IOST Network
+sidebar_label: Join IOST Network
 ---
 
-The documentation introduces how to setup a running server connecting to IOST testnet, if you just want to setup a local single-server blockchain net for debugging/testing, you may better refer to [Launch Local Server](4-running-iost-node/LocalServer.md)   
+The documentation introduces how to setup a running server connecting to IOST network, if you just want to setup a local single-server blockchain net for debugging/testing, you may better refer to [Launch Local Server](4-running-iost-node/LocalServer.md)   
 
 We are using Docker to deploy an IOST node.
 
@@ -43,7 +43,7 @@ E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
 If you don't install docker, the script will automatically install docker.  
 You need to make sure you are in the docker group, then re-run the boot script.
 
-This script purges directory `$PREFIX` and starts a fresh new full node connected to IOST testnet network.  
+This script purges directory `$PREFIX` and starts a fresh new full node connected to IOST network.  
 It also generates a keypair for *full node* in order to prepare for generating blocks.  
 If you want to be a **Servi Node**, follow next steps [here](4-running-iost-node/Become-Servi-Node.md).
 
@@ -74,10 +74,10 @@ Fetch latest config:
 
 ```
 # get genesis
-curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX/
+curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz" | tar zxC $PREFIX/
 
 # get iserver config
-curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
+curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
 ### Run
@@ -125,16 +125,22 @@ The latest blockchain info is also shown at [blockchain explorer](https://explor
 
 # Seed Node List
 
-The seed node information of the testnet is as follows:
+The seed node information of the mainnet is as follows:
 
 | Location | GRPC-URL | HTTP-URL | P2P-URL |
 | :------: | :------: | :------: | :-----: |
-| United States | 13.52.105.102:30002 | http://13.52.105.102:30001 | /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE |
-| Japan | 13.115.202.226:30002| http://13.115.202.226:30001 | /ip4/13.115.202.226/tcp/30000/ipfs/12D3KooWHRi93eskqrYzxfToHccmgd4Ng7u2QH1e7Cz3X2M6dHVR |
-| Japan | 54.199.158.64:30002 | http://54.199.158.64:30001 | /ip4/54.199.158.64/tcp/30000/ipfs/12D3KooWKyh6BH5i66g4bBFgbJoNF97jvB1soXSg17zw8Hj1Mq5j |
+| US        | 18.209.137.246:30002 | http://18.209.137.246:30001 | /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP |
+| Korea     | 54.180.196.80:30002  | http://54.180.196.80:30001  | /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA  |
+| Australia | 13.239.153.239:30002 | http://13.239.153.239:30001 | /ip4/13.239.153.239/tcp/30000/ipfs/12D3KooWEavwbgwrgah2sc7pfdJMcEkbEB38DETnE8zwQj8EU1Fg |
+| Japan     | 52.197.100.115:30002 | http://52.197.100.115:30001 | /ip4/52.197.100.115/tcp/30000/ipfs/12D3KooWGBbN2VBUVWPygcm6AwX8WM8jGXFf4QhCbaKdfAeahePJ |
+| Canada    | 35.182.211.144:30002 | http://35.182.211.144:30001 | /ip4/35.182.211.144/tcp/30000/ipfs/12D3KooWQMUkJECpA3cwyN4UaWEHE4bTFkAn8xZUDFchZe8omXk2 |
+| Germany   | 35.157.137.25:30002  | http://35.157.137.25:30001  | /ip4/35.157.137.25/tcp/30000/ipfs/12D3KooWDsTP7KxBSj7rKuVKm6J6fbJCC2e77Ftix21nZZXsiCcb  |
+| UK        | 35.176.24.11:30002   | http://35.176.24.11:30001   | /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp   |
+| France    | 35.181.10.219:30002  | http://35.181.10.219:30001  | /ip4/35.181.10.219/tcp/30000/ipfs/12D3KooWHjBMcSFxAcCE3kfbuQBSchYbrvt5aRHTRpRFA5x5NYDz  |
 
 ## GRPC
-If you want to use the GRPC API of testnet, for example:
+
+If you want to use the GRPC API of network, for example:
 
 ```
 # Get the node information
@@ -143,7 +149,8 @@ iwallet -s ${GRPC-URL} state
 ```
 
 ## HTTP
-If you want to use the HTTP API of testnet, for example:
+
+If you want to use the HTTP API of netowrk, for example:
 
 ```
 # Get the block information by block height

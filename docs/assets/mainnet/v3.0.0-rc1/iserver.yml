@@ -1,0 +1,57 @@
+acc:
+  id: visiter00
+  seckey: 21h8pQe7kg4ATH6Krh2BXorAj7E5SvF5KdFiCghUByjFEEUKrL8Fmig331NqdNveoiCwhmuxoWnCV7pdu96epork
+  algorithm: ed25519
+genesis: /var/lib/iserver/genesis
+db:
+  ldbpath: /var/lib/iserver/storage/
+snapshot:
+  enable: false
+  filepath: /var/lib/iserver/storage/snapshot.tar.gz
+p2p:
+  listenaddr: 0.0.0.0:30000
+  seednodes:
+    - /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP   # United States
+    - /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA    # Korea
+    - /ip4/13.239.153.239/tcp/30000/ipfs/12D3KooWEavwbgwrgah2sc7pfdJMcEkbEB38DETnE8zwQj8EU1Fg   # Australia
+    - /ip4/52.197.100.115/tcp/30000/ipfs/12D3KooWGBbN2VBUVWPygcm6AwX8WM8jGXFf4QhCbaKdfAeahePJ   # Japan
+    - /ip4/35.182.211.144/tcp/30000/ipfs/12D3KooWQMUkJECpA3cwyN4UaWEHE4bTFkAn8xZUDFchZe8omXk2   # Canada
+    - /ip4/35.157.137.25/tcp/30000/ipfs/12D3KooWDsTP7KxBSj7rKuVKm6J6fbJCC2e77Ftix21nZZXsiCcb    # Germany
+    - /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp     # England
+    - /ip4/35.181.10.219/tcp/30000/ipfs/12D3KooWHjBMcSFxAcCE3kfbuQBSchYbrvt5aRHTRpRFA5x5NYDz    # France
+  chainid: 1024
+  version: 1
+  datapath: /var/lib/iserver/p2p/
+  inboundConn: 18
+  outboundConn: 12
+  blackPID:
+  blackIP:
+  adminPort: 30005
+rpc:
+  enable: true
+  gatewayaddr: 0.0.0.0:30001
+  grpcaddr: 0.0.0.0:30002
+  trytx: true
+  allowOrigins:
+    - "*"
+log:
+  filelog:
+    path: /var/lib/iserver/logs/
+    level: info
+    enable: false
+  consolelog:
+    level: info
+    enable: true
+  asyncwrite: true
+  enablecontractlog: true
+metrics:
+  pushaddr: pushgateway
+  username:
+  password:
+  enable: false
+  id: mainnet:visiter00
+debug:
+  listenaddr: 127.0.0.1:30003
+version:
+  netname: mainnet
+  protocolversion: "1.0"

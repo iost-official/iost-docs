@@ -54,8 +54,8 @@ If you forget them, you can view them as follows:
 - The *keypair* of the node is located at `/data/iserver/keypair`, so is **Public key**.
 - You can get **Network ID** of the node in section `network.id` by the command `curl http://localhost:30001/getNodeInfo`
 
-# IWallet with testnet
-Iwallet will connect to the local node by default. If you want to connect to testnet, please refer to [Seed Node List](4-running-iost-node/Deployment.md#seed-node-list).  
+# IWallet with IOST network
+Iwallet will connect to the local node by default. If you want to connect to IOST network, please refer to [Seed Node List](4-running-iost-node/Deployment.md#seed-node-list).  
 For example:
 
 ```
