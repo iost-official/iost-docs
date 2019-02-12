@@ -4,66 +4,67 @@ title: Google Compute Platform
 sidebar_label: Google Compute Platform
 ---
 
-
 #
 
-To Signup to Google Compute Platform you will require a Gmail account or a corporate Gmail based account.
+Google Compute Platformにサインアップするには、Gmailアカウントか法人用のGmailベースのアカウントが必要です。
 
-To create a Google Account navigate to https://accounts.google.com/SignUp
+Googleアカウントを作成するには、https://accounts.google.com/SignUp へ移動します。
 
-Once you have a Google Account you can use this to manage a Google Compute Platform https://console.cloud.google.com/compute/
+Googleアカウントを作成したら、
+https://console.cloud.google.com/compute/ でGoogle Compute Platformを管理できます。
 
-You maybe entitled to a Free trial, the trial account has a variety of limitations such as CPU and Storage.
+無料トライアルを受けられるかもしれませんが、トライアルアカウトにはCPUやストレージにさまざまな制限があります。
 
-## Create Virtual Machine
+## 仮想マシンの作成
 
-From the Compute menu you will be able to create a Virtual Machine (VM), if you do not have any existing Virtual Machines you will see the following, otherwise you will see standard *Create Instance*
+Computeメニューで、仮想マシン(VM)を作成できます。仮想マシンが１つもない場合は、次のような画面が表示されます。仮想マシンがある場合は、標準的な*Create Instance*が表示されます。
 
 ![create_instance](assets/4-running-iost-node/GoogleCloudPlatform/create_instance.png)
 
-Click the *Create* button to continue
+*Create*ボタンを押して次に進みます。
 
-Next you will need to give your node a name, Region, Zone and Configure the Size. In the following example we have customized the instance to match the minimum recommeded size which is
+次にノード名、リージョン、ゾーン、設定、サイズを入力します。ここでは、推奨される最小サイズでインスタンスを作成します。
 
-* 8 Cores
-* 16 GB memory
+* 8コア
+* 16 GBメモリ
 
-You should give your instance a name that is distinguisable to you as well as a Region, it is recommended you choose a region that is nearer to your geographical location as this will help decentralize the IOST platform.
+インスタンスには、あなたとリージョンを区別できる名前を付けます。あなたの居る位置に近いリージョンを選ぶことをお勧めします。これは、IOSTプラットフォームが分散にも好都合です。
 
 ![configure_instance](assets/4-running-iost-node/GoogleCloudPlatform/configure_instance.png)
 
 ### Boot Disk
 
-Scroll down until you see *Boot disk*, click *Change* (the default type is Debian GNU/Linux 9). Select *CentOS 7*
+*Boot disk*までスクロールして、*Change*をクリックします。デフォルトは、GNU/Linux 9ですが、*CentOS 7*を選択します。
 
 ![configure_boot_disk](assets/4-running-iost-node/GoogleCloudPlatform/configure_boot_disk.png)
 
-Scroll down to the bottom for Size and change *10* to a minimum of *100*, you can choose more if you prefer and this can be extended in the future if necessary.
+一番下のSizeまでスクロールして、*10*を*100*に変更します。もっと多くしてもいいですし、後で変更することもできます。
 
 ![configure_boot_disk_size](assets/4-running-iost-node/GoogleCloudPlatform/configure_boot_disk_size.png)
 
-Once you have configured these two parameters hit *Select* at the bottom of the page, you are returned to the *New VM instance* main page and will see the following
+２つのパラメータを設定して、ページ下部の*Select*をクリックすると、*New VM instance*のメインページに戻って次のように表示されます。
 
 ![configure_boot_disk_complete](assets/4-running-iost-node/GoogleCloudPlatform/configure_boot_disk_complete.png)
 
 
-### Firewall
+### ファイアーウォール
 
-From the initial creation of the instance you are not able to add the necessary firewall rules, this will be done after the server is online
+インスタンスを最初に作成するときには、必要なファイアーウォールのルール設定ができませんので、オンラインになった後で、設定します。
 
 
-### Management
+### 管理
 
-Just below the Firewall section you will see the *Management, security, disks, networking, sole tenancy* , click on this to show more
+ファイアーウォールセクションのすぐ下に、*Management, security, disks, networking, sole tenancy*が表示されています。これをクリックすると、詳細が表示されます。
 
 ![management](assets/4-running-iost-node/GoogleCloudPlatform/management.png)
 
 
-From the Management tab you will be able to create an Automation script, this helps to simplify some of your work, see https://cloud.google.com/compute/docs/startupscript for more information
+Managementタブから、Automationスクリプトが作成できます。これを使うと作業の一部を自動化できます。詳細については、
+https://cloud.google.com/compute/docs/startupscript を参照してください。
 
-Please refer to [Deployment Docker Centos](4-running-iost-node/Deployment-Docker-Centos.md.md) for where this script is derived from
+このスクリプトの派生元については、[CentOSでのDockerによるデプロイ](Deployment-Docker-Centos.md)を参照してください。
 
-Please note this script also attempts to attach your data disk, this script is not intended to be run multiple times , please **Remove it** after first initialization.
+このスクリプトは、データディスクもアタッチしようとしますので気をつけてください。このスクリプトはすく数回実行できるようにはなっていませんので、最初の初期化後に、**削除**してください。 
 
 ```
 #! /bin/bash
@@ -199,7 +200,7 @@ EOF
 cd /data/docker
 docker-compose up -d
 ```
-Once you populate this form it will look like
+これをAutomationのフォームに入力すると、次のようになります。
 
 ![mangement_automation](assets/4-running-iost-node/GoogleCloudPlatform/management_automation.png)
 
@@ -207,76 +208,75 @@ Once you populate this form it will look like
 
 ### Disks
 
-Navigate to Disks tab and click *Add new disk*
+Disksタブに移動して、*Add new disk*をクリックします。
 
 ![disks_add_disk](assets/4-running-iost-node/GoogleCloudPlatform/disks_add_disk.png)
 
-Next specify a Name and Size, please note that you will not be able to create disks in your region over *2048 GB if you are on a trial account* or without requesting a quota increase.
+次に名前とサイズを指定します。トライアルアカウントの場合は、*クォータの増加をしないと、2048GBを超えることはできません。*
 
 ![disks_configure](assets/4-running-iost-node/GoogleCloudPlatform/disks_configure.png)
 
-At this point you can press the *Create* button at the bottom of the page to initiate the deployment of the virtual machine
+この時点で、ページの下部にある*Create*ボタンを押すと、仮想マシンのデプロイが開始します。
 
 
-## Firewall
+## ファイアーウォール
 
-Click on the name of your instance, this will bring you to *VM instance details* page , click the 3 little dots and click *Network Details* , on the left navigate to *Firewall rules*
+インスタンス名をクリックすると、*VM instance details*に移動します。３つの小さな点をクリックして、*Network Details*をクリックします。そして、左側の*Firewall rules*に移動します。
 
-Click on *Create Firewall Rule* , give the rule a name
+*Create Firewall Rule*をクリックして、ルール名を入れます。
 
 ![firewall_name](assets/4-running-iost-node/GoogleCloudPlatform/firewall_name.png)
 
-Next you must specify the Target, Source and Destination ports, you could specify the target specifically being the service acccount linked to your current instance (more secure) but this example opens it up for all VM's in the VPC for simplicity.
+次に、Target、Source、Destinationの各ポートを指定します。ターゲットを現在のインスタンスにリンクされているサービスアカウントにすることができます（より安全）。この例では、単純にVPCのすべてのVMに対してオープンになっています。
 
 ![firewal_ports](assets/4-running-iost-node/GoogleCloudPlatform/firewall_ports.png)
 
-Click Create and you should now see the following rule
+Createをクリックすると、次のルールが表示されます。
 
 ![verify_ssh](assets/4-running-iost-node/GoogleCloudPlatform/firewall_confirm.png)
 
-To get back to your VM instance you must now click on the 3 lines beside *Google Cloud Platform* and navigate to *Compute Engine* , *VM Instannces*
+VMインスタンスに戻るには、Google Cloud Platformの横の三つの横線をクリックして、Compute EngineのVM Instanncesに移動します。
 
-## Verify Instance
+## インスタンスの確認
 
-From the Compute console you will now see your node running, it will display your internal and external IP as well as option to connect via SSH, select *Open in browser window* which will connect from within the Google Compute Platform directly without the need to open SSH port to the Internet or to a defined IP.
+Computeのコンソールでノードが実行されているのがわかります。内部IPと外部IP、SSH接続のオプションが表示されています。*Open in browser window*を選択するとGoogle Compute Platform内で、インターネットや定義されたIP向けの直接SSHポートを開くことなく、接続ができます。
 
 ![verify_ssh](assets/4-running-iost-node/GoogleCloudPlatform/verify_ssh.png)
 
-From the console you can become root and check some logs
+コンソールでrootになって、いくつかのログをチェックすることもできます。
 ```
 sudo su - 
 docker ps
 tail -f /data/iserver/logs/iost.log
 ```
-You should see blocks syncing
+ブロックが同期しているのを見ることができます。
 ![verify_server](assets/4-running-iost-node/GoogleCloudPlatform/verify_server.png)
 
 
-You may need to restart docker container if it was started before you applied the firewall rules in the VPC. Ensure you are in directory where docker-compose.yml exists.
+VPCでファイアウォールのルールを適用する前にDockerコンテナを起動した場合は、再起動する必要があります。docker-compose.ymlがあるディレクトリにいることを確認してください。
 ```
 docker-compose restart iserver
 ```
 
-You may also need to change your account number in /data/iserver/iserver.yml if you are running a Servi Node
+Serviノードを実行している場合は、/data/iserver/iserver.ymlのアカウント番号を変更する必要があるかもしれません。
 
-
-To check your node is syncing run the following command look for the *headBlock* being increased
+ノードが同期していることを確認するには、次のコマンドを実行して*headBlock*の値が増えているかを確認します。
 ``
 docker exec -ti 1234abcd bash
 ./iwallet state
 ```
 
-To check your node is up query a seednode and look for your public ip
+ノードが実行中かどうかをチェックするには、シードノードに問い合わせて、パブリックIPを探します。
 ```
 docker exec -ti 1234abcd bash
 ./iwallet state -s 35.176.127.71:30002 | grep 35.246.82.51
 ``
 
-The following output should be visible , ensure your port shows 30000
+次の出力が得られます。ポートが30000であることを確認します。
 
 ![verify_node](assets/4-running-iost-node/GoogleCloudPlatform/verify_server.png)
 
-Remotely from another server you should also be able to retrieve a socket connection running telnet
+別サーバーからリモートで接続しているなら、telnetを実行しているソケット接続を取得できます。
 
 ```
 telnet 35.246.82.51 30000

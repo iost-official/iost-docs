@@ -879,7 +879,7 @@ hash                |string     |トランザクションハッシュ
 		}
 	```
         
-    Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686)を参照してください。JavaScript実装については、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73)を参照してください。
+    Go言語実装については、[go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L668)を参照してください。JavaScript実装については、[iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73)を参照してください。
     
 * **SHA3アルゴリズムでバイト配列のハッシュを計算**
     

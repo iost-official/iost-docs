@@ -37,7 +37,7 @@ Dockerを開始して、Docker環境に入ります。ローカルテストノ�
 ```
 docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
 docker ps # the last column of the output is the docker container name, which will be used in next command
-docker exec -it <コンテナ名> /bin/bash # you will enter docker
+docker exec -it <container_name> /bin/bash # you will enter docker
 ./iwallet -h
 ```
 
@@ -57,7 +57,7 @@ iwallet -h
 
 テストをするには、秘密鍵をiwalletにインポートする必要があります。関連する鍵は、config/genesis.yml のadmininfoフィールドにあります。
 ```
-iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 Dockerでは、Dockerイメージ内にインストールされていない"iwallet"の代わりに"./iwallet"を使用する必要があります。
 
@@ -107,27 +107,16 @@ iwallet \
  publish helloworld.js helloworld.abi
 ```
 実行例
-```
-{
-    "txHash": "96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf",
-    "gasUsage": 36361,
-    "ramUsage": {
-        "admin": "356",
-        "system.iost": "148"
-    },
-    "statusCode": "SUCCESS",
-    "message": "",
-    "returns": [
-        "[\"Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf\"]"
-    ],
-    "receipts": [
-    ]
-}
-The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf # This is the contract id of the deployment
 
-```
 
-ABI呼び出しのテストは次のようにします。
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: 2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
+    Checking transaction receipt...
+    SUCCESS!
+    The contract id is: Contract2xC6ziTqXaat7dsrya9pHog6NEEAMgBMKWcMv5YNDEpa
+
+Test ABI call
 
 ```
 iwallet \
@@ -139,26 +128,15 @@ iwallet \
 ```
 
 出力
-```
-send tx done
-the transaction hash is: GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
-exec tx done # The following output Tx is executed after txReceipt
-{
-    "txHash": "GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc",
-    "gasUsage": 33084,
-    "ramUsage": {
-    },
-    "statusCode": "SUCCESS",
-    "message": "",
-    "returns": [
-        "[\"hello, developer\"]" # returned the required string
-    ],
-    "receipts": [
-    ]
-}
-```
 
-この後、レシートtxReceiptはいつでも次のようにして取得できます。
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: CzQi1ro44E6ysVq6o6c6UEqYNrPbN7HruAjewoGfRTBy
+    Checking transaction receipt...
+    SUCCESS!
+
+その後、いつでも次のコマンドでTxReceipt(レシート)を取得できます。
+
 ```
 iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
@@ -248,26 +226,18 @@ iwallet \
  call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
 ```
 この結果は次のようになります。
-```
-{
-    "txHash": "GCB9UdAKyT3QdFh5WGujxsyczRLtXX3KShzRsTaVNMns",
-    "gasUsage": 2864,
-	"ramUsage": {
-     },
-     "statusCode": "RUNTIME_ERROR",
-     "message": "running action Action{Contract: token.iost, ActionName: transfer, Data: [\"iost\",\"someone\",\"me\",\"10000.00\",\"trasfer . .. error: invalid account someone",
-     "returns": [
-     ],
-     "receipts": [
-     ]
-}
-```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: 6KY4h4gKHFwuovXZJEDzvPtN9YYcJ5kUFHLf84gktYYu
+    Checking transaction receipt...
+    running action Action{Contract: token.iost, ActionName: transfer, Data: ["iost", "someone", "me". "10000.00", "this... error: prepare contract: error in data: invalid character '.' after array element, ["iost", "someone", "me". "10000.00", "this is steal"]
 
 ## デバッグ
 
 上記のように、最初にローカルノードを開始します。Dockerなら、次のコマンドでログを表示することができます。
 ```
-Docker ps -f <コンテナID>
+Docker ps -f <container>
 ```
 
 この時点で、console.log()を追加することでコードに必要なログを追加できます。以下はストレージサンプルの実行中に出力されたログです。
