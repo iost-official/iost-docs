@@ -17,7 +17,7 @@ If you do not have an IOST account yet, follow these steps:
 
 - [Install iWallet](4-running-iost-node/iWallet.md#install)
 - Generate a *keypair* using iWallet: `iwallet key`
-- Using the *pubkey* generated to create account by [blockchain explorer](https://explorer.iost.io/applyIOST).
+- Using the *pubkey* generated to create account by [here](https://explorer.iost.io/applyIOST) (Please contact us if you have any problems)
 
 > Do not forget to import your account to iWallet: `iwallet account import $YOUR_ACCOUNT_NAME $YOUR_PRIVATE_KEY`
 >

@@ -140,7 +140,7 @@ The seed node information of the mainnet is as follows:
 
 ## GRPC
 
-If you want to use the GRPC API of network, for example:
+If you want to use the GRPC API of IOST network, for example:
 
 ```
 # Get the node information
@@ -150,7 +150,7 @@ iwallet -s ${GRPC-URL} state
 
 ## HTTP
 
-If you want to use the HTTP API of netowrk, for example:
+If you want to use the HTTP API of IOST netwwrk, for example:
 
 ```
 # Get the block information by block height
