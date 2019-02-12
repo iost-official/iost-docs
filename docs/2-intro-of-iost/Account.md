@@ -86,7 +86,7 @@ User0, perm4		|key8			|false		|Can be implemented when calculating permission gr
 
 Account management is based on the contract of `auth.iost`. The ABI is as follows:
 
-```
+```js
 {
   "lang": "javascript",
   "version": "1.0.0",
@@ -143,7 +143,7 @@ Account name are only valid with `[a-z0-9_]`, with a length between 5 and 11. Pe
 
 Normally, accounts will need to deposit IOST upon application, or the account may not be used. One way to do this is with `iost.js`:
 
-```
+```js
 newAccount(name, ownerkey, activekey, initialRAM, initialGasPledge) {
     const t = new Tx(this.config.gasPrice, this.config.gasLimit, this.config.delay);
     t.addAction("iost.auth", "SignUp", JSON.stringify([name, ownerkey, activekey]));

@@ -37,13 +37,14 @@ If nothing goes wrong, it will outputs something like this:
 
 ```
 ...
+
 If you want to register Servi node, exec:
 
-        iwallet sys register <pubkey> --net_id <network-id> --account <your-account>
+        iwallet system register $PUBKEY --account <your-account>
 
 To set the Servi node online:
 
-        iwallet sys plogin --acount <your-account>
+        iwallet system producer-login --acount <your-account>
 
 See full doc at https://developers.iost.io
 ```
@@ -66,10 +67,8 @@ iwallet -s ${GRPC-URL} state
 
 If you don't have enough gas and ram, you can pledge gas and buy ram with the following command:
 ```
-# pledge gas
-iwallet --account account000 call gas.iost pledge '["account000","account000","50"]'
-# buy ram
-iwallet --account account000 call ram.iost buy '["account000","account000",200]'
+iwallet system gas-pledge 50 --acount <your-account>
+iwallet system ram-buy 200 --acount <your-account>
 ```
 
 If you don't have enough iost, please contact us.
@@ -79,7 +78,7 @@ If you don't have enough iost, please contact us.
 Register the Servi Node, i.e. bind the node to your account, using iWallet:
 
 ```
-iwallet sys register <pubkey-of-producer> --location <location> --url <website> --net_id <network-ID> --account <your-account>
+iwallet system register <pubkey-of-producer> --location <location> --url <website> --net_id <network-ID> --account <your-account>
 ```
 
 - `<your-account>`: The account used to register the servi node
@@ -91,7 +90,7 @@ iwallet sys register <pubkey-of-producer> --location <location> --url <website> 
 E.g.
 
 ```
-iwallet sys register 6sNQa7PV2SFzqCBtQUcQYJGGoU7XaB6R4xuCQVXNZe6b --location Singapore --url https://iost.io/ --net_id 12D3KooWA2QZHXCLsVL9rxrtKPRqBSkQj7mCdHEhRoW8eJtn24ht --account iost
+iwallet system register 6sNQa7PV2SFzqCBtQUcQYJGGoU7XaB6R4xuCQVXNZe6b --location Singapore --url https://iost.io/ --net_id 12D3KooWA2QZHXCLsVL9rxrtKPRqBSkQj7mCdHEhRoW8eJtn24ht --account iost
 ```
 
 # Login the Servi Node
@@ -101,7 +100,7 @@ When a Servi Node receives more than 2.1 million votes and has already logged in
 Login your servi node using iWallet:
 
 ```
-iwallet sys plogin --account <your-account>
+iwallet system producer-login --account <your-account>
 ```
 
 # Vote for your Servi Node
@@ -109,7 +108,7 @@ iwallet sys plogin --account <your-account>
 If you have enough IOST, you could vote for your servi node by follow command:
 
 ```
-iwallet sys vote <your-servi-node-account> 2100000 --account <your-account>
+iwallet system vote <your-servi-node-account> 2100000 --account <your-account>
 ```
 
 - <your-servi-node-account>: Voted servi node account
@@ -118,14 +117,14 @@ iwallet sys vote <your-servi-node-account> 2100000 --account <your-account>
 If you want to cancel the vote, you can use the following command:
 
 ```
-iwallet sys unvote <your-servi-node-account> 2100000 --account <your-account>
+iwallet system unvote <your-servi-node-account> 2100000 --account <your-account>
 ```
 
 # View your Servi Node Account Information
 
 If you want to check your servi node account information, you could execute follow command:
 ```
-iwallet sys pinfo <your-account>
+iwallet system producer-info --account <your-account>
 ```
 
 # Logout the Servi Node
@@ -133,5 +132,5 @@ iwallet sys pinfo <your-account>
 If you want to temporarily stop your node or not want to generate blocks, you could logout your Servi Node using iWallet:
 
 ```
-iwallet sys plogout --account <your-account>
+iwallet system producer-logout --account <your-account>
 ```
