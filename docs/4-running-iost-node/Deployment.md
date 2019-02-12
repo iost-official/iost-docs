@@ -144,7 +144,7 @@ If you want to use the GRPC API of IOST network, for example:
 
 ```
 # Get the node information
-iwallet -s 13.52.105.102:30002 state
+iwallet -s 18.209.137.246:30002 state
 iwallet -s ${GRPC-URL} state
 ```
 
@@ -154,7 +154,7 @@ If you want to use the HTTP API of IOST netwwrk, for example:
 
 ```
 # Get the block information by block height
-curl http://13.52.105.102:30001/getBlockByNumber/3/true
+curl http://18.209.137.246:30001/getBlockByNumber/3/true
 curl ${HTTP-URL}/getBlockByNumber/3/true
 ```
 
@@ -165,7 +165,7 @@ If you want to modify the seed node of the iserver, you could edit the file `/da
 p2p:
   listenaddr: 0.0.0.0:30000
   seednodes:
-    - /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE
+    - /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP
     - ${P2P-URL}
     - ...
 ```
