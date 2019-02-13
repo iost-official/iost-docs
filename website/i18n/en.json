@@ -78,8 +78,8 @@
         "sidebar_label": "Configuration"
       },
       "4-running-iost-node/Deployment": {
-        "title": "Join IOST Testnet",
-        "sidebar_label": "Join IOST Testnet"
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
       },
       "4-running-iost-node/Google-Compute-Platform": {
         "title": "Google Compute Platform",
@@ -631,6 +631,42 @@
         "sidebar_label": "Join IOST Testnet"
       },
       "version-2.5.0-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-3.0.0-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-3.0.0-ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-3.0.0-Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
+      "version-3.0.0-Become-Servi-Node": {
+        "title": "Become Servi Node",
+        "sidebar_label": "Become Servi Node"
+      },
+      "version-3.0.0-Configuration": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
+      "version-3.0.0-Deployment": {
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
+      },
+      "version-3.0.0-Google-Compute-Platform": {
+        "title": "Google Compute Platform",
+        "sidebar_label": "Google Compute Platform"
+      },
+      "version-3.0.0-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-3.0.0-API": {
         "title": "API",
         "sidebar_label": "API"
       }
