@@ -5,7 +5,7 @@
     "previous": "Previous",
     "tagline": "IOST docs",
     "docs": {
-      "1-getting-started/doc1": {
+      "1-getting-started/Overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
       },
@@ -49,9 +49,9 @@
         "title": "Generate Receipt in Smart Contract",
         "sidebar_label": "Generate Receipt in Smart Contract"
       },
-      "3-smart-contract/How-to-write-a-smart-contract": {
-        "title": "IOST BlockChain API",
-        "sidebar_label": "IOST BlockChain API"
+      "3-smart-contract/IOST-Blockchain-API": {
+        "title": "IOST Blockchain API",
+        "sidebar_label": "IOST Blockchain API"
       },
       "3-smart-contract/Smart-Contract-Development-Toolkit": {
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
@@ -139,10 +139,6 @@
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "md-example": {
-        "title": "Markdown example",
-        "sidebar_label": "Markdown example"
-      },
       "version-1.0.0-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
@@ -218,10 +214,6 @@
       "version-1.0.4-Design-Tech-data": {
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
-      },
-      "version-1.0.4-md-example": {
-        "title": "Markdown example",
-        "sidebar_label": "Markdown example"
       },
       "version-1.0.5-Smart-contract": {
         "title": "Smart Contract",
@@ -634,13 +626,61 @@
         "title": "API",
         "sidebar_label": "API"
       },
+      "version-3.0.0-Overview": {
+        "title": "Overview",
+        "sidebar_label": "Overview"
+      },
+      "version-3.0.0-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
       "version-3.0.0-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
+      "version-3.0.0-Database": {
+        "title": "Database",
+        "sidebar_label": "Database"
+      },
+      "version-3.0.0-Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
+      "version-3.0.0-Network-layer": {
+        "title": "Network layer",
+        "sidebar_label": "Network layer"
+      },
+      "version-3.0.0-Smart-contract": {
+        "title": "Smart Contract",
+        "sidebar_label": "Smart Contract"
+      },
+      "version-3.0.0-VM": {
+        "title": "VM",
+        "sidebar_label": "VM"
+      },
+      "version-3.0.0-Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
       "version-3.0.0-ContractStart": {
         "title": "Smart Contract Quick Start",
         "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-3.0.0-Generate-Receipt": {
+        "title": "Generate Receipt in Smart Contract",
+        "sidebar_label": "Generate Receipt in Smart Contract"
+      },
+      "version-3.0.0-IOST-Blockchain-API": {
+        "title": "IOST Blockchain API",
+        "sidebar_label": "IOST Blockchain API"
+      },
+      "version-3.0.0-Smart-Contract-Development-Toolkit": {
+        "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
+        "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
+      },
+      "version-3.0.0-Token": {
+        "title": "Create Token",
+        "sidebar_label": "Create Token"
       },
       "version-3.0.0-Update-Contract": {
         "title": "Update Contract",
@@ -649,6 +689,10 @@
       "version-3.0.0-Become-Servi-Node": {
         "title": "Become Servi Node",
         "sidebar_label": "Become Servi Node"
+      },
+      "version-3.0.0-Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
       },
       "version-3.0.0-Configuration": {
         "title": "Configuration",
@@ -666,9 +710,52 @@
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
+      "version-3.0.0-LocalServer": {
+        "title": "Launch Local Server",
+        "sidebar_label": "Launch Local Server"
+      },
+      "version-3.0.0-Metrics": {
+        "title": "Metrics",
+        "sidebar_label": "Metrics"
+      },
+      "version-3.0.0-LuckyBet": {
+        "title": "LuckyBet Example",
+        "sidebar_label": "LuckyBet Example"
+      },
       "version-3.0.0-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-3.0.0-EconContract": {
+        "title": "Economic Contract",
+        "sidebar_label": "Economic Contract"
+      },
+      "version-3.0.0-GasChargeTable": {
+        "title": "Gas Charge Table",
+        "sidebar_label": "Gas Charge Table"
+      },
+      "version-3.0.0-SystemContract": {
+        "title": "SystemContract"
+      },
+      "version-3.0.0-TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
+      },
+      "version-3.0.0-Blockchain-class": {
+        "title": "Blockchain",
+        "sidebar_label": "Blockchain"
+      },
+      "version-3.0.0-IOST-class": {
+        "title": "IOST",
+        "sidebar_label": "IOST"
+      },
+      "version-3.0.0-KeyPair-class": {
+        "title": "KeyPair",
+        "sidebar_label": "KeyPair"
+      },
+      "version-3.0.0-Transaction-class": {
+        "title": "Transaction",
+        "sidebar_label": "Transaction"
       }
     },
     "links": {
@@ -687,13 +774,13 @@
       "IOST Tech Internals": "IOST Tech Internals",
       "First Category": "First Category",
       "Introduction of IOST blockchain": "Introduction of IOST blockchain",
+      "Lucky Bet": "Lucky Bet",
       "Example: Lucky Bet": "Example: Lucky Bet",
-      "IOST.js": "IOST.js",
-      "Lucky Bet": "Lucky Bet"
+      "IOST.js": "IOST.js"
     }
   },
   "pages-strings": {
-    "Learn more using the [documentation on this site.](/test-site/docs/en/doc1.html)|no description given": "Learn more using the [documentation on this site.](/test-site/docs/en/doc1.html)",
+    "Learn more using the [documentation on this site.](/test-site/docs/en/Overview.html)|no description given": "Learn more using the [documentation on this site.](/test-site/docs/en/Overview.html)",
     "Browse Docs|no description given": "Browse Docs",
     "Ask questions about the documentation and project|no description given": "Ask questions about the documentation and project",
     "Join the community|no description given": "Join the community",

@@ -1,7 +1,7 @@
 {
   "docs": {
     "Getting started": [
-      "1-getting-started/doc1",
+      "1-getting-started/Overview",
       "1-getting-started/Quickstart"
     ],
     "IOST Design and Concepts": [
@@ -12,7 +12,7 @@
     ],
     "Smart Contract": [
       "3-smart-contract/ContractStart",
-      "3-smart-contract/How-to-write-a-smart-contract",
+      "3-smart-contract/IOST-Blockchain-API",
       "3-smart-contract/Update-Contract",
       "3-smart-contract/Generate-Receipt",
       "3-smart-contract/Token"

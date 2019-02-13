@@ -45,8 +45,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: '1-getting-started/doc1', label: 'Docs'},
-    // {doc: 'doc4', label: 'API'},
+    {doc: '1-getting-started/Overview', label: 'Docs'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
     // {href: "https://iost.io/#roadmap", label: 'Roadmap', external: true},

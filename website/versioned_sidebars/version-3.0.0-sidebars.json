@@ -1,0 +1,56 @@
+{
+  "version-3.0.0-docs": {
+    "Getting started": [
+      "version-3.0.0-1-getting-started/Overview",
+      "version-3.0.0-1-getting-started/Quickstart"
+    ],
+    "IOST Design and Concepts": [
+      "version-3.0.0-2-intro-of-iost/Account",
+      "version-3.0.0-2-intro-of-iost/Vote",
+      "version-3.0.0-2-intro-of-iost/Economic-model",
+      "version-3.0.0-2-intro-of-iost/Smart-contract"
+    ],
+    "Smart Contract": [
+      "version-3.0.0-3-smart-contract/ContractStart",
+      "version-3.0.0-3-smart-contract/IOST-Blockchain-API",
+      "version-3.0.0-3-smart-contract/Update-Contract",
+      "version-3.0.0-3-smart-contract/Generate-Receipt",
+      "version-3.0.0-3-smart-contract/Token"
+    ],
+    "Running IOST node": [
+      "version-3.0.0-4-running-iost-node/LocalServer",
+      "version-3.0.0-4-running-iost-node/Building-IOST",
+      "version-3.0.0-4-running-iost-node/iWallet",
+      "version-3.0.0-4-running-iost-node/Deployment",
+      "version-3.0.0-4-running-iost-node/Become-Servi-Node",
+      "version-3.0.0-4-running-iost-node/Google-Compute-Platform",
+      "version-3.0.0-4-running-iost-node/Metrics"
+    ],
+    "Examples": [
+      "version-3.0.0-5-lucky-bet/LuckyBet"
+    ],
+    "Reference": [
+      "version-3.0.0-6-reference/API",
+      "version-3.0.0-6-reference/SystemContract",
+      "version-3.0.0-6-reference/EconContract",
+      "version-3.0.0-6-reference/TokenContract",
+      "version-3.0.0-6-reference/GasChargeTable"
+    ],
+    "IOST Javascript SDK": [
+      "version-3.0.0-7-iost-js/IOST-class",
+      "version-3.0.0-7-iost-js/Blockchain-class",
+      "version-3.0.0-7-iost-js/KeyPair-class",
+      "version-3.0.0-7-iost-js/Transaction-class"
+    ],
+    "IOST Tech Internals": [
+      "version-3.0.0-2-intro-of-iost/VM",
+      "version-3.0.0-2-intro-of-iost/Database",
+      "version-3.0.0-2-intro-of-iost/Network-layer"
+    ]
+  },
+  "version-3.0.0-docs-other": {
+    "First Category": [
+      "version-3.0.0-md-example"
+    ]
+  }
+}
