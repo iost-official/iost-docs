@@ -40,11 +40,11 @@ If nothing goes wrong, it will outputs something like this:
 
 If you want to register Servi node, exec:
 
-        iwallet system register $PUBKEY --account <your-account>
+        iwallet sys register <pubkey> --net_id <network-id> --account <your-account>
 
 To set the Servi node online:
 
-        iwallet system producer-login --acount <your-account>
+        iwallet sys plogin --acount <your-account>
 
 See full doc at https://developers.iost.io
 ```
@@ -67,8 +67,10 @@ iwallet -s ${GRPC-URL} state
 
 If you don't have enough gas and ram, you can pledge gas and buy ram with the following command:
 ```
-iwallet system gas-pledge 50 --acount <your-account>
-iwallet system ram-buy 200 --acount <your-account>
+# pledge gas
+iwallet system gas-pledge 80 --acount <your-account>
+# buy ram
+iwallet system ram-buy 1024 --acount <your-account>
 ```
 
 If you don't have enough iost, please contact us.
