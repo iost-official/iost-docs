@@ -46,5 +46,6 @@ go get -d github.com/iost-official/go-iost
 ### Build IOST
 ```
 cd $GOPATH/src/github.com/iost-official/go-iost
+git lfs pull
 make build install
 ```

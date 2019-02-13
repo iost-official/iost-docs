@@ -26,46 +26,25 @@ Tx | transaction, the state on the blockchain must be modified by submitting tx,
 
 ## Debug environment configuration
 
-### Using iwallet and test nodes
+### Setup iwallet and local test node
 
-The development and deployment of smart contracts requires iwallet. At the same time, starting a test node can facilitate debugging. You can do this by choose any between the two methods below.
+The development and deployment of smart contracts requires [iwallet](4-running-iost-node/iWallet.md). At the same time, [starting a local test node](4-running-iost-node/LocalServer.md) can facilitate debugging. 
 
-#### docker environment (recommended)
-
-Start docker and enter the docker environment. There will also be a local test node being started.
-
-```
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-docker ps # the last column of the output is the docker container name, which will be used in next command
-docker exec -it <container_name> /bin/bash # you will enter docker
-./iwallet -h
-```
-
-#### Source code compilation
-
-Need go 1.11 or above
-
-```
-go get -u iost-official/go-iost
-cd $GOPATH/src/github.com/iost-official/go-iost
-make install
-# Check the configuration config/
-iserver -f config/iserver.yml # Start the test node, no need
-iwallet -h
-```
 ### Importing the initial account ```admin``` for iwallet
 
-In order to complete the test, you need to import the secret key for iwallet. The corresponding key is in the admininfo field of config/genesis.yml.
+In order to complete the test, you need to import an accouunt for iwallet.   
+You can import the 'admin' account for the local test node.
+
 ```
 iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
-In docker, You shoudl use "./iwallet" instead of "iwallet", which is not installed inside docker image.
 
 
 ## Hello world
 
 ### Preparing the code
 First prepare a JavaScript class. e.g HelloWorld.js
+
 ```
 class HelloWorld {
     init() {} // needs to provide an init function that will be called during deployment
@@ -76,7 +55,9 @@ class HelloWorld {
 
 module.exports = HelloWorld;
 ```
+
 The smart contract contains an interface that receives an input and then outputs ```hello, + enter ```. In order to allow this interface to be called outside the smart contract, you need to prepare the abi file. e.g HelloWorld.abi
+
 ```
 {
   "lang": "javascript",
@@ -91,11 +72,13 @@ The smart contract contains an interface that receives an input and then outputs
   ]
 }
 ```
+
 The name field of abi corresponds to the function name of js, and the args list contains a preliminary type check. It is recommended to use only three types: string, number, and bool.
 
 ## Publish to local test node
 
 Publish smart contracts
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -104,6 +87,7 @@ iwallet \
  --amount_limit '*:unlimited' \
  publish helloworld.js helloworld.abi
 ```
+
 Sample output
 
     Sending transaction...
@@ -133,10 +117,13 @@ Output
     SUCCESS!
 
 After that, you can get TxReceipt at any time by the following command.
+
 ```
 iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
+
 Can also be obtained through http
+
 ```
 curl -X GET \
   http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc

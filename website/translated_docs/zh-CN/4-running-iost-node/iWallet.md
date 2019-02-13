@@ -88,7 +88,7 @@ iwallet --server 127.0.0.1:30002 state
 
 ```
 # 这里实际上是会把私钥复制到 ~/.iwallet/YOUR_ACCOUNT_ID_ed25519 文件中。不会和区块链有交互。 
-iwallet account --import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY 
+iwallet account import $YOUR_ACCOUNT_ID $YOUR_PRIVATE_KEY 
 ```
 #### 命令行用法和选项
 
@@ -144,7 +144,7 @@ exec tx done.  {
 #### 命令行用法和选项
 
 ```
-iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account --create <new_account_name> [other flags] 
+iwallet --server <server_addres> --account <account_name> --amount_limit  <amount_limit> account create <new_account_name> [other flags] 
 ```
 
 | 字段  | 描述 | 默认值 |
@@ -157,7 +157,7 @@ iwallet --server <server_addres> --account <account_name> --amount_limit  <amoun
 
 ```
 # 创建账号后，iwallet会随机生成公私钥对，私钥会保存到 ~/.iwallet/$(new_account_name)_ed25519 文件中。
-iwallet --server 127.0.0.1:30002 --account admin --amount_limit "ram:1000|iost:10" account --create lispczz3 --initial_balance 0 --initial_gas_pledge 10 --initial_ram 0
+iwallet --server 127.0.0.1:30002 --account admin --amount_limit "ram:1000|iost:10" account create lispczz3 --initial_balance 0 --initial_gas_pledge 10 --initial_ram 0
 ...
 ...
     "groups": {

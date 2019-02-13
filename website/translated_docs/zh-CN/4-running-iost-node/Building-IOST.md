@@ -45,5 +45,6 @@ go get -d github.com/iost-official/go-iost
 ### 编译
 ```
 cd $GOPATH/src/github.com/iost-official/go-iost
+git lfs pull
 make build install
 ```

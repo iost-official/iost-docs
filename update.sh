@@ -1,7 +1,7 @@
 set -u
 set -e
 
-last_commit=852b9ed7a6dbb2ae36615f1b4c0ddd920e857ce5
+last_commit=b72d99bb3072e174e3df3035c107666d72248010
 git_root=$(git rev-parse --show-toplevel)
 
 function update_language()
@@ -15,7 +15,7 @@ function update_language()
 		echo "invalid language $language $head_dir"
 		exit 1
 	fi
-	updates=`git diff --name-only $last_commit HEAD|grep "^$head_dir"|grep -v version|grep "md$"`
+	updates=`git diff --name-only $last_commit --|grep "^$head_dir"|grep -v version|grep "md$"`
 	for item in $updates
 	do
 		doc_name=`echo $item|gsed "s#$head_dir/##"`
@@ -43,4 +43,4 @@ function update_language()
 
 update_language en
 update_language zh-CN
-update_language ja
+#update_language ja

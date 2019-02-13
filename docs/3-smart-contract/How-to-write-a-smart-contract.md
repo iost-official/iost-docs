@@ -1,47 +1,9 @@
 ---
 id: How-to-write-a-smart-contract
-title: How to Write a Smart Contract
-sidebar_label: How to Write a Smart Contract
+title: IOST BlockChain API
+sidebar_label: IOST BlockChain API
 ---
 
-## Basic Information
-
-### Language supported
-
-Currently, IOST smart contracts supports JavaScript.
-
-### Runtime environment
-
-Internally, IOST employs [Chrome V8](https://developers.google.com/v8) engine to run the contracts.
-
-## Smart Contract Programming Guides
-
-### Implementing smart contracts
-
-In IOST, smart contracts will be coded into a JavaScript `class`. When using it, you need to explicitly `export` the class.
-
-#### Structure of a smart contract
-
-A smart contract class must include `init` functions.
-
-- `init` is run when a contract is deployed. It usually contains code to initialize properties of the contract.
-
-Apart from these functions, developers can define other functions as needed. Below is a template of a simple smart contract that has `transfer` functionalities.
-
-```javascript
-class Test {
-    init() {
-        //Execute once when contract is packed into a block
-    }
-
-    transfer(from, to, amount) {
-        //Function called by other
-        blockchain.transfer(from, to, amount, "");
-    }
-
-};
-module.exports = Test;
-```
 
 ## IOST BlockChain API
 There objects below can be accessed inside contract codes.

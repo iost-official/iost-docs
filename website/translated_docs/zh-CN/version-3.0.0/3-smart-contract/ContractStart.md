@@ -26,44 +26,22 @@ IOST智能合约目前支持JavaScript（ES6）开发。
 
 ### 使用iwallet和测试节点
 
-智能合约的开发和部署需要iwallet，同时，启动一个测试节点可以方便debug。可以通过以下两种方法中的任意一种完成。
+智能合约的开发和部署需要[iwallet](4-running-iost-node/iWallet.md)，同时，[启动一个测试节点](4-running-iost-node/LocalServer.md)可以方便debug。
 
-#### docker环境（推荐）
-
-启动docker，进入docker环境。此时也会有一个本地测试节点被启动。
-
-```
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-docker ps # 这条命令最后一列会输出目前已经启动的 docker container 名字，需要记下在下一条命令中用到
-docker exec -it <container_name> /bin/bash # 会进入docker
-./iwallet -h
-```
-
-#### 源代码编译
-
-需要go 1.11以上
-
-```
-go get -u iost-official/go-iost   
-cd $GOPATH/src/github.com/iost-official/go-iost  
-make install
-# 检查配置 config/
-iserver -f config/iserver.yml  # 启动测试节点，不必须
-iwallet -h
-```
 ### 为iwallet导入初始账户```admin```
 
-为了完成测试，需要为iwallet导入私钥，对应的公钥在config/genesis.yml的admininfo字段当中
+为了完成测试，需要为iwallet导入私钥。对于本地调试网络，可以直接使用默认的  admin 账号。   
+
 ```
-iwallet account --import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
-在docker中，你需要使用"./iwallet"而不是"iwallet"，因为目前 Docker 中没有全局安装 iwallet
 
 
 ## Hello world
 
 ### 准备代码
 首先准备一个JavaScript类, 例如：HelloWorld.js
+
 ```
 class HelloWorld {
 	init() {} // 需要提供一个init函数，它将会在部署时被调用
@@ -74,7 +52,9 @@ class HelloWorld {
 
 module.exports = HelloWorld;
 ```
+
 该智能合约包含一个接口，接收一个输入然后输出```hello, +输入```。为了让智能合约外部可以调用这个接口，需要准备abi文件，例如：HelloWorld.abi
+
 ```
 {
   "lang": "javascript",
@@ -89,11 +69,13 @@ module.exports = HelloWorld;
   ]
 }
 ```
+
 abi的name字段对应js的函数名，args列表包含了一个初步的类型检查，建议只使用string，number，bool三种类型。
 
 ## 发布到本地测试节点
 
 发布智能合约
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -102,7 +84,9 @@ iwallet \
  --amount_limit '*:unlimited' \
  publish helloworld.js helloworld.abi
 ```
+
 示例输出
+
 ```
 {
     "txHash": "96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf",
@@ -135,6 +119,7 @@ iwallet \
 ```
 
 输出
+
 ```
 send tx done
 the transaction hash is: GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
@@ -155,10 +140,13 @@ exec tx done # 以下输出tx执行后的TxReceipt
 ```
 
 之后，可以在任何时候通过以下命令获取TxReceipt
+
 ```
 iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
+
 也可以通过http来获取
+
 ```
 curl -X GET \
   http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
@@ -174,6 +162,7 @@ curl -X GET \
 智能合约可以读其他智能合约的状态数据，但是只能写自己的字段。
 
 ### 代码
+
 ```
 // Storage.js
 class Test {
@@ -189,10 +178,12 @@ class Test {
 }
 module.exports = Test;
 ```
+
 abi略过
 
 ### 使用状态存储
 部署代码之后，可以通过以下的方法获取storage
+
 ```
 curl -X POST \
   http://localhost:30001/getContractStorage \
@@ -210,7 +201,9 @@ curl -X POST \
     "data": "foobar"
 }
 ```
+
 调用change，就可以修改这个值。
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -225,11 +218,13 @@ iwallet \
 权限控制的基础可以参阅：
 
 示例
+
 ```
 if (!blockchain.requireAuth("someone", "active")) {
     throw "require auth error"  // 没有被catch的throw会抛出到虚拟机，导致失败
 }
 ```
+
 需要注意的有以下几点
 1. requireAuth本身不会终止智能合约的运行，它只返回一个bool值，所以需要判断
 2. requireAuth(tx.publisher, "active")恒为真
@@ -237,6 +232,7 @@ if (!blockchain.requireAuth("someone", "active")) {
 当throw时，交易运行失败，本次智能合约调用被完全回滚，但是会扣除用户运行交易的gas费用（因为被回滚所以不会收取ram）
 
 可以通过简单的测试观察运行失败的交易
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -245,7 +241,9 @@ iwallet \
  --amount_limit '*:unlimited' \
  call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
 ```
+
 返回结果将是
+
 ```
 {
     "txHash": "GCB9UdAKyT3QdFh5WGujxsyczRLtXX3KShzRsTaVNMns",
@@ -264,6 +262,7 @@ iwallet \
 ## 调试
 
 首先按照上文提供的方法启动本地节点，如果使用docker，可以使用以下命令打印log
+
 ```
 docker ps -f <container>
 ```
