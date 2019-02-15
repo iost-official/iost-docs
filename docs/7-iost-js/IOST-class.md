@@ -98,3 +98,122 @@ Transaction Object.
 ```javascript
 const tx = iost.transfer("iost", "fromAccount", "toAccount", "10.000", "memo");
 ```
+
+# Way to send tx
+Here is the way sending tx in iost, it's compatible using third-party wallet.
+
+```
+iost.setAccount(account);
+iost.setRPC(rpc);
+iost.signAndSend(tx)
+    .on("pending", console.log)
+    .on("success", console.log)
+    .on("failed", console.log);
+```
+
+Third-party wallets are recommended to hook IOST, and take over signAndSend() 
+function, thus develops can work both wallet exist or not.
+
+if wallet exists, signAndSend() works in wallet and callback when success or failed,
+and if not, iost use ```account``` to sign tx and using ```rpc``` to send it.
+
+## signAndSend
+sign a tx and send it.
+
+### Parameters
+Name             |Type       |Description 
+----                |--         |--
+tx       |IOST.Tx | tx to be send
+
+### Returns
+a Callback object
+
+### Example
+```javascript
+iost.signAndSend(tx)
+    .on("pending", console.log)
+    .on("success", console.log)
+    .on("failed", console.log);
+```
+
+## Callback.on(event, callback)
+set handle to event
+
+### Parameters
+Name             |Type       |Description 
+----                |--         |--
+event       | String | event name, include "pending", "success", "failed"
+callback       | function | callback function
+
+### Returns
+itself.
+
+### Example
+```javascript
+iost.signAndSend(tx)
+    .on("pending", console.log)
+    .on("success", console.log)
+    .on("failed", console.log);
+```
+
+
+## setAccount
+set default account to iost
+
+### Parameters
+Name             |Type       |Description 
+----                |--         |--
+account       |IOST.Account | account using by this tx
+
+### Returns
+null
+
+### Example
+```javascript
+iost.setAccount(account);
+```
+
+## currentAccount
+get current account in this iost
+
+### Parameters
+null
+
+### Returns
+an IOST.Account.
+
+### Example
+```javascript
+const account = iost.currentAccount();
+```
+
+## setRPC
+transfer tokens to designated account, wrapper for callABI
+
+### Parameters
+Name             |Type       |Description 
+----                |--         |--
+rpc       |IOST.RPC | rpc using by this IOST instance
+
+### Returns
+null.
+
+### Example
+```javascript
+iost.setRPC(rpc);
+```
+
+## currentRPC
+get current rpc
+
+### Parameters
+null
+
+### Returns
+an IOST.RPC instance.
+
+### Example
+```javascript
+const rpc = iost.currentRPC();
+```
+
