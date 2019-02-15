@@ -120,30 +120,30 @@ original_id: GasChargeTable
 | MathRound             |                                Math.round(2.7)                                |                                                2gas |
 | MathSqrt              |                                Math.sqrt(3.4)                                 |                                                2gas |
 |                       |                                                                               |                                                     |
-| BigNumberConstructor  |       BigNumber.prototype.constructor("99999999999999999999999999999")        |                                               20gas |
-| BigNumberAbs          |             new BigNumber("-99999999999999999999999999999").abs()             |                                               20gas |
-| BigNumberDiv          |         new BigNumber("-99999999999999999999999999999").div("99999")          |    20gas + 10gas * (number length + args[0] length) |
-| BigNumberIdiv         |         new BigNumber("-99999999999999999999999999999").idiv("99999")         |    20gas + 10gas * (number length + args[0] length) |
-| BigNumberPow          |         new BigNumber("-99999999999999999999999999999").pow("99999")          |    20gas + 10gas * (number length + args[0] length) |
-| BigNumberIntegerValue |        new BigNumber("-99999999999999999999999999999").integerValue()         |                        20gas + 4gas * number length |
-| BigNumberEq           |          new BigNumber("-99999999999999999999999999999").eq("99999")          |     20gas + 2gas * (number length + args[0] length) |
-| BigNumberIsFinite     |          new BigNumber("-99999999999999999999999999999").isFinite()           |                                               20gas |
-| BigNumberGt           |          new BigNumber("-99999999999999999999999999999").gt("99999")          |     20gas + 2gas * (number length + args[0] length) |
-| BigNumberGte          |         new BigNumber("-99999999999999999999999999999").gte("99999")          |     20gas + 2gas * (number length + args[0] length) |
-| BigNumberIsInteger    |          new BigNumber("-99999999999999999999999999999").isInteger()          |                                               20gas |
-| BigNumberLt           |          new BigNumber("-99999999999999999999999999999").lt("99999")          |     20gas + 2gas * (number length + args[0] length) |
-| BigNumberLte          |         new BigNumber("-99999999999999999999999999999").lte("99999")          |     20gas + 2gas * (number length + args[0] length) |
-| BigNumberIsNaN        |            new BigNumber("-99999999999999999999999999999").isNaN()            |                                               20gas |
-| BigNumberIsNegative   |         new BigNumber("-99999999999999999999999999999").isNegative()          |                                               20gas |
-| BigNumberIsPositive   |         new BigNumber("-99999999999999999999999999999").isPositive()          |                                               20gas |
-| BigNumberIsZero       |           new BigNumber("-99999999999999999999999999999").isZero()            |                                               20gas |
-| BigNumberMinus        |        new BigNumber("-99999999999999999999999999999").minus("99999")         |    20gas + 10gas * (number length + args[0] length) |
-| BigNumberMod          |         new BigNumber("-99999999999999999999999999999").mod("99999")          |    20gas + 10gas * (number length + args[0] length) |
-| BigNumberTimes        |        new BigNumber("-99999999999999999999999999999").times("99999")         |     20gas + 4gas * (number length + args[0] length) |
-| BigNumberNegated      |           new BigNumber("-99999999999999999999999999999").negated()           |                                               20gas |
-| BigNumberPlus         |         new BigNumber("-99999999999999999999999999999").plus("99999")         |    20gas + 10gas * (number length + args[0] length) |
-| BigNumberSqrt         |            new BigNumber("-99999999999999999999999999999").sqrt()             |                        20gas + 4gas * number length |
-| BigNumberToFixed      |          new BigNumber("-99999999999999999999999999999").toFixed(5)           |                        20gas + 4gas * number length |
+| BigNumberConstructor  |       BigNumber.prototype.constructor("99999999999999999")        |                                               20gas |
+| BigNumberAbs          |             new BigNumber("-99999999999999999").abs()             |                                               20gas |
+| BigNumberDiv          |         new BigNumber("-99999999999999999").div("99999")          |    20gas + 10gas * (number length + args[0] length) |
+| BigNumberIdiv         |         new BigNumber("-99999999999999999").idiv("99999")         |    20gas + 10gas * (number length + args[0] length) |
+| BigNumberPow          |         new BigNumber("-99999999999999999").pow("99999")          |    20gas + 10gas * (number length + args[0] length) |
+| BigNumberIntegerValue |        new BigNumber("-99999999999999999").integerValue()         |                        20gas + 4gas * number length |
+| BigNumberEq           |          new BigNumber("-99999999999999999").eq("99999")          |     20gas + 2gas * (number length + args[0] length) |
+| BigNumberIsFinite     |          new BigNumber("-99999999999999999").isFinite()           |                                               20gas |
+| BigNumberGt           |          new BigNumber("-99999999999999999").gt("99999")          |     20gas + 2gas * (number length + args[0] length) |
+| BigNumberGte          |         new BigNumber("-99999999999999999").gte("99999")          |     20gas + 2gas * (number length + args[0] length) |
+| BigNumberIsInteger    |          new BigNumber("-99999999999999999").isInteger()          |                                               20gas |
+| BigNumberLt           |          new BigNumber("-99999999999999999").lt("99999")          |     20gas + 2gas * (number length + args[0] length) |
+| BigNumberLte          |         new BigNumber("-99999999999999999").lte("99999")          |     20gas + 2gas * (number length + args[0] length) |
+| BigNumberIsNaN        |            new BigNumber("-99999999999999999").isNaN()            |                                               20gas |
+| BigNumberIsNegative   |         new BigNumber("-99999999999999999").isNegative()          |                                               20gas |
+| BigNumberIsPositive   |         new BigNumber("-99999999999999999").isPositive()          |                                               20gas |
+| BigNumberIsZero       |           new BigNumber("-99999999999999999").isZero()            |                                               20gas |
+| BigNumberMinus        |        new BigNumber("-99999999999999999").minus("99999")         |    20gas + 10gas * (number length + args[0] length) |
+| BigNumberMod          |         new BigNumber("-99999999999999999").mod("99999")          |    20gas + 10gas * (number length + args[0] length) |
+| BigNumberTimes        |        new BigNumber("-99999999999999999").times("99999")         |     20gas + 4gas * (number length + args[0] length) |
+| BigNumberNegated      |           new BigNumber("-99999999999999999").negated()           |                                               20gas |
+| BigNumberPlus         |         new BigNumber("-99999999999999999").plus("99999")         |    20gas + 10gas * (number length + args[0] length) |
+| BigNumberSqrt         |            new BigNumber("-99999999999999999").sqrt()             |                        20gas + 4gas * number length |
+| BigNumberToFixed      |          new BigNumber("-99999999999999999").toFixed(5)           |                        20gas + 4gas * number length |
 
 # Storage：
 | Name    |                Operation                |   cost |
