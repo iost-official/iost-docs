@@ -69,9 +69,9 @@ iwallet -s ${GRPC-URL} state
 If you don't have enough gas and ram, you can pledge gas and buy ram with the following command:
 ```
 # pledge gas
-iwallet system gas-pledge 80 --acount <your-account>
+iwallet system gas-pledge 80 --account <your-account>
 # buy ram
-iwallet system ram-buy 1024 --acount <your-account>
+iwallet system ram-buy 1024 --account <your-account>
 ```
 
 If you don't have enough iost, please contact us.
