@@ -102,6 +102,25 @@ The contestant receives a bonus award.
 | :----: | :------ |
 | Candidate Account Name | string |
 
+#### topupCandidateBonus
+recharge iost to candidates' bonus pool.
+
+| Parameter Lis | Parameter Type |
+| :----: | :------ |
+| Amount | string |
+| Payer Account Name| string |
+
+
+#### topupVoterBonus
+recharge iost to voters' bonus pool.
+
+| Parameter Lis | Parameter Type |
+| :----: | :------ |
+| Candidate Account Name | string |
+| Amount | string |
+| Payer Account Name| string |
+
+
 ## vote.iost
 ---
 
