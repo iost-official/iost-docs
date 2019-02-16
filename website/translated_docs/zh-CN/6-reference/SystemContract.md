@@ -102,6 +102,24 @@ sidebar_label: System Contract
 | :----: | :------ |
 | 竞选者账户名| string |
 
+#### topupCandidateBonus
+向节点奖励池充值 iost。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 充值数量 | string |
+| 付款账户名| string |
+
+
+#### topupVoterBonus
+向投票者奖励池充值 iost。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 竞选者账户名 | string |
+| 充值数量 | string |
+| 付款账户名| string |
+
 ## vote.iost
 ---
 
