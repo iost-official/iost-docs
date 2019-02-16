@@ -44,7 +44,7 @@ If you want to register Servi node, exec:
 
 To set the Servi node online:
 
-        iwallet sys plogin --acount <your-account>
+        iwallet sys plogin --account <your-account>
 
 See full doc at https://developers.iost.io
 ```

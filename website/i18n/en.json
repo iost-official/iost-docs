@@ -114,7 +114,8 @@
         "sidebar_label": "Gas Charge Table"
       },
       "6-reference/SystemContract": {
-        "title": "6-reference/SystemContract"
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
       },
       "6-reference/TokenContract": {
         "title": "Token Contract",
@@ -735,7 +736,8 @@
         "sidebar_label": "Gas Charge Table"
       },
       "version-3.0.0-SystemContract": {
-        "title": "SystemContract"
+        "title": "SystemContract",
+        "sidebar_label": "System Contract"
       },
       "version-3.0.0-TokenContract": {
         "title": "Token Contract",

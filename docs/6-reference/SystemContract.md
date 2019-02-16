@@ -1,7 +1,7 @@
 ---
-Id: SystemContract
-Title: System Contract
-Sidebar_label: System Contract
+id: SystemContract
+title: System Contract
+sidebar_label: System Contract
 ---
 
 ## vote_producer.iost
