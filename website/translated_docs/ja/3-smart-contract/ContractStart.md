@@ -26,46 +26,24 @@ Tx | トランザクション。トランザクションをサブミットする
 
 ## デバッグ環境設定
 
-### iwalletの使用とテストノード
+### iwalletのセットアップとローカルテストノード
 
-スマートコントラクトの開発には、iwalletが必要です。同時に、テストノードを開始することで、デバッグを促進できます。それには、次に挙げる２つの方法のどちらか選択してください。
+スマートコントラクトの開発には、[iwallet](4-running-iost-node/iWallet.md)が必要です。同時に、[テストノードを開始](4-running-iost-node/LocalServer.md)することで、デバッグを促進できます。
 
-#### Docker環境 (推奨)
-
-Dockerを開始して、Docker環境に入ります。ローカルテストノードも開始します。
-
-```
-docker run -d -p 30002:30002 -p 30001:30001 iostio/iost-node:2.1.0-29b893a5
-docker ps # the last column of the output is the docker container name, which will be used in next command
-docker exec -it <container_name> /bin/bash # you will enter docker
-./iwallet -h
-```
-
-#### ソースコードのコンパイル
-
-go 1.11以上が必要
-
-```
-go get -u iost-official/go-iost
-cd $GOPATH/src/github.com/iost-official/go-iost
-make install
-# Check the configuration config/
-iserver -f config/iserver.yml # Start the test node, no need
-iwallet -h
-```
 ### iwalletの初期アカウント```admin```のインポート
 
-テストをするには、秘密鍵をiwalletにインポートする必要があります。関連する鍵は、config/genesis.yml のadmininfoフィールドにあります。
+テストをするには、秘密鍵をiwalletにインポートする必要があります。ローカルテストノードの'admin'アカウントインポートできます。
+
 ```
 iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
-Dockerでは、Dockerイメージ内にインストールされていない"iwallet"の代わりに"./iwallet"を使用する必要があります。
 
 
 ## Hello world
 
 ### コードの準備
 最初にJavaScriptクラスを用意します。
+
 ```
 // helloWorld.js
 class HelloWorld {
@@ -77,7 +55,9 @@ class HelloWorld {
 
 module.exports = HelloWorld;
 ```
+
 このスマートコントラクトには入力を受け取って、```hello, + 入力した値 ```を出力するインターフェースがあります。このインターフェースで、スマートコントラクトの外部から呼び出すことができるように、ABIファイルを用意します。
+
 ```
 // helloWorld.abi
 {
@@ -93,11 +73,13 @@ module.exports = HelloWorld;
   ]
 }
 ```
+
 ABIのnameフィールドは、jsファイルの関数名と関連付けられ、argsが事前の型チェック情報になります。３つの型、string、number、boolだけを使うことを推奨します。
 
 ## ローカルテストノードへのパブリッシュ
 
 スマートコントラクトをパブリッシュするには次のようにします。
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -106,6 +88,7 @@ iwallet \
  --amount_limit '*:unlimited' \
  publish helloworld.js helloworld.abi
 ```
+
 実行例
 
 
@@ -140,7 +123,9 @@ iwallet \
 ```
 iwallet receipt GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
 ```
+
 HTTPを通して取得することもできます。
+
 ```
 curl -X GET \
   http://localhost:30001/getTxReceiptByTxHash/GTUmtpWPdPMVvJdsVf8AiEPy9EzCBUwUCim9gqKjvFLc
@@ -155,6 +140,7 @@ curl -X GET \
 データベースは純粋なK-V(Key-Value)データベースで、値の型は文字列(string)です。各スマートコントラクトは、他のスマートコントラクトからステータスデータを読むことができますが、自分のフィールド以外は書き込むことができません。
 
 ### コーディング
+
 ```
 class Test {
     init() {
@@ -169,10 +155,12 @@ class Test {
 }
 module.exports = Test;
 ```
+
 ABIは省略します。
 
 ### ステートストレージの使用
 コードをデプロイした後、次の方法でストレージを入手できます。
+
 ```
 curl -X POST \
   http://localhost:30001/getContractStorage \
@@ -184,13 +172,17 @@ curl -X POST \
     "by_longest_chain": true
 }'
 ```
+
 このPOSTメッセージはJSONを返します。
+
 ```
 {
     "data": "foobar"
 }
 ```
+
 この値は、changeを呼び出すことで変更できます。
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -205,11 +197,13 @@ iwallet \
 権限管理の基礎は次のようになっています。
 
 例
+
 ```
 if (!blockchain.requireAuth("someone", "active")) {
     Throw "require auth error" // throw that is not caught will be thrown to the virtual machine, causing failure
 }
 ```
+
 次の点に注意してください。
 1. requireAuth自身は、操作を終了しないで、ブール値を返すだけですので、判断が必要になります。
 2. requireAuth(tx.publisher, "active")は、常にtrueを返します。
@@ -217,6 +211,7 @@ if (!blockchain.requireAuth("someone", "active")) {
 トランザクションが実行に失敗したら、スマートコントラクトは完全にロールバックされますが、トランザクションを実行したユーザのGAS代は差し引かれます。(ロールバックされるので、RAMは請求されません)
 
 失敗したトランザクションは簡単なテストで確認できます。
+
 ```
 iwallet \
  --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
@@ -225,6 +220,7 @@ iwallet \
  --amount_limit '*:unlimited' \
  call "token.iost" "transfer" '["iost", "someone", "me". "10000.00", "this is steal"]'
 ```
+
 この結果は次のようになります。
 
     Sending transaction...
@@ -236,6 +232,7 @@ iwallet \
 ## デバッグ
 
 上記のように、最初にローカルノードを開始します。Dockerなら、次のコマンドでログを表示することができます。
+
 ```
 Docker ps -f <container>
 ```

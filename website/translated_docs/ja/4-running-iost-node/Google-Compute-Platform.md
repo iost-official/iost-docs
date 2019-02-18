@@ -125,7 +125,7 @@ metrics:
   username: 
   password: 
   enable: false
-  id: iost-testnet:visitor00
+  id: iost-mainnet:visitor00
 debug:
   listenaddr: 0.0.0.0:30003
 version:
