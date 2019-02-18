@@ -86,7 +86,7 @@ Run the command to start a node:
 
 ```
 docker pull iostio/iost-node
-docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
+docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
 # Checking the node
@@ -122,6 +122,56 @@ docker exec -it iserver iwallet state
 ```
 
 The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
+
+# Upgrade the node
+
+When new version released, it's better to upgrade to the latest version A.S.A.P.
+
+## Using *upgrade* script:
+
+You can upgrade the node within one command:
+
+```
+curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/upgrade.sh | bash
+```
+
+You might set variables using environment if encounter problem.
+
+| Variables | default | descrption |
+| :------: | :------: | :------: |
+| PREFIX | `/data/iserver` | iServer data path |
+| PYTHON | `python` | python executable |
+| USR_LOCAL_BIN | `/usr/local/bin` | prefix of `docker-compose` executable |
+
+E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
+
+This script pulls the latest IOST node image and then restart iServer.
+
+## Manually
+
+You may also upgrade the node step-by-step.
+
+### Pull image
+
+```
+docker image pull iostio/iost-node:latest
+```
+
+### Remove outdated iServer
+
+The iServer container will be recreated, so that everything in container *EXECPT* data volume will be **deleted**.
+
+```
+docker stop iserver && docker rm iserver
+```
+
+### Start the container
+
+Suppose data volume is located at `/data/iserver`.
+
+```
+docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
+```
 
 # Seed Node List
 
