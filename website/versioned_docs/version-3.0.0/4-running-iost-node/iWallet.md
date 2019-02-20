@@ -434,3 +434,40 @@ iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
 ### Producer Related
 
 Check [Become Servi Node](Become-Servi-Node) for real examples about producer related commands.
+
+### Advanced Account Management
+You can use a password to encrypt your local private key file.
+
+```
+$ iwallet account import --encrypt lispczz 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+encrypting seckey, need password
+Enter Password:
+Repeat Password:
+import account lispczz done
+```
+
+Once your local key file is encrypted, you need input password from command line to send transactions later.
+
+```
+$ iwallet --account lispczz call ram.iost buy '["lispczz","lispczz",1000]'
+Enter Password:
+Repeat Password:
+decrypt keystore succeed
+Sending transaction...
+Transaction:
+{
+    "time": "1550654357305753000",
+    ...
+```    
+
+You can use the password to dump the private key to the console.
+
+```
+$ iwallet account dumpkey lispczz
+Enter Password:
+Repeat Password:
+decrypt keystore succeed
+active:2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+owner:2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+```
+
