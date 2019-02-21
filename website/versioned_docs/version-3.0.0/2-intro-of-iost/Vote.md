@@ -10,21 +10,21 @@ original_id: Vote
 Voting is an important autonomous mechanism for blockchain systems. If a node continues to serve the IOST community, contribute code, and participate in governance, then this node will certainly win more community votes. Nodes with more votes have the opportunity to participate in the Producing of the blocks and get rewards. Active participation in voting is very important for community development, so the system will reward voters with Token
 
 ## node type
-In our voting mechanism, there are three types of nodes: registration node, partner node and formal node.  
-Calling the [applyRegister](../6-reference/SystemContract.html#applyregister) method of the voting contract can make you become the registration node. When the number of votes is more than 2.1 million and the audit is approved, the registration node will become a partner node or a formal node (determined by the last parameter passed in when the applyRegister is called, true is a formal node, false is a partner node). The formal node needs to produce blocks, and the partner node does not.
+In our voting mechanism, there are three types of nodes: candidate node, partner node and servi node.  
+Calling the [applyRegister](../6-reference/SystemContract.html#applyregister) method of the voting contract can make you become the candidate node. When the number of votes is more than 2.1 million and the audit is approved, the candidate node will become a partner node or a servi node (determined by the last parameter passed in when the applyRegister is called, true is a servi node, false is a partner node). The servi node needs to produce blocks, and the partner node does not.
 
 
 
 ## Voting Rules
 
-- 1 token has 1 voting right, 1 voting right can only be voted to 1 registered node, partner node or formal node
+- 1 token has 1 voting right, 1 voting right can only be voted to 1 registered node, partner node or servi node
 - An account can vote for more than one node, and the node can vote for itself
-- Only partner nodes and formal nodes and their voters can participate in voting reward bonuses
+- Only partner nodes and servi nodes and their voters can participate in voting reward bonuses
 - Token pledged to purchase resources doesn't have voting right
 - After canceling the vote, you need to wait 7 days to redeem the token
 
 ## reward
-The system will issue 2% token every year. 1% tokens are block awards only for formal nodes. 1% tokens are voting awards, half of which are awarded to partners and formal nodes, and the other half to their voters.
+The system will issue 2% token every year. 1% tokens are block awards only for servi nodes. 1% tokens are voting awards, half of which are awarded to partners and servi nodes, and the other half to their voters.
 
 ### block award
 - Block rewards are allocated according to the number of blocks a node produced. The reward for each block is about 2 iost, which can be calculated from the rate of issue (2% per year) and the rate of block production (1 block per 0.5 second).
