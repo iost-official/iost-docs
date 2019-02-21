@@ -478,3 +478,36 @@ Generate a transaction receipt, the receipt is stored in the block, and can also
 
 | Return value | None |
 | :----: | :------ |
+
+
+## exchange.iost
+---
+
+### Description
+
+Mainly used to sign up an account and transfer to this account, also can be used to transfer to an existing account.
+
+### Info
+
+| contract_id | exchange.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+### API
+
+#### transfer(tokenSym, to, amount, memo)
+
+create account and transfer
+
+| Parameter Name | Parameter Description | Parameter Type |
+| :----: | :----: | :------ |
+| tokenSym | Token Identifier | string |
+| to | Token receiving account, set to empty if create account | string |
+| amount | Transfer amount | string |
+| memo | Additional Information, set to create:{UserName}:{OwnerPublicKey}:{ActivePublicKey} if create account | string |
+
+| Return value | None |
+| :----: | :------ |
+
+When creating an account, the transfer amount must be at least 100 iost. By default, the newly created account will be pledged with 10iost of the gas, and 1K bytes of ram will be purchased. The remaining amount will be transferred to the newly created account.

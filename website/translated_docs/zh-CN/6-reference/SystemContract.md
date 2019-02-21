@@ -477,3 +477,36 @@ sidebar_label: System Contract
 
 | 返回值 | 无 |
 | :----: | :------ |
+
+
+## exchange.iost
+---
+
+### 简介
+
+主要用于封装创建账户并转账功能, 也可用于向已存在账户转账
+
+### 基础信息
+
+| contract_id | exchange.iost |
+| :----: | :------ |
+| language | javascript |
+| version | 1.0.0 |
+
+### 接口描述
+
+#### transfer(tokenSym, to, amount, memo)
+
+创建账户并转账接口
+
+| 参数名称 | 参数描述 | 参数类型 |
+| :----: | :----: | :------ |
+| tokenSym | 代币标识符 | string |
+| to | 代币接收账户,若要创建账户则填空 | string |
+| amount | 转账金额 | string |
+| memo | 附加信息, 若要创建账户则格式应为 create:账户名:owner公钥:active公钥 | string |
+
+| 返回值 | 无 |
+| :----: | :------ |
+
+创建帐号时要求转账金额至少为100 iost, 默认会帮新创建的帐号质押 10iost 的gas, 并且购买1K bytes 的 ram, 剩余的金额会转入新创建的账户
