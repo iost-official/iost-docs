@@ -19,6 +19,8 @@ go get github.com/iost-official/go-iost/cmd/iwallet
 
 Please install [Node.js](https://nodejs.org/en/download/) if you want to [publish contracts onto the blockchain](#publish-contract).
 
+## Basic Usage
+
 You could run `iwallet` and get the following usage information once you finish the steps above:
 
 ```
@@ -41,14 +43,16 @@ iwallet
       publish     Publish a contract
       receipt     Find receipt
       save        Save a transaction request with given actions to a file
-      sign        Sign a tx loaded from given file and save the signature as a binary file
+      sign        Sign a tx and save the signature
       state       Get blockchain and node state
       system      Send system contract action to blockchain
+      table       Fetch stored info of given contract
       transaction Find transactions
+      transfer    Transfer IOST
 
     Flags:
-          --account string                 which account to use
-          --amount_limit string            amount limit for one transaction (e.g. "iost:300.00|ram:2000" or "*:unlimited" for no limits) (default "*:unlimited")
+      -a, --account string                 which account to use
+          --amount_limit string            amount limit for one transaction, eg iost:300.00|ram:2000 (default "*:unlimited")
           --chain_id uint32                chain id which distinguishes different network (default 1024)
           --check_result                   check publish/call status after sending to chain (default true)
           --check_result_delay float32     rpc checking will occur at [checkResultDelay] seconds after sending to chain. (default 3)
@@ -60,11 +64,78 @@ iwallet
       -h, --help                           help for iwallet
       -s, --server string                  set server of this client (default "localhost:30002")
           --sign_algo string               sign algorithm (default "ed25519")
+          --signers strings                additional signers
           --tx_time string                 use the special tx time instead of now, format: 2019-01-22T17:00:39+08:00
           --use_longest                    get info on longest chain
-      -v, --verbose                        print verbose information
+      -v, --verbose                        print verbose information (default true)
 
     Use "iwallet [command] --help" for more information about a command.
+
+For more information about a command like `system` by following:
+
+```
+iwallet system --help
+```
+
+    Send system contract action to blockchain
+
+    Usage:
+      iwallet system [command]
+
+    Aliases:
+      system, sys
+
+    Examples:
+      iwallet system producer-list
+      iwallet sys producer-list
+      iwallet sys plist
+
+    Available Commands:
+      gas-pledge          Pledge IOST to obtain gas
+      gas-unpledge        Undo pledge
+      producer-clean      Clean producer info
+      producer-info       Show producer info
+      producer-list       Show current/pending producer list
+      producer-login      Producer login as online state
+      producer-logout     Producer logout as offline state
+      producer-redeem     Redeem the contribution value obtained by the block producing to IOST tokens
+      producer-register   Register as producer
+      producer-unregister Unregister from a producer
+      producer-unvote     Unvote a producer
+      producer-update     Update producer info
+      producer-vote       Vote a producer
+      producer-withdraw   Withdraw all voting reward for producer
+      ram-buy             Buy ram from system
+      ram-sell            Sell unused ram to system
+      ram-transfer        Transfer ram
+      voter-withdraw      Withdraw all voting reward for voter
+
+    Flags:
+      -h, --help   help for system
+
+    Global Flags:
+      -a, --account string                 which account to use
+          --amount_limit string            amount limit for one transaction, eg iost:300.00|ram:2000 (default "*:unlimited")
+          --chain_id uint32                chain id which distinguishes different network (default 1024)
+          --check_result                   check publish/call status after sending to chain (default true)
+          --check_result_delay float32     rpc checking will occur at [checkResultDelay] seconds after sending to chain. (default 3)
+          --check_result_max_retry int32   max times to call grpc to check tx status (default 20)
+          --config string                  configuration file (default $HOME/.iwallet.yaml)
+      -e, --expiration int                 expiration time for a transaction in seconds (default 300)
+      -l, --gas_limit float                gas limit for a transaction (default 1e+06)
+      -p, --gas_ratio float                gas ratio for a transaction (default 1)
+      -s, --server string                  set server of this client (default "localhost:30002")
+          --sign_algo string               sign algorithm (default "ed25519")
+          --signers strings                additional signers
+          --tx_time string                 use the special tx time instead of now, format: 2019-01-22T17:00:39+08:00
+          --use_longest                    get info on longest chain
+      -v, --verbose                        print verbose information (default true)
+
+    Use "iwallet system [command] --help" for more information about a command.
+
+In above examples, you may find some flags (like `--account`) have the corresponding shortcut flag (like `-a`) that has exactly same effect. And there are some commands that would have corresonding shortcuts (like `system` has an alias `sys`). But for clarity, we will use the full name flags and full name commands instead of shortcuts in following sections.
+
+The verbose information of a command will commonly include RPC connecting information, elapsed time and transaction details if it contains a transaction sending action. We will omit the verbose information in following output examples for concise.
 
 ## Basic Features
 
@@ -157,7 +228,6 @@ iwallet --account <account_name> [flags] call <contract_name> <function_name> '[
 | gas_limit | max gas allowed for the calling | 1000000 |
 | gas_ratio | transaction with bigger gas_ratio will be exectuted sooner | 1.0 |
 | amount_limit | all token amount limits (e.g. iost:300.0&#124;ram:2000) | \*:unlimited |
-| verbose | print verbose infomation | false |
 
 #### Sample - Transfer token by calling contract
 
@@ -217,7 +287,7 @@ iwallet --account admin --amount_limit "ram:1000|iost:10" account create lispczz
 
 To publish a javascript contract, you need to generate abi file firstly, and then publish javascript file and abi file onto blockchain.
 
-#### Generate abi
+#### Generate ABI
 
 The following command will generate file `example.js.abi`.
 (Note that make sure you have installed `node.js` and already ran the command `npm install` inside folder `iwallet/contract`.)
@@ -243,17 +313,61 @@ iwallet --account admin --amount_limit "ram:100000" publish contract/lucky_bet.j
 
 `ContractXXX` of the last line in output is the contract name, which would be needed if one wants to call this new contract later.
 
+### Transfer IOST Tokens
+
+Transfer 100 IOST tokens to user `test1` by user `test0`:
+
+```
+iwallet transfer test1 100 --account test0
+```
+
+### Get Reward
+
+Check [reward](2-intro-of-iost/Economic-model.md#reward) for more information about the reward model.
+
+#### Redeem Contribution Value
+
+Redeem all contribution value to IOST tokens:
+
+```
+iwallet producer-redeem --account test0
+```
+
+Redeem 100 contribution value to 100 IOST tokens:
+
+```
+iwallet producer-redeem 100 --account test0
+```
+
+#### Get Producer Voting Reward
+
+If user `test0` is a producer:
+
+```
+iwallet producer-withdraw --account test0
+```
+
+#### Get Voter Voting Reward
+
+If user `test0` is a voter:
+
+```
+iwallet voter-withdraw --account test0
+```
+
+####
+
 ## Advanced features
 
 ### Query Block
 
-Get information about the block at height 10
+Get information about the block at height 10:
 
 ```
 iwallet block --method num 10
 ```
 
-Get information about the block with hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
+Get information about the block with hash `6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU`:
 
 ```
 iwallet block --method hash 6RJtXTDPPRTP6iwK9FpG5LodeMaXofEnd8Lx2KA1kqbU
@@ -295,7 +409,7 @@ iwallet transaction 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
         }
     }
 
-#### Get transaction receipt by transaction hash
+#### Get Transaction Receipt Detail
 
 Output format will be same as [getTxReceiptByTxHash API](6-reference/API.md#gettxreceiptbytxhash-hash).
 
@@ -316,3 +430,44 @@ iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
         "receipts": [
         ]
     }
+
+### Producer Related
+
+Check [Become Servi Node](Become-Servi-Node) for real examples about producer related commands.
+
+### Advanced Account Management
+You can use a password to encrypt your local private key file.
+
+```
+$ iwallet account import --encrypt lispczz 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+encrypting seckey, need password
+Enter Password:
+Repeat Password:
+import account lispczz done
+```
+
+Once your local key file is encrypted, you need input password from command line to send transactions later.
+
+```
+$ iwallet --account lispczz call ram.iost buy '["lispczz","lispczz",1000]'
+Enter Password:
+Repeat Password:
+decrypt keystore succeed
+Sending transaction...
+Transaction:
+{
+    "time": "1550654357305753000",
+    ...
+```    
+
+You can use the password to dump the private key to the console.
+
+```
+$ iwallet account dumpkey lispczz
+Enter Password:
+Repeat Password:
+decrypt keystore succeed
+active:2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+owner:2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
+```
+

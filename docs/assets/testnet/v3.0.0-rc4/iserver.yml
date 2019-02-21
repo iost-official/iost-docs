@@ -1,0 +1,55 @@
+acc:
+  id: visitor00
+  seckey: 4ytmXVC8K5k81J5gzWudw8uvPqzpwKx45dDGqxxKb9gNLfEGeCXXze38PiMEeKijaGbWwmuehVcK58PY1hCk8e7R
+  algorithm: ed25519
+genesis: /var/lib/iserver/genesis
+vm:
+  jspath: vm/v8vm/v8/libjs/
+  loglevel: ""
+db:
+  ldbpath: /var/lib/iserver/storage/
+snapshot:
+  enable: false
+  filepath: storage/snapshot.tar.gz
+p2p:
+  listenaddr: 0.0.0.0:30000
+  seednodes:
+    - /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE
+    - /ip4/13.115.202.226/tcp/30000/ipfs/12D3KooWHRi93eskqrYzxfToHccmgd4Ng7u2QH1e7Cz3X2M6dHVR
+    - /ip4/54.199.158.64/tcp/30000/ipfs/12D3KooWKyh6BH5i66g4bBFgbJoNF97jvB1soXSg17zw8Hj1Mq5j
+  chainid: 1023
+  version: 1
+  datapath: /var/lib/iserver/p2p/
+  inboundConn: 18
+  outboundConn: 12
+  blackPID:
+  blackIP:
+  adminPort: 30005
+rpc:
+  enable: true
+  gatewayaddr: 0.0.0.0:30001
+  grpcaddr: 0.0.0.0:30002
+  trytx: false
+  allowOrigins:
+    - "*"
+log:
+  filelog:
+    path: /var/lib/iserver/logs/
+    level: info
+    enable: false
+  consolelog:
+    level: info
+    enable: true
+  asyncwrite: true
+  enablecontractlog: true
+metrics:
+  pushaddr: 
+  username: 
+  password: 
+  enable: false
+  id: testnet:visitor00
+debug:
+  listenaddr: 0.0.0.0:30003
+version:
+  netname: "debugnet"
+  protocolversion: "1.0"

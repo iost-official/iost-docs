@@ -31,7 +31,7 @@ rpc:
   enable: true
   gatewayaddr: 0.0.0.0:30001
   grpcaddr: 0.0.0.0:30002
-  trytx: true
+  trytx: false
   allowOrigins:
     - "*"
 log:

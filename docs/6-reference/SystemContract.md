@@ -1,7 +1,7 @@
 ---
-Id: SystemContract
-Title: System Contract
-Sidebar_label: System Contract
+id: SystemContract
+title: System Contract
+sidebar_label: System Contract
 ---
 
 ## vote_producer.iost
@@ -101,6 +101,25 @@ The contestant receives a bonus award.
 | Parameter List | Parameter Type |
 | :----: | :------ |
 | Candidate Account Name | string |
+
+#### topupCandidateBonus
+recharge iost to candidates' bonus pool.
+
+| Parameter Lis | Parameter Type |
+| :----: | :------ |
+| Amount | string |
+| Payer Account Name| string |
+
+
+#### topupVoterBonus
+recharge iost to voters' bonus pool.
+
+| Parameter Lis | Parameter Type |
+| :----: | :------ |
+| Candidate Account Name | string |
+| Amount | string |
+| Payer Account Name| string |
+
 
 ## vote.iost
 ---
