@@ -26,7 +26,7 @@ Calling the [applyRegister](../6-reference/SystemContract.html#applyregister) me
 The system will issue 2% token every year. 1% tokens are block awards only for servi nodes. 1% tokens are voting awards, half of which are awarded to partners and servi nodes, and the other half to their voters.
 
 ### block award
-- Block rewards are allocated according to the number of blocks a node produced. The reward for each block is about 2 iost, which can be calculated from the rate of issue (2% per year) and the rate of block production (1 block per 0.5 second).
+- Block rewards are allocated according to the number of blocks a node produced. The reward for each block is about 3.3 iost, which can be calculated from the rate of issue (2% per year) and the rate of block production (1 block per 0.5 second).
 - Block reward requires node to take the initiative to receive, and the way to receive it is calling [exchangeIOST](../6-reference/SystemContract.html#exchangeiost) method of system contract.
 
 
@@ -40,7 +40,7 @@ The system will issue 2% token every year. 1% tokens are block awards only for s
 - 50% of the voting reward will go into the voter reward pool when the reward is received by node.
 - The rewards that have been obtained but not yet received are not affected by the changes of node attributes and votes, and they can be received at any time without expiration.
 
-#### node award
+#### voter award
 
 - When a node receives a reward, 50% of the reward will go into the voter reward pool of the node and the reward is distributed proportionally according to the voting number of each voter at that current moment.
 - Any account can recharge the voter reward pool by calling the [topupVoterBonus](../6-reference/SystemContract.html#topupvoterbonus) method of voting contract, and the tokens are distributed proportionally according to the voting number of each voter at the recharging time.
