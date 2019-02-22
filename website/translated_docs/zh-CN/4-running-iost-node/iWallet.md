@@ -244,3 +244,301 @@ iwallet receipt 3aeqKCKLTanp8Myep99BUfkdRKPj1RAGZvEesDmsjqcx
     ]
 }
 ```
+
+
+## 账户权限相关命令
+[IOST Account文档](2-intro-of-iost/Account.md)
+
+### 添加权限
+addperm 命令和 [addPermission](6-reference/SystemContract.md#addPermission)等价
+
+```
+iwallet sys addperm myperm 100
+
+...
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "BqbRLp7QinvmryBiq3m2cLdEZno4zUn3VVphMg7cU7SN",
+    "gasUsage": 41792,
+    "ramUsage": {
+        "admin": "457",
+        "auth.iost": "-399" #如果是第一次添加权限，会把代扣ram转移到用户名下
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/addPermission",
+            "content": "[\"admin\",\"myperm\",100]"
+        }
+    ]
+}
+Executed in 3.008647288s
+```
+
+### 删除权限
+dropperm 命令和 [dropPermission](6-reference/SystemContract.md#dropPermission)等价
+
+```
+iwallet sys dropperm myperm
+
+...
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "BaF6yfoTib1ckm3svhf2MshFQu6cgbrS6k2vJx8zpy6g",
+    "gasUsage": 40473,
+    "ramUsage": {
+        "admin": "-62"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/dropPermission",
+            "content": "[\"admin\",\"myperm\"]"
+        }
+    ]
+}
+Executed in 3.009731933s
+```
+
+### 向权限添加秘钥或其他权限的引用
+assignperm 命令和 [assignPermission](6-reference/SystemContract.md#assignPermission)等价
+
+```
+iwallet sys assignperm myperm pub_key_in_base58 100
+
+...
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "FNB45hYLPbmcLsYzmhpBAWCQ1msikye4wpSVhLUT4nuZ",
+    "gasUsage": 44702,
+    "ramUsage": {
+        "admin": "85"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/assignPermission",
+            "content": "[\"admin\",\"myperm\",\"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto\",100]"
+        }
+    ]
+}
+Executed in 3.009210363s
+```
+
+### 删除秘钥，权限引用
+revokeperm 命令和 [revokePermission](6-reference/SystemContract.md#revokePermission)等价
+
+```
+iwallet sys revokeperm myperm pub_key_in_base58
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "6okevSToCRMQTsPsnG1hU3smbQEMgYdSaDETYJhpdgdU",
+    "gasUsage": 43768,
+    "ramUsage": {
+        "admin": "-85"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/revokePermission",
+            "content": "[\"admin\",\"myperm\",\"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto\"]"
+        }
+    ]
+}
+Executed in 3.008524584s
+```
+
+### 添加权限组
+addgroup 命令和 [addGroup](6-reference/SystemContract.md#addGroup)等价
+
+```
+iwallet sys addgroup mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "4ZmESGsFZvXeJJj4uaKLdSsBBFToYuWgp4HuqgCwdJJj",
+    "gasUsage": 43838,
+    "ramUsage": {
+        "admin": "39"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/addGroup",
+            "content": "[\"admin\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.007453024s
+```
+
+### 删除权限组
+dropgroup 命令和 [dropGroup](6-reference/SystemContract.md#dropGroup)等价
+
+```
+iwallet sys dropgroup mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "FMUrp2CdMWeWs5k5TPSEMvpbXEzqTHX3guqJBWcpbqi2",
+    "gasUsage": 42609,
+    "ramUsage": {
+        "admin": "-39"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/dropGroup",
+            "content": "[\"admin\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.009566102s
+```
+
+### 向组添加秘钥或引用
+assigngroup 命令和 [assigngroup](6-reference/SystemContract.md#assigngroup)等价
+
+```
+iwallet sys assigngroup mygroup pub_key_in_base58 100
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "BwUaxi7hXbLe3i75CD7HjGJamp1LmGduwsNKNDP7wCRj",
+    "gasUsage": 45355,
+    "ramUsage": {
+        "admin": "85"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/assignGroup",
+            "content": "[\"admin\",\"mygroup\",\"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto\",100]"
+        }
+    ]
+}
+Executed in 3.009952435s
+```
+
+### 从组中删除秘钥或引用
+revokegroup 命令和 [revokeGroup](6-reference/SystemContract.md#revokeGroup)等价
+
+```
+iwallet sys revokegroup mygroup pub_key_in_base58
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "Er9Zr5iqGhsA1FJDEW9zNQyWzxi5P5vm66dM4g9XU5LS",
+    "gasUsage": 42864,
+    "ramUsage": {
+        "admin": "-124"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/dropGroup",
+            "content": "[\"admin\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.008849533s
+```
+
+### 将权限加入组
+bindperm 命令和 [assignPermissionToGroup](6-reference/SystemContract.md#assignPermissionToGroup)等价
+
+```
+iwallet sys bindperm myperm mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "4yCZLoyPmFo7wz5qF2wAuE974mGz1kXfDsVz5HsA5Q9c",
+    "gasUsage": 43655,
+    "ramUsage": {
+        "admin": "9"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/assignPermissionToGroup",
+            "content": "[\"admin\",\"myperm\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.008667982s
+```
+
+### 从组中移除权限
+unbindperm 命令和 [revokePermissionInGroup](6-reference/SystemContract.md#revokePermissionInGroup)等价
+
+```
+iwallet sys unbindperm myperm mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "FxdteazkZbLTPFd5bnhmyydiPeurpx9jWrwcTar7eEQt",
+    "gasUsage": 43540,
+    "ramUsage": {
+        "admin": "-9"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/revokePermissionInGroup",
+            "content": "[\"admin\",\"myperm\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.008329559s
+```
