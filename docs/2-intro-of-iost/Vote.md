@@ -26,7 +26,7 @@ Calling the [applyRegister](../6-reference/SystemContract.html#applyregister) me
 The system will issue 2% token every year. 1% tokens are block awards only for servi nodes. 1% tokens are voting awards, half of which are awarded to partners and servi nodes, and the other half to their voters.
 
 ### block award
-- Block rewards are allocated according to the number of blocks a node produced. The reward for each block is about 2 iost, which can be calculated from the rate of issue (2% per year) and the rate of block production (1 block per 0.5 second).
+- Block rewards are allocated according to the number of blocks a node produced. The reward for each block is about 3.3 iost, which can be calculated from the rate of issue (2% per year) and the rate of block production (1 block per 0.5 second).
 - Block reward requires node to take the initiative to receive, and the way to receive it is calling [exchangeIOST](../6-reference/SystemContract.html#exchangeiost) method of system contract.
 
 
