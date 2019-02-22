@@ -86,11 +86,11 @@ transfer tokens to designated account, wrapper for callABI
 ### Parameters
 Name             |Type       |Description 
 ----                |--         |--
-token		|String	| new account name
-from 	 	|String	| creator account name
-to			|String	| creator account ownerKey
-amount	 	|String	| creator account activeKey
-memo	 	|Number	| new account initialRAM, paid by creator
+token		|String	| token name
+from 	 	|String	| transfer-from account
+to			|String	| transfer-to account
+amount	 	|String	| transfer amount
+memo	 	|Number	| memo of this transfer
 
 ### Returns
 Transaction Object.
@@ -164,7 +164,7 @@ set default account to iost
 ### Parameters
 Name             |Type       |Description 
 ----                |--         |--
-account       |IOST.Account | account using by this tx
+account       |IOST.Account | account using by this iost instance
 
 ### Returns
 null

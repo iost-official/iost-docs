@@ -41,7 +41,7 @@ The system will issue 2% token every year. 1% tokens are block awards only for s
 - 50% of the voting reward will go into the voter reward pool when the reward is received by node.
 - The rewards that have been obtained but not yet received are not affected by the changes of node attributes and votes, and they can be received at any time without expiration.
 
-#### node award
+#### voter award
 
 - When a node receives a reward, 50% of the reward will go into the voter reward pool of the node and the reward is distributed proportionally according to the voting number of each voter at that current moment.
 - Any account can recharge the voter reward pool by calling the [topupVoterBonus](../6-reference/SystemContract.html#topupvoterbonus) method of voting contract, and the tokens are distributed proportionally according to the voting number of each voter at the recharging time.
