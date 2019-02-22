@@ -470,3 +470,253 @@ active:2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh
 owner:2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
 
+## Account Permission Related Commands
+[IOST Account Document] (2-intro-of-iost/Account.md)
+
+### Add permissions
+The addperm command is equivalent to [addPermission](6-reference/SystemContract.md#addPermission)
+
+```
+Iwallet sys addperm myperm 100
+
+...
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "BqbRLp7QinvmryBiq3m2cLdEZno4zUn3VVphMg7cU7SN",
+    "gasUsage": 41792,
+    "ramUsage": {
+        "admin": "457",
+        "auth.iost": "-399" #If it is the first time to add permissions, the transfer ram will be transferred to the user name
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/addPermission",
+            "content": "[\"admin\",\"myperm\",100]"
+        }
+    ]
+}
+Executed in 3.008647288s
+```
+
+### Delete permission
+The dropperm command is equivalent to [dropPermission](6-reference/SystemContract.md#dropPermission)
+
+```
+Iwallet sys dropperm myperm
+
+...
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "BaF6yfoTib1ckm3svhf2MshFQu6cgbrS6k2vJx8zpy6g",
+    "gasUsage": 40473,
+    "ramUsage": {
+        "admin": "-62"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/dropPermission",
+            "content": "[\"admin\",\"myperm\"]"
+        }
+    ]
+}
+Executed in 3.009731933s
+```
+
+### Add a reference to a permission or other permission
+The assignperm command is equivalent to [assignPermission](6-reference/SystemContract.md#assignPermission)
+
+```
+Iwallet sys assignperm myperm pub_key_in_base58 100
+
+...
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "FNB45hYLPbmcLsYzmhpBAWCQ1msikye4wpSVhLUT4nuZ",
+    "gasUsage": 44702,
+    "ramUsage": {
+        "admin": "85"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/assignPermission",
+            "content": "[\"admin\",\"myperm\",\"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto\",100]"
+        }
+    ]
+}
+Executed in 3.009210363s
+```
+
+### Delete key, permission reference
+The revokeperm command is equivalent to [revokePermission](6-reference/SystemContract.md#revokePermission)
+
+```
+Iwallet sys revokeperm myperm pub_key_in_base58
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "6okevSToCRMQTsPsnG1hU3smbQEMgYdSaDETYJhpdgdU",
+    "gasUsage": 43768,
+    "ramUsage": {
+        "admin": "-85"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/revokePermission",
+            "content": "[\"admin\",\"myperm\",\"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto\"]"
+        }
+    ]
+}
+Executed in 3.008524584s
+```
+
+### Add permission group
+The addgroup command is equivalent to [addGroup](6-reference/SystemContract.md#addGroup)
+
+```
+Iwallet sys addgroup mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "4ZmESGsFZvXeJJj4uaKLdSsBBFToYuWgp4HuqgCwdJJj",
+    "gasUsage": 43838,
+    "ramUsage": {
+        "admin": "39"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/addGroup",
+            "content": "[\"admin\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.007453024s
+```
+
+### Delete permission group
+The dropgroup command is equivalent to [dropGroup](6-reference/SystemContract.md#dropGroup)
+
+```
+Iwallet sys dropgroup mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "FMUrp2CdMWeWs5k5TPSEMvpbXEzqTHX3guqJBWcpbqi2",
+    "gasUsage": 42609,
+    "ramUsage": {
+        "admin": "-39"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/dropGroup",
+            "content": "[\"admin\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.009566102s
+```
+
+### Add a key or reference to a group
+The assigngroup command is equivalent to [assigngroup](6-reference/SystemContract.md#assigngroup)
+
+```
+Iwallet sys assigngroup mygroup pub_key_in_base58 100
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "BwUaxi7hXbLe3i75CD7HjGJamp1LmGduwsNKNDP7wCRj",
+    "gasUsage": 45355,
+    "ramUsage": {
+        "admin": "85"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/assignGroup",
+            "content": "[\"admin\",\"mygroup\",\"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto\",100]"
+        }
+    ]
+}
+Executed in 3.009952435s
+```
+
+### Remove a key or reference from a group
+The revokegroup command is equivalent to [revokeGroup](6-reference/SystemContract.md#revokeGroup)
+
+```
+Iwallet sys revokegroup mygroup pub_key_in_base58
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "Er9Zr5iqGhsA1FJDEW9zNQyWzxi5P5vm66dM4g9XU5LS",
+    "gasUsage": 42864,
+    "ramUsage": {
+        "admin": "-124"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/dropGroup",
+            "content": "[\"admin\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.008849533s
+```
+
+### Add permissions to the group
+The bindperm command is equivalent to [assignPermissionToGroup](6-reference/SystemContract.md#assignPermissionToGroup)
+
+```
+Iwallet sys bindperm myperm mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "4yCZLoyPmFo7wz5q
+
