@@ -37,7 +37,14 @@ You can automatically deploy a full node with the following command:
 curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/boot.sh | bash
 ```
 
-You might set python executable using environment variable.
+| Variables | default | descrption |
+| :------: | :------: | :------: |
+| PREFIX | `/data/iserver` | iServer data path |
+| INET | `mainnet` | IOST network to connect, either `mainnet` or `testnet` |
+| PYTHON | `python` | python executable |
+| USR_LOCAL_BIN | `/usr/local/bin` | prefix of `docker-compose` executable |
+
+You might set environment variable according to the actual conditions.  
 E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
 
 If you don't install docker, the script will automatically install docker.  
@@ -52,8 +59,10 @@ To start, stop or restart the node, you could execute follow command:
 ```
 # start
 docker start iserver
+
 # stop
 docker stop iserver
+
 # restart
 docker restart iserver
 ```
@@ -80,9 +89,12 @@ curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz" |
 curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
+If your node produces blocks, i.e. be a Servi node, set privkey of your node in section `acc` in `iserver.yml`.
+See also [iServer configuration](4-running-iost-node/Configuration.md).
+
 ### Run
 
-Run the command to start a node:
+Run the command to start the node:
 
 ```
 docker pull iostio/iost-node

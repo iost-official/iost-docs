@@ -76,15 +76,15 @@ p2p:
   adminPort: 30005
 ```
 
-listenaddr is the address that the p2p network listens on. If the node is deployed on a cloud service, be sure to open the port in the security group.  
-seednodes are seed nodes discovered by the p2p network and can be populated with any known list of nodes.  
-chainid is used to isolate different networks.  
-version is the network protocol version number.  
-datapath is the storage directory of the p2p routing table, node private key and other data.  
-inboundConn is the maximum number of connections that are connected.  
-outboundConn is the maximum connected connection.  
-blackPID and blackIP are the node ID and node IP of the blacklist. With the configuration, the node rejects the p2p network connection of the blacklist node.  
-adminPort is the network management port and can only be accessed through localhost.
+`listenaddr` is the address that the p2p network listens on. If the node is deployed on a cloud service, make sure to open the port in the security group.  
+`seednodes` are seed nodes discovered by the p2p network and can be populated with any known list of nodes.  
+`chainid` is used to isolate different networks. Now *mainnet* is 1024 while *testnet* is 1023.  
+`version` is the network protocol version number.  
+`datapath` is the storage directory of the p2p routing table, node private key and other data.  
+`inboundConn` is the maximum number of connections that are connected.  
+`outboundConn` is the maximum connected connection.  
+`blackPID` and `blackIP` are the node ID and node IP of the blacklist. IServer rejects the p2p network connection from the blacklist nodes.  
+`adminPort` is the network management port and can be accessed only from localhost.
 
 - rpc
 
@@ -98,11 +98,11 @@ rpc:
     - "*"
 ```
 
-enable indicates whether to enable the RPC service.  
-gatewayaddr is the listening address of JSON RPC.  
-grpcaddr is the GRPC listening address.  
-trytx indicates whether the transaction is pre-executed.  
-allowOrigins is a cross-domain setting.  
+`enable` indicates whether to enable the RPC service.  
+`gatewayaddr` is the listening address of JSON RPC.  
+`grpcaddr` is the GRPC listening address.  
+`trytx` indicates whether the transaction is pre-executed.  
+`allowOrigins` is the cross-domain setting.  
 
 - log
 
@@ -183,7 +183,7 @@ Producer will alternates with new come Servi nodes.
 ```
 admininfo:
   id: admin
-  owner: Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto 
+  owner: Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto
   active: Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto
   balance: 21000000000
 foundationinfo:
@@ -198,7 +198,7 @@ This section defines admin and foundation account.
 ### initialtimestamp
 
 ```
-nitialtimestamp: "2018-11-10T11:04:05Z"
+initialtimestamp: "2018-11-10T11:04:05Z"
 ```
 
 It is the start time of the network.
