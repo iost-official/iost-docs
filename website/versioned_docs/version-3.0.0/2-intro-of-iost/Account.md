@@ -14,9 +14,7 @@ The account-permission system of IOST is based on the mechanism of public-privat
 
 ## Basics of Account System
 
-An IOST account is created with ID and permissions. An account may have multiple permissions, and has `owner` and `active` permissions at the very least. Each permission will register multiple items, with one item being a public key ID, or a permission pair from another account.
-
-Public key is a string of `IOST` prefix + Base58-encoded public key + crc32 validation digit. 
+An IOST account is created with ID and permissions. An account may have multiple permissions, and has `owner` and `active` permissions at the very least. Each permission will register multiple items, with one item being a base58 encoded public key, or a permission pair from another account.
 
 Permission pair can be a string of account_name@permission_name
 

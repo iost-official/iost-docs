@@ -73,7 +73,7 @@ rule:
   
 # Resources
     
-System resources are divided into NET, CPU and RAM. We abstract the NET and CPU into GAS payment. The use of RAM requires pledge Token.
+System resources are divided into NET, CPU and RAM. We abstract the NET and CPU into GAS payment. The user buys and sells RAM with the system.
 
 RAM:
 
@@ -82,8 +82,9 @@ RAM:
 - The less RAM remaining in the system, the more expensive the price, and vice versa
 - Pledge Token is to encourage users to release unused RAM space and redeem the pledge Token
 - Increase the RAM by 64G per year, and add RAM every time you have an account to buy RAM.
-- Create an account requires a small amount of RAM to avoid creating account attack
-- RAM can be rented but not traded
+- The RAM purchased from the system can be given to other users, and cannot be retrieved after the gift.
+- The RAM that the user is given cannot be sold to the system, and cannot be given to other users again, that is, the RAM can only be traded once.
+- The system preferentially uses the donated RAM. When the RAM is released, the RAM attribute (given, system purchased) remains unchanged.
 - When calling a system contract, it is possible to use the user's RAM
 
 # Circulation
