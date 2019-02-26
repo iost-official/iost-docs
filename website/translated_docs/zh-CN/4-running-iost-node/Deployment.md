@@ -5,46 +5,97 @@ sidebar_label: 部署
 ---
 本文介绍如何加入IOST官方网。如果只是测试调试，建议部署[本地单节点网络](4-running-iost-node/LocalServer.md)
 
-## 依赖
+# 硬件配置
+
+- CPU: 4 核或者更多 (推荐 8 核)
+- RAM: 8GB 或者更多 (推荐 16GB)
+- 存储: 1TB 或者更多 (推荐 5TB HDD)
+- 网络: 开启 tcp/30000 端口 (开启 tcp/30000-30002 如果开启 rpc 服务)
+
+# 依赖
 
 - Curl (版本任意)
 - Python (版本任意)
 - [Docker 1.13/Docker CE 17.03 以上](https://docs.docker.com/install)
 - (推荐) [Docker Compose](https://docs.docker.com/compose/install)
 
-## 启动之前
+# 启动节点
 
 默认情况下 `/data/iserver` 是数据目录，可以根据实际情况自行修改。
-下文用 `PREFIX` 指代数据目录。
+以下用 `PREFIX` 指代数据目录。
 
-
-*如果运行过以前版本的测试网，请清空数据:*
-
-```
-rm -rf $PREFIX/storage
-```
-
-## 启动节点
-
-启动一个单机节点：
-
-```
-docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
-```
-
-或者使用*启动*脚本：
-如果使用 docker-compose:
+使用一键脚本：
 
 ```
 curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
 ```
 
-启动脚本会清除 `$PREFIX`，然后启动一个全新的全节点，并加入 IOST 网络。
-同时会给*造快者*生成一对公私钥。
+| 变量 | 默认值 | 描述 |
+| :------: | :------: | :------: |
+| PREFIX | `/data/iserver` | iServer 数据路径 |
+| INET | `mainnet` | IOST 网络, `mainnet` 或者 `testnet` |
+| PYTHON | `python` | python 命令 |
+| USR_LOCAL_BIN | `/usr/local/bin` | `docker-compose` 前缀 |
 
-*开始/停止/重启*节点，进入 `$PREFIX`: `docker-compose (start|stop|restart)`
+如果需要更改默认配置，请设置环境变量。
+例如: 最新版 Ubuntu 使用 python3 而不是 python，所以需要这样启动节点：
+`curl ... | PYTHON=python3 bash`
 
-## 检查节点
+如果没有安装 docker, 脚本会自动安装。
+对于某些 Linux 发行版，请确保当前用户拥有 docker 执行权限。
+
+这个脚本会清理 `$PREFIX` 目录并创建一个连接到 IOST 网络的全节点。
+同时也会创建一个**节点公私钥对**(用于超级节点造块)。
+如果你想成为一个**超级节点**，后续步骤请参考[这里](4-running-iost-node/Become-Servi-Node.md).
+
+执行一下命令 *开启/停止/重启* 节点：
+
+```
+# 开始
+docker start iserver
+
+# 停止
+docker stop iserver
+
+# 重启
+docker restart iserver
+```
+
+## 手动启动节点
+
+### 数据
+
+如果运行过以前版本的测试网，请清空数据:
+
+```
+rm -rf $PREFIX/storage
+```
+
+### 配置文件
+
+获取最新配置文件：
+
+```
+# 获取创世信息
+curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz" | tar zxC $PREFIX/
+
+# 获取 iServer 配置
+curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml" -o $PREFIX/iserver.yml
+```
+
+如果你是一个超级节点，在 `iserver.yml` 中的 `acc` 一栏设置节点造块私钥。
+其他请参考[iServer 配置](4-running-iost-node/Configuration.md).
+
+### 运行
+
+执行以下命令启动节点：
+
+```
+docker pull iostio/iost-node
+docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
+```
+
+# 检查节点
 
 日志文件位于 `$PREFIX/logs/iost.log`.
 日志文件默认关闭。如果打开日志文件，请及时清理日志数据。
@@ -72,56 +123,105 @@ Info 2019-01-19 08:36:37.521 pob.go:456 Rec block - @5 id:EkRgHNoeeP..., num:114
 也可以使用钱包工具 `iwallet` 查看**本地**节点信息。
 
 ```
-docker-compose exec iserver ./iwallet state
+docker-compose exec iserver iwallet state
 ```
+
+IWallet 更多用法请参考[iWallet](4-running-iost-node/iWallet.md).
 
 访问[区块链浏览器](https://explorer.iost.io)获取当前区块高度。
 
-## 超级节点
+# 升级节点
 
-运行超级节点需要一个IOST账户(用来接收分红)和一个*生产者*节点(用来造块)。   
-**生产者造块推荐使用不同于账户的公私钥对。**
+新版本 iServer 发布时，建议尽快升级至最新版本。
 
-### 创建IOST账户
+## 使用升级脚本
 
-如果还没有账户，你需要：
-
-- 用 iWallet 生成*公私钥对*
-- 用生成的*公私钥对*在[区块链浏览器](https://explorer.iost.io)上注册账户
-
-最后用 iWallet 导入账户。
-
-### 启动节点
-
-请参考[启动节点](#start-the-node)执行以下命令:
+如果你是使用*一键脚本*部署的，推荐使用*一键升级脚本*：
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX sh
+curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/upgrade.sh | bash
 ```
 
-生产者*公私钥对*在 `$PREFIX/keypair`.
-访问 `http://localhost:30001/getNodeInfo` 的 `.network.id` 字段获取网络 ID.
+可以配置的变量有：
 
-### 注册申请
+| 变量 | 默认值 | 描述 |
+| :------: | :------: | :------: |
+| PREFIX | `/data/iserver` | iServer 数据目录 |
+| PYTHON | `python` | python 命令 |
+| USR_LOCAL_BIN | `/usr/local/bin` | `docker-compose` 前缀 |
 
-用 iWallet 发起一个交易：
+例如：最新的 Ubuntu 请执行 `curl ... | PYTHON=python3 bash`.
 
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'applyRegister' '["<your-account>","<pubkey-of-producer>","<location>","<website>","<network-ID>",true]' --amount_limit '*:unlimited'
-```
+这个脚本会拉取最新的 iServer 镜像并重启节点。
 
-完整 API 文档请参阅 [`vote_producer.iost`](6-reference/SystemContract.html#vote-produceriost).
+## 手动升级
 
-## 操作超级节点
-
-当 **admin** 批准超级节点注册申请，且节点准备好造块后，发起一个“上线”请求让节点上线：
-
-```
-iwallet --account <your-account> call 'vote_producer.iost' 'logInProducer' '["<your-account>"]' --amount_limit '*:unlimited'
-```
-
-下线节点：
+### 拉取镜像
 
 ```
-iwallet --account <your-account> call 'vote_producer.iost' 'logOutProducer' '["<your-account>"]' --amount_limit '*:unlimited'
+docker image pull iostio/iost-node:latest
+```
+
+### 删除旧容器
+
+IServer 容器将被重建，*除了 iServer 数据*容器内所有内容将被删除。
+
+```
+docker stop iserver && docker rm iserver
+```
+
+### 重建容器
+
+假设 iServer 数据目录是默认值 `/data/iserver`:
+
+```
+docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
+```
+
+# 种子节点列表
+
+主网 mainnet 种子节点信息如下：
+
+| 地理位置 | GRPC-URL | HTTP-URL | P2P-URL |
+| :------: | :------: | :------: | :-----: |
+| US        | 18.209.137.246:30002 | http://18.209.137.246:30001 | /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP |
+| Korea     | 54.180.196.80:30002  | http://54.180.196.80:30001  | /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA  |
+| Australia | 13.239.153.239:30002 | http://13.239.153.239:30001 | /ip4/13.239.153.239/tcp/30000/ipfs/12D3KooWEavwbgwrgah2sc7pfdJMcEkbEB38DETnE8zwQj8EU1Fg |
+| Japan     | 52.197.100.115:30002 | http://52.197.100.115:30001 | /ip4/52.197.100.115/tcp/30000/ipfs/12D3KooWGBbN2VBUVWPygcm6AwX8WM8jGXFf4QhCbaKdfAeahePJ |
+| Canada    | 35.182.211.144:30002 | http://35.182.211.144:30001 | /ip4/35.182.211.144/tcp/30000/ipfs/12D3KooWQMUkJECpA3cwyN4UaWEHE4bTFkAn8xZUDFchZe8omXk2 |
+| Germany   | 35.157.137.25:30002  | http://35.157.137.25:30001  | /ip4/35.157.137.25/tcp/30000/ipfs/12D3KooWDsTP7KxBSj7rKuVKm6J6fbJCC2e77Ftix21nZZXsiCcb  |
+| UK        | 35.176.24.11:30002   | http://35.176.24.11:30001   | /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp   |
+| France    | 35.181.10.219:30002  | http://35.181.10.219:30001  | /ip4/35.181.10.219/tcp/30000/ipfs/12D3KooWHjBMcSFxAcCE3kfbuQBSchYbrvt5aRHTRpRFA5x5NYDz  |
+
+## GRPC
+
+使用 grpc 服务：
+
+```
+# Get the node information
+iwallet -s 18.209.137.246:30002 state
+iwallet -s ${GRPC-URL} state
+```
+
+## HTTP
+
+使用 HTTP 服务：
+
+```
+# Get the block information by block height
+curl http://18.209.137.246:30001/getBlockByNumber/3/true
+curl ${HTTP-URL}/getBlockByNumber/3/true
+```
+
+## P2P
+如果你想变更 iServer 种子节点信息，修改 `/data/iserver/iserver.yml`, 例如:
+
+```
+...
+p2p:
+  listenaddr: 0.0.0.0:30000
+  seednodes:
+    - /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP
+    - ${P2P-URL}
+    - ...
 ```

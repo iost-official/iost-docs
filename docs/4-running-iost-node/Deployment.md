@@ -127,11 +127,12 @@ Info 2019-01-19 08:36:37.521 pob.go:456 Rec block - @5 id:EkRgHNoeeP..., num:114
 ```
 
 You may also check the state of the node using `iwallet` tool.
-See also [iWallet](4-running-iost-node/iWallet.md).
 
 ```
 docker exec -it iserver iwallet state
 ```
+
+See also [iWallet](4-running-iost-node/iWallet.md).
 
 The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
 
@@ -212,7 +213,7 @@ iwallet -s ${GRPC-URL} state
 
 ## HTTP
 
-If you want to use the HTTP API of IOST netwwrk, for example:
+If you want to use the HTTP API of IOST network, for example:
 
 ```
 # Get the block information by block height
@@ -221,9 +222,10 @@ curl ${HTTP-URL}/getBlockByNumber/3/true
 ```
 
 ## P2P
-If you want to modify the seed node of the iserver, you could edit the file `/data/iserver/iserver.yml`, for example:
+If you want to modify the seed node of the iServer, you could edit the file `/data/iserver/iserver.yml`, for example:
 
 ```
+...
 p2p:
   listenaddr: 0.0.0.0:30000
   seednodes:
