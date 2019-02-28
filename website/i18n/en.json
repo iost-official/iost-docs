@@ -758,6 +758,14 @@
       "version-3.0.0-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
+      },
+      "version-3.0.1-Configuration": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
+      "version-3.0.1-Deployment": {
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
       }
     },
     "links": {
