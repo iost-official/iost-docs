@@ -57,7 +57,8 @@ If you forget them, you can view them as follows:
 - You can get **Network ID** of the node in section `network.id` by the command `curl http://localhost:30001/getNodeInfo`
 
 # IWallet with IOST network
-Iwallet will connect to the local node by default. If you want to connect to IOST network, please refer to [Seed Node List](4-running-iost-node/Deployment.md#seed-node-list).  
+
+IWallet will connect to the local node by default. If you want to connect to IOST network, please refer to [Seed Node List](4-running-iost-node/Deployment.md#seed-node-list).  
 For example:
 
 ```
@@ -74,7 +75,7 @@ iwallet system gas-pledge 80 --account <your-account>
 iwallet system ram-buy 1024 --account <your-account>
 ```
 
-If you don't have enough iost, please contact us.
+If you don't have enough IOST, please contact us.
 
 # Register the Servi Node
 
@@ -114,8 +115,8 @@ If you have enough IOST, you could vote for your servi node by follow command:
 iwallet system vote <your-servi-node-account> 2100000 --account <your-account>
 ```
 
-- <your-servi-node-account>: Voted servi node account
-- <your-account>: Voting account
+- `<your-servi-node-account>`: Voted Servi Node account
+- `<your-account>`: Voting account
 
 If you want to cancel the vote, you can use the following command:
 
@@ -126,6 +127,7 @@ iwallet system unvote <your-servi-node-account> 2100000 --account <your-account>
 # View your Servi Node Account Information
 
 If you want to check your servi node account information, you could execute follow command:
+
 ```
 iwallet system producer-info --account <your-account>
 ```

@@ -21,7 +21,7 @@ Calling the [applyRegister](../6-reference/SystemContract.html#applyregister) me
 - An account can vote for more than one node, and the node can vote for itself
 - Only partner nodes and servi nodes and their voters can participate in voting reward bonuses
 - Token pledged to purchase resources doesn't have voting right
-- After canceling the vote, you need to wait 7 days to redeem the token
+- After canceling the vote, you need to wait 7 days to redeem the token, Token in redemption has no voting reward
 
 ## reward
 The system will issue 2% token every year. 1% tokens are block awards only for servi nodes. 1% tokens are voting awards, half of which are awarded to partners and servi nodes, and the other half to their voters.
