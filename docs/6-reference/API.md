@@ -660,7 +660,40 @@ balance             |double |the balance
 frozen\_balances    |repeated FrozenBalance |the information on frozen balance
 
 
+## /GetProducerVoteInfo/{name}/{by_longest_chain}
+##### GET
 
+Get producer vote infomation
+
+### Request
+
+A request may look like this:
+
+```
+curl http://127.0.0.1:30001/getProducerVoteInfo/producerName/true
+```
+
+Key                 |Type       |Description 
+----                    |--         |--
+id                      |string     |producer Name
+by\_longest\_chain  |bool   |true - get data from longest chain; false - get data from irreversible blocks
+
+### Response
+
+A successful response may look like this:
+
+```
+{
+    pubkey: "9V1v7Emef8MyPc1uBc9i5BmrTFxpUkxvQa1vUUSuzr4F",
+    loc: "",
+    url: "",
+    net_id: "12D3KooWMQnia3aw9Yp7yrbeMB8KhTWYxaSdbNf6FBketXJs4n76",
+    is_producer: true,
+    status: "APPROVED",
+    online: true,
+    votes: 2100000,
+}
+```
 
 
 ## /getContract/{id}/{by_longest_chain}
