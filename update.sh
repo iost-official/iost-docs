@@ -1,6 +1,6 @@
 set -u
 
-last_commit=3ebc0f6d6c590f69a707ed89cc4a84d4bec0856e
+last_commit=479680d0c00fa9cf370d49008f5bb7b9270a35ea
 git_root=$(git rev-parse --show-toplevel)
 
 function update_language()

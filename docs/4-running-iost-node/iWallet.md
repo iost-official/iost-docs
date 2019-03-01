@@ -329,13 +329,13 @@ Check [reward](2-intro-of-iost/Economic-model.md#reward) for more information ab
 Redeem all contribution value to IOST tokens:
 
 ```
-iwallet producer-redeem --account test0
+iwallet sys producer-redeem --account test0
 ```
 
 Redeem 100 contribution value to 100 IOST tokens:
 
 ```
-iwallet producer-redeem 100 --account test0
+iwallet sys producer-redeem 100 --account test0
 ```
 
 #### Get Producer Voting Reward
@@ -343,7 +343,7 @@ iwallet producer-redeem 100 --account test0
 If user `test0` is a producer:
 
 ```
-iwallet producer-withdraw --account test0
+iwallet sys producer-withdraw --account test0
 ```
 
 #### Get Voter Voting Reward
@@ -351,7 +351,7 @@ iwallet producer-withdraw --account test0
 If user `test0` is a voter:
 
 ```
-iwallet voter-withdraw --account test0
+iwallet sys voter-withdraw --account test0
 ```
 
 ####
