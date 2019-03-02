@@ -76,7 +76,12 @@ curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -
 次のコマンドでノードを開始します。
 ```
 docker pull iostio/iost-node
-docker run -d -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
+docker run -d \
+    --name iserver \
+    -v /data/iserver:/var/lib/iserver \
+    -p 30000-30003:30000-30003 \
+    --restart unless-stopped \
+    iostio/iost-node
 ```
 
 # ノードの確認
