@@ -888,6 +888,8 @@ public\_key   |string   |The public key corresponding to the signature
 Key                 |Type       |Description 
 ----                    |--         |--
 hash                |string     |the transaction hash
+|pre_tx_receipt | [TxReceipt](#txreceipt)  | receipt of transaction executed in advance by RPC node, returned only when RPC node opens the switch|
+
 
 
 ### Signing a transaction
