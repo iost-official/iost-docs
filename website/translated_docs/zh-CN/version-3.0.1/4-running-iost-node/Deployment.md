@@ -92,7 +92,12 @@ curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml" -
 
 ```
 docker pull iostio/iost-node
-docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
+docker run -d \
+    --name iserver \
+    -v /data/iserver:/var/lib/iserver \
+    -p 30000-30003:30000-30003 \
+    --restart unless-stopped \
+    iostio/iost-node
 ```
 
 # 检查节点
