@@ -103,6 +103,20 @@ The contestant receives a bonus award.
 | :----: | :------ |
 | Candidate Account Name | string |
 
+### getVoterBonus
+Calculate voter's bonus awards.
+
+| Parameter List | Parameter Type |
+| :----: | :------ |
+| Voter Account Name | string |
+
+#### getCandidateBonus
+Calculate contestant's bonus award.
+
+| Parameter List | Parameter Type |
+| :----: | :------ |
+| Candidate Account Name | string |
+
 #### topupCandidateBonus
 recharge iost to candidates' bonus pool.
 

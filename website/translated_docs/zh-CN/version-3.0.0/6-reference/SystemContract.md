@@ -102,6 +102,20 @@ sidebar_label: System Contract
 | :----: | :------ |
 | 竞选者账户名| string |
 
+### getVoterBonus
+计算投票者的分红奖励。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 投票者账户名| string |
+
+#### getCandidateBonus
+计算竞选者的分红奖励。
+
+| 参数列表 | 参数类型 |
+| :----: | :------ |
+| 竞选者账户名| string |
+
 #### topupCandidateBonus
 向节点奖励池充值 iost。
 
