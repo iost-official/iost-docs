@@ -8,7 +8,7 @@ iwallet 是 IOST 的客户端命令行工具。可以使用本工具连接IOST�
 iwallet 和 [API](6-reference/API.md) 都是通过 RPC API 来和区块链交互。两者的功能和接口都是基本一致的。
   
 ## 安装
-首先需要[安装golang](4-running-iost-node/Building-IOST.html#install-golang)。
+首先需要[安装golang](4-running-iost-node/Building-IOST.md#install-golang)。
 
 安装完golang之后，你可以执行如下命令安装iwallet：
 ```
