@@ -803,6 +803,8 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | hash | string | 交易的 hash | 
+| pre\_tx\_receipt | [TxReceipt](#txreceipt)  | 被RPC节点预先执行的交易的receipt，需要 RPC 节点打开预执行开关才会返回这个字段|
+
 ### 交易签名
 交易的签名过程分为三步：将交易结构体转为字节数组；使用 sha3 算法对字节数组计算哈希；使用私钥对哈希进行签名。  
 
