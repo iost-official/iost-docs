@@ -133,7 +133,7 @@ iwallet system --help
 
     Use "iwallet system [command] --help" for more information about a command.
 
-In above examples, you may find some flags (like `--account`) have the corresponding shortcut flag (like `-a`) that has exactly same effect. And there are some commands that would have corresonding shortcuts (like `system` has an alias `sys`). But for clarity, we will use the full name flags and full name commands instead of shortcuts in following sections.
+In above examples, you may find some flags (like `--account`) have the corresponding shortcut flag (like `-a`) that has exactly same effect. And there are some commands that would have corresponding shortcuts (like `system` has an alias `sys`). But for clarity, we will use the full name flags and full name commands instead of shortcuts in following sections.
 
 The verbose information of a command will commonly include RPC connecting information, elapsed time and transaction details if it contains a transaction sending action. We will omit the verbose information in following output examples for concise.
 
@@ -209,8 +209,7 @@ iwallet state
 
 #### Import Account
 
-An account must be imported before calling any contracts.  
-This command will copy private key to `~/.iwallet/YOUR_ACCOUNT_ID_ed25519`. It is done locally without any interaction with blockchain.
+An account must be imported before calling any contracts. It is done locally without any interaction with blockchain.
 
 ```
 iwallet account import <account_id> <private_key>
@@ -226,7 +225,7 @@ iwallet --account <account_name> [flags] call <contract_name> <function_name> '[
 | :----: | :-----: | :------ |
 | account | who calls the contract | *< user specified >* |
 | gas_limit | max gas allowed for the calling | 1000000 |
-| gas_ratio | transaction with bigger gas_ratio will be exectuted sooner | 1.0 |
+| gas_ratio | transaction with bigger gas_ratio will be executed earlier | 1.0 |
 | amount_limit | all token amount limits (e.g. iost:300.0&#124;ram:2000) | \*:unlimited |
 
 #### Sample - Transfer token by calling contract
@@ -357,7 +356,141 @@ iwallet sys voter-withdraw --account test0
 
 ####
 
-## Advanced features
+## Cold Wallet
+
+**Cold wallet**, aka **cold storage** or **offline wallet**, refers to keeping a reserve completely offline.
+We would introduce a basic scene to show how to use `iwallet` as cold wallet.
+
+The following action is a simple [transfer](#transfer-iost-tokens) from user `test0` to user `test1`:
+
+```
+iwallet transfer test1 1 --account test0
+```
+
+    Sending transaction...
+    Transaction has been sent.
+    The transaction hash is: HK7Ue95vah88PJq8wBhc6mwazgBezV2p6rMRFGFmcyjG
+    Checking transaction receipt...
+    SUCCESS!
+
+Actually there are 2 steps before sending transaction: initialize transaction and sign it with private key of account given by flag `--account`.
+Let's separate the sign step and do it only on a computer that is always offline.
+
+Assume there is an offline computer A that stores the private key of user `test0` (suggest to [encrypt the private key](#advanced-account-management) also) and an online computer B that stores another user `test_pub` as publisher for sending transaction onto blockchain.
+And we could do the same transfer in following steps:
+
+### Save Transaction
+
+Generate the transfer transaction with reasonable execute time (like delay 600 seconds in following example) in whether computer A or B:
+
+```bash
+iwallet transfer test1 1 --account test0 --tx_time_delay 600 --output tx.json
+```
+
+    Transaction:
+    {
+        "time": "1551862008534318000",
+        "expiration": "1551862308534318000",
+        "gasRatio": 1,
+        "gasLimit": 1000000,
+        "delay": "0",
+        "chainId": 1024,
+        "actions": [
+            {
+                "contract": "token.iost",
+                "actionName": "transfer",
+                "data": "[\"iost\",\"test0\",\"test1\",\"1\",\"\"]"
+            }
+        ],
+        "amountLimit": [
+            {
+                "token": "*",
+                "value": "unlimited"
+            }
+        ],
+        "signers": [
+        ],
+        "signatures": [
+        ],
+        "publisher": "",
+        "publisherSigs": [
+        ]
+    }
+    Successfully saved transaction request as json file: tx.json
+
+### Sign Transaction
+
+Sign the transaction contained in file `tx.json` with key file `~/.iwallet/test0.json` in **offline computer A**:
+
+```
+iwallet sign tx.json ~/.iwallet/test0.json sig.json
+```
+
+    Signature:
+    {
+        "algorithm": "ED25519",
+        "signature": "6D0faL58bJnGEBJZT3ragqhcm79EFSVrHTCcLhi+/TGthZ1ZJbQ2H6tJfGkEs0LB/lyQm6qZ2LiFZRdFmfnYDg==",
+        "publicKey": "7mztgrIJa8C+EZtipQ1U+RgnwGWm5H66o58ESFoiJSA="
+    }
+    Successfully saved signature as: sig.json
+
+### Send Transaction
+
+Send the transaction contained in file `tx.json` with signature file `sig.json` in **online computer B**:
+
+```
+iwallet send tx.json --signature_files sig.json --account test_pub
+```
+
+    Successfully added signature contained in: sig.json
+    The transaction time is: 2019-03-06T16:46:48+08:00
+    Waiting 7 seconds to reach the transaction time...
+    Sending transaction...
+    Transaction:
+    {
+        "time": "1551862008534318000",
+        "expiration": "1551862308534318000",
+        "gasRatio": 1,
+        "gasLimit": 1000000,
+        "delay": "0",
+        "chainId": 1024,
+        "actions": [
+            {
+                "contract": "token.iost",
+                "actionName": "transfer",
+                "data": "[\"iost\",\"test0\",\"test1\",\"1\",\"\"]"
+            }
+        ],
+        "amountLimit": [
+            {
+                "token": "*",
+                "value": "unlimited"
+            }
+        ],
+        "signers": [
+        ],
+        "signatures": [
+            {
+                "algorithm": "ED25519",
+                "signature": "6D0faL58bJnGEBJZT3ragqhcm79EFSVrHTCcLhi+/TGthZ1ZJbQ2H6tJfGkEs0LB/lyQm6qZ2LiFZRdFmfnYDg==",
+                "publicKey": "7mztgrIJa8C+EZtipQ1U+RgnwGWm5H66o58ESFoiJSA="
+            }
+        ],
+        "publisher": "test_pub",
+        "publisherSigs": [
+            {
+                "algorithm": "ED25519",
+                "signature": "TkbrE76SFjq5qJ61zsg9eWb7CDT22mVh3Pzet18sU9LHhv20Ai17hypg3g759iiU/LCxFaTAcf3Pt9L4OSwYDA==",
+                "publicKey": "2fQeZYv0LpPK9WnBbODm9RJ+a9sb1iBApLoLSHG1NLs="
+            }
+        ]
+    }
+    Transaction has been sent.
+    The transaction hash is: BbfFVP1enbTotm3mvfuyZ8dJnBFfXyPy8uWTJCcYgxS4
+    Checking transaction receipt...
+    SUCCESS!
+
+## Advanced Features
 
 ### Query Block
 

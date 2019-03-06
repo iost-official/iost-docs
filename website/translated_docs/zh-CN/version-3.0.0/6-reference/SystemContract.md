@@ -102,7 +102,7 @@ sidebar_label: System Contract
 | :----: | :------ |
 | 竞选者账户名| string |
 
-### getVoterBonus
+#### getVoterBonus
 计算投票者的分红奖励。
 
 | 参数列表 | 参数类型 |

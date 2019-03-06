@@ -103,7 +103,7 @@ The contestant receives a bonus award.
 | :----: | :------ |
 | Candidate Account Name | string |
 
-### getVoterBonus
+#### getVoterBonus
 Calculate voter's bonus awards.
 
 | Parameter List | Parameter Type |
