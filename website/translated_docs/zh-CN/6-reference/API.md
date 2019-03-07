@@ -215,7 +215,8 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 		"referred_tx": "",
 		"amount_limit": [],
 		"tx_receipt": null
-	}
+	},
+	"block_number": "4047298"
 }
 ```
 
@@ -223,6 +224,7 @@ curl http://127.0.0.1:30001/getTxByHash/6eGkZoXPQtYXdh7dBSXe2L1ckUCDj4egRn4fXtS2
 | :----: | :-----: | :------ |
 | status |enum  | PENDING-交易在缓存中, PACKED - 交易在非不可逆块中，IRREVERSIBLE - 交易在不可逆的块中|
 | transaction |[Transaction](#transaction) transaction   | 交易数据 |
+| block_number | string   | 交易所在的区块号 |
 
 ### Transaction
 | 字段 | 类型 | 描述 |
@@ -447,7 +449,6 @@ curl http://127.0.0.1:30001/getBlockByNumber/3/false
 ## /getAccount/{name}/{by\_longest\_chain}
 ---
 
-
 ##### **GET**
 **概要:** 获取账号信息
 
@@ -460,7 +461,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------: |
-| name | string  | block 的号|
+| name | string  | 账户名|
 | by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
 
 ### 响应格式
@@ -981,3 +982,83 @@ curl -X POST http://127.0.0.1:30001/subscribe -d '{"topics":["CONTRACT_RECEIPT"]
 | topic | enum  | 事件的主题，CONTRACT\_EVENT-合约中触发的事件, CONTRACT\_RECEIPT-交易执行完的事件|
 | data | string  | 事件数据|
 | time | int64  | 事件的时间戳|
+
+
+## /getCandidateBonus/{name}/{by\_longest\_chain}
+---
+
+##### **GET**
+**概要:** 获取节点可领取的投票收益
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl http://127.0.0.1:30001/getCandidateBonus/erebus/1
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------: |
+| name | string  | 节点账户名|
+| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{
+	"bonus": 111866.61819617149
+}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| bonus |double   | 可领取的投票收益 |
+
+
+## /getVoterBonus/{name}/{by\_longest\_chain}
+---
+
+##### **GET**
+**概要:** 获取投票者可领取的投票收益
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl http://127.0.0.1:30001/getVoterBonus/admin/1
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------: |
+| name | string  | 投票者账户名|
+| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{
+	"bonus": 94875.58356478,
+	"detail":
+	{
+		"dapppub": 15414.37339835,
+		"iostamerica": 17212.96477434,
+		"laomao": 9895.73931972,
+		"metanyx": 29877.55014659,
+		"sutler": 20924.99488913,
+		"tokenpocket": 1549.96103665
+	}
+}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| bonus |double   | 可领取的总投票收益 |
+| detail |map\<string, double\>   | 从每个候选人得到的收益 |
+
+
