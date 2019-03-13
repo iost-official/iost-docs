@@ -12,7 +12,7 @@ iwallet 和 [API](6-reference/API.md) 都是通过 RPC API 来和区块链交互
 
 安装完golang之后，你可以执行如下命令安装iwallet：
 ```
-go get github.com/iost-official/go-iost/iwallet
+go get github.com/iost-official/go-iost/cmd/iwallet
 ```
 
 如果你计划部署智能合约到区块链上，你应该首先安装[nodejs](https://nodejs.org/en/download/)，然后再运行下面的命令。
