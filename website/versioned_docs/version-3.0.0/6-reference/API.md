@@ -228,7 +228,8 @@ A successful response may look like this:
         "referred_tx": "",
         "amount_limit": [],
         "tx_receipt": null
-    }
+    },
+    "block_number": "4047298"
 }
 ```
 
@@ -236,6 +237,7 @@ Key                 |Type       |Description
 ----                    |--         |--
 status              |enum       |PENDING- transaction is cached, PACKED - transaction is in reversible blocks, IRREVERSIBLE - transaction is in irreversible blocks
 transaction     |Transaction|Transaction data
+block_number | string   | the number of the block which the tx is in
 
 ### Transaction
 
@@ -486,7 +488,7 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 
 Key                 |Type       |Description 
 ----                    |--         |--
-name                |string     |the block number
+name                |string     |the account name
 by\_longest\_chain  |bool   |true - get data from the longest chain; false - get data from irreversible blocks
 
 
@@ -1071,3 +1073,83 @@ A successful response may look like this:
 | topic | enum  | topic，the enum is CONTRACT\_EVENT or CONTRACT\_RECEIPT|
 | data | string  |event data|
 | time | int64  | event timestamp|
+
+
+## /getCandidateBonus/{name}/{by\_longest\_chain}
+---
+
+##### **GET**
+**概要:** Query the voting bonus a node can receive.
+
+### Request
+
+A request may look like this:
+
+```
+curl http://127.0.0.1:30001/getCandidateBonus/erebus/1
+```
+| Key | Type | Description |
+| :----: | :-----: | :------: |
+| name | string  | node account name|
+| by\_longest\_chain | bool  | true - get data from the longest chain; false - get data from irreversible blocks|
+
+### Response
+
+A successful response may look like this:
+
+```
+200 OK
+{
+	"bonus": 111866.61819617
+}
+```
+
+| Key | Type | Description |
+| :----: | :--------: | :------ |
+| bonus |double   | the bonus he can receive |
+
+
+## /getVoterBonus/{name}/{by\_longest\_chain}
+---
+
+##### **GET**
+**概要:** Query the voting bonus a voter can receive.
+
+### Request
+
+A request may look like this:
+
+```
+curl http://127.0.0.1:30001/getVoterBonus/admin/1
+```
+| Key | Type | Description |
+| :----: | :-----: | :------: |
+| name | string  | voter account name|
+| by\_longest\_chain | bool  | true - get data from the longest chain; false - get data from irreversible blocks|
+
+### Response
+
+A successful response may look like this:
+
+```
+200 OK
+{
+	"bonus": 94875.58356478,
+	"detail":
+	{
+		"dapppub": 15414.37339835,
+		"iostamerica": 17212.96477434,
+		"laomao": 9895.73931972,
+		"metanyx": 29877.55014659,
+		"sutler": 20924.99488913,
+		"tokenpocket": 1549.96103665
+	}
+}
+```
+
+| Key | Type | Description |
+| :----: | :--------: | :------ |
+| bonus |double   | the total voting bonus he can receive |
+| detail |map\<string, double\>   | the bonus from every candidate |
+
+

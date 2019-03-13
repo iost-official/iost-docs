@@ -6,7 +6,7 @@ sidebar_label: VM
 
 We believe a good implementation of virtual machine needs to be both elegantly designed, easy to use, and secure. After comparing the pros and cons of EVM, EOS, C Lua and V8, we have fundamentally resolved unreasonable designs of EVM and EOS. We have managed to build the IOST VM based on V8 due to on the its high performance on Chrome.
 
-## 1. IOST V8VM sturcture and designs
+## 1. IOST V8VM structure and designs
 
 VMManager is at the core of V8VM. It has three main features:
 

@@ -48,4 +48,5 @@ go get -d github.com/iost-official/go-iost
 cd $GOPATH/src/github.com/iost-official/go-iost
 git lfs pull
 make build install
+cd vm/v8vm/v8/; make install deploy; cd ../../..
 ```
