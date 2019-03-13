@@ -90,47 +90,47 @@ Account management is based on the contract of `auth.iost`. The ABI is as follow
   "version": "1.0.0",
   "abi": [
     {
-      "name": "SignUp", // Create account
+      "name": "signUp", // Create account
       "args": ["string", "string", "string"] // Username, ownerKey ID, activeKey ID
     },
     {
-      "name": "AddPermission", // Add permission
+      "name": "addPermission", // Add permission
       "args": ["string", "string", "number"] // Username, permission name, threshold
     },
     {
-      "name": "DropPermission", // Drop permission
+      "name": "dropPermission", // Drop permission
       "args": ["string", "string"] // Username, permission name
     },
     {
-      "name": "AssignPermission", // Assign permission to an item
+      "name": "assignPermission", // Assign permission to an item
       "args": ["string", "string", "string","number"] // Username, permission, public key ID or account_name@permission_name, weight
     },
     {
-      "name": "RevokePermission",    // Revoke permission
+      "name": "revokePermission",    // Revoke permission
       "args": ["string", "string", "string"] // Username, permission, public key ID or account_name@permission_name
     },
     {
-      "name": "AddGroup",   // Add permission group
+      "name": "addGroup",   // Add permission group
       "args": ["string", "string"] // Username, group name
     },
     {
-      "name": "DropGroup",   // Drop group
+      "name": "dropGroup",   // Drop group
       "args": ["string", "string"] // Username, group name
     },
     {
-      "name": "AssignGroup", // Assign item to group
+      "name": "assignGroup", // Assign item to group
       "args": ["string", "string", "string", "number"] // Username, group name, public key ID or account_name@permission_name, weight
     },
     {
-      "name": "RevokeGroup",    // Revoke group
+      "name": "revokeGroup",    // Revoke group
       "args": ["string", "string", "string"] // Username, group name, public key ID or account_name@permission_name
     },
     {
-      "name": "AssignPermissionToGroup", // Assign permission to group
+      "name": "assignPermissionToGroup", // Assign permission to group
       "args": ["string", "string", "string"] // Username, permission name, group name
     },
     {
-      "name": "RevokePermissionInGroup", // Revoke permissions from a group
+      "name": "revokePermissionInGroup", // Revoke permissions from a group
       "args": ["string", "string", "string"] // Username, permission name, group name
     }
   ]
@@ -144,7 +144,7 @@ Normally, accounts will need to deposit IOST upon application, or the account ma
 ```js
 newAccount(name, ownerkey, activekey, initialRAM, initialGasPledge) {
     const t = new Tx(this.config.gasPrice, this.config.gasLimit, this.config.delay);
-    t.addAction("iost.auth", "SignUp", JSON.stringify([name, ownerkey, activekey]));
+    t.addAction("iost.auth", "signUp", JSON.stringify([name, ownerkey, activekey]));
     t.addAction("iost.ram", "buy", JSON.stringify([this.publisher, name, initialRAM]));
     t.addAction("iost.gas", "pledge", JSON.stringify([this.publisher, name, initialGasPledge]));
     return t

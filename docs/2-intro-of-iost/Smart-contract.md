@@ -43,7 +43,7 @@ type Action struct {
 }
 ```
 
-In a smart contract you can use `BlockChain.call()` to call an ABI interface, and obtain the return value. The system will log the call stack and deny double-spend.
+In a smart contract you can use `blockchain.call()` to call an ABI interface, and obtain the return value. The system will log the call stack and deny double-spend.
 
 ## Multi-language Support
 
@@ -53,7 +53,7 @@ The smart contract engine of IOST consists of three parts: monitor, VM, host. Mo
 
 ## Smart Contract Permission System
 
-Transactions support multiple signatures. Within a contract, you can use `RequireAuth()` to check if the current context bears the signature of a certain ID. Calls between smart contracts will relay signature authorizations. For example, if `A.a` calls `B.b`, authorization to `B.b` from a user is implied when `A.a` is called.
+Transactions support multiple signatures. Within a contract, you can use `requireAuth()` to check if the current context bears the signature of a certain ID. Calls between smart contracts will relay signature authorizations. For example, if `A.a` calls `B.b`, authorization to `B.b` from a user is implied when `A.a` is called.
 
 Smart contracts can check the stack of calling, and answer questions such as "Who invoked this ABI." This allows for certain operations to exist.
 
