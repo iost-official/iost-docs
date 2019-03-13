@@ -91,47 +91,47 @@ User1
   "version": "1.0.0",
   "abi": [
     {
-      "name": "SignUp", // 创建账号
+      "name": "signUp", // 创建账号
       "args": ["string", "string", "string"] // 用户名，ownerKey ID，activeKey ID
     },
     {
-      "name": "AddPermission", // 添加权限
+      "name": "addPermission", // 添加权限
       "args": ["string", "string", "number"] // 用户名，权限名，权限的阈值
     },
     {
-      "name": "DropPermission", // 删除权限
+      "name": "dropPermission", // 删除权限
       "args": ["string", "string"] // 用户名，权限名
     },
     {
-      "name": "AssignPermission", // 指定权限给item
+      "name": "assignPermission", // 指定权限给item
       "args": ["string", "string", "string","number"] // 用户名，权限，公钥ID或账户名@权限名，权重
     },
     {
-      "name": "RevokePermission",	 // 撤销权限
+      "name": "revokePermission",	 // 撤销权限
       "args": ["string", "string", "string"] // 用户名，权限，公钥ID或账户名@权限名
     },
     {
-      "name": "AddGroup",	// 添加权限组
+      "name": "addGroup",	// 添加权限组
       "args": ["string", "string"] // 用户名，组名
     },
     {
-      "name": "DropGroup",	 // 删除权限组
+      "name": "dropGroup",	 // 删除权限组
       "args": ["string", "string"] // 用户名，组名
     },
     {
-      "name": "AssignGroup", // 指定item给权限组
+      "name": "assignGroup", // 指定item给权限组
       "args": ["string", "string", "string", "number"] // 用户名，组名，公钥ID或账户名@权限名，权重
     },
     {
-      "name": "RevokeGroup",	// 撤销权限组的item
+      "name": "revokeGroup",	// 撤销权限组的item
       "args": ["string", "string", "string"] // 用户名，组名，公钥ID或账户名@权限名
     },
     {
-      "name": "AssignPermissionToGroup", // 添加权限到组
+      "name": "assignPermissionToGroup", // 添加权限到组
       "args": ["string", "string", "string"] // 用户名，权限名，组名
     },
     {
-      "name": "RevokePermissionInGroup", // 删除组中的权限
+      "name": "revokePermissionInGroup", // 删除组中的权限
       "args": ["string", "string", "string"] // 用户名，权限名，组名
     }
   ]
@@ -142,10 +142,10 @@ User1
 
 通常，账户在申请时就需要质押IOST，否则账户将无法使用，例如，iost.js的做法如下：
 
-```
+```js
 newAccount(name, ownerkey, activekey, initialRAM, initialGasPledge) {
     const t = new Tx(this.config.gasPrice, this.config.gasLimit, this.config.delay);
-    t.addAction("iost.auth", "SignUp", JSON.stringify([name, ownerkey, activekey]));
+    t.addAction("iost.auth", "signUp", JSON.stringify([name, ownerkey, activekey]));
     t.addAction("iost.ram", "buy", JSON.stringify([this.publisher, name, initialRAM]));
     t.addAction("iost.gas", "pledge", JSON.stringify([this.publisher, name, initialGasPledge]));
     return t
