@@ -12,7 +12,7 @@ iwallet 和 [API](6-reference/API.md) 都是通过 RPC API 来和区块链交互
 
 安装完golang之后，你可以执行如下命令安装iwallet：
 ```
-go get github.com/iost-official/go-iost/iwallet
+go get github.com/iost-official/go-iost/cmd/iwallet
 ```
 
 如果你计划部署智能合约到区块链上，你应该首先安装[nodejs](https://nodejs.org/en/download/)，然后再运行下面的命令。
@@ -542,3 +542,15 @@ Transaction receipt:
 }
 Executed in 3.008329559s
 ```
+
+## 权限设置实例
+### 利用账号权限系统，实现触发投票收益领取账号和收益账号分离功能
+####步骤：
+- 两个账号a和b，a为接收投票收益账号、b为触发领取收益账号
+- 首先账号a添加`operate`权限
+   - `iwallet sys addperm operate 100 --account a_name`
+- a账号向权限`operate`中添加b账号权限引用
+   - `iwallet sys assignperm operate b_name@active 100 --account a_name`
+- 利用b账号触发a账号的投票收益领取
+   - 如果a账号是节点：`iwallet sys producer-withdraw --target a_name --account b_name`
+   - 如果a账号是投票者：`iwallet sys voter-withdraw --target a_name --account b_name`
