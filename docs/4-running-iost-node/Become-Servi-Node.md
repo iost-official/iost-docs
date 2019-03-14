@@ -128,7 +128,7 @@ iwallet system unvote <your-servi-node-account> 2100000 --account <your-account>
 If you want to check your servi node account information, you could execute follow command:
 
 ```
-iwallet system producer-info --account <your-account>
+iwallet system producer-info <your-servi-node-account>
 ```
 
 # Logout the Servi Node

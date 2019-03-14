@@ -128,7 +128,7 @@ iwallet system unvote <your-servi-node-account> 2100000 --account <your-account>
 执行一下命令查看超级节点状态:
 
 ```
-iwallet system producer-info --account <your-account>
+iwallet system producer-info <your-servi-node-account>
 ```
 
 # 超级节点登出
