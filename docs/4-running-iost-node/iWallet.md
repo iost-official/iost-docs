@@ -846,10 +846,68 @@ Executed in 3.008849533s
 The bindperm command is equivalent to [assignPermissionToGroup](6-reference/SystemContract.md#assignPermissionToGroup)
 
 ```
-Iwallet sys bindperm myperm mygroup
+iwallet sys bindperm myperm mygroup
 
 SUCCESS!
 Transaction receipt:
 {
-    "txHash": "4yCZLoyPmFo7wz5q
+    "txHash": "4yCZLoyPmFo7wz5qF2wAuE974mGz1kXfDsVz5HsA5Q9c",
+    "gasUsage": 43655,
+    "ramUsage": {
+        "admin": "9"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/assignPermissionToGroup",
+            "content": "[\"admin\",\"myperm\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.008667982s
+```
 
+### Remove permissions from a group
+The unbindperm command is equivalent to revokePermissionInGroup
+
+```
+iwallet sys unbindperm myperm mygroup
+
+SUCCESS!
+Transaction receipt:
+{
+    "txHash": "FxdteazkZbLTPFd5bnhmyydiPeurpx9jWrwcTar7eEQt",
+    "gasUsage": 43540,
+    "ramUsage": {
+        "admin": "-9"
+    },
+    "statusCode": "SUCCESS",
+    "message": "",
+    "returns": [
+        "[\"\"]"
+    ],
+    "receipts": [
+        {
+            "funcName": "auth.iost/revokePermissionInGroup",
+            "content": "[\"admin\",\"myperm\",\"mygroup\"]"
+        }
+    ]
+}
+Executed in 3.008329559s
+```
+
+## Permission setting example
+### Use the account authority management to realize the function of triggering the voting reward to receive the account and receiving the bonus account separation function.
+#### method：
+- Two accounts a and b, a is the receiving voting income account, b is the trigger to receive the income account
+- First add the `operate` permission to the account
+   - `iwallet sys addperm operate 100 --account a_name`
+- a account to add b account permission reference to the permission `operate`
+   - `iwallet sys assignperm operate b_name@active 100 --account a_name`
+- Use b account to trigger the voting income of a account
+   - If the a account is a node：`iwallet sys producer-withdraw --target a_name --account b_name`
+   - If the a account is a voter：`iwallet sys voter-withdraw --target a_name --account b_name`

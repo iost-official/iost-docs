@@ -545,7 +545,7 @@ Executed in 3.008329559s
 
 ## 权限设置实例
 ### 利用账号权限系统，实现触发投票收益领取账号和收益账号分离功能
-####步骤：
+#### 步骤：
 - 两个账号a和b，a为接收投票收益账号、b为触发领取收益账号
 - 首先账号a添加`operate`权限
    - `iwallet sys addperm operate 100 --account a_name`
