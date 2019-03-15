@@ -27,7 +27,7 @@ sidebar_label: 部署
 使用一键脚本：
 
 ```
-curl https://developers.iost.io/docs/assets/boot.sh | PREFIX=$PREFIX bash
+curl https://raw.githubusercontent.com/iost-official/go-iost/master/script/boot.sh | bash
 ```
 
 | 变量 | 默认值 | 描述 |
