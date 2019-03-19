@@ -94,7 +94,11 @@ A successful response looks like this:
     "head_block_hash": "DLJVtko6nQnAdvQ7y6dXHo3WMdG324yRLz8tPKk9tGHu",
     "lib_block": "16028",
     "lib_block_hash": "8apn7vCvQ6s9PFBzGfaXrvyL5eAaLNc4mEAgnTMoW8tC",
-    "witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"]
+    "witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"],
+    "lib_witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"],
+	"pending_witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"],
+	"head_block_time": "1552917911507043000",
+	"lib_block_time": "1552917911507043000"
 }
 ```
 
@@ -107,7 +111,11 @@ head\_block         |int64      |the lastest block height
 head\_block\_hash|string        |the hash of the lastest block
 lib\_block              |int64      |height of irreversible blocks
 lib\_block\_hash    |int64      |hash of irreversible blocks
-witness\_list           |repeated string|list of pubkeys for the block production nodes
+witness\_list           |repeated string|list of pubkeys for the current block production nodes
+lib\_witness\_list |repeated string  | list of pubkeys for the block production nodes of the last irreversible block time
+pending\_witness\_list |repeated string  | list of pubkeys for the next round block production nodes 
+head_block_time |int64  | time of head block
+lib_block_time |int64  | time of last irreversible block
 
 ## /getGasRatio
 ##### GET
@@ -1152,3 +1160,47 @@ A successful response may look like this:
 | detail |map\<string, double\>   | the bonus from every candidate |
 
 
+## /getTokenInfo/{symbol}/{by\_longest\_chain}
+---
+
+##### **GET**
+**概要:** Query the token information.
+
+### Request
+
+A request may look like this:
+
+```
+curl http://127.0.0.1:30001/getTokenInfo/iost/1
+```
+| Key | Type | Description |
+| :----: | :-----: | :------: |
+| symbol | string  | token symbol |
+| by\_longest\_chain | bool  | true - get data from the longest chain; false - get data from irreversible blocks|
+
+### Response
+
+A successful response may look like this:
+
+```
+200 OK
+{
+	"symbol": "iost",
+	"full_name": "iost",
+	"issuer": "issue.iost",
+	"total_supply": "9000000000000000000",
+	"current_supply": "2100000000000000000",
+	"decimal": 8,
+	"can_transfer": true
+}
+```
+
+| Key | Type | Description |
+| :----: | :--------: | :------ |
+| symbol |string   | token symbol |
+| full_name |string   | token full name |
+| issuer |string   | token issuer |
+| total_supply |string   | total amount of token supply |
+| current_supply |string   | current amount of token supply |
+| decimal | int   | token decimal |
+| can_transfer | bool   | whether the token can be transfered |

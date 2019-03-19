@@ -90,7 +90,11 @@ curl http://127.0.0.1:30001/getChainInfo
 	"head_block_hash": "DLJVtko6nQnAdvQ7y6dXHo3WMdG324yRLz8tPKk9tGHu",
 	"lib_block": "16028",
 	"lib_block_hash": "8apn7vCvQ6s9PFBzGfaXrvyL5eAaLNc4mEAgnTMoW8tC",
-	"witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"]
+	"witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"],
+	"lib_witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"],
+	"pending_witness_list": ["IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J", "IOST2YKPmRDGy5xLR7Gv65CN5nQ3vMmVhRjAsEM7Gj9xcB1LWgZUAd", "IOST7E4T5rG9wjPZXDeM1zjhhWU3ZswtPQ1heeRUFUxntr65sYRBi"],
+	"head_block_time": "1552917911507043000",
+	"lib_block_time": "1552917911507043000"
 }
 ```
 
@@ -103,7 +107,12 @@ curl http://127.0.0.1:30001/getChainInfo
 | head\_block\_hash | string  | 最新块的hash |
 | lib_block |int64  | 不可逆块的高度 |
 | lib\_block\_hash | string  | 不可逆块的hash |
-| witness_list |repeated string  | 造块节点的pubkey列表 |
+| witness\_list |repeated string  | 当前造块节点的pubkey列表 |
+| lib\_witness\_list |repeated string  | 不可逆块时刻的造块节点的pubkey列表 |
+| pending\_witness\_list |repeated string  | 下一轮造块节点的pubkey列表 |
+| head_block_time |int64  | 最新块的区块时间 |
+| lib_block_time |int64  | 不可逆块的区块时间 |
+
 
 ## /getGasRatio
 ---
@@ -1061,4 +1070,49 @@ curl http://127.0.0.1:30001/getVoterBonus/admin/1
 | bonus |double   | 可领取的总投票收益 |
 | detail |map\<string, double\>   | 从每个候选人得到的收益 |
 
+
+## /getTokenInfo/{symbol}/{by\_longest\_chain}
+---
+
+##### **GET**
+**概要:** 获取 token 信息
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl http://127.0.0.1:30001/getTokenInfo/iost/1
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------: |
+| symbol | string  | token 名字 |
+| by\_longest\_chain | bool  | true - 从最长链得到数据，false - 从不可逆块得到数据|
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{
+	"symbol": "iost",
+	"full_name": "iost",
+	"issuer": "issue.iost",
+	"total_supply": "9000000000000000000",
+	"current_supply": "2100000000000000000",
+	"decimal": 8,
+	"can_transfer": true
+}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| symbol |string   | token 名字 |
+| full_name |string   | token 全称 |
+| issuer |string   | token 发行人 |
+| total_supply |string   | token 总发行量 |
+| current_supply |string   | token 当前发行量 |
+| decimal | int   | token 小数位 |
+| can_transfer | bool   | token 能否进行转账 |
 
