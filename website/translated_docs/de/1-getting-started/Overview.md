@@ -5,7 +5,7 @@ sidebar_label: Überblick
 original_id: Overview
 ---
 
-Willkommen bei IOST Dokumentationen!
+Willkommen bei den IOST Dokumentationen!
 
 IOST ist eine neue Generation von leistungsstarken öffentlichen Blockchains. Die Infrastruktur ist skalierbar, stabil und ermöglicht eine einfache Anpassung an unterschiedliche Anforderungen. Nach dem Start des IOST Testnet haben wir viele neue Entwickler in die IOST Technik-Community aufgenommen.
 
