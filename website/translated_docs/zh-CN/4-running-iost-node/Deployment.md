@@ -191,12 +191,7 @@ docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30
 | :------: | :------: | :------: | :-----: |
 | US        | 18.209.137.246:30002 | http://18.209.137.246:30001 | /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP |
 | Korea     | 54.180.196.80:30002  | http://54.180.196.80:30001  | /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA  |
-| Australia | 13.239.153.239:30002 | http://13.239.153.239:30001 | /ip4/13.239.153.239/tcp/30000/ipfs/12D3KooWEavwbgwrgah2sc7pfdJMcEkbEB38DETnE8zwQj8EU1Fg |
-| Japan     | 52.197.100.115:30002 | http://52.197.100.115:30001 | /ip4/52.197.100.115/tcp/30000/ipfs/12D3KooWGBbN2VBUVWPygcm6AwX8WM8jGXFf4QhCbaKdfAeahePJ |
-| Canada    | 35.182.211.144:30002 | http://35.182.211.144:30001 | /ip4/35.182.211.144/tcp/30000/ipfs/12D3KooWQMUkJECpA3cwyN4UaWEHE4bTFkAn8xZUDFchZe8omXk2 |
-| Germany   | 35.157.137.25:30002  | http://35.157.137.25:30001  | /ip4/35.157.137.25/tcp/30000/ipfs/12D3KooWDsTP7KxBSj7rKuVKm6J6fbJCC2e77Ftix21nZZXsiCcb  |
 | UK        | 35.176.24.11:30002   | http://35.176.24.11:30001   | /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp   |
-| France    | 35.181.10.219:30002  | http://35.181.10.219:30001  | /ip4/35.181.10.219/tcp/30000/ipfs/12D3KooWHjBMcSFxAcCE3kfbuQBSchYbrvt5aRHTRpRFA5x5NYDz  |
 
 ## GRPC
 
