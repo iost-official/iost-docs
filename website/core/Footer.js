@@ -37,8 +37,11 @@ class Footer extends React.Component {
             <a href={this.docUrl('1-getting-started/Overview.html', this.props.language)}>
               Getting Started
             </a>
+            <a href="https://www.iostabc.com/" target="_blank">
+              Explorer1
+            </a>
             <a href="https://explorer.iost.io/" target="_blank">
-              Explorer
+              Explorer2
             </a>
             <a href="https://iost.io/updates/" target="_blank">
               News
