@@ -39,7 +39,7 @@ Apply for cancellation.
 
 
 #### unregister
-To cancel the registration, you need to call ApplyUnregister first. After the audit is passed, you can call this interface.
+Cancel the registration. If you are an approved producer node, you need to call ApplyUnregister first, after the audit is passed, you can call this interface.
 
 | Parameter List | Parameter Type |
 | :----: | :------ |

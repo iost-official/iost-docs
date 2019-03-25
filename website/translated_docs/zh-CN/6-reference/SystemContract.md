@@ -39,7 +39,7 @@ sidebar_label: System Contract
 
 
 #### unregister
-取消注册，需要先调用 ApplyUnregister，审核通过后，才可调用本接口。
+取消注册，如果你是一个已经通过审核的造块节点，需要先调用 ApplyUnregister，审核通过后，才可调用本接口。
 
 | 参数列表 | 参数类型 |
 | :----: | :------ |
