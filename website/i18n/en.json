@@ -121,6 +121,10 @@
         "title": "Token Contract",
         "sidebar_label": "Token Contract"
       },
+      "6-reference/TransferJudgement": {
+        "title": "How to judge the success of a transfer",
+        "sidebar_label": "TransferJudgement"
+      },
       "7-iost-js/Blockchain-class": {
         "title": "Blockchain",
         "sidebar_label": "Blockchain"
