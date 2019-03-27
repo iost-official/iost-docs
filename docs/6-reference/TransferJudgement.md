@@ -7,7 +7,7 @@ sidebar_label: TransferJudgement
 ## Judging the success of transfer transactions
 
 
-To confirm that a transaction contains a transfer and the transfer is successful, we need to judge two points: the transaction is irreversible; the transaction contains transfer information.
+To confirm that a transaction contains a transfer and the transfer is successful, we need to judge two points: the transaction is irreversible; the transaction contains transfer information and is executed successfully.
 
 ### How to judge the irreversibility of a transaction
 
@@ -19,7 +19,7 @@ There are three ways to judge whether a transaction is irreversible：
 
 
 
-### How to judge a transaction including transfer
+### How to judge a transaction including transfer and executed successfully
 
 The **only** way to judge whether a transaction contains a transfer is to check the receipts field in tx\_receipt. The tx\_receipt can be obtained by calling the [getTxByHash](./API.html#gettxbyhash-hash) API and the [getTxReceiptByTxHash](./API.html#gettxreceiptbytxhash-hash) API; in addition, the block structure returned by [getBlockByNumber](./API.html#getblockbynumber-number-completeh) and [getBlockByHash](./API.html#getblockbyhash-hash-complete) API also contains the tx\_receipt of transactions. A successful transfer transaction includes receipts as follows:
 
@@ -43,6 +43,9 @@ The **only** way to judge whether a transaction contains a transfer is to check 
 ```
 
 The `receipts` field is a list. If the `func_name` field of an item equals to `token.iost/transfer`, the transaction contains a transfer. The token symbol, account and amount of the transfer need to be further resolved in the `content` field of the item. The `content` field is the result of JSON serialization of an array containing five strings. After the `content` field is JSON deserialized, the first element is token symbol, the second element is transfer account name, the third element is receive account name, the fourth element is transfer amount, and the fifth element is memo. When dealing with the fourth element transfer amount, if it is found that the string contains characters other than [0-9.], the transfer should be ignored. In other cases, the string can be directly converted to float for further processing.
+
+To confirm the success of a transaction execution, it is necessary to check that the `status_code` field in `tx_receipt` is equal to `SUCCESS`.
+
 
 
 ## Common mistakes
@@ -84,3 +87,40 @@ When judging a transfer, we must pay attention to the name of the token, which i
       }
 ]
 ```
+
+### Not judge the execution status of transactions
+
+When ram is insufficient, the transfer transaction fails but receipts still occur, such as the following case:
+
+
+```
+"tx_receipt": {
+    "tx_hash": "HVS6cLe5sArnm3D33Hn44zAQPxkQig6mWWByBa8cFedp",
+    "gas_usage": 186277,
+    "ram_usage": {},
+    "status_code": "BALANCE_NOT_ENOUGH",
+    "message": "balance not enough after executing actions: pay ram failed. id: irisye need 335, actual 115",
+    "returns": [
+      "[\"\"]"
+    ],
+    "receipts": [
+      {
+        "func_name": "token.iost/transfer",
+        "content": "[\"iost\",\"irisye\",\"vote.iost\",\"10\",\"\"]"
+      }
+    ]
+  },
+```
+
+If you do not judge the `status_code` field, you will mistakenly think that the transfer was successful.
+
+
+## summary
+To confirm the success of a transfer, it is necessary to judge:
+
+* Transaction is irreversible.
+* `tx_receipt.statud_code` equals `SUCCESS`.
+* In `tx_receipt.receipts`, `func_name` equals `token.iost/transfer`.
+* Check the token symbol of the first element in the `content` field is what you expect.
+* Check that there are no illegal characters in the fourth element of the `content` field.
+
