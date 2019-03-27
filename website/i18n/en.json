@@ -770,6 +770,22 @@
       "version-3.0.1-Deployment": {
         "title": "Join IOST Network",
         "sidebar_label": "Join IOST Network"
+      },
+      "version-3.0.5-Deployment": {
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
+      },
+      "version-3.0.5-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-3.0.5-SystemContract": {
+        "title": "System Contract",
+        "sidebar_label": "System Contract"
+      },
+      "version-3.0.5-TransferJudgement": {
+        "title": "How to judge the success of a transfer",
+        "sidebar_label": "TransferJudgement"
       }
     },
     "links": {
