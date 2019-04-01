@@ -15,7 +15,7 @@ Before you get into IOST technical details or developing smart contract on IOST,
 ## If you want to use IOST
 
 You can join IOST community and contribute to IOST daily operation even if you are *NOT* a developer.  
-Uou can [apply for an IOST account](https://explorer.iost.io/applyIOST) and [have a look at our browser](http://47.244.109.92:8006/).
+You can [apply for an IOST account](https://explorer.iost.io/applyIOST) and [have a look at our browser](http://47.244.109.92:8006/).
 
 ## If you are a developer
 
