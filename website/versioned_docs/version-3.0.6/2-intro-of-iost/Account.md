@@ -1,7 +1,8 @@
 ---
-id: Account
+id: version-3.0.6-Account
 title: Account
 sidebar_label: Account
+original_id: Account
 ---
 
 

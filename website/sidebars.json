@@ -7,8 +7,7 @@
     "IOST Design and Concepts": [
       "2-intro-of-iost/Account",
       "2-intro-of-iost/Vote",
-      "2-intro-of-iost/Economic-model",
-      "2-intro-of-iost/Smart-contract"
+      "2-intro-of-iost/Economic-model"
     ],
     "Smart Contract": [
       "3-smart-contract/ContractStart",

@@ -1,7 +1,8 @@
 ---
-id: ContractStart
+id: version-3.0.6-ContractStart
 title: Smart Contract Quick Start
 sidebar_label: Smart Contract Quick Start
+original_id: ContractStart
 ---
 
 

@@ -1,7 +1,8 @@
 ---
-id: iWallet
+id: version-3.0.6-iWallet
 title: Command Line Wallet Tool
 sidebar_label: Command Line Wallet Tool
+original_id: iWallet
 ---
 
 `iwallet` is the command line tool for IOST blockchain. You can use this tool to connect IOST blockchain to transfer coins, create accounts, query balance or call contracts.

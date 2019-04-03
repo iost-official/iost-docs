@@ -1,7 +1,8 @@
 ---
-id: Overview
+id: version-3.0.6-Overview
 title: Overview
 sidebar_label: Overview
+original_id: Overview
 ---
 
 Welcome to IOST documentations!

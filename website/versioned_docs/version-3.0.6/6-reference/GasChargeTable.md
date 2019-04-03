@@ -1,7 +1,8 @@
 ---
-id: GasChargeTable
+id: version-3.0.6-GasChargeTable
 title: Gas Charge Table
 sidebar_label: Gas Charge Table
+original_id: GasChargeTable
 ---
 
 
