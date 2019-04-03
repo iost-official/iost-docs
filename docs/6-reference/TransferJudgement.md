@@ -95,7 +95,7 @@ When ram is insufficient, the transfer transaction fails but receipts still occu
 
 ```
 "tx_receipt": {
-    "tx_hash": "HVS6cLe5sArnm3D33Hn44zAQPxkQig6mWWByBa8cFedp",
+    "tx_hash": "xxxxxxxxxxxxxxxxx",
     "gas_usage": 186277,
     "ram_usage": {},
     "status_code": "BALANCE_NOT_ENOUGH",
@@ -106,7 +106,7 @@ When ram is insufficient, the transfer transaction fails but receipts still occu
     "receipts": [
       {
         "func_name": "token.iost/transfer",
-        "content": "[\"iost\",\"irisye\",\"vote.iost\",\"10\",\"\"]"
+        "content": "[\"iost\",\"aaaaaaa\",\"vote.iost\",\"10\",\"\"]"
       }
     ]
   },
