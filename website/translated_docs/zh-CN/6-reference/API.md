@@ -1102,7 +1102,8 @@ curl http://127.0.0.1:30001/getTokenInfo/iost/1
 	"total_supply": "9000000000000000000",
 	"current_supply": "2100000000000000000",
 	"decimal": 8,
-	"can_transfer": true
+	"can_transfer": true,
+	"only_issuer_can_transfer": false
 }
 ```
 
@@ -1115,4 +1116,5 @@ curl http://127.0.0.1:30001/getTokenInfo/iost/1
 | current_supply |string   | token 当前发行量 |
 | decimal | int   | token 小数位 |
 | can_transfer | bool   | token 能否进行转账 |
+| only_issuer_can_transfer | bool   | 是否只能由代币发行者转账 |
 
