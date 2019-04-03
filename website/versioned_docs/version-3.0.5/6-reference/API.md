@@ -1192,7 +1192,8 @@ A successful response may look like this:
 	"total_supply": "9000000000000000000",
 	"current_supply": "2100000000000000000",
 	"decimal": 8,
-	"can_transfer": true
+	"can_transfer": true,
+	"only_issuer_can_transfer": false
 }
 ```
 
@@ -1205,3 +1206,4 @@ A successful response may look like this:
 | current_supply |string   | current amount of token supply |
 | decimal | int   | token decimal |
 | can_transfer | bool   | whether the token can be transfered |
+| only_issuer_can_transfer | bool   | whether the token can only be transfered by issuer|

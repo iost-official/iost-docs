@@ -76,7 +76,7 @@ actions 为交易的动作，receipts 为交易的执行结果。若单纯根据
 
 ```
 "tx_receipt": {
-    "tx_hash": "HVS6cLe5sArnm3D33Hn44zAQPxkQig6mWWByBa8cFedp",
+    "tx_hash": "xxxxxxxxxxxxxxx",
     "gas_usage": 186277,
     "ram_usage": {},
     "status_code": "BALANCE_NOT_ENOUGH",
@@ -87,7 +87,7 @@ actions 为交易的动作，receipts 为交易的执行结果。若单纯根据
     "receipts": [
       {
         "func_name": "token.iost/transfer",
-        "content": "[\"iost\",\"irisye\",\"vote.iost\",\"10\",\"\"]"
+        "content": "[\"iost\",\"aaaaa\",\"vote.iost\",\"10\",\"\"]"
       }
     ]
   },
