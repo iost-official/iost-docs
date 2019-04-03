@@ -1,7 +1,8 @@
 ---
-id: Update-Contract
+id: version-3.0.6-Update-Contract
 title: Update Contract
 sidebar_label: Update Contract
+original_id: Update-Contract
 ---
 
 ## Features

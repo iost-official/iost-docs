@@ -5,17 +5,14 @@ sidebar_label: Gas Charge Table
 ---
 
 
-# Start Up
+# 起步价
 
-| Name    |         Operation          |     cost |
-| :------ | :------------------------: | -------: |
-| StartUp | initialize virtual machine | 30000gas |
+| 名称    |  包含操作  |     定价 |
+| :------ | :--------: | -------: |
+| StartUp | 启动虚拟机 | 30000gas |
 
-# Basic Grammar
-
-`ban` means this feature is disabled in IOST blockchain javascript.   
-
-| Name                          |                                    Operation                                     |                                                               cost |
+# 基础语法
+| 名称                          |                                     包含操作                                     |                                                               定价 |
 | :---------------------------- | :------------------------------------------------------------------------------: | -----------------------------------------------------------------: |
 | ArrayPattern                  |                          let [a, b, ...c] = [1,2,3,4,5]                          |                                                                ban |
 | ObjectPattern                 |                      let {p0, p1} = {"p0": 123, "p1": 345}                       |                                                                ban |
@@ -57,8 +54,8 @@ sidebar_label: Gas Charge Table
 | WhileStatement                |                              while ( ... ) { ... }                               |                                                      1gas * cycles |
 | DoWhileStatement              |                             do { ... } while ( ... )                             |                                                      1gas * cycles |
 
-# Library
-| Name                  |                                   Operation                                   |                                                cost |
+# 函数库
+| 名称                  |                                   包含操作                                    |                                                定价 |
 | :-------------------- | :---------------------------------------------------------------------------: | --------------------------------------------------: |
 | StringCharAt          |                          ("redbluegreen").charAt(3)                           |                                                1gas |
 | StringCharCodeAt      |                        ("redbluegreen").charCodeAt(3)                         |                                                1gas |
@@ -147,8 +144,8 @@ sidebar_label: Gas Charge Table
 | BigNumberSqrt         |            new BigNumber("-99999999999999999").sqrt()             |                        20gas + 4gas * number length |
 | BigNumberToFixed      |          new BigNumber("-99999999999999999").toFixed(5)           |                        20gas + 4gas * number length |
 
-# Storage：
-| Name    |                Operation                |   cost |
+# 存储：
+| 名称    |                包含操作                 |   定价 |
 | :------ | :-------------------------------------: | -----: |
 | Put     |       storage.put("key", "value")       | 300gas |
 | Get     |           storage.get("key")            | 300gas |
@@ -161,8 +158,8 @@ sidebar_label: Gas Charge Table
 | MapKeys |         storage.mapKeys("key")          | 300gas |
 | MapLen  |          storage.mapLen("key")          | 300gas |
 
-# Network：
-| Name        |        Operation        |                     cost |
+# 网络：
+| 名称        |        包含操作         |                     定价 |
 | :---------- | :---------------------: | -----------------------: |
 | transaction | transaction size (byte) | 10gas * transaction size |
 | receipt     |   receipt size (byte)   |     10gas * receipt size |

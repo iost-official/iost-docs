@@ -1,7 +1,8 @@
 ---
-id: Economic-model
+id: version-3.0.6-Economic-model
 title: Economic model
 sidebar_label: Economic model
+original_id: Economic-model
 ---
 # Summary
 

@@ -30,8 +30,7 @@
         "sidebar_label": "Network layer"
       },
       "2-intro-of-iost/Smart-contract": {
-        "title": "Smart Contract",
-        "sidebar_label": "Smart Contract"
+        "title": "2-intro-of-iost/Smart-contract"
       },
       "2-intro-of-iost/VM": {
         "title": "VM",
@@ -786,6 +785,46 @@
       "version-3.0.5-TransferJudgement": {
         "title": "How to judge the success of a transfer",
         "sidebar_label": "TransferJudgement"
+      },
+      "version-3.0.6-Overview": {
+        "title": "Overview",
+        "sidebar_label": "Overview"
+      },
+      "version-3.0.6-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-3.0.6-Account": {
+        "title": "Account",
+        "sidebar_label": "Account"
+      },
+      "version-3.0.6-Economic-model": {
+        "title": "Economic model",
+        "sidebar_label": "Economic model"
+      },
+      "version-3.0.6-VM": {
+        "title": "VM",
+        "sidebar_label": "VM"
+      },
+      "version-3.0.6-ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-3.0.6-IOST-Blockchain-API": {
+        "title": "IOST Blockchain API",
+        "sidebar_label": "IOST Blockchain API"
+      },
+      "version-3.0.6-Update-Contract": {
+        "title": "Update Contract",
+        "sidebar_label": "Update Contract"
+      },
+      "version-3.0.6-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-3.0.6-GasChargeTable": {
+        "title": "Gas Charge Table",
+        "sidebar_label": "Gas Charge Table"
       }
     },
     "links": {

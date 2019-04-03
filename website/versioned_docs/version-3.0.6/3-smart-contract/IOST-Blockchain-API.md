@@ -1,7 +1,8 @@
 ---
-id: IOST-Blockchain-API
+id: version-3.0.6-IOST-Blockchain-API
 title: IOST Blockchain API
 sidebar_label: IOST Blockchain API
+original_id: IOST-Blockchain-API
 ---
 
 
