@@ -706,20 +706,20 @@ curl http://127.0.0.1:30001/getContract/base.iost/true
 
 
 ##### **POST**
-**概要:** 本地获取合约的存储数据
+**概要:** 获取合约的存储数据
 
 ### 请求格式
 
 一个请求格式的例子
 
 ```
-curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.iost","field":"producer00001","key":"producerTable","by_longest_chain":true}'
+curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"token.iost","key":"TIiost","field":"decimal","by_longest_chain":true}'
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | id |string  | 智能合约的ID |
-| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
 | key |string  | StateDB的key |
+| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
 | by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
 
 
@@ -729,17 +729,14 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 
 ```
 200 OK
-{"data":"
-	{
-		"pubkey": "IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J",
-		"loc": "",
-		"url": "",
-		"netId": "",
-		"online": true,
-		"registerFee": "200000000"
-	}
-"}
+{"data":"8","block_hash":"GFfWHwe9cdw5aHaTDExFm2DBzaV9wdgybTQpHsQsbaKS","block_number":"38194"}
 ```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| data | string  | 存储的数据 |
+| block_hash |string | 这个数据来自的区块的 hash |
+| block_number |string | 这个数据来自的区块的编号 |
 
 ## /getContractStorageFields
 ---
@@ -772,6 +769,47 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 }
 ```
 
+
+## /getBatchContractStorage
+---
+
+
+##### **POST**
+**概要:** 批量获取合约的存储数据
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl -X POST http://127.0.0.1:30001/getBatchContractStorage -d '{"id":"token.iost","key_fields":[{"field":"supply","key":"TIiost"}, {"field":"decimal","key":"TIiost"}, {"field":"xxxx","key":"xxxx"}],"by_longest_chain":true}'
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| id |string  | 智能合约的ID |
+| key_fields |repeated [KeyField](#keyfield)  | 要批量查询的 key-field，返回值的顺序与传入顺序一致 |
+| by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
+
+### KeyField
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| key |string  | StateDB的key |
+| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{"datas":["2100000000000000000","8","null"],"block_hash":"3Tv3QUPRhhAj7L3j6DCEtkKycXtkeFgAMU3zZU3HA6Qr","block_number":"39123"}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| datas | repeated string  | 存储的数据，返回顺序与传入顺序一致 |
+| block_hash |string | 这个数据来自的区块的 hash |
+| block_number |string | 这个数据来自的区块的编号 |
 
 
 ## /sendTx

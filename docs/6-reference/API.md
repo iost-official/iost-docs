@@ -780,21 +780,21 @@ amount\_limit   |repeated AmountLimit   |The limits on the amount
 ## /getContractStorage
 ##### POST
 
-Get contract storage data locally.
+Get contract storage data.
 
 ### Request
 
 A request may look like this:
 
 ```
-curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.iost","field":"producer00001","key":"producerTable","by_longest_chain":true}'
+curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"token.iost","key":"TIiost","field":"decimal","by_longest_chain":true}'
 ```
 
 Key                 |Type       |Description 
 ----                    |--         |--
 id                      |string     |ID of the smart contract
+key                 	|string     |the key of StateDB
 field                   |string     |the values from StateDB; if StateDB\[key\] is a map then it is required to configure field to obtain values of StateDB\[key\]\[field\]
-key                 |string     |the key of StateDB
 by\_longest\_chain  |bool   |true - get data from the longest chain; false - get data from irreversible blocks
 
 ### Response
@@ -803,17 +803,14 @@ A successful response may look like this:
 
 ```
 200 OK
-{"data":"
-    {
-        "pubkey": "IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J",
-        "loc": "",
-        "url": "",
-        "netId": "",
-        "online": true,
-        "registerFee": "200000000"
-    }
-"}
+{"data":"8","block_hash":"GFfWHwe9cdw5aHaTDExFm2DBzaV9wdgybTQpHsQsbaKS","block_number":"38194"}
 ```
+
+Key                 |Type       |Description
+----                |--         |--
+data | string  | the stored data |
+block_hash |string | the hash of block from which the data is from|
+block_number |string | the number of block from which the data is from |
 
 ## /getContractStorageFields
 ##### POST
@@ -844,6 +841,47 @@ A successful response may look like this:
 	"fields": ["issuer","totalSupply","supply","canTransfer","onlyIssuerCanTransfer","defaultRate","decimal","fullName"]
 }
 ```
+
+## /getBatchContractStorage
+---
+
+##### POST
+Get batch contract storage data.
+
+### Request
+
+A request may look like this:
+
+```
+curl -X POST http://127.0.0.1:30001/getBatchContractStorage -d '{"id":"token.iost","key_fields":[{"field":"supply","key":"TIiost"}, {"field":"decimal","key":"TIiost"}, {"field":"xxxx","key":"xxxx"}],"by_longest_chain":true}'
+```
+Key                 |Type       |Description 
+----                |--         |--
+id |string  | smart contract ID 
+key_fields |repeated [KeyField](#keyfield)  | the key-fields which are queried，the order of return values is the same as the request 
+by\_longest\_chain |bool  | true - get data from the longest chain; false - get data from irreversible blocks
+
+### KeyField
+Key                 |Type       |Description 
+----                |--         |--
+key                 	|string     |the key of StateDB
+field                   |string     |the values from StateDB; if StateDB\[key\] is a map then it is required to configure field to obtain values of StateDB\[key\]\[field\]
+
+
+### Response
+
+A successful response may look like this:
+
+```
+200 OK
+{"datas":["2100000000000000000","8","null"],"block_hash":"3Tv3QUPRhhAj7L3j6DCEtkKycXtkeFgAMU3zZU3HA6Qr","block_number":"39123"}
+```
+
+Key                 |Type       |Description 
+----                |--         |--
+datas | string  | the stored data, returned in order as request |
+block_hash |string | the hash of block from which the data is from|
+block_number |string | the number of block from which the data is from |
 
 
 ## /sendTx
