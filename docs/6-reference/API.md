@@ -27,18 +27,18 @@ A successful response may look like this:
 200 OK
 
 {
-    "build_time": "20181208_161822+0800",
-    "git_hash": "1f540ec5b619812cb01b7bbc3dd89dbd3849c6fb",
-    "mode": "ModeNormal",
-    "network": {
-        "id": "12D3KooWGGauAVW7vQw33kAAttbyTVf81Urpi2f4LYBAXTYzhwqj",
-        "peer_count": 1,
-        "peer_info": [{
-            "id": "12D3KooWPSPLPyDFtcbKUvQGWM7pCXWEhRAjA1A5nAAFEvnce1Dm",
-            "addr": "/ip4/127.0.0.1/tcp/50004"
-        }]
-    }
+	"build_time": "20190329_164908+0800",
+	"git_hash": "5d0d3917bae2afab2758c7fe0519b95981252901",
+	"mode": "ModeNormal",
+	"network": 
+	{
+		"id": "12D3KooWQ1Uh2tu9GLybc6PwwZHfKkCSFQ3hS9wFUD7mF3xW5KwC",
+		"peer_count": 30
+	},
+	"code_version": "3.0.7",
+	"server_time": "1554292230570963220"
 }
+
 ```
 
 Key             |Type       |Description 
@@ -47,6 +47,8 @@ build\_time |string         |Building time of the 'server' binary
 git\_hash       |string     |Git hash of the 'iserver' binary
 mode            |string     |Current mode of the server. It can be one of 'ModeInit', 'ModeNormal' and 'ModeSync'
 network     |[NetworkInfo](#network)|Network information of the node 
+code\_version       |string     |the version of code
+server\_time       |string     |the current timestamp of the server, unit is nano second
 
 ### NetworkInfo
 
@@ -54,14 +56,7 @@ Key             |Type       |Description
 ----                |--         |--
 id                  |string         |Node ID in the p2p network
 peer\_count |int32      |Peer count of the node
-peer\_info      |[PeerInfo]|Peer information of the node
 
-### PeerInfo
-
-Key             |Type       |Description 
-----                |--         |--
-id                  |string     |ID of the peer
-addr                |struct     |Address of the idx-th peer
 
 
 

@@ -26,18 +26,18 @@ curl http://127.0.0.1:30001/getNodeInfo
 200 OK
 
 {
-	"build_time": "20181208_161822+0800",
-	"git_hash": "1f540ec5b619812cb01b7bbc3dd89dbd3849c6fb",
+	"build_time": "20190329_164908+0800",
+	"git_hash": "5d0d3917bae2afab2758c7fe0519b95981252901",
 	"mode": "ModeNormal",
-	"network": {
-		"id": "12D3KooWGGauAVW7vQw33kAAttbyTVf81Urpi2f4LYBAXTYzhwqj",
-		"peer_count": 1,
-		"peer_info": [{
-			"id": "12D3KooWPSPLPyDFtcbKUvQGWM7pCXWEhRAjA1A5nAAFEvnce1Dm",
-			"addr": "/ip4/127.0.0.1/tcp/50004"
-		}]
-	}
+	"network": 
+	{
+		"id": "12D3KooWQ1Uh2tu9GLybc6PwwZHfKkCSFQ3hS9wFUD7mF3xW5KwC",
+		"peer_count": 30
+	},
+	"code_version": "3.0.7",
+	"server_time": "1554292230570963220"
 }
+
 ```
 
 | 字段 | 类型 | 描述 |
@@ -46,19 +46,14 @@ curl http://127.0.0.1:30001/getNodeInfo
 | git_hash |string  | 版本的git hash |
 | mode |string  | 节点运行模式， ModeNormal - 正常模式，ModeSync - 同步块模式，ModeInit - 初始化模式 |
 | network |[NetworkInfo](#networkinfo) network  | 网络连接信息 |
+| code_version |string  | 代码版本号 |
+| server_time |string  | 服务器当前时间戳，单位纳秒 |
 
 ### NetworkInfo
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | id |string  | 本节点的ID |
 | peer_count |int32  | 邻居节点的数量 |
-| peer_info |repeated [PeerInfo](#peerinfo)  | 邻居节点的信息 |
-
-### PeerInfo
-| 字段 | 类型 | 描述 |
-| :----: | :-----: | :------ |
-| id | string  | 邻居节点的ID |
-| addr |struct  | 邻居节点的地址 |
 
 
 ## /getChainInfo
