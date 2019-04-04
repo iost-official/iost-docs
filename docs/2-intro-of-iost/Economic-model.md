@@ -19,19 +19,7 @@ EOS | Rental | 1. How many tokens in the whole network, how many resources are a
 
 # Additional Issuances
 
-The system issue an additional inssuance every 24 hours.
-
-The initial total token of the IOST blockchain system is 21 billion, with a fixed annual issuance of 2%, which is used to reward the producer nodes, parter nodes and voters.
-
-### Issuance Frequency
-
-Each additional increase = annual inflation coefficient (1.98%) * current IOST total * two additional time intervals (in milliseconds) / total time per year (in milliseconds)
-
-Formula for calculating annual inflation coefficient: (1+x)^n = 214.2/210
-
-From this, x = ln1.02 = 1.98%
-
-x is the inflation coefficient, n is the number of additional issuances, and 21.42 billion is the total amount of Token after one year of inflation.
+The total number of Tokens in the IOST blockchain system is 21 billion. The system issues 2% Token for compound interest each year, which is used to reward official nodes, partner nodes and voters. The Foundation issues 1% for rewarding community contributors.
 
 # Reward
 
@@ -39,13 +27,13 @@ The reward model is an important part of the entire economic model. There are fo
 
 The contribution value obtained by the block producing can be redeemed for the Token reward from the reward pool. Pledged Token can get GAS to pay for the transaction.
 
-If the node gets votes above a certain threshold and passes the certification, then the node and the node's voter can get the reward at the same time.
+Nodes get more than 2.1 million votes, and both nodes and voters can get voting rewards.
 
 The producer node can redeem the Token reward from the reward pool at any time with the contribution value.
 
 The contribution value is 1 to 1 for Token, and half of the redemption bonus is given to the voter.
 
-The value of the contribution is destroyed after redemption and can be redeemed once every 24 hours.
+The value of the contribution is destroyed after redemption. 
 
 ### Gas Reward
     
