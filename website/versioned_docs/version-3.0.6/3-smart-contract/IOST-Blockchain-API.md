@@ -85,7 +85,7 @@ Map check a (key, field) pair existence, use key + field to check.
 #### mapKeys(key)
 
 Map Get fields inside a key.    
-**The function only returns correct result if (1) the number of fields is less than 256 and (2) 'mapDel' has not been called before**
+**The function only returns correct result if (1) the number of fields is less than 256 and (2) 'mapDel' has not been called before. If you have to use both mapKeys and mapDel, you can make all the field same length, so there will be no problem.**
 
 * Parameters:
 	* key: string
@@ -368,6 +368,13 @@ Signature verification
 	* signature: **base58 encoded** signature to be checked
 	* pubkey: **base58 encoded** public key of the corresponding private key used for signing
 * Returns: 1 (succees) or 0 (failure)
+
+```js
+// StV1D.. is base58 encoded "hello world"
+// 2vSjK.. is base58 encoded pubkey of private key '4PTQW2hvwZoyuMdgKbo3iQ9mM7DTzxSV54RpeJyycD9b1R1oGgYT9hKoPpAGiLrhYA8sLQ3sAVFoNuMXRsUH7zw6'
+// 38V8b.. is base58 encoded signature
+IOSTCrypto.verify("ed25519","StV1DL6CwTryKyV","38V8bZC4e78pU7zBN86CF8R8ip76Rhf3vyiwTQR2MVkqHesmUbZJVmN8AE6eWhQg6ekKaa2H4iB4JJibC5stBRrN","2vSjKSXhepo7vmbPQHFcnEvx8mWRFrf46DaTX1Bp3TBi") // result: 1
+```
 
 ## Float64 and Int64 class
 
