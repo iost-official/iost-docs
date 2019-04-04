@@ -25,11 +25,11 @@ The initial total token of the IOST blockchain system is 21 billion, with a fixe
 
 ### Issuance Frequency
 
-Each additional increase = annual inflation coefficient (1.98%) * current IOST total * two additional time intervals (in milliseconds) / total time per year (in milliseconds)
+Each additional increase = annual inflation coefficient (1.000054%) * current IOST total * two additional time intervals (in milliseconds) / total time per year (in milliseconds)
 
 Formula for calculating annual inflation coefficient: (1+x)^n = 214.2/210
 
-From this, x = ln1.02 = 1.98%
+From this, x = 0.000054
 
 x is the inflation coefficient, n is the number of additional issuances, and 21.42 billion is the total amount of Token after one year of inflation.
 
