@@ -26,18 +26,18 @@ curl http://127.0.0.1:30001/getNodeInfo
 200 OK
 
 {
-	"build_time": "20181208_161822+0800",
-	"git_hash": "1f540ec5b619812cb01b7bbc3dd89dbd3849c6fb",
+	"build_time": "20190329_164908+0800",
+	"git_hash": "5d0d3917bae2afab2758c7fe0519b95981252901",
 	"mode": "ModeNormal",
-	"network": {
-		"id": "12D3KooWGGauAVW7vQw33kAAttbyTVf81Urpi2f4LYBAXTYzhwqj",
-		"peer_count": 1,
-		"peer_info": [{
-			"id": "12D3KooWPSPLPyDFtcbKUvQGWM7pCXWEhRAjA1A5nAAFEvnce1Dm",
-			"addr": "/ip4/127.0.0.1/tcp/50004"
-		}]
-	}
+	"network": 
+	{
+		"id": "12D3KooWQ1Uh2tu9GLybc6PwwZHfKkCSFQ3hS9wFUD7mF3xW5KwC",
+		"peer_count": 30
+	},
+	"code_version": "3.0.7",
+	"server_time": "1554292230570963220"
 }
+
 ```
 
 | 字段 | 类型 | 描述 |
@@ -46,19 +46,14 @@ curl http://127.0.0.1:30001/getNodeInfo
 | git_hash |string  | 版本的git hash |
 | mode |string  | 节点运行模式， ModeNormal - 正常模式，ModeSync - 同步块模式，ModeInit - 初始化模式 |
 | network |[NetworkInfo](#networkinfo) network  | 网络连接信息 |
+| code_version |string  | 代码版本号 |
+| server_time |string  | 服务器当前时间戳，单位纳秒 |
 
 ### NetworkInfo
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | id |string  | 本节点的ID |
 | peer_count |int32  | 邻居节点的数量 |
-| peer_info |repeated [PeerInfo](#peerinfo)  | 邻居节点的信息 |
-
-### PeerInfo
-| 字段 | 类型 | 描述 |
-| :----: | :-----: | :------ |
-| id | string  | 邻居节点的ID |
-| addr |struct  | 邻居节点的地址 |
 
 
 ## /getChainInfo
@@ -706,20 +701,20 @@ curl http://127.0.0.1:30001/getContract/base.iost/true
 
 
 ##### **POST**
-**概要:** 本地获取合约的存储数据
+**概要:** 获取合约的存储数据
 
 ### 请求格式
 
 一个请求格式的例子
 
 ```
-curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.iost","field":"producer00001","key":"producerTable","by_longest_chain":true}'
+curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"token.iost","key":"TIiost","field":"decimal","by_longest_chain":true}'
 ```
 | 字段 | 类型 | 描述 |
 | :----: | :-----: | :------ |
 | id |string  | 智能合约的ID |
-| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
 | key |string  | StateDB的key |
+| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
 | by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
 
 
@@ -729,17 +724,14 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"vote_producer.
 
 ```
 200 OK
-{"data":"
-	{
-		"pubkey": "IOST2K9GKzVazBRLPTkZSCMcyMayKv7dWgdHD8uuWPzjfPdzj93x6J",
-		"loc": "",
-		"url": "",
-		"netId": "",
-		"online": true,
-		"registerFee": "200000000"
-	}
-"}
+{"data":"8","block_hash":"GFfWHwe9cdw5aHaTDExFm2DBzaV9wdgybTQpHsQsbaKS","block_number":"38194"}
 ```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| data | string  | 存储的数据 |
+| block_hash |string | 这个数据来自的区块的 hash |
+| block_number |string | 这个数据来自的区块的编号 |
 
 ## /getContractStorageFields
 ---
@@ -772,6 +764,47 @@ curl -X POST http://127.0.0.1:30001/getContractStorageFields -d '{"id":"token.io
 }
 ```
 
+
+## /getBatchContractStorage
+---
+
+
+##### **POST**
+**概要:** 批量获取合约的存储数据
+
+### 请求格式
+
+一个请求格式的例子
+
+```
+curl -X POST http://127.0.0.1:30001/getBatchContractStorage -d '{"id":"token.iost","key_fields":[{"field":"supply","key":"TIiost"}, {"field":"decimal","key":"TIiost"}, {"field":"xxxx","key":"xxxx"}],"by_longest_chain":true}'
+```
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| id |string  | 智能合约的ID |
+| key_fields |repeated [KeyField](#keyfield)  | 要批量查询的 key-field，返回值的顺序与传入顺序一致 |
+| by\_longest\_chain |bool  | true - 从最长链得到数据，false - 从不可逆块得到数据 |
+
+### KeyField
+| 字段 | 类型 | 描述 |
+| :----: | :-----: | :------ |
+| key |string  | StateDB的key |
+| field |string  | 从StateDB中得到值，如果StateDB[key]是一个map,那么需要设置field(可以得到StateDB[key][field]的值) |
+
+### 响应格式
+
+一个成功响应的例子
+
+```
+200 OK
+{"datas":["2100000000000000000","8","null"],"block_hash":"3Tv3QUPRhhAj7L3j6DCEtkKycXtkeFgAMU3zZU3HA6Qr","block_number":"39123"}
+```
+
+| 字段 | 类型 | 描述 |
+| :----: | :--------: | :------ |
+| datas | repeated string  | 存储的数据，返回顺序与传入顺序一致 |
+| block_hash |string | 这个数据来自的区块的 hash |
+| block_number |string | 这个数据来自的区块的编号 |
 
 
 ## /sendTx
