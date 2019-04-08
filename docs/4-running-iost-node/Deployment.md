@@ -134,7 +134,7 @@ Info 2019-01-19 08:36:37.521 pob.go:456 Rec block - @5 id:EkRgHNoeeP..., num:114
 You may also check the state of the node using `iwallet` tool.
 
 ```
-docker exec -it iserver iwallet state
+docker exec iserver iwallet state
 ```
 
 See also [iWallet](4-running-iost-node/iWallet.md).
@@ -200,6 +200,12 @@ The seed node information of the mainnet is as follows:
 | US        | 18.209.137.246:30002 | http://18.209.137.246:30001 | /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP |
 | Korea     | 54.180.196.80:30002  | http://54.180.196.80:30001  | /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA  |
 | UK        | 35.176.24.11:30002   | http://35.176.24.11:30001   | /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp   |
+
+For testnet:
+
+| Location | GRPC-URL | HTTP-URL | P2P-URL |
+| :------: | :------: | :------: | :-----: |
+| US | 13.52.105.102:30002 | http://13.52.105.102:30001 | /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE |
 
 ## GRPC
 

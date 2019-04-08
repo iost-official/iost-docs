@@ -8,7 +8,7 @@ sidebar_label: iServer
 安装好[Docker](https://docs.docker.com/install)之后，如下命令启动一个单节点测试网。
 
 ```
-docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node
+docker run --rm -p 30000-30003:30000-30003 iostio/iost-node
 ```
 ![server_output](assets/5-lucky-bet/Lucky-Bet-Operation/server_output.png)
 
