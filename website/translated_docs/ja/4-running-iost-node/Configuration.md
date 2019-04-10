@@ -7,8 +7,8 @@ sidebar_label: 設定
 ここでは、設定に関する情報を紹介します。
 最新の設定は次の場所にあります。
 
-- genesis.tgz: https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz
-- iserver.yml: https://developers.iost.io/docs/assets/testnet/latest/iserver.yml
+- genesis.tgz: https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz
+- iserver.yml: https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml
 
 
 
@@ -131,7 +131,7 @@ metrics:
   username:
   password:
   enable: false
-  id: iost-testnet:visitor00
+  id: iost-mainnet:visitor00
 ```
 
 [Prometheus](https://prometheus.io/)や特に[Prometheus Pushgateway](https://github.com/prometheus/pushgateway)をリアルタイムのデータ収集に 使います。[Prometheus Pushgateway]

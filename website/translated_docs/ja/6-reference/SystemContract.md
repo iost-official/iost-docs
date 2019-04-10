@@ -1,7 +1,7 @@
 ---
-Id: SystemContract
-Title: システムコントラクト
-Sidebar_label: System Contract
+id: SystemContract
+title: システムコントラクト
+sidebar_label: System Contract
 ---
 
 ## vote_producer.iost
@@ -101,6 +101,24 @@ Sidebar_label: System Contract
 | パラメータリスト | パラメータの型 |
 | :----: | :------ |
 | 候補者 アカウント名| string |
+
+#### topupCandidateBonus
+候補者のボーナスプールにIOSTを補充します。
+
+| パラメータリスト | パラメータの型 |
+| :----: | :------ |
+| 数量 | string |
+| 支払者アカウント名| string |
+
+
+#### topupVoterBonus
+投票者のボーナスプールにIOSTを補充します。
+
+| パラメータリスト | パラメータの型 |
+| :----: | :------ |
+| 高所者アカウント名 | string |
+| 数量 | string |
+| 支払者アカウント名| string |
 
 ## vote.iost
 ---

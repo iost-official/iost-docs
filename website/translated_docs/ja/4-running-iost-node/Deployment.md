@@ -1,10 +1,10 @@
 ---
 id: Deployment
-title: IOSTテストネットへの参加
-sidebar_label: IOSTテストネットへの参加
+title: IOSTネットワークへの参加
+sidebar_label: IOSTネットワークへの参加
 ---
 
-このドキュメントで、IOSTテストネットへ接続するサーバーをセットアップする方法を紹介します。デバッグやテストのためにローカルシングルサーバブロックチェーンネットをセットアップしたいだけなら、[ローカルサーバーの起動](LocalServer.md)を参照してください。
+このドキュメントで、IOSTネットワークへ接続するサーバーをセットアップする方法を紹介します。デバッグやテストのためにローカルシングルサーバブロックチェーンネットをセットアップしたいだけなら、[ローカルサーバーの起動](LocalServer.md)を参照してください。
 
 IOSTノードをデプロイするために、ここではDockerを使用しています。
 
@@ -38,7 +38,7 @@ curl https://developers.iost.io/docs/assets/boot.sh | bash
 Dockerをインストールしていないなら、スクリプトは自動的にDockerをインストールします。
 Dockerグループ内にいることを確認して、ブートスクリプトを再起動する必要があります。
 
-このスクリプトは $PREFIX ディレクトリを破棄して、IOSTテストネットワークに接続する新しいフルノードを起動します。ブロックを生成する準備として、*フルノード*のためのキーペアを生成します。
+このスクリプトは $PREFIX ディレクトリを破棄して、IOSTネットワークに接続する新しいフルノードを起動します。ブロックを生成する準備として、*フルノード*のためのキーペアを生成します。
 **Serviノード**になりたい場合は、[ここ](4-running-iost-node/Become-Servi-Node.md)に従ってください。
 
 ノードを起動、停止、または再起動するには、次のコマンドを使ってください。
@@ -53,7 +53,7 @@ docker restart iserver
 ```
 
 ## マニュアルでの操作
-### データ
+### データのクリア
 
 もし前のバージョンのiServerを実行しているなら、古いデータを確実に消してください
 
@@ -66,9 +66,9 @@ rm -rf $PREFIX/storage
 
 ```
 # get genesis
-curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz" | tar zxC $PREFIX/
+curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz" | tar zxC $PREFIX/
 # get iserver config
-curl -fsSL "https://developers.iost.io/docs/assets/testnet/latest/iserver.yml" -o $PREFIX/iserver.yml
+curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
 ### 実行
@@ -118,29 +118,34 @@ docker exec -it iserver iwallet state
 
 # シードノードリスト
 
-テストネットのシードノード情報は次のとおりです。
+mainnetのシードノード情報は次のとおりです。
 
 | ロケーション | GRPC-URL | HTTP-URL | P2P-URL |
 | :------: | :------: | :------: | :-----: |
-| United States | 13.52.105.102:30002 | http://13.52.105.102:30001 | /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE |
-| 日本 | 13.115.202.226:30002| http://13.115.202.226:30001 | /ip4/13.115.202.226/tcp/30000/ipfs/12D3KooWHRi93eskqrYzxfToHccmgd4Ng7u2QH1e7Cz3X2M6dHVR |
-| 日本 | 54.199.158.64:30002 | http://54.199.158.64:30001 | /ip4/54.199.158.64/tcp/30000/ipfs/12D3KooWKyh6BH5i66g4bBFgbJoNF97jvB1soXSg17zw8Hj1Mq5j |
+| アメリカ        | 18.209.137.246:30002 | http://18.209.137.246:30001 | /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP |
+| 韓国     | 54.180.196.80:30002  | http://54.180.196.80:30001  | /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA  |
+| オーストラリア | 13.239.153.239:30002 | http://13.239.153.239:30001 | /ip4/13.239.153.239/tcp/30000/ipfs/12D3KooWEavwbgwrgah2sc7pfdJMcEkbEB38DETnE8zwQj8EU1Fg |
+| 日本     | 52.197.100.115:30002 | http://52.197.100.115:30001 | /ip4/52.197.100.115/tcp/30000/ipfs/12D3KooWGBbN2VBUVWPygcm6AwX8WM8jGXFf4QhCbaKdfAeahePJ |
+| カナダ    | 35.182.211.144:30002 | http://35.182.211.144:30001 | /ip4/35.182.211.144/tcp/30000/ipfs/12D3KooWQMUkJECpA3cwyN4UaWEHE4bTFkAn8xZUDFchZe8omXk2 |
+| ドイツ   | 35.157.137.25:30002  | http://35.157.137.25:30001  | /ip4/35.157.137.25/tcp/30000/ipfs/12D3KooWDsTP7KxBSj7rKuVKm6J6fbJCC2e77Ftix21nZZXsiCcb  |
+| イギリス        | 35.176.24.11:30002   | http://35.176.24.11:30001   | /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp   |
+| フランス    | 35.181.10.219:30002  | http://35.181.10.219:30001  | /ip4/35.181.10.219/tcp/30000/ipfs/12D3KooWHjBMcSFxAcCE3kfbuQBSchYbrvt5aRHTRpRFA5x5NYDz  |
 
 ## GRPC
-テストネットのGRPC APIを使いたい場合は、例えば次のようにします。
+IOSTネットワークのGRPC APIを使いたい場合は、例えば次のようにします。
 
 ```
 # Get the node information
-iwallet -s 13.52.105.102:30002 state
+iwallet -s 18.209.137.246:30002 state
 iwallet -s ${GRPC-URL} state
 ```
 
 ## HTTP
-テストネットのHTTP APIを使いたい場合は、例えば次のようにします。
+IOSTネットワークのHTTP APIを使いたい場合は、例えば次のようにします。
 
 ```
 # Get the block information by block height
-curl http://13.52.105.102:30001/getBlockByNumber/3/true
+curl http://18.209.137.246:30001/getBlockByNumber/3/true
 curl ${HTTP-URL}/getBlockByNumber/3/true
 ```
 
@@ -151,7 +156,7 @@ iserverのシードノードを変更したいなら、`/data/iserver/iserver.ym
 p2p:
   listenaddr: 0.0.0.0:30000
   seednodes:
-    - /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE
+    - /ip4/18.209.137.246/tcp/30000/ipfs/12D3KooWGoPE333zygBN61vtSjvPfosi78JFSwRRDrLoAKaH1mTP
     - ${P2P-URL}
     - ...
 ```

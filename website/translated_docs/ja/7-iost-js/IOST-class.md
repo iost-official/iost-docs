@@ -100,3 +100,119 @@ Transactionオブジェクト
 ```javascript
 const tx = iost.transfer("iost", "fromAccount", "toAccount", "10.000", "memo");
 ```
+
+# トランザクションの送信方法
+IOSTでのトランザクションの送信方法は、次のとおりで、サードパーティのウォレットにも互換性があります。
+
+```
+iost.setAccount(account);
+iost.setRPC(rpc);
+iost.signAndSend(tx)
+    .on("pending", console.log)
+    .on("success", console.log)
+    .on("failed", console.log);
+```
+
+サードパーティのウォレットはIOSTをフックし、signAndSend()関数を引き継ぐことを推奨します。そうすれば、ウォレットが存在するかどうかに関係なく開発できます。
+
+もし、ウォレットがあるなら、signAndSend()はウォレット内で動作し、成功か失敗かをコールバックします。なければ、IOSTは```account```でトランザクションを署名し、```rpc```を使って送信します。
+
+## signAndSend
+トランザクションに署名し、送信します。
+
+### パラメータ
+名前             |型       |説明 
+----                |--         |--
+tx       |IOST.Tx | 送信するトランザクション
+
+### 戻り値
+コールバックオブジェクト
+
+### 例
+```javascript
+iost.signAndSend(tx)
+    .on("pending", console.log)
+    .on("success", console.log)
+    .on("failed", console.log);
+```
+
+## Callback.on(event, callback)
+イベントにハンドルを設定します。
+
+### パラメータ
+名前             |型       |説明 
+----                |--         |--
+event       | String | イベント名("pending", "success", "failed")
+callback       | function | コールバック関数
+
+### 戻り値
+itself.
+
+### 例
+```javascript
+iost.signAndSend(tx)
+    .on("pending", console.log)
+    .on("success", console.log)
+    .on("failed", console.log);
+```
+
+
+## setAccount
+IOSTにデフォルトのアカウントを設定します。
+
+### パラメータ
+名前             |型       |説明 
+----                |--         |--
+account       |IOST.Account | トランザクションで使われるアカウント
+
+### 戻り値
+null
+
+### 例
+```javascript
+iost.setAccount(account);
+```
+
+## currentAccount
+IOSTでの現在のアカウントを取得します。
+
+### パラメータ
+null
+
+### 戻り値
+IOST.Account
+
+### 例
+```javascript
+const account = iost.currentAccount();
+```
+
+## setRPC
+指定したアカウントにトークンを送信するcallABIのためのラッパーです。
+
+### パラメータ
+名前             |型       |説明 
+----                |--         |--
+rpc       |IOST.RPC | IOSTインスタンスで使われるRPC
+
+### 戻り値
+null.
+
+### 例
+```javascript
+iost.setRPC(rpc);
+```
+
+## currentRPC
+現在のRPCを取得します。
+
+### パラメータ
+null
+
+### 戻り値
+IOST.RPCインスタンス
+
+### 例
+```javascript
+const rpc = iost.currentRPC();
+```

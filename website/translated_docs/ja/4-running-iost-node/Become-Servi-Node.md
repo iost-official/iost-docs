@@ -16,7 +16,7 @@ Serviノードは、iServerの設定ファイル内の秘密鍵を使用して�
 
 - [iWalletをインストールする](4-running-iost-node/iWallet.md#install)
 - iWalletを使って*キーペア*を生成します。(`iwallet key`)
-- [ブロックチェーンエクスプローラ](https://explorer.iost.io/applyIOST)でアカウント作成時に生成された*公開鍵*を使用します。
+- アカウント作成時に生成された*公開鍵*を使用します。(この機能は非公開です。必要であればご連絡ください。)
 
 > iWalletにアカウントをインポートするのを忘れないでください: `iwallet account import $YOUR_ACCOUNT_NAME $YOUR_PRIVATE_KEY`
 >
@@ -41,7 +41,7 @@ Serviノードとして登録したいなら、次にように実行します。
 
 Serviノードをオンラインにするには、次のようにします。
 
-        iwallet sys plogin --acount <your-account>
+        iwallet sys plogin --account <your-account>
 
 完全なドキュメントは、https://developers.iost.io にあります。
 ```
@@ -53,8 +53,8 @@ Serviノードをオンラインにするには、次のようにします。
 - `network.id`セクション内のノードの*ネットワークID*は、次のコマンドで取得できます。`curl http://localhost:30001/getNodeInfo`
 
 
-# iwalletのtestnetでの利用
-iwalletはデフォルトでローカルノードに接続します。テストネットに接続したいなら、[シードノードリスト](4-running-iost-node/Deployment.md#seed-node-list)を参照してください。
+# iwalletのIOSTネットワークでの利用
+iwalletはデフォルトでローカルノードに接続します。IOSTネットワークに接続したいなら、[シードノードリスト](4-running-iost-node/Deployment.md#seed-node-list)を参照してください。
 
 例:
 
@@ -67,9 +67,9 @@ iwallet -s ${GRPC-URL} state
 GASやRAMが足りない場合は、次のコマンドでGASをプレッジしたり、RAMを購入したりできます。
 ```
 # pledge gas
-iwallet --account account000 call gas.iost pledge '["account000","account000","50"]'
+iwallet system gas-pledge 80 --account <your-account>
 # buy ram
-iwallet --account account000 call ram.iost buy '["account000","account000",200]'
+iwallet system ram-buy 1024 --account <your-account>
 ```
 
 充分なIOSTがない場合は、私たちにお知らせください。
@@ -78,7 +78,7 @@ iwallet --account account000 call ram.iost buy '["account000","account000",200]'
 
 iwalletを使って、ノードにアカウントを紐づけて、Serviノードを登録します。
 ```
-iwallet sys register <pubkey-of-producer> --location <location> --url <website> --net_id <network-ID> --account <your-account>
+iwallet system register <pubkey-of-producer> --location <location> --url <website> --net_id <network-ID> --account <your-account>
 ```
 
 - `<your-account>`: Serviノードへ登録するのに使うアカウント
@@ -89,7 +89,7 @@ iwallet sys register <pubkey-of-producer> --location <location> --url <website> 
 
 例:
 ```
-iwallet sys register 6sNQa7PV2SFzqCBtQUcQYJGGoU7XaB6R4xuCQVXNZe6b --location Singapore --url https://iost.io/ --net_id 12D3KooWA2QZHXCLsVL9rxrtKPRqBSkQj7mCdHEhRoW8eJtn24ht --account iost
+iwallet system register 6sNQa7PV2SFzqCBtQUcQYJGGoU7XaB6R4xuCQVXNZe6b --location Singapore --url https://iost.io/ --net_id 12D3KooWA2QZHXCLsVL9rxrtKPRqBSkQj7mCdHEhRoW8eJtn24ht --account iost
 ```
 
 # Serviノードのログイン
@@ -99,7 +99,7 @@ iwallet sys register 6sNQa7PV2SFzqCBtQUcQYJGGoU7XaB6R4xuCQVXNZe6b --location Sin
 iwalletを使って、Serviノードをログインできます。
 
 ```
-iwallet sys plogin --account <your-account>
+iwallet system producer-login --account <your-account>
 ```
 
 # Serviノードへの投票
@@ -107,7 +107,7 @@ iwallet sys plogin --account <your-account>
 充分なIOSTがある場合は、次のコマンドでServiノードに投票できます。
 
 ```
-iwallet sys vote <your-servi-node-account> 2100000 --account <your-account>
+iwallet system vote <your-servi-node-account> 2100000 --account <your-account>
 ```
 
 - <your-servi-node-account>: 投票されたServiノードアカウント
@@ -116,14 +116,14 @@ iwallet sys vote <your-servi-node-account> 2100000 --account <your-account>
 投票をキャンセルするなら、次のコマンドを使います。
 
 ```
-iwallet sys unvote <your-servi-node-account> 2100000 --account <your-account>
+iwallet system unvote <your-servi-node-account> 2100000 --account <your-account>
 ```
 
 # Serviノードアカウント情報の表示
 
 Serviノードのアカウント情報をチェックしたいなら、次のコマンドを使います。
 ```
-iwallet sys pinfo <your-account>
+iwallet system producer-info --account <your-account>
 ```
 
 # Serviノードのログアウト
@@ -131,5 +131,5 @@ iwallet sys pinfo <your-account>
 一時的にノードを止めたい場合や、ブロックを生成したくない場合は、iwalletを使って、Serviノードをログアウトできます。
 
 ```
-iwallet sys plogout --account <your-account>
+iwallet system producer-logout --account <your-account>
 ```
