@@ -193,6 +193,12 @@ docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30
 | Korea     | 54.180.196.80:30002  | http://54.180.196.80:30001  | /ip4/54.180.196.80/tcp/30000/ipfs/12D3KooWMm2RzyZDPBie89FXceKFSBRg8zzkwAGQmdauj6tmrqcA  |
 | UK        | 35.176.24.11:30002   | http://35.176.24.11:30001   | /ip4/35.176.24.11/tcp/30000/ipfs/12D3KooWHzHUBq4x4LmXtZH79LCAxVUYgpKXgMgAtyvYQWeHZAAp   |
 
+测试网:
+
+| 地理位置 | GRPC-URL | HTTP-URL | P2P-URL |
+| :------: | :------: | :------: | :-----: |
+| US | 13.52.105.102:30002 | http://13.52.105.102:30001 | /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE |
+
 ## GRPC
 
 使用 grpc 服务：

@@ -22,7 +22,7 @@ title: IOST V8VM Design
 * <font color="#0092ff">合约不能升级：</font>EVM不支持合约升级，合约升级是智能合约开发中的一个强需求，也是每一个合约开发者必须要考虑的问题，合约升级可以实现给现有合约打安全补丁、扩展现有合约功能等等。EVM完全不支持升级，开发者只能通过发布新合约来解决这个问题，费时费力。
 
 #### 2.智能合约安全层面
-* <font color="#0092ff">溢出攻击：</font>EVM的safeMath库不是默认使用，例如开发者对solidity的uint256做计算的时候，如果最终结果大于uint256的最大值，就会产生溢出变为一个很小的数，这样就产生了溢出漏洞。诸如BEC、SMT等相关币种都遭受过溢出攻击，带来了极度严重都后果，BEC溢出漏洞如下：
+* <font color="#0092ff">溢出攻击：</font>EVM的safeMath库不是默认使用，例如开发者对solidity的uint256做计算的时候，如果最终结果大于uint256的最大值，就会产生溢出变为一个很小的数，这样就产生了溢出漏洞。诸如BEC、SMT等相关币种都遭受过溢出攻击，带来了极度严重的后果，BEC溢出漏洞如下：
 ```javascript
 function batchTransfer(address[] _receivers, uint256 _value) public whenNotPaused returns (bool) {
     uint cnt = _receivers.length;

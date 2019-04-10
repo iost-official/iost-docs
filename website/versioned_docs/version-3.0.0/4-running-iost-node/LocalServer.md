@@ -13,7 +13,7 @@ You can use it for debugging and testing.
 [Docker CE 18.06 or newer](https://docs.docker.com/install) is needed(older versions are not tested).
 
 ```
-docker run -it --rm -p 30000-30003:30000-30003 iostio/iost-node
+docker run --rm -p 30000-30003:30000-30003 iostio/iost-node
 ```
 ![server_output](assets/5-lucky-bet/Lucky-Bet-Operation/server_output.png)
 
