@@ -1,14 +1,18 @@
 ---
 id: Token
-title: Create Token
-sidebar_label: Create Token
+title: Create Simple Token
+sidebar_label: Create Simple Token
 ---
 ## Token20
 
 Token20 is our standard for implementing token on iost blockchain. It includes several practical features beyond transfer,
 such as freeze token, destroy token and can be configured carefully.
 
+`token.iost` is the implementation of Token20, all `Token20` token must be created by `token.iost`.
 `iost` is also implemented according to Token20 standard based on out build-in system contract `token.iost`.
+
+If you want to customize your token, see [Create Customized Token](3-smart-contract/Token20.1.md) for more details.
+
 The interfaces of `token.iost` are described as follows:
 
 ```js
@@ -88,7 +92,7 @@ Query the totalSupply of a specific token.
 
 
 ## Step-by-Step Example
-Creating a `Token20` on iost blockchain is remarkably simple, you can just call `token.iost` contract without implementing Token20 interfaces and deploying smart contract yourself.
+Creating a `Token20` on iost blockchain is remarkably simple, you can just call `token.iost` contract.
 
 Below is a step-by-step example describes how to create a token using `bank` account and transfer token between accounts, you need to create account `bank`, `user0`, `user1` first.
 
