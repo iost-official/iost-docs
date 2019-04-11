@@ -57,8 +57,12 @@
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
       "3-smart-contract/Token": {
-        "title": "Create Token",
-        "sidebar_label": "Create Token"
+        "title": "Create Simple Token",
+        "sidebar_label": "Create Simple Token"
+      },
+      "3-smart-contract/Token20.1": {
+        "title": "Create Customized Token",
+        "sidebar_label": "Create Customized Token"
       },
       "3-smart-contract/Update-Contract": {
         "title": "Update Contract",
