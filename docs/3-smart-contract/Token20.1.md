@@ -178,6 +178,93 @@ Query the totalSupply of a specific token.
 The following gives a basic implementation, the customization can be made by modifying the code.
 
 ```js
+// ABI:
+{
+    "lang": "javascript",
+    "version": "1.0.0",
+    "abi": [
+        {
+            "name": "can_update",
+            "args": [
+                "string"
+            ]
+        },
+        {
+            "name": "issue",
+            "args": [
+                "string",
+                "string",
+                "string"
+            ],
+            "amountLimit": [{
+                "token": "*",
+                "val": "unlimited"
+            }]
+        },
+        {
+            "name": "transfer",
+            "args": [
+                "string",
+                "string",
+                "string",
+                "string",
+                "string"
+            ],
+            "amountLimit": [{
+                "token": "*",
+                "val": "unlimited"
+            }]
+        },
+        {
+            "name": "transferFreeze",
+            "args": [
+                "string",
+                "string",
+                "string",
+                "string",
+                "number",
+                "string"
+            ],
+            "amountLimit": [{
+                "token": "*",
+                "val": "unlimited"
+            }]
+        },
+        {
+            "name": "destroy",
+            "args": [
+                "string",
+                "string",
+                "string"
+            ],
+            "amountLimit": [{
+                "token": "*",
+                "val": "unlimited"
+            }]
+        },
+        {
+            "name": "supply",
+            "args": [
+                "string"
+            ]
+        },
+        {
+            "name": "totalSupply",
+            "args": [
+                "string"
+            ]
+        },
+        {
+            "name": "balanceOf",
+            "args": [
+                "string",
+                "string"
+            ]
+        }
+    ]
+}
+
+// code:
 const name = "your_token";
 const fullName = "YTK";
 const decimal = 8;
