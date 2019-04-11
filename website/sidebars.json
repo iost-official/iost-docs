@@ -14,7 +14,8 @@
       "3-smart-contract/IOST-Blockchain-API",
       "3-smart-contract/Update-Contract",
       "3-smart-contract/Generate-Receipt",
-      "3-smart-contract/Token"
+      "3-smart-contract/Token",
+      "3-smart-contract/Token20.1"
     ],
     "Running IOST node": [
       "4-running-iost-node/LocalServer",
