@@ -84,7 +84,7 @@ User0, perm4		|key8			|false		|権限グループの重みを計算するとき�
 
 アカウント管理は、`auth.iost`のスマートコントラクトに基づいていて、そのABIは次のようになっています。
 
-```
+```js
 {
   "lang": "javascript",
   "version": "1.0.0",
@@ -141,7 +141,7 @@ User0, perm4		|key8			|false		|権限グループの重みを計算するとき�
 
 通常は、アカウントはアプリケーション上でIOSTへのデポジットが必要です。そうでなければ、アカウントを使うことができません。その方法は、`iost.js`を使って次のようにします。
 
-```
+```js
 newAccount(name, ownerkey, activekey, initialRAM, initialGasPledge) {
     const t = new Tx(this.config.gasPrice, this.config.gasLimit, this.config.delay);
     t.addAction("iost.auth", "SignUp", JSON.stringify([name, ownerkey, activekey]));

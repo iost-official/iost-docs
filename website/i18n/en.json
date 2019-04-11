@@ -829,6 +829,14 @@
       "version-3.0.6-GasChargeTable": {
         "title": "Gas Charge Table",
         "sidebar_label": "Gas Charge Table"
+      },
+      "version-3.0.7-Token": {
+        "title": "Create Simple Token",
+        "sidebar_label": "Create Simple Token"
+      },
+      "version-3.0.7-Token20.1": {
+        "title": "Create Customized Token",
+        "sidebar_label": "Create Customized Token"
       }
     },
     "links": {
