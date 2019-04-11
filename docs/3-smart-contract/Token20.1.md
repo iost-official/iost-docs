@@ -31,9 +31,9 @@ Customized token contracts need to implement the following interfaces to enable 
                 "string",   // to
                 "string"    // amount
             ],
-            "amount_limit": [{
+            "amountLimit": [{
                 "token": "*",
-                "value": "unlimited"
+                "val": "unlimited"
             }]
         },
         // required
@@ -46,9 +46,9 @@ Customized token contracts need to implement the following interfaces to enable 
                 "string",   // amount
                 "string"    // memo
             ],
-            "amount_limit": [{
+            "amountLimit": [{
                 "token": "*",
-                "value": "unlimited"
+                "val": "unlimited"
             }]
         },
         // optional
@@ -62,9 +62,9 @@ Customized token contracts need to implement the following interfaces to enable 
                 "number",   // timestamp in nanosecond
                 "string"    // memo
             ],
-            "amount_limit": [{
+            "amountLimit": [{
                 "token": "*",
-                "value": "unlimited"
+                "val": "unlimited"
             }]
         },
         // optional
@@ -75,9 +75,9 @@ Customized token contracts need to implement the following interfaces to enable 
                 "string",   // from
                 "string"    // amount
             ],
-            "amount_limit": [{
+            "amountLimit": [{
                 "token": "*",
-                "value": "unlimited"
+                "val": "unlimited"
             }]
         },
         // optional
@@ -256,12 +256,12 @@ class Token {
 
     supply(token_name) {
         this._checkToken(token_name);
-        return this._call("token.iost", "supply", [token_name, owner]);
+        return this._call("token.iost", "supply", [token_name]);
     }
 
     totalSupply(token_name) {
         this._checkToken(token_name);
-        return this._call("token.iost", "totalSupply", [token_name, owner]);
+        return this._call("token.iost", "totalSupply", [token_name]);
     }
 }
 
