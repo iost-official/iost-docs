@@ -1227,7 +1227,9 @@ A successful response may look like this:
 	"current_supply": "2100000000000000000",
 	"decimal": 8,
 	"can_transfer": true,
-	"only_issuer_can_transfer": false
+	"only_issuer_can_transfer": false,
+	"total_supply_float": 90000000000,
+	"current_supply_float": 21000000000
 }
 ```
 
@@ -1236,8 +1238,10 @@ A successful response may look like this:
 | symbol |string   | token symbol |
 | full_name |string   | token full name |
 | issuer |string   | token issuer |
-| total_supply |string   | total amount of token supply |
-| current_supply |string   | current amount of token supply |
+| total_supply |string   | total amount of token supply, is the result of total_supply_float multiplied by decimal |
+| current_supply |string   | current amount of token supply, is the result of current_supply_float multiplied by decimal |
+| total_supply_float |double   | total amount of token supply |
+| current_supply_float |double   | current amount of token supply |
 | decimal | int   | token decimal |
 | can_transfer | bool   | whether the token can be transfered |
 | only_issuer_can_transfer | bool   | whether the token can only be transfered by issuer|

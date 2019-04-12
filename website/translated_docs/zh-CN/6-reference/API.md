@@ -1136,7 +1136,9 @@ curl http://127.0.0.1:30001/getTokenInfo/iost/1
 	"current_supply": "2100000000000000000",
 	"decimal": 8,
 	"can_transfer": true,
-	"only_issuer_can_transfer": false
+	"only_issuer_can_transfer": false,
+	"total_supply_float": 90000000000,
+	"current_supply_float": 21000000000
 }
 ```
 
@@ -1145,8 +1147,10 @@ curl http://127.0.0.1:30001/getTokenInfo/iost/1
 | symbol |string   | token 名字 |
 | full_name |string   | token 全称 |
 | issuer |string   | token 发行人 |
-| total_supply |string   | token 总发行量 |
-| current_supply |string   | token 当前发行量 |
+| total_supply |string   | token 总发行量，其值等于 total_supply_float 乘以 decimal|
+| current_supply |string   | token 当前发行量，其值等于 current_supply_float 乘以 decimal |
+| total_supply_float |double   | token 总发行量 |
+| current_supply_float | double   | token 当前发行量 |
 | decimal | int   | token 小数位 |
 | can_transfer | bool   | token 能否进行转账 |
 | only_issuer_can_transfer | bool   | 是否只能由代币发行者转账 |
