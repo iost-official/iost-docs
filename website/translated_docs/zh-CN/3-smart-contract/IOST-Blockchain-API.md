@@ -4,7 +4,7 @@ title: IOST Blockchain API
 sidebar_label: IOST Blockchain API
 ---
 
-可以在contract 代码中访问下面的object。  
+可以在 contract 代码中访问下面的object。  
 **注意: string不能超过65536字节**
 
 ## storage object
@@ -80,8 +80,11 @@ map查找(key,field)对的存在,使用key+field进行查找。
 #### mapKeys(key)
 
 map获取key内的field。   
-**1. 最多返回256个field，超过的field虽然还存在，但是不会在这个函数中返回**   
-**2. 如果调用过"mapDel", 那么之后的mapKeys可能会出错！如果合约中需要同时使用mapDel和mapKeys，那么建议所有field长度相同，这种情况下mapKeys不会出错**
+
+注意事项：  
+**1. 最多返回 256 个field，超过的field虽然还存在，但是不会在这个函数中返回**   
+**2. 如果调用过"mapDel", 那么之后的mapKeys可能会出错！如果合约中需要同时使用mapDel和mapKeys，那么建议所有field长度相同，这种情况下mapKeys不会出错**  
+**3. 如果开发者需要获取一个 map 的所有 keys，建议自己维护，不建议使用此接口**
 
 * 参数: 
 *  key: string
@@ -89,7 +92,9 @@ map获取key内的field。
 
 #### mapLen(key)
 
-返回 len(mapKeys())
+返回 len(mapKeys())。
+
+**注意事项同 [mapKeys](#mapkeyskey)。**
 
 
 * 参数: 
@@ -149,7 +154,9 @@ map删除(key,field,value),使用key+field删除value。
 
 #### globalMapLen(contract, key)
 
-map计数来自全局storage 的key内的field数。如果field数大于256,则此函数不承诺返回正确的结果,并且最多将返回256。
+map计数来自全局storage 的key内的field数。如果field数大于256,则此函数不承诺返回正确的结果,并且最多将返回256。  
+
+**注意事项同 [mapKeys](#mapkeyskey)。**
 
 * 参数: 
 * contract : string
@@ -159,6 +166,8 @@ map计数来自全局storage 的key内的field数。如果field数大于256,则�
 #### globalMapKeys(contract, key)
 
 map从全局storage 中获取key中的field。如果field数大于256,则此函数不保证返回正确的结果,并且最多将返回256个结果。
+
+**注意事项同 [mapKeys](#mapkeyskey)。**
 
 * 参数: 
 * contract : string

@@ -738,7 +738,7 @@ curl -X POST http://127.0.0.1:30001/getContractStorage -d '{"id":"token.iost","k
 
 
 ##### **POST**
-**概要:** 获取合约存储中 map 的 key 列表，最多返回 256 条。
+**概要:** 获取合约存储中 map 的 key 列表，最多返回 256 条。**注意：开发者不应该依赖此接口获取合约中一个 map 的所有 key，若有这样的需求，需要自己维护所有的 key**。详见 [mapKeys](../3-smart-contract/IOST-Blockchain-API.html#mapkeyskey)。
 
 ### 请求格式
 

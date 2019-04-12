@@ -810,7 +810,9 @@ block_number |string | the number of block from which the data is from |
 ## /getContractStorageFields
 ##### POST
 
-Get contract storage key list of map, up to 256 are returned
+Get contract storage key list of map, up to 256 are returned.  
+**Note: Developers should not rely on this API to obtain all keys of a map in the contract. If there is such a requirement, you need to maintain all keys yourself** . See [mapKeys](../3-smart-contract/IOST-Blockchain-API.html#mapkeyskey) for details.
+
 
 ### Request
 
