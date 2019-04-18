@@ -85,7 +85,12 @@ Map check a (key, field) pair existence, use key + field to check.
 #### mapKeys(key)
 
 Map Get fields inside a key.    
-**The function only returns correct result if (1) the number of fields is less than 256 and (2) 'mapDel' has not been called before. If you have to use both mapKeys and mapDel, you can make all the field same length, so there will be no problem.**
+
+Attention:
+
+**1. The maximum number of fields returned is 256, and the field exceeded is still there, but it will not be returned in this function.**  
+**2. If "mapDel" is called, then later mapKeys may be wrong! If both mapDel and mapKeys are required in the contract, it is recommended that all fields be of the same length, in which case mapKeys will not make a mistake.**  
+**3. If you need to get all keys of a map, it is recommended that you maintain them yourself and not use this API.**
 
 * Parameters:
 	* key: string
@@ -93,8 +98,9 @@ Map Get fields inside a key.
 
 #### mapLen(key)
 
-Map count number of fields inside a key.    
-**The function only returns correct result if (1) the number of fields is less than 256 and (2) 'mapDel' has not been called before**
+Return len(mapKeys()).
+
+**The attention is the same as [mapKeys](#mapkeyskey).**
 
 
 * Parameters:
@@ -156,6 +162,8 @@ Map get a (key, field) pair from global storage, use key + field to check.
 
 Map count number of fields inside a key from global storage. If the number of fields is larger than 256, this function does not promise to return correct result, and will return at most 256.
 
+**The attention is the same as [mapKeys](#mapkeyskey).**
+
 * Parameters:
 	* contract: string
 	* key: string
@@ -164,6 +172,8 @@ Map count number of fields inside a key from global storage. If the number of fi
 #### globalMapKeys(contract, key)
 
 Map Get fields inside a key from global storage. If the number of fields is larger than 256, this function does not promise to return correct result, and will return at most 256 results.
+
+**The attention is the same as [mapKeys](#mapkeyskey).**
 
 * Parameters:
 	* contract: string

@@ -288,7 +288,7 @@ class Token {
     }
 
     can_update(data) {
-        return blockchain.requireAuth(blockchain.contractName(), "active");
+        return blockchain.requireAuth(blockchain.contractOwner(), "active");
     }
 
     _amount(amount) {

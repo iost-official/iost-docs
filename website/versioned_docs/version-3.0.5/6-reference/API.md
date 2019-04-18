@@ -811,7 +811,9 @@ block_number |string | the number of block from which the data is from |
 ## /getContractStorageFields
 ##### POST
 
-Get contract storage key list of map, up to 256 are returned
+Get contract storage key list of map, up to 256 are returned.  
+**Note: Developers should not rely on this API to obtain all keys of a map in the contract. If there is such a requirement, you need to maintain all keys yourself** . See [mapKeys](../3-smart-contract/IOST-Blockchain-API.html#mapkeyskey) for details.
+
 
 ### Request
 
@@ -1226,7 +1228,9 @@ A successful response may look like this:
 	"current_supply": "2100000000000000000",
 	"decimal": 8,
 	"can_transfer": true,
-	"only_issuer_can_transfer": false
+	"only_issuer_can_transfer": false,
+	"total_supply_float": 90000000000,
+	"current_supply_float": 21000000000
 }
 ```
 
@@ -1235,8 +1239,10 @@ A successful response may look like this:
 | symbol |string   | token symbol |
 | full_name |string   | token full name |
 | issuer |string   | token issuer |
-| total_supply |string   | total amount of token supply |
-| current_supply |string   | current amount of token supply |
+| total_supply |string   | total amount of token supply, is the result of total_supply_float multiplied by decimal |
+| current_supply |string   | current amount of token supply, is the result of current_supply_float multiplied by decimal |
+| total_supply_float |double   | total amount of token supply |
+| current_supply_float |double   | current amount of token supply |
 | decimal | int   | token decimal |
 | can_transfer | bool   | whether the token can be transfered |
 | only_issuer_can_transfer | bool   | whether the token can only be transfered by issuer|
