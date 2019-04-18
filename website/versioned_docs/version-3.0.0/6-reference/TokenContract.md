@@ -15,110 +15,83 @@ Token contract is used for token creation, distribution, transfer and destructio
 | contract_id | token.iost |
 | :----: | :------ |
 | language | native |
-| version | 1.0.0 |
+| version | 1.0.3 |
 
 ### API
 
-#### create (tokenSym, issuer, totalSupply, config)
+#### create(tokenSym, issuer, totalSupply, config)
 Create token.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token identifier, unique within the contract | string |
-| issuer | issuer with issuing token permission | string |
-| totalSupply | Total supply, integer | number |
-| config | configuration | json |
+| tokenSym |  string |Token symbol, unique within the contract. Its length should be between 2 and 16 and could only contain characters in [a-z0-9_] |
+| issuer | string | token issuer who has token issue permission. **Calling this interface requires this account's "token" permission** | 
+| totalSupply | number | Total amount of supply |
+| config | json | token configuration. It contains 4 keys: <br>fullName —— string type, full name of the token.<br> canTransfer —— bool type, whether the token can be transferred.<br> decimal —— number type, the token decimal.<br>onlyIssuerCanTransfer —— bool type, whether the token is allowed to transfer only by token issuer.|
 
-| Return value | None |
-| :----: | :------ |
 
-tokenSym should be 2~16 characters long, consists of a-z, 0-9 and _ characters
-
-Examples of configuration items supported by config are as follows:
-
-{
-
-   "fullName": "iost token", // full name of the token, string
-
-   "canTransfer": true, // if tradable, bool
-
-   "decimal": 8 // decimal places, number
-
-}
-
-#### issue (tokenSym, to, amount)
+#### issue(tokenSym, to, amount)
 Issue tokens.
 
-| Parameter Name | Parameter Description | Parameter Type |
+`Calling this interface requires token issuer's "token" permission.`
+
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| to | Token receiving account | string |
-| amount | amount | string |
+| tokenSym | string | Token symbol |
+| to | string | The account who receives token |
+| amount | string | The amount could be both integer and decimal, such as "100", "1.22" | 
 
-| Return value | None |
-| :----: | :------ |
 
-The amount parameter is a string, which can be an integer or a decimal, such as "100", "1.22" are legal amounts
-
-#### transfer (tokenSym, from, to, amount, memo)
+#### transfer(tokenSym, from, to, amount, memo)
 Token transfer.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| from | Token Transfer Account | string |
-| to | Token receiving account | string |
-| amount | amount | string |
-| memo | Additional Information | string |
+| tokenSym | string | Token symbol | 
+| from | string | Account who sends token, **Calling this interface requires this account's "transfer" permission**|
+| to | string | Account who receives token |
+| amount | string | The amount of token transferred |
+| memo | string | Additional information |
 
-| Return value | None |
-| :----: | :------ |
 
-#### transferFreeze (tokenSym, from, to, amount, ftime, memo)
+#### transferFreeze(tokenSym, from, to, amount, ftime, memo)
 Transfer and freeze tokens.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| from | Token transfer Account | string |
-| to | Token receiving account | string |
-| amount | amount | string |
-| ftime| Unfreeze time, milliseconds of Unix timestamp | number |
-| memo | Additional Information | string |
+| tokenSym | string | Token symbol | 
+| from | string | Account who sends token, **Calling this interface requires this account's "transfer" permission**|
+| to | string | Account who receives token |
+| amount | string | The amount of token transferred |
+| memo | string | Additional information |
 
-| Return value | None |
-| :----: | :------ |
-
-#### destroy (tokenSym, from, amount)
+#### destroy(tokenSym, from, amount)
 Destroy tokens.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| from | Token destroy account | string |
-| amount | amount | string |
+| tokenSym | string | Token symbol | 
+| from | string | Account who destroys token, **Calling this interface requires this account's "transfer" permission**|
+| amount | string | The amount of token destroyed |
 
-| Return value | None |
-| :----: | :------ |
-
-#### balanceOf (tokenSym, from)
+#### balanceOf(tokenSym, from)
 Get the token balance.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| from | Token account | string |
+| tokenSym | string | Token symbol | 
+| from | string | Account name which is queried |
 
-| Return value | Type |
-| :----: | :------ |
-| Account Balance | string |
+| Return value | Type | Remark |
+| :----: | :------ | :------ |
+| balance | string | account balance |
 
-#### supply (tokenSym)
+#### supply(tokenSym)
 Get the token circulation, that is, the total amount of tokens that have been issued and have not been destroyed.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
+| tokenSym | string | Token symbol | 
 
 | Return value | Type |
 | :----: | :------ |
@@ -127,9 +100,9 @@ Get the token circulation, that is, the total amount of tokens that have been is
 #### totalSupply(tokenSym)
 Get the total circulation of tokens.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
+| tokenSym | string | Token symbol | 
 
 | Return value | Type |
 | :----: | :------ |
@@ -150,80 +123,74 @@ Token721 contract is used for the creation, distribution, transfer and destructi
 
 ### API
 
-#### create (tokenSym, issuer, totalSupply)
+#### create(tokenSym, issuer, totalSupply)
 Create tokens.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token identifier, unique within the contract | string |
-| issuer | issuer with issuing token rights | string |
-| totalSupply | Total circulation, integer | number |
+| tokenSym |  string |Token symbol, unique within the contract. Its length should be between 2 and 16 and could only contain characters in [a-z0-9_] |
+| issuer | string | token issuer who has token issue permission. **Calling this interface requires this account's "token" permission** | 
+| totalSupply | number | Total amount of supply |
 
-| Return value | None |
-| :----: | :------ |
 
-tokenSym should be 2~16 characters long, consists of a-z, 0-9 and _ characters
-
-#### issue (tokenSym, to, metaData)
+#### issue(tokenSym, to, metaData)
 Issue tokens.
 
-| Parameter Name | Parameter Description | Parameter Type |
+`Calling this interface requires token issuer's "token" permission.`
+
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| to | Token receiving account | string |
-| metaData | Meta data for tokens | string |
+| tokenSym | string | Token symbol |
+| to | string | The account who receives token |
+| metaData |string | Meta data for token | 
 
-| Return value | Type |
-| :----: | :------ |
-| tokenID | string |
+| Return value | Type | Remark |
+| :----: | :------ |:------ |
+| tokenID | string | TokenID is the token identification. In a certain token, the system will generate a specific tokenID for each token issued which won't be duplicated in a certain kind token.|
 
-tokenID is the token identification. In a certain token, the system will generate a specific tokenID for each token issued which won't be duplicated in a certain kind token.
 
-#### transfer (tokenSym, from, to, tokenID)
+#### transfer(tokenSym, from, to, tokenID)
 Token transfer.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| from | Token Transfer Account | string |
-| to | Token receiving account | string |
-| tokenID | Token ID | string |
+| tokenSym | string | Token symbol | 
+| from | string | Account who sends token, **Calling this interface requires this account's "transfer" permission**|
+| to | string | Account who receives token |
+| tokenID | string | Token ID |
 
-| Return value | None |
-| :----: | :------ |
-
-#### balanceOf (tokenSym, from)
+#### balanceOf(tokenSym, from)
 Get the token balance.
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| from | Token account | string |
+| tokenSym | string | Token symbol | 
+| from |  string | account name |
 
-| Return value | Type |
-| :----: | :------ |
-| Account Balance | number |
+| Return value | Type | Remark|
+| :----: | :------ |:------ |
+| balance | number | Account balance|
 
-#### ownerOf (tokenSym, tokenID)
+#### ownerOf(tokenSym, tokenID)
 Get the owner of a particular token
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| tokenID | Token ID | string |
+| tokenSym | string | Token symbol | 
+| tokenID |  string |Token ID |
 
-| Return value | Type|
-| :----: | :------ |
-| Owner Account | string |
+| Return value | Type|Remark|
+| :----: | :------ |:------ |
+| account | string |Owner account name|
 
 #### tokenOfOwnerByIndex(tokenSym, owner, index)
 Get the index token owned by the account
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| owner | Token account | string |
-| index | Token index, integer | number |
+| tokenSym |  string |Token symbol |
+| owner | string | Account name | 
+| index |  number |Token index, integer |
 
 | Return value | Type |
 | :----: | :------ |
@@ -232,10 +199,10 @@ Get the index token owned by the account
 #### tokenMetadata(tokenSym, tokenID)
 Get the meta data of the token
 
-| Parameter Name | Parameter Description | Parameter Type |
+| Parameter Name | Parameter Type | Remark |
 | :----: | :----: | :------ |
-| tokenSym | Token Identifier | string |
-| tokenID | Token ID | string |
+| tokenSym |  string |Token symbol |
+| tokenID |  string |Token ID |
 
 | Return value | Type |
 | :----: | :------ |

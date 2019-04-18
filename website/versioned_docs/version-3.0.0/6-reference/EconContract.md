@@ -19,32 +19,32 @@ Details of economic model are introduced on [GAS economic model](2-intro-of-iost
 
 ### API
 
-#### pledge
-pledge IOST for GAS. minimum pledging amount is 1 IOST.      
+#### pledge(pledgor, to, amount)
+pledge iost for gas. minimum pledging amount is 1 iost.      
 ##### Example
-\["user1","user1","100"\]：user1 pledge 100 IOSTs for himslef. So user1 costs 100 IOSTs, and obtains some GAS.   
-\["user1","user2","100"\]：user1 pledge 100 IOSTs for user2. So user1 costs 100 IOSTs, and user2 obtains some GAS.
+\["user1","user1","100"\]：user1 pledge 100 iost for himslef. So user1 costs 100 iost, and obtains some gas.   
+\["user1","user2","100"\]：user1 pledge 100 iost for user2. So user1 costs 100 iost, and user2 obtains some gas.
 
-| Arg Meaning | Arg Type |
-| :----: | :------ |
-| who pledges IOST. Permission of this account is needed. | string |
-| who gets GAS | string |
-| IOST amount for pledging | string |
+| Parameter List | Parameter Type | Remark |
+| :----: | :------ |:------ |
+| pledgor | string | the account who pledges iost. **Calling this interface requires this account's "transfer" permission**|
+| to | string | the account who gets gas |
+| amount | string | iost amount for pledging |
 
 #### unpledge
-undo pledge. IOST pledged earlier will be returned. minimum unpledging amount is 1 IOST.        
+undo pledge. iost pledged earlier will be returned. minimum unpledging amount is 1 iost.        
 ##### Example
-\["user1","user1","100"\]：user1 unpledge 100 IOSTs from his earlier pledgement for himself.   
-\["user1","user2","100"\]：user1 unpledge 100 IOSTs from his earlier pledgement for user2.
+\["user1","user1","100"\]：user1 unpledge 100 iost from his earlier pledgement for himself.   
+\["user1","user2","100"\]：user1 unpledge 100 iost from his earlier pledgement for user2.
 
-| Arg Meaning | Arg Type |
-| :----: | :------ |
-| who unpledge IOST. Permission of this account is needed. | string |
-| unpledge IOST out of who's current pledgement | string |
-| IOST amount for unpledging | string | 
+| Parameter List | Parameter Type | Remark |
+| :----: | :------ |:------ |
+| pledgor | string | the account who pledges iost. **Calling this interface requires this account's "transfer" permission**|
+| to | string | the account who gets gas |
+| amount | string | iost amount for pledging |
 
 
-#### transfer
+<!--#### transfer
 transfer GAS. minimum transferring amount is 1 IOST.   
 __Notice__: GAS obtained from pledgement cannot be transferred. Only `transferable GAS` can be transferred. Besides, `transferable GAS` after being transferred once will not be transferable any longer.      
 You can obtain transferable GAS from [transferable gas reward](2-intro-of-iost/Economic-model.md#流通gas奖励)
@@ -57,13 +57,13 @@ You can obtain transferable GAS from [transferable gas reward](2-intro-of-iost/E
 | :----: | :------ |
 | who transfers GAS. Permission of this account is needed. | string |
 | who gets GAS| string |
-| IOST amount for transferring | string |
+| IOST amount for transferring | string |-->
 
 ## ram.iost
 ---
-RAM related contract, including buying/selling/transferring.    
-Details of economic model are introduced on [RAM economic model](2-intro-of-iost/Economic-model.md#资源).  
-Buying/Selling RAM not too much, you can get price estimate in [RPC](6-reference/API.md#getraminfo). 
+ram related contract, including buying/selling/transferring.    
+Details of economic model are introduced on [RAM economic model](2-intro-of-iost/Economic-model.md#resources).  
+You can get price estimate in [RPC](6-reference/API.md#getraminfo) when you buy or sell a little ram. 
 
 ### Info
 | contract_id | ram.iost |
@@ -73,44 +73,42 @@ Buying/Selling RAM not too much, you can get price estimate in [RPC](6-reference
 
 ### API
 
-#### buy
+#### buy(payer, receiver, amount)
 buy RAM from system. minimum buying amount is 10 bytes.        
-contract will return IOST costed.  
+contract will return the amount of iost costed.  
 ##### Example
-\["user1","user1",1024\]:  user1 buys 1024 bytes RAM for himself   
-\["user1","user2",1024\]:  user1 buys 1024 bytes RAM for user2   
+\["user1","user1",1024\]:  user1 buys 1024 bytes ram for himself   
+\["user1","user2",1024\]:  user1 buys 1024 bytes ram for user2   
 
-| Arg Meaning | Arg Type |
-| :----: | :------ |
-| who buys ram. Permission of this account is needed. | string |
-| who gets the bought ram| string |
-| RAM byte to buy | int |
+| Parameter List | Parameter Type | Remark |
+| :----: | :------ |:------ |
+| payer | string | the account who buys ram. **Calling this interface requires this account's "transfer" permission** |
+| receiver | string |the account who gets the bought ram|
+| amount | int | ram bytes to buy |
 
-#### sell
-Sell unused RAM to system. minimum selling amount is 10 bytes.   
-contract will return IOST returned.
+#### sell(account, receiver, amount)
+Sell unused ram to system. minimum selling amount is 10 bytes.   
+contract will return the amount of iost returned.
 ##### Example
-\["user1","user1",1024\]:  user1 sells unused 1024 bytes RAM to system, he himself gets IOST returned
+\["user1","user1",1024\]:  user1 sells unused 1024 bytes ram to system, he himself gets iost returned.
 。  
-\["user1","user2",1024\]:  user1 sells unused 1024 bytes RAM to system, user2 gets IOST returned
+\["user1","user2",1024\]:  user1 sells unused 1024 bytes ram to system, user2 gets iost returned.
 
-| Arg Meaning | Arg Type |
-| :----: | :------ |
-| who sells RAM. Permission of this account is needed. | string |
-| who gets IOST returned | string |
-| RAM byte to sell | int |
+| Parameter List | Parameter Type | Remark |
+| :----: | :------ |:------ |
+| payer | string | the account who sells ram. **Calling this interface requires this account's "transfer" permission** |
+| receiver | string |the account who gets the iost returned|
+| amount | int | ram bytes to sell |
 
-#### lend
-transfer RAM to others.      
-Only RAM one `bought` can be transferred to others. So RAM others transferred to you cannot be sold to system nor transferred to others.      
+#### lend(from, to, amount)
+transfer ram to others.      
+Only ram one `bought` can be transferred to others. So ram others transferred to you cannot be sold to system nor transferred to others.      
 minimum transferring amount is 10 bytes.   
 ##### Example
-\["user1","user2",1024\]: user1 transfers unused 1024 buytes RAM to user2
+\["user1","user2",1024\]: user1 transfers unused 1024 bytes ram to user2.
 
-| Arg Meaning | Arg Type |
-| :----: | :------ |
-| who transfers RAM. Permission of this account is needed. | string |
-| who gets transferred RAM| string |
-| RAM byte to transfer | int |
-
-
+| Parameter List | Parameter Type | Remark |
+| :----: | :------ |:------ |
+| from | string | the account who transfers ram. **Calling this interface requires this account's "transfer" permission**|
+| to | string | the account who receives ram |
+| amount | int | ram bytes to transfer |
