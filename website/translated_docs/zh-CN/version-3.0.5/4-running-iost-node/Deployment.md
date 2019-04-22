@@ -231,3 +231,20 @@ p2p:
     - ${P2P-URL}
     - ...
 ```
+
+# 使用 snapshot 加速同步
+
+从 snapshot 导入区块链数据可以显著加速同步过程。   
+下载链接: [storage.tar](http://archive.iost.io/snapshot/storage.tar)   
+文件校验:
+[MD5](http://archive.iost.io/snapshot/MD5SUMS) /
+[SHA1](http://archive.iost.io/snapshot/SHA1SUMS) /
+[SHA256](http://archive.iost.io/snapshot/SHA256SUMS)
+
+下载镜像文件，然后以此执行以下操作：
+
+- 确保 iServer 停止：`docker stop iserver`
+- 导入数据：`sudo rm -rf $PREFIX/storage && sudo tar xvf storage.tar -C $PREFIX`
+- 重启 iServer：`docker start iserver`
+
+之后节点会从 snapshot 中的高度继续同步。

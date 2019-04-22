@@ -88,7 +88,7 @@ Map Get fields inside a key.
 
 Attention:
 
-**1. The maximum number of fields returned is 256, and the field exceeded is still there, but it will not be returned in this function.**  
+**1. This API only stores 256 fields at most, and the field exceeded will not be stored and will not be returned in this API.**  
 **2. If "mapDel" is called, then later mapKeys may be wrong! If both mapDel and mapKeys are required in the contract, it is recommended that all fields be of the same length, in which case mapKeys will not make a mistake.**  
 **3. If you need to get all keys of a map, it is recommended that you maintain them yourself and not use this API.**
 

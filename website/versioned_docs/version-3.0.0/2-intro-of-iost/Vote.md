@@ -35,7 +35,7 @@ The system will issue 2% token every year. 1% tokens are block awards only for s
 
 #### node award
 
-- The system automatically issues tokens every 24 hours. The issued tokens will go into the node reward pool and are distributed proportionally according to the number of votes received by each node at the time of issue.
+- The system automatically issues tokens every 172800 blocks (about 24 hours). The issued tokens will go into the node reward pool and are distributed proportionally according to the number of votes received by each node at the time of issue.
 - Any account can recharge the node reward pool by calling the [topupCandidateBonus](../6-reference/SystemContract.html#topupcandidatebonus) method of voting contract, and the tokens are distributed proportionally according to the number of votes received by each node at the recharging time.
 - The voting reward needs the node to take the initiative to receive, and the way to receive it is calling [candidateWithdraw](../6-reference/SystemContract.html#candidatewithdraw) method of the voting contract.
 - 50% of the voting reward will go into the voter reward pool when the reward is received by node.

@@ -240,3 +240,21 @@ p2p:
     - ${P2P-URL}
     - ...
 ```
+
+# Using Snapshot to Accelerate Synchronization
+
+You might want to download recent blockchain directly instead of syncing from the genesis.
+Fortunately, we have the *snapshot*.   
+Download link: [storage.tar](http://archive.iost.io/snapshot/storage.tar)   
+Checksum:
+[MD5](http://archive.iost.io/snapshot/MD5SUMS) /
+[SHA1](http://archive.iost.io/snapshot/SHA1SUMS) /
+[SHA256](http://archive.iost.io/snapshot/SHA256SUMS)
+
+Download the `tar` file using your favorite tools (i.e. `wget`), then do the following steps:
+
+- make sure iServer is shutdown: `docker stop iserver`
+- extract the snapshot file: `sudo rm -rf $PREFIX/storage && sudo tar xvf storage.tar -C $PREFIX`
+- restart iServer: `docker start iserver`
+
+Then the node is going to continue syncing the blockchain from the certain height.

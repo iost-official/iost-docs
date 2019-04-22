@@ -78,7 +78,7 @@ abi的name字段对应js的函数名，args列表包含了一个初步的类型�
 
 ```
 iwallet \
- --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
+ --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
@@ -103,7 +103,7 @@ iwallet \
     "receipts": [
     ]
 }
-The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf  # 这就是部署的contract id
+The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf  # 这就是部署的 contract id
 
 ```
 
@@ -111,7 +111,7 @@ The contract id is Contract96YFqvomoAnX6Zyj993fkv29D2HVfm8cjGhCEM1ymXGf  # 这�
 
 ```
 iwallet \
- --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
+ --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
@@ -206,7 +206,7 @@ curl -X POST \
 
 ```
 iwallet \
- --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
+ --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
@@ -235,7 +235,7 @@ if (!blockchain.requireAuth("someone", "active")) {
 
 ```
 iwallet \
- --expiration 10000 --gas_limit 1000000 --gas_ratio 1 \
+ --gas_limit 1000000 --gas_ratio 1 \
  --server localhost:30002 \
  --account admin \
  --amount_limit '*:unlimited' \
