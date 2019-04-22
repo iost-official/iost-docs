@@ -79,11 +79,11 @@ map查找(key,field)对的存在,使用key+field进行查找。
 
 #### mapKeys(key)
 
-map获取key内的field。   
+map 获取 key 内的 field。  
 
 注意事项：  
-**1. 最多返回 256 个field，超过的field虽然还存在，但是不会在这个函数中返回**   
-**2. 如果调用过"mapDel", 那么之后的mapKeys可能会出错！如果合约中需要同时使用mapDel和mapKeys，那么建议所有field长度相同，这种情况下mapKeys不会出错**  
+**1. 本接口最多保存 256 个 field，超出的 field 不会保存，更不会在这个函数中返回**   
+**2. 如果调用过 mapDel, 那么之后的 mapKeys 可能会出错！如果合约中需要同时使用 mapDel 和 mapKeys，那么建议所有 field 长度相同，这种情况下 mapKeys 不会出错**  
 **3. 如果开发者需要获取一个 map 的所有 keys，建议自己维护，不建议使用此接口**
 
 * 参数: 
