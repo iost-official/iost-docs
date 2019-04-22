@@ -30,7 +30,7 @@ sidebar_label: Vote
 ### 投票奖励规则
 
 #### 节点奖励
-- 系统每隔 24 小时自动增发一次 token，增发的 token 会进去节点奖励池，并按照增发的时刻每个节点的得票数，按比例分配奖励
+- 系统每隔 172800 个区块（大约 24 小时）自动增发一次 token，增发的 token 会进去节点奖励池，并按照增发的时刻每个节点的得票数，按比例分配奖励
 - 任何账号都可以通过调用投票合约的 [topupCandidateBonus](../6-reference/SystemContract.html#topupcandidatebonus) 方法给节点奖励池充值，并按照充值时刻每个节点的得票数，按比例分配该笔充值
 - 投票奖励需要节点主动领取，领取方式为调用投票合约的 [candidateWithdraw](../6-reference/SystemContract.html#candidatewithdraw) 方法
 - 投票奖励的 50% 会在奖励领取时，进入投票者奖励池
