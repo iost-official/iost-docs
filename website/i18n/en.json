@@ -147,694 +147,694 @@
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "version-1.0.0-Deployment": {
+      "version-1.0.0/4-running-iost-node/version-1.0.0-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-1.0.4-doc1": {
+      "version-1.0.4/1-getting-started/version-1.0.4-doc1": {
         "title": "Overview",
         "sidebar_label": "Overview"
       },
-      "version-1.0.4-Quickstart": {
+      "version-1.0.4/1-getting-started/version-1.0.4-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-1.0.4-Database": {
+      "version-1.0.4/2-intro-of-iost/version-1.0.4-Database": {
         "title": "Database",
         "sidebar_label": "Database"
       },
-      "version-1.0.4-Network-layer": {
+      "version-1.0.4/2-intro-of-iost/version-1.0.4-Network-layer": {
         "title": "Network layer",
         "sidebar_label": "Network layer"
       },
-      "version-1.0.4-Smart-contract": {
+      "version-1.0.4/2-intro-of-iost/version-1.0.4-Smart-contract": {
         "title": "Smart Contract",
         "sidebar_label": "Smart Contract"
       },
-      "version-1.0.4-VM": {
+      "version-1.0.4/2-intro-of-iost/version-1.0.4-VM": {
         "title": "VM",
         "sidebar_label": "VM"
       },
-      "version-1.0.4-Contract-Testing": {
+      "version-1.0.4/3-smart-contract/version-1.0.4-Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
       },
-      "version-1.0.4-Deployment-and-invocation": {
+      "version-1.0.4/3-smart-contract/version-1.0.4-Deployment-and-invocation": {
         "title": "Deployment and invocation",
         "sidebar_label": "Deployment and invocation"
       },
-      "version-1.0.4-Environment-setup": {
+      "version-1.0.4/3-smart-contract/version-1.0.4-Environment-setup": {
         "title": "Environment setup",
         "sidebar_label": "Environment setup"
       },
-      "version-1.0.4-How-to-write-a-smart-contract": {
+      "version-1.0.4/3-smart-contract/version-1.0.4-How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
         "sidebar_label": "How to Write a Smart Contract"
       },
-      "version-1.0.4-Smart-Contract-Development-Toolkit": {
+      "version-1.0.4/3-smart-contract/version-1.0.4-Smart-Contract-Development-Toolkit": {
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
-      "version-1.0.4-Deployment": {
+      "version-1.0.4/4-running-iost-node/version-1.0.4-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-1.0.4-Environment-Configuration": {
+      "version-1.0.4/4-running-iost-node/version-1.0.4-Environment-Configuration": {
         "title": "Environment & Configuration",
         "sidebar_label": "Environment & Configuration"
       },
-      "version-1.0.4-Faucet": {
+      "version-1.0.4/4-running-iost-node/version-1.0.4-Faucet": {
         "title": "Faucet - how to get IOST token",
         "sidebar_label": "Faucet - how to get IOST token"
       },
-      "version-1.0.4-iServer": {
+      "version-1.0.4/4-running-iost-node/version-1.0.4-iServer": {
         "title": "iServer",
         "sidebar_label": "iServer"
       },
-      "version-1.0.4-iWallet": {
+      "version-1.0.4/4-running-iost-node/version-1.0.4-iWallet": {
         "title": "iWallet",
         "sidebar_label": "iWallet"
       },
-      "version-1.0.4-Metrics": {
+      "version-1.0.4/4-running-iost-node/version-1.0.4-Metrics": {
         "title": "Metrics",
         "sidebar_label": "Metrics"
       },
-      "version-1.0.4-Design-Tech-data": {
+      "version-1.0.4/5-lucky-bet/version-1.0.4-Design-Tech-data": {
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
       },
-      "version-1.0.5-Smart-contract": {
+      "version-1.0.5/2-intro-of-iost/version-1.0.5-Smart-contract": {
         "title": "Smart Contract",
         "sidebar_label": "Smart Contract"
       },
-      "version-1.0.5-Contract-Testing": {
+      "version-1.0.5/3-smart-contract/version-1.0.5-Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
       },
-      "version-1.0.5-Deployment-and-invocation": {
+      "version-1.0.5/3-smart-contract/version-1.0.5-Deployment-and-invocation": {
         "title": "Deployment and invocation",
         "sidebar_label": "Deployment and invocation"
       },
-      "version-1.0.6-Quickstart": {
+      "version-1.0.6/1-getting-started/version-1.0.6-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-1.0.6-Contract-Testing": {
+      "version-1.0.6/3-smart-contract/version-1.0.6-Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
       },
-      "version-1.0.6-Deployment-and-invocation": {
+      "version-1.0.6/3-smart-contract/version-1.0.6-Deployment-and-invocation": {
         "title": "Deployment and invocation",
         "sidebar_label": "Deployment and invocation"
       },
-      "version-1.0.6-Environment-setup": {
+      "version-1.0.6/3-smart-contract/version-1.0.6-Environment-setup": {
         "title": "Environment setup",
         "sidebar_label": "Environment setup"
       },
-      "version-1.0.6-Smart-Contract-Development-Toolkit": {
+      "version-1.0.6/3-smart-contract/version-1.0.6-Smart-Contract-Development-Toolkit": {
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
-      "version-1.0.6-Update-Contract": {
+      "version-1.0.6/3-smart-contract/version-1.0.6-Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "version-1.0.6-Deployment": {
+      "version-1.0.6/4-running-iost-node/version-1.0.6-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-1.0.6-Environment-Configuration": {
+      "version-1.0.6/4-running-iost-node/version-1.0.6-Environment-Configuration": {
         "title": "Environment & Configuration",
         "sidebar_label": "Environment & Configuration"
       },
-      "version-1.0.6-Design-Tech-data": {
+      "version-1.0.6/5-lucky-bet/version-1.0.6-Design-Tech-data": {
         "title": "Lucky Bet Smart Contract",
         "sidebar_label": "Lucky Bet Smart Contract"
       },
-      "version-1.0.6-Lucky-Bet-Js": {
+      "version-1.0.6/5-lucky-bet/version-1.0.6-Lucky-Bet-Js": {
         "title": "Lucky Bet Javascript Code Details",
         "sidebar_label": "Lucky Bet Javascript Code Details"
       },
-      "version-1.0.6-Lucky-Bet-Operation": {
+      "version-1.0.6/5-lucky-bet/version-1.0.6-Lucky-Bet-Operation": {
         "title": "Step-by-Step Commands to Deploy and Run",
         "sidebar_label": "Step-by-Step Commands to Deploy and Run"
       },
-      "version-1.0.6-API": {
+      "version-1.0.6/6-reference/version-1.0.6-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-1.0.7-Quickstart": {
+      "version-1.0.7/1-getting-started/version-1.0.7-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-1.0.7-Environment-setup": {
+      "version-1.0.7/3-smart-contract/version-1.0.7-Environment-setup": {
         "title": "Environment setup",
         "sidebar_label": "Environment setup"
       },
-      "version-1.0.7-API": {
+      "version-1.0.7/6-reference/version-1.0.7-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-1.0.8-Account": {
+      "version-1.0.8/2-intro-of-iost/version-1.0.8-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
-      "version-1.0.8-iwallet-example": {
+      "version-1.0.8/6-reference/version-1.0.8-iwallet-example": {
         "title": "iwallet-example",
         "sidebar_label": "iwallet-example"
       },
-      "version-2.0.0-Economic-model": {
+      "version-2.0.0/2-intro-of-iost/version-2.0.0-Economic-model": {
         "title": "Economic model",
         "sidebar_label": "Economic model"
       },
-      "version-2.0.0-Generate-Receipt": {
+      "version-2.0.0/3-smart-contract/version-2.0.0-Generate-Receipt": {
         "title": "Generate Receipt in Smart Contract",
         "sidebar_label": "Generate Receipt in Smart Contract"
       },
-      "version-2.0.0-Token": {
+      "version-2.0.0/3-smart-contract/version-2.0.0-Token": {
         "title": "Create Token",
         "sidebar_label": "Create Token"
       },
-      "version-2.0.0-API": {
+      "version-2.0.0/6-reference/version-2.0.0-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-2.0.1-Deployment": {
+      "version-2.0.1/4-running-iost-node/version-2.0.1-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-2.0.2-Account": {
+      "version-2.0.2/2-intro-of-iost/version-2.0.2-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
-      "version-2.0.2-API": {
+      "version-2.0.2/6-reference/version-2.0.2-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-2.0.2-Blockchain-class": {
+      "version-2.0.2/7-iost-js/version-2.0.2-Blockchain-class": {
         "title": "Blockchain",
         "sidebar_label": "Blockchain"
       },
-      "version-2.0.2-IOST-class": {
+      "version-2.0.2/7-iost-js/version-2.0.2-IOST-class": {
         "title": "IOST",
         "sidebar_label": "IOST"
       },
-      "version-2.0.2-KeyPair-class": {
+      "version-2.0.2/7-iost-js/version-2.0.2-KeyPair-class": {
         "title": "KeyPair",
         "sidebar_label": "KeyPair"
       },
-      "version-2.0.2-Transaction-class": {
+      "version-2.0.2/7-iost-js/version-2.0.2-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "version-2.0.3-Account": {
+      "version-2.0.3/2-intro-of-iost/version-2.0.3-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
-      "version-2.0.3-Economic-model": {
+      "version-2.0.3/2-intro-of-iost/version-2.0.3-Economic-model": {
         "title": "Economic model",
         "sidebar_label": "Economic model"
       },
-      "version-2.0.3-Contract-Testing": {
+      "version-2.0.3/3-smart-contract/version-2.0.3-Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
       },
-      "version-2.0.3-Deployment-and-invocation": {
+      "version-2.0.3/3-smart-contract/version-2.0.3-Deployment-and-invocation": {
         "title": "Deployment and invocation",
         "sidebar_label": "Deployment and invocation"
       },
-      "version-2.0.3-Environment-setup": {
+      "version-2.0.3/3-smart-contract/version-2.0.3-Environment-setup": {
         "title": "Environment setup",
         "sidebar_label": "Environment setup"
       },
-      "version-2.0.3-Deployment-Docker-Centos": {
+      "version-2.0.3/4-running-iost-node/version-2.0.3-Deployment-Docker-Centos": {
         "title": "Deployment Docker Centos",
         "sidebar_label": "Deployment Docker Centos"
       },
-      "version-2.0.3-Deployment": {
+      "version-2.0.3/4-running-iost-node/version-2.0.3-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-2.0.3-API": {
+      "version-2.0.3/6-reference/version-2.0.3-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-2.0.4-Deployment-Docker-Centos": {
+      "version-2.0.4/4-running-iost-node/version-2.0.4-Deployment-Docker-Centos": {
         "title": "Deployment Docker Centos",
         "sidebar_label": "Deployment Docker Centos"
       },
-      "version-2.0.4-Deployment": {
+      "version-2.0.4/4-running-iost-node/version-2.0.4-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-2.0.4-Environment-Configuration": {
+      "version-2.0.4/4-running-iost-node/version-2.0.4-Environment-Configuration": {
         "title": "Environment & Configuration",
         "sidebar_label": "Environment & Configuration"
       },
-      "version-2.0.4-Google-Compute-Platform": {
+      "version-2.0.4/4-running-iost-node/version-2.0.4-Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "version-2.0.4-API": {
+      "version-2.0.4/6-reference/version-2.0.4-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-2.0.5-Economic-model": {
+      "version-2.0.5/2-intro-of-iost/version-2.0.5-Economic-model": {
         "title": "Economic model",
         "sidebar_label": "Economic model"
       },
-      "version-2.1.0-Contract-Testing": {
+      "version-2.1.0/3-smart-contract/version-2.1.0-Contract-Testing": {
         "title": "Testing",
         "sidebar_label": "Testing"
       },
-      "version-2.1.0-Deployment": {
+      "version-2.1.0/4-running-iost-node/version-2.1.0-Deployment": {
         "title": "Deployment",
         "sidebar_label": "Deployment"
       },
-      "version-2.1.0-Environment-Configuration": {
+      "version-2.1.0/4-running-iost-node/version-2.1.0-Environment-Configuration": {
         "title": "Environment & Configuration",
         "sidebar_label": "Environment & Configuration"
       },
-      "version-2.1.0-Google-Compute-Platform": {
+      "version-2.1.0/4-running-iost-node/version-2.1.0-Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "version-2.1.2-Vote": {
+      "version-2.1.2/2-intro-of-iost/version-2.1.2-Vote": {
         "title": "Vote",
         "sidebar_label": "Vote"
       },
-      "version-2.1.2-EconContract": {
+      "version-2.1.2/6-reference/version-2.1.2-EconContract": {
         "title": "Econ Contract",
         "sidebar_label": "Econ Contract"
       },
-      "version-2.1.2-SystemContract": {
+      "version-2.1.2/6-reference/version-2.1.2-SystemContract": {
         "title": "System Contract",
         "sidebar_label": "System Contract"
       },
-      "version-2.1.3-SystemContract": {
+      "version-2.1.3/6-reference/version-2.1.3-SystemContract": {
         "title": "System Contract",
         "sidebar_label": "System Contract"
       },
-      "version-2.1.4-Vote": {
+      "version-2.1.4/2-intro-of-iost/version-2.1.4-Vote": {
         "title": "Vote",
         "sidebar_label": "Vote"
       },
-      "version-2.1.6-Quickstart": {
+      "version-2.1.6/1-getting-started/version-2.1.6-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-2.1.6-Account": {
+      "version-2.1.6/2-intro-of-iost/version-2.1.6-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
-      "version-2.1.6-Smart-contract": {
+      "version-2.1.6/2-intro-of-iost/version-2.1.6-Smart-contract": {
         "title": "Smart Contract",
         "sidebar_label": "Smart Contract"
       },
-      "version-2.1.6-ContractStart": {
+      "version-2.1.6/3-smart-contract/version-2.1.6-ContractStart": {
         "title": "Smart Contract Quick Start",
         "sidebar_label": "Smart Contract Quick Start"
       },
-      "version-2.1.6-How-to-write-a-smart-contract": {
+      "version-2.1.6/3-smart-contract/version-2.1.6-How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
         "sidebar_label": "How to Write a Smart Contract"
       },
-      "version-2.1.6-Update-Contract": {
+      "version-2.1.6/3-smart-contract/version-2.1.6-Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "version-2.1.6-Deployment": {
+      "version-2.1.6/4-running-iost-node/version-2.1.6-Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
       },
-      "version-2.1.6-Building-IOST": {
+      "version-2.1.6/4-running-iost-node/version-2.1.6-Building-IOST": {
         "title": "Build IOST",
         "sidebar_label": "Build IOST"
       },
-      "version-2.1.6-LocalServer": {
+      "version-2.1.6/4-running-iost-node/version-2.1.6-LocalServer": {
         "title": "Launch Local Server",
         "sidebar_label": "Launch Local Server"
       },
-      "version-2.1.6-iWallet": {
+      "version-2.1.6/4-running-iost-node/version-2.1.6-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
-      "version-2.1.6-LuckyBet": {
+      "version-2.1.6/5-lucky-bet/version-2.1.6-LuckyBet": {
         "title": "LuckyBet Example",
         "sidebar_label": "LuckyBet Example"
       },
-      "version-2.1.6-EconContract": {
+      "version-2.1.6/6-reference/version-2.1.6-EconContract": {
         "title": "Economic Contract",
         "sidebar_label": "Economic Contract"
       },
-      "version-2.1.6-GasChargeTable": {
+      "version-2.1.6/6-reference/version-2.1.6-GasChargeTable": {
         "title": "Gas Charge Table",
         "sidebar_label": "Gas Charge Table"
       },
-      "version-2.1.6-SystemContract": {
+      "version-2.1.6/6-reference/version-2.1.6-SystemContract": {
         "title": "System Contract",
         "sidebar_label": "System Contract"
       },
-      "version-2.1.6-TokenContract": {
+      "version-2.1.6/6-reference/version-2.1.6-TokenContract": {
         "title": "Token Contract",
         "sidebar_label": "Token Contract"
       },
-      "version-2.1.7-Quickstart": {
+      "version-2.1.7/1-getting-started/version-2.1.7-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-2.1.7-Network-layer": {
+      "version-2.1.7/2-intro-of-iost/version-2.1.7-Network-layer": {
         "title": "Network layer",
         "sidebar_label": "Network layer"
       },
-      "version-2.1.7-Smart-contract": {
+      "version-2.1.7/2-intro-of-iost/version-2.1.7-Smart-contract": {
         "title": "Smart Contract",
         "sidebar_label": "Smart Contract"
       },
-      "version-2.1.7-Generate-Receipt": {
+      "version-2.1.7/3-smart-contract/version-2.1.7-Generate-Receipt": {
         "title": "Generate Receipt in Smart Contract",
         "sidebar_label": "Generate Receipt in Smart Contract"
       },
-      "version-2.1.7-How-to-write-a-smart-contract": {
+      "version-2.1.7/3-smart-contract/version-2.1.7-How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
         "sidebar_label": "How to Write a Smart Contract"
       },
-      "version-2.1.7-Update-Contract": {
+      "version-2.1.7/3-smart-contract/version-2.1.7-Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "version-2.1.7-Deployment": {
+      "version-2.1.7/4-running-iost-node/version-2.1.7-Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
       },
-      "version-2.1.7-Google-Compute-Platform": {
+      "version-2.1.7/4-running-iost-node/version-2.1.7-Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "version-2.1.7-iWallet": {
+      "version-2.1.7/4-running-iost-node/version-2.1.7-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
-      "version-2.1.7-LocalServer": {
+      "version-2.1.7/4-running-iost-node/version-2.1.7-LocalServer": {
         "title": "Launch Local Server",
         "sidebar_label": "Launch Local Server"
       },
-      "version-2.1.7-Metrics": {
+      "version-2.1.7/4-running-iost-node/version-2.1.7-Metrics": {
         "title": "Metrics",
         "sidebar_label": "Metrics"
       },
-      "version-2.1.7-LuckyBet": {
+      "version-2.1.7/5-lucky-bet/version-2.1.7-LuckyBet": {
         "title": "LuckyBet Example",
         "sidebar_label": "LuckyBet Example"
       },
-      "version-2.1.7-API": {
+      "version-2.1.7/6-reference/version-2.1.7-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-2.1.7-EconContract": {
+      "version-2.1.7/6-reference/version-2.1.7-EconContract": {
         "title": "Economic Contract",
         "sidebar_label": "Economic Contract"
       },
-      "version-2.1.7-Blockchain-class": {
+      "version-2.1.7/7-iost-js/version-2.1.7-Blockchain-class": {
         "title": "Blockchain",
         "sidebar_label": "Blockchain"
       },
-      "version-2.1.7-Transaction-class": {
+      "version-2.1.7/7-iost-js/version-2.1.7-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "version-2.2.0-ContractStart": {
+      "version-2.2.0/3-smart-contract/version-2.2.0-ContractStart": {
         "title": "Smart Contract Quick Start",
         "sidebar_label": "Smart Contract Quick Start"
       },
-      "version-2.2.0-Building-IOST": {
+      "version-2.2.0/4-running-iost-node/version-2.2.0-Building-IOST": {
         "title": "Build IOST",
         "sidebar_label": "Build IOST"
       },
-      "version-2.2.0-SystemContract": {
+      "version-2.2.0/6-reference/version-2.2.0-SystemContract": {
         "title": "SystemContract",
         "sidebar_label": "System Contract"
       },
-      "version-2.2.0-TokenContract": {
+      "version-2.2.0/6-reference/version-2.2.0-TokenContract": {
         "title": "Token Contract",
         "sidebar_label": "Token Contract"
       },
-      "version-2.2.1-LocalServer": {
+      "version-2.2.1/4-running-iost-node/version-2.2.1-LocalServer": {
         "title": "Launch Local Server",
         "sidebar_label": "Launch Local Server"
       },
-      "version-2.3.0-How-to-write-a-smart-contract": {
+      "version-2.3.0/3-smart-contract/version-2.3.0-How-to-write-a-smart-contract": {
         "title": "How to Write a Smart Contract",
         "sidebar_label": "How to Write a Smart Contract"
       },
-      "version-2.3.1-Quickstart": {
+      "version-2.3.1/1-getting-started/version-2.3.1-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-2.3.1-Configuration": {
+      "version-2.3.1/4-running-iost-node/version-2.3.1-Configuration": {
         "title": "Configuration",
         "sidebar_label": "Configuration"
       },
-      "version-2.3.1-API": {
+      "version-2.3.1/6-reference/version-2.3.1-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-2.4.0-Become-Servi-Node": {
+      "version-2.4.0/4-running-iost-node/version-2.4.0-Become-Servi-Node": {
         "title": "Become Servi Node",
         "sidebar_label": "Become Servi Node"
       },
-      "version-2.4.0-Deployment": {
+      "version-2.4.0/4-running-iost-node/version-2.4.0-Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
       },
-      "version-2.4.0-iWallet": {
+      "version-2.4.0/4-running-iost-node/version-2.4.0-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
-      "version-2.4.0-SystemContract": {
+      "version-2.4.0/6-reference/version-2.4.0-SystemContract": {
         "title": "SystemContract"
       },
-      "version-2.4.0-Transaction-class": {
+      "version-2.4.0/7-iost-js/version-2.4.0-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "version-2.5.0-Become-Servi-Node": {
+      "version-2.5.0/4-running-iost-node/version-2.5.0-Become-Servi-Node": {
         "title": "Become Servi Node",
         "sidebar_label": "Become Servi Node"
       },
-      "version-2.5.0-Configuration": {
+      "version-2.5.0/4-running-iost-node/version-2.5.0-Configuration": {
         "title": "Configuration",
         "sidebar_label": "Configuration"
       },
-      "version-2.5.0-Deployment": {
+      "version-2.5.0/4-running-iost-node/version-2.5.0-Deployment": {
         "title": "Join IOST Testnet",
         "sidebar_label": "Join IOST Testnet"
       },
-      "version-2.5.0-API": {
+      "version-2.5.0/6-reference/version-2.5.0-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-3.0.0-Overview": {
+      "version-3.0.0/1-getting-started/version-3.0.0-Overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
       },
-      "version-3.0.0-Quickstart": {
+      "version-3.0.0/1-getting-started/version-3.0.0-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-3.0.0-Account": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
-      "version-3.0.0-Database": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-Database": {
         "title": "Database",
         "sidebar_label": "Database"
       },
-      "version-3.0.0-Economic-model": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-Economic-model": {
         "title": "Economic model",
         "sidebar_label": "Economic model"
       },
-      "version-3.0.0-Network-layer": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-Network-layer": {
         "title": "Network layer",
         "sidebar_label": "Network layer"
       },
-      "version-3.0.0-Smart-contract": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-Smart-contract": {
         "title": "Smart Contract",
         "sidebar_label": "Smart Contract"
       },
-      "version-3.0.0-VM": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-VM": {
         "title": "VM",
         "sidebar_label": "VM"
       },
-      "version-3.0.0-Vote": {
+      "version-3.0.0/2-intro-of-iost/version-3.0.0-Vote": {
         "title": "Vote",
         "sidebar_label": "Vote"
       },
-      "version-3.0.0-ContractStart": {
+      "version-3.0.0/3-smart-contract/version-3.0.0-ContractStart": {
         "title": "Smart Contract Quick Start",
         "sidebar_label": "Smart Contract Quick Start"
       },
-      "version-3.0.0-Generate-Receipt": {
+      "version-3.0.0/3-smart-contract/version-3.0.0-Generate-Receipt": {
         "title": "Generate Receipt in Smart Contract",
         "sidebar_label": "Generate Receipt in Smart Contract"
       },
-      "version-3.0.0-IOST-Blockchain-API": {
+      "version-3.0.0/3-smart-contract/version-3.0.0-IOST-Blockchain-API": {
         "title": "IOST Blockchain API",
         "sidebar_label": "IOST Blockchain API"
       },
-      "version-3.0.0-Smart-Contract-Development-Toolkit": {
+      "version-3.0.0/3-smart-contract/version-3.0.0-Smart-Contract-Development-Toolkit": {
         "title": "Scaf: A Marvelous Smart Contract Development Toolkit",
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
-      "version-3.0.0-Token": {
+      "version-3.0.0/3-smart-contract/version-3.0.0-Token": {
         "title": "Create Token",
         "sidebar_label": "Create Token"
       },
-      "version-3.0.0-Update-Contract": {
+      "version-3.0.0/3-smart-contract/version-3.0.0-Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "version-3.0.0-Become-Servi-Node": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-Become-Servi-Node": {
         "title": "Become Servi Node",
         "sidebar_label": "Become Servi Node"
       },
-      "version-3.0.0-Building-IOST": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-Building-IOST": {
         "title": "Build IOST",
         "sidebar_label": "Build IOST"
       },
-      "version-3.0.0-Configuration": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-Configuration": {
         "title": "Configuration",
         "sidebar_label": "Configuration"
       },
-      "version-3.0.0-Deployment": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-Deployment": {
         "title": "Join IOST Network",
         "sidebar_label": "Join IOST Network"
       },
-      "version-3.0.0-Google-Compute-Platform": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-Google-Compute-Platform": {
         "title": "Google Compute Platform",
         "sidebar_label": "Google Compute Platform"
       },
-      "version-3.0.0-iWallet": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
-      "version-3.0.0-LocalServer": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-LocalServer": {
         "title": "Launch Local Server",
         "sidebar_label": "Launch Local Server"
       },
-      "version-3.0.0-Metrics": {
+      "version-3.0.0/4-running-iost-node/version-3.0.0-Metrics": {
         "title": "Metrics",
         "sidebar_label": "Metrics"
       },
-      "version-3.0.0-LuckyBet": {
+      "version-3.0.0/5-lucky-bet/version-3.0.0-LuckyBet": {
         "title": "LuckyBet Example",
         "sidebar_label": "LuckyBet Example"
       },
-      "version-3.0.0-API": {
+      "version-3.0.0/6-reference/version-3.0.0-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-3.0.0-EconContract": {
+      "version-3.0.0/6-reference/version-3.0.0-EconContract": {
         "title": "Economic Contract",
         "sidebar_label": "Economic Contract"
       },
-      "version-3.0.0-GasChargeTable": {
+      "version-3.0.0/6-reference/version-3.0.0-GasChargeTable": {
         "title": "Gas Charge Table",
         "sidebar_label": "Gas Charge Table"
       },
-      "version-3.0.0-SystemContract": {
+      "version-3.0.0/6-reference/version-3.0.0-SystemContract": {
         "title": "SystemContract",
         "sidebar_label": "System Contract"
       },
-      "version-3.0.0-TokenContract": {
+      "version-3.0.0/6-reference/version-3.0.0-TokenContract": {
         "title": "Token Contract",
         "sidebar_label": "Token Contract"
       },
-      "version-3.0.0-Blockchain-class": {
+      "version-3.0.0/7-iost-js/version-3.0.0-Blockchain-class": {
         "title": "Blockchain",
         "sidebar_label": "Blockchain"
       },
-      "version-3.0.0-IOST-class": {
+      "version-3.0.0/7-iost-js/version-3.0.0-IOST-class": {
         "title": "IOST",
         "sidebar_label": "IOST"
       },
-      "version-3.0.0-KeyPair-class": {
+      "version-3.0.0/7-iost-js/version-3.0.0-KeyPair-class": {
         "title": "KeyPair",
         "sidebar_label": "KeyPair"
       },
-      "version-3.0.0-Transaction-class": {
+      "version-3.0.0/7-iost-js/version-3.0.0-Transaction-class": {
         "title": "Transaction",
         "sidebar_label": "Transaction"
       },
-      "version-3.0.1-Configuration": {
+      "version-3.0.1/4-running-iost-node/version-3.0.1-Configuration": {
         "title": "Configuration",
         "sidebar_label": "Configuration"
       },
-      "version-3.0.1-Deployment": {
+      "version-3.0.1/4-running-iost-node/version-3.0.1-Deployment": {
         "title": "Join IOST Network",
         "sidebar_label": "Join IOST Network"
       },
-      "version-3.0.5-Deployment": {
+      "version-3.0.5/4-running-iost-node/version-3.0.5-Deployment": {
         "title": "Join IOST Network",
         "sidebar_label": "Join IOST Network"
       },
-      "version-3.0.5-API": {
+      "version-3.0.5/6-reference/version-3.0.5-API": {
         "title": "API",
         "sidebar_label": "API"
       },
-      "version-3.0.5-SystemContract": {
+      "version-3.0.5/6-reference/version-3.0.5-SystemContract": {
         "title": "System Contract",
         "sidebar_label": "System Contract"
       },
-      "version-3.0.5-TransferJudgement": {
+      "version-3.0.5/6-reference/version-3.0.5-TransferJudgement": {
         "title": "How to judge the success of a transfer",
         "sidebar_label": "TransferJudgement"
       },
-      "version-3.0.6-Overview": {
+      "version-3.0.6/1-getting-started/version-3.0.6-Overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
       },
-      "version-3.0.6-Quickstart": {
+      "version-3.0.6/1-getting-started/version-3.0.6-Quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "version-3.0.6-Account": {
+      "version-3.0.6/2-intro-of-iost/version-3.0.6-Account": {
         "title": "Account",
         "sidebar_label": "Account"
       },
-      "version-3.0.6-Economic-model": {
+      "version-3.0.6/2-intro-of-iost/version-3.0.6-Economic-model": {
         "title": "Economic model",
         "sidebar_label": "Economic model"
       },
-      "version-3.0.6-VM": {
+      "version-3.0.6/2-intro-of-iost/version-3.0.6-VM": {
         "title": "VM",
         "sidebar_label": "VM"
       },
-      "version-3.0.6-ContractStart": {
+      "version-3.0.6/3-smart-contract/version-3.0.6-ContractStart": {
         "title": "Smart Contract Quick Start",
         "sidebar_label": "Smart Contract Quick Start"
       },
-      "version-3.0.6-IOST-Blockchain-API": {
+      "version-3.0.6/3-smart-contract/version-3.0.6-IOST-Blockchain-API": {
         "title": "IOST Blockchain API",
         "sidebar_label": "IOST Blockchain API"
       },
-      "version-3.0.6-Update-Contract": {
+      "version-3.0.6/3-smart-contract/version-3.0.6-Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
       },
-      "version-3.0.6-iWallet": {
+      "version-3.0.6/4-running-iost-node/version-3.0.6-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
       },
-      "version-3.0.6-GasChargeTable": {
+      "version-3.0.6/6-reference/version-3.0.6-GasChargeTable": {
         "title": "Gas Charge Table",
         "sidebar_label": "Gas Charge Table"
       },
-      "version-3.0.7-Token": {
+      "version-3.0.7/3-smart-contract/version-3.0.7-Token": {
         "title": "Create Simple Token",
         "sidebar_label": "Create Simple Token"
       },
-      "version-3.0.7-Token20.1": {
+      "version-3.0.7/3-smart-contract/version-3.0.7-Token20.1": {
         "title": "Create Customized Token",
         "sidebar_label": "Create Customized Token"
       }

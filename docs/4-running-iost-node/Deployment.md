@@ -8,7 +8,7 @@ The documentation introduces how to setup a running server connecting to IOST ne
 
 We are using Docker to deploy an IOST node.
 
-# Machine requirements
+## Machine requirements
 
 If you want to run a full node connected to IOST network, your machine must meet the following requirements:
 
@@ -17,19 +17,19 @@ If you want to run a full node connected to IOST network, your machine must meet
 - Disk: 1TB or more (5TB HDD recommended)
 - Network: access to Internet with port tcp: 30000 opened (If you want to enable rpc for node, please open port 30001, 30002)
 
-# Prerequisites
+## Prerequisites
 
 - Curl (any version you like)
 - Python (any version you like)
 - [Docker 1.13/Docker CE 17.03 or newer](https://docs.docker.com/install)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
-# Start the node
+## Start the node
 
 By default, `/data/iserver` is going to mount as the data volume, you might change the path to suit your needs.
 We refer to `$PREFIX` hereafter.
 
-## Using *boot* script:
+### Using boot script
 
 You can automatically deploy a full node with the following command:
 
@@ -57,19 +57,19 @@ If you want to be a **Servi Node**, follow next steps [here](4-running-iost-node
 To start, stop or restart the node, you could execute follow command:
 
 ```
-# start
+## start
 docker start iserver
 
-# stop
+## stop
 docker stop iserver
 
-# restart
+## restart
 docker restart iserver
 ```
 
-## Manually
+### Manually
 
-### Data
+#### Data
 
 If you have already run previous version of iServer, make sure the old data has been purged:
 
@@ -77,22 +77,22 @@ If you have already run previous version of iServer, make sure the old data has 
 rm -rf $PREFIX/storage
 ```
 
-### Config
+#### Config
 
 Fetch latest config:
 
 ```
-# get genesis
+## get genesis
 curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz" | tar zxC $PREFIX/
 
-# get iserver config
+## get iserver config
 curl -fsSL "https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml" -o $PREFIX/iserver.yml
 ```
 
 If your node produces blocks, i.e. be a Servi node, set privkey of your node in section `acc` in `iserver.yml`.
 See also [iServer configuration](4-running-iost-node/Configuration.md).
 
-### Run
+#### Run
 
 Run the command to start the node:
 
@@ -106,7 +106,7 @@ docker run -d \
     iostio/iost-node
 ```
 
-# Checking the node
+## Checking the node
 
 The log file is located at `$PREFIX/logs/iost.log`. However, it is disabled by default.
 You can enable it, as long as you remember to delete old log files.
@@ -141,11 +141,11 @@ See also [iWallet](4-running-iost-node/iWallet.md).
 
 The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
 
-# Upgrade the node
+## Upgrade the node
 
 When new version released, it's better to upgrade to the latest version A.S.A.P.
 
-## Using *upgrade* script:
+### Using upgrade script
 
 You can upgrade the node within one command:
 
@@ -165,17 +165,17 @@ E.g. `curl ... | PYTHON=python3 bash` for Ubuntu without python installed.
 
 This script pulls the latest IOST node image and then restart iServer.
 
-## Manually
+### Manually
 
 You may also upgrade the node step-by-step.
 
-### Pull image
+#### Pull image
 
 ```
 docker image pull iostio/iost-node:latest
 ```
 
-### Remove outdated iServer
+#### Remove outdated iServer
 
 The iServer container will be recreated, so that everything in container *EXECPT* data volume will be **deleted**.
 
@@ -183,7 +183,7 @@ The iServer container will be recreated, so that everything in container *EXECPT
 docker stop iserver && docker rm iserver
 ```
 
-### Start the container
+#### Start the container
 
 Suppose data volume is located at `/data/iserver`.
 
@@ -191,7 +191,7 @@ Suppose data volume is located at `/data/iserver`.
 docker run -d --name iserver -v /data/iserver:/var/lib/iserver -p 30000-30003:30000-30003 iostio/iost-node
 ```
 
-# Seed Node List
+## Seed Node List
 
 The seed node information of the mainnet is as follows:
 
@@ -207,27 +207,27 @@ For testnet:
 | :------: | :------: | :------: | :-----: |
 | US | 13.52.105.102:30002 | http://13.52.105.102:30001 | /ip4/13.52.105.102/tcp/30000/ipfs/12D3KooWQwH8BTC4QMpTxm7u4Bj38ZdaCLSA1uJ4io3o1j8FCqYE |
 
-## GRPC
+### GRPC
 
 If you want to use the GRPC API of IOST network, for example:
 
 ```
-# Get the node information
+## Get the node information
 iwallet -s 18.209.137.246:30002 state
 iwallet -s ${GRPC-URL} state
 ```
 
-## HTTP
+### HTTP
 
 If you want to use the HTTP API of IOST network, for example:
 
 ```
-# Get the block information by block height
+## Get the block information by block height
 curl http://18.209.137.246:30001/getBlockByNumber/3/true
 curl ${HTTP-URL}/getBlockByNumber/3/true
 ```
 
-## P2P
+### P2P
 If you want to modify the seed node of the iServer, you could edit the file `/data/iserver/iserver.yml`, for example:
 
 ```
@@ -240,7 +240,7 @@ p2p:
     - ...
 ```
 
-# Using Snapshot to Accelerate Synchronization
+## Using Snapshot to Accelerate Synchronization
 
 You might want to download recent blockchain directly instead of syncing from the genesis.
 Fortunately, we have the *snapshot*.   
