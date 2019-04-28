@@ -112,7 +112,7 @@ Get the total circulation of tokens.
 ---
 
 ### Description
-Token721 contract is used for the creation, distribution, transfer and destruction of non-exchangeable tokens.
+Token721 contract is used for the creation, distribution, transfer and destruction of non-fungible tokens.
 
 ### Info
 | contract_id | token721.iost |
