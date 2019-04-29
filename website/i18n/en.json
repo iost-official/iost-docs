@@ -64,6 +64,10 @@
         "title": "Create Customized Token",
         "sidebar_label": "Create Customized Token"
       },
+      "3-smart-contract/Token721": {
+        "title": "Create Non-Fungible Token",
+        "sidebar_label": "Create Non-Fungible Token"
+      },
       "3-smart-contract/Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
@@ -773,6 +777,18 @@
       "version-3.0.1/4-running-iost-node/version-3.0.1-Deployment": {
         "title": "Join IOST Network",
         "sidebar_label": "Join IOST Network"
+      },
+      "version-3.0.10/3-smart-contract/version-3.0.10-Token721": {
+        "title": "Create Non-Fungible Token",
+        "sidebar_label": "Create Non-Fungible Token"
+      },
+      "version-3.0.10/6-reference/version-3.0.10-API": {
+        "title": "API",
+        "sidebar_label": "API"
+      },
+      "version-3.0.10/6-reference/version-3.0.10-TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
       },
       "version-3.0.5/4-running-iost-node/version-3.0.5-Deployment": {
         "title": "Join IOST Network",
