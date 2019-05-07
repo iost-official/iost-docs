@@ -167,7 +167,7 @@ curl -X POST \
 }'
 ```
 
-This post will return a json
+This post will return a json string:  
 
 ```
 {
@@ -198,10 +198,10 @@ if (!blockchain.requireAuth("someone", "active")) {
 
 Need to pay attention to the following points. 
 
-1. requireAuth itself does not terminate the operation of the smart contract, it only returns a bool value, so you need to judge
-2. requireAuth(tx.publisher, "active") is always true
+1. requireAuth itself does not terminate the operation of the smart contract, it only returns a bool value, so you need to judge it.
+2. requireAuth(tx.publisher, "active") always returns true.
 
-When throw, the transaction fails to run, this smart contract call is completely rolled back, but will deduct the gas cost of the user running the transaction (because it is rolled back, it will not charge ram)
+When throw, the transaction fails to run, this smart contract call is completely rolled back, but will deduct the gas cost of the user publishing the transaction (because it is rolled back, it will not cost ram).
 
 You can observe a failed transaction with a simple test.
 

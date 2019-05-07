@@ -876,7 +876,7 @@ curl -X POST http://127.0.0.1:30001/getBatchContractStorage -d '{"id":"token.ios
 	}
 	```
 
-	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/master/iwallet/sdk.go#L686)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L73)。
+	golang 的实现可参考 [go-iost](https://github.com/iost-official/go-iost/blob/master/sdk/utils.go#L194)。 javascript 的实现可参考 [iost.js](https://github.com/iost-official/iost.js/blob/master/lib/structs.js#L108)。
 
 * **使用 sha3 算法对字节数组计算哈希**
 

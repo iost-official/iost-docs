@@ -19,8 +19,6 @@ IOST智能合约目前支持JavaScript（ES6）开发。
 | :-- | :-- |
 | ABI | 智能合约接口，只有经过声明的接口才能对外被调用 |
 | Tx | transaction，区块链上的状态必须要通过提交tx，tx被打包到block当中之后才能被修改 |
-| 
-
 
 ## Debug环境配置
 
@@ -187,15 +185,14 @@ abi略过
 ```
 curl -X POST \
   http://localhost:30001/getContractStorage \
-  -H 'Content-Type: application/json' \
-  -H 'cache-control: no-cache' \
   -d '{
     "id": "Contract5bxTBndRrNjMJqJdRwiC9MVtfp6Z2LFFDp3AEjceHo2e",
     "key": "value1",
     "by_longest_chain": true
 }'
 ```
-这个post将会返回一个json
+这个post将会返回一个 json string:
+
 ```
 {
     "data": "foobar"
@@ -225,11 +222,11 @@ if (!blockchain.requireAuth("someone", "active")) {
 }
 ```
 
-需要注意的有以下几点
-1. requireAuth本身不会终止智能合约的运行，它只返回一个bool值，所以需要判断
-2. requireAuth(tx.publisher, "active")恒为真
+需要注意的有以下几点:  
+1. requireAuth 本身不会终止智能合约的运行，它只返回一个bool值，所以需要判断。  
+2. requireAuth(tx.publisher, "active") 恒为 true
 
-当throw时，交易运行失败，本次智能合约调用被完全回滚，但是会扣除用户运行交易的gas费用（因为被回滚所以不会收取ram）
+当 throw 时，交易运行失败，本次智能合约调用被完全回滚，但是会扣除用户运行交易的 gas 费用（因为被回滚所以不会收取ram）。
 
 可以通过简单的测试观察运行失败的交易
 
