@@ -853,6 +853,18 @@
       "version-3.0.7/3-smart-contract/version-3.0.7-Token20.1": {
         "title": "Create Customized Token",
         "sidebar_label": "Create Customized Token"
+      },
+      "version-3.1.0/3-smart-contract/version-3.1.0-ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-3.1.0/3-smart-contract/version-3.1.0-IOST-Blockchain-API": {
+        "title": "IOST Blockchain API",
+        "sidebar_label": "IOST Blockchain API"
+      },
+      "version-3.1.0/6-reference/version-3.1.0-API": {
+        "title": "API",
+        "sidebar_label": "API"
       }
     },
     "links": {
