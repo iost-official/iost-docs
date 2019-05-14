@@ -7,8 +7,12 @@ sidebar_label: Configuration
 本页展现配置文件细节。
 获取最新配置文件：
 
-- genesis.tgz: https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz
-- iserver.yml: https://developers.iost.io/docs/assets/testnet/latest/iserver.yml
+- 主网:
+    - [genesis.tgz](https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz)
+    - [iserver.yml](https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml)
+- 测试网:
+    - [genesis.tgz](https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz)
+    - [iserver.yml](https://developers.iost.io/docs/assets/testnet/latest/iserver.yml)
 
 以下以[默认配置](https://github.com/iost-official/go-iost/tree/master/config)为例。
 

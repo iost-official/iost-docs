@@ -7,9 +7,12 @@ sidebar_label: 設定
 ここでは、設定に関する情報を紹介します。
 最新の設定は次の場所にあります。
 
-- genesis.tgz: https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz
-- iserver.yml: https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml
-
+- mainnet:
+    - [genesis.tgz](https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz)
+    - [iserver.yml](https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml)
+- testnet:
+    - [genesis.tgz](https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz)
+    - [iserver.yml](https://developers.iost.io/docs/assets/testnet/latest/iserver.yml)
 
 
 [デフォルト設定](https://github.com/iost-official/go-iost/tree/master/config)のそれぞれのセクションを準に説明します。

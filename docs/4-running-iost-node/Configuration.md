@@ -7,8 +7,12 @@ sidebar_label: Configuration
 This page shows detailed information of configuration.
 You can get the latest config as below:
 
-- genesis.tgz: https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz
-- iserver.yml: https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml
+- mainnet:
+    - [genesis.tgz](https://developers.iost.io/docs/assets/mainnet/latest/genesis.tgz)
+    - [iserver.yml](https://developers.iost.io/docs/assets/mainnet/latest/iserver.yml)
+- testnet:
+    - [genesis.tgz](https://developers.iost.io/docs/assets/testnet/latest/genesis.tgz)
+    - [iserver.yml](https://developers.iost.io/docs/assets/testnet/latest/iserver.yml)
 
 We are going to step through each section in [default configuration](https://github.com/iost-official/go-iost/tree/master/config).
 
