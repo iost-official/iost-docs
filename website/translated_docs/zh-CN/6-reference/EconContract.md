@@ -44,20 +44,6 @@ sidebar_label: Econ Contract
 | amount | string | 质押 iost 的数量 |
 
 
-<!--#### transfer
-转让 GAS。最小转让单位为 100 GAS。   
-注意，质押获得的 GAS 不能转让。只有流通 GAS 才可以转让。流通 GAS 转让一次后，不再可流通。   
-流通 GAS 的获得方法见 [流通gas奖励](2-intro-of-iost/Economic-model.md#流通gas奖励)
-
-##### 举例
-\["user1","user2","100"\]: user1 把自己的 100 个流通 GAS 转让给 user2。
- 
-
-| 参数列表 | 参数类型 |
-| :----: | :------ |
-| 转让出 GAS 的账户。合约需要本账号权限 | string |
-| 接收 GAS 的账户| string |
-| 转让 GAS 的数量 | string |-->
 
 ## ram.iost
 ---

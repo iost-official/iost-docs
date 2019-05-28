@@ -43,21 +43,6 @@ undo pledge. iost pledged earlier will be returned. minimum unpledging amount is
 | amount | string | iost amount for pledging |
 
 
-<!--#### transfer
-transfer GAS. minimum transferring amount is 1 IOST.   
-__Notice__: GAS obtained from pledgement cannot be transferred. Only `transferable GAS` can be transferred. Besides, `transferable GAS` after being transferred once will not be transferable any longer.      
-You can obtain transferable GAS from [transferable gas reward](2-intro-of-iost/Economic-model.md#流通gas奖励)
-
-##### Example
-\["user1","user2","100"\]: user1 transfers 100 GAS to user2
- 
-
-| Arg Meaning | Arg Type |
-| :----: | :------ |
-| who transfers GAS. Permission of this account is needed. | string |
-| who gets GAS| string |
-| IOST amount for transferring | string |-->
-
 ## ram.iost
 ---
 ram related contract, including buying/selling/transferring.    
