@@ -1,7 +1,8 @@
 ---
-id: Token721
+id: version-3.1.1-Token721
 title: Create IRC721 Token
 sidebar_label: Create IRC721 Token
+original_id: Token721
 ---
 
 # IRC721 draft standard

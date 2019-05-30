@@ -57,16 +57,16 @@
         "sidebar_label": "Scaf: A Marvelous Smart Contract Development Toolkit"
       },
       "3-smart-contract/Token": {
-        "title": "Create Simple Token",
-        "sidebar_label": "Create Simple Token"
+        "title": "Create IRC20 Token",
+        "sidebar_label": "Create IRC20 Token"
       },
       "3-smart-contract/Token20.1": {
-        "title": "Create Customized Token",
-        "sidebar_label": "Create Customized Token"
+        "title": "Create IRC21 Token",
+        "sidebar_label": "Create IRC21 Token"
       },
       "3-smart-contract/Token721": {
-        "title": "Create Non-Fungible Token",
-        "sidebar_label": "Create Non-Fungible Token"
+        "title": "Create IRC721 Token",
+        "sidebar_label": "Create IRC721 Token"
       },
       "3-smart-contract/Update-Contract": {
         "title": "Update Contract",
@@ -865,6 +865,26 @@
       "version-3.1.0/6-reference/version-3.1.0-API": {
         "title": "API",
         "sidebar_label": "API"
+      },
+      "version-3.1.1/3-smart-contract/version-3.1.1-Token": {
+        "title": "Create IRC20 Token",
+        "sidebar_label": "Create IRC20 Token"
+      },
+      "version-3.1.1/3-smart-contract/version-3.1.1-Token20.1": {
+        "title": "Create IRC21 Token",
+        "sidebar_label": "Create IRC21 Token"
+      },
+      "version-3.1.1/3-smart-contract/version-3.1.1-Token721": {
+        "title": "Create IRC721 Token",
+        "sidebar_label": "Create IRC721 Token"
+      },
+      "version-3.1.1/4-running-iost-node/version-3.1.1-Configuration": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
+      "version-3.1.1/6-reference/version-3.1.1-EconContract": {
+        "title": "Economic Contract",
+        "sidebar_label": "Economic Contract"
       }
     },
     "links": {

@@ -1,7 +1,8 @@
 ---
-id: Token20.1
+id: version-3.1.1-Token20.1
 title: Create IRC21 Token
 sidebar_label: Create IRC21 Token
+original_id: Token20.1
 ---
 
 # IRC21 standard
