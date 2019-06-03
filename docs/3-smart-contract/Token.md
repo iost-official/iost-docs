@@ -11,7 +11,7 @@ such as freeze token, destroy token and can be configured carefully.
 `token.iost` is the implementation of IRC20, all `IRC20` token must be created by `token.iost`.
 `iost` is also implemented according to IRC20 standard based on out build-in system contract `token.iost`.
 
-If you want to customize your token, see [Create Customized Token](3-smart-contract/IRC20.1.md) for more details.
+If you want to customize your token, see [Create Customized Token](3-smart-contract/Token20.1.md) for more details.
 
 The interfaces of `token.iost` are described as follows:
 
