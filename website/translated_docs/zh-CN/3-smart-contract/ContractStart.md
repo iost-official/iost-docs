@@ -28,7 +28,7 @@ IOST智能合约目前支持JavaScript（ES6）开发。
 
 ### 为iwallet导入初始账户```admin```
 
-为了完成测试，需要为iwallet导入私钥。对于本地调试网络，可以直接使用默认的  admin 账号。   
+为了完成测试，需要为iwallet导入私钥。对于本地调试网络，可以直接使用默认的  admin 账号。
 
 ```
 iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
@@ -152,6 +152,10 @@ curl -X GET \
 
 可以认为此次调用将会被IOST永久记录，无法篡改。
 
+## IDE
+
+合约开发可以采用[在线IDE](https://chainide.com/ "ide")，首先开发者需要安装[Chrome iwallet](https://chrome.google.com/webstore/detail/iwallet/kncchdigobghenbbaddojjnnaogfppfj?utm_source=chrome-ntp-icon "iwallet")，导入账号并购买资源，然后即可基于IDE开发、部署和调试合约
+
 ## 智能合约的状态存储
 
 使用智能合约的输出（类似utxo的概念）是不方便的，IOST并没有采用这种模式，因此IOST并不提供对TxReceipt中各个字段的索引，同时智能合约内部也无法访问特定的TxReceipt。为了维护区块链状态机，我们使用一个区块链状态数据库来保存状态。
@@ -222,8 +226,8 @@ if (!blockchain.requireAuth("someone", "active")) {
 }
 ```
 
-需要注意的有以下几点:  
-1. requireAuth 本身不会终止智能合约的运行，它只返回一个bool值，所以需要判断。  
+需要注意的有以下几点:
+1. requireAuth 本身不会终止智能合约的运行，它只返回一个bool值，所以需要判断。
 2. requireAuth(tx.publisher, "active") 恒为 true
 
 当 throw 时，交易运行失败，本次智能合约调用被完全回滚，但是会扣除用户运行交易的 gas 费用（因为被回滚所以不会收取ram）。
@@ -268,11 +272,6 @@ docker ps -f <container>
 
 ```
 Info 2019-01-08 06:44:11.110 pob.go:378 Gen block - @7 id:IOSTfQFocq..., t:1546929851105164574, num:378, confirmed:377, txs:1, pendingtxs:0, et:4ms
-Info 2019-01-08 06:44:11.416 value.go:447 foobar  
+Info 2019-01-08 06:44:11.416 value.go:447 foobar
 Info 2019-01-08 06:44:11.419 pob.go:378 Gen block - @8 id:IOSTfQFocq..., t:1546929851402828690, num:379, confirmed:378, txs:2, pendingtxs:0, et:16ms
 ```
-
-
-
-
-

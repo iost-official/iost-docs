@@ -129,6 +129,10 @@ curl -X GET \
 
 It can be considered that this call will be permanently recorded by IOST and cannot be tampered with.
 
+## IDE
+
+Contract development can use an [online IDE](https://chainide.com/ "ide"). First, developers need to install [Chrome iwallet](https://chrome.google.com/webstore/detail/iwallet/kncchdigobghenbbaddojjnnaogfppfj?utm_source=chrome-ntp-icon "iwallet"), import accounts and purchase resources, and then develop, deploy and debug contracts based on IDE.
+
 ## Smart Contract State Storage
 
 The use of smart contract output (similar to the concept of utxo) is inconvenient, IOST does not use this mode, so IOST does not provide an index on each field in TxReceipt, and the smart contract can not access a specific TxReceipt. To maintain the blockchain state machine, we use a blockchain state database to hold the state.
