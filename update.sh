@@ -30,11 +30,13 @@ function update_language()
 			tmpfile=/tmp/lispczz_`basename $doc_name`
 			head -n 6 $doc_name > $tmpfile
 			tail -n +6 $git_root/$head_dir/$doc_name >> $tmpfile
+			#echo cp $tmpfile $doc_name
 			cp $tmpfile $doc_name
 		else
 			cd $git_root/$head_dir 
 			version=`find version* |grep $doc_name|sort|tail -n 1|cut -d/ -f1`
 			echo update $doc_name at version $version 
+			#echo cp $doc_name $version/$doc_name
 			cp $doc_name $version/$doc_name
 		fi
 	done
