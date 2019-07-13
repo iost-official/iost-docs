@@ -4,6 +4,9 @@ title: How to judge the success of a transfer
 sidebar_label: TransferJudgement
 ---
 
+The way of judging the transfer of iost, irc20 and irc21 tokens is basically the same, just need to distinguish the token symbol in receipt.
+
+
 ## Judging the success of transfer transactions
 
 
@@ -42,7 +45,7 @@ The **only** way to judge whether a transaction contains a transfer is to check 
   },
 ```
 
-The `receipts` field is a list. If the `func_name` field of an item equals to `token.iost/transfer`, the transaction contains a transfer. The token symbol, account and amount of the transfer need to be further resolved in the `content` field of the item. The `content` field is the result of JSON serialization of an array containing five strings. After the `content` field is JSON deserialized, the first element is token symbol, the second element is transfer account name, the third element is receive account name, the fourth element is transfer amount, and the fifth element is memo. When dealing with the fourth element transfer amount, if it is found that the string contains characters other than [0-9.], the transfer should be ignored. In other cases, the string can be directly converted to float for further processing.
+The `receipts` field is a list. If the `func_name` field of an item equals to `token.iost/transfer`, the transaction contains a transfer(whether it's iost, irc20 or irc21 token, `func_name` should be equal to `token.iost/transfer`). The token symbol, account and amount of the transfer need to be further resolved in the `content` field of the item. The `content` field is the result of JSON serialization of an array containing five strings. After the `content` field is JSON deserialized, the first element is token symbol(token symbol is unique among all tokens), the second element is transfer account name, the third element is receive account name, the fourth element is transfer amount, and the fifth element is memo. When dealing with the fourth element transfer amount, if it is found that the string contains characters other than [0-9.], the transfer should be ignored. In other cases, the string can be directly converted to float for further processing.
 
 To confirm the success of a transaction execution, it is necessary to check that the `status_code` field in `tx_receipt` is equal to `SUCCESS`.
 
@@ -58,7 +61,7 @@ Actions are the actions of a transaction, and receipts are the execution results
 
 ### Converting the transfer amount string to float directly
 
-The transfer of mainnet token contract is realized by intercepting the transfer amount according to token decimal, and then converting the intercepted result to float. So for such a transfer
+The transfer of mainnet token.iost contract is realized by intercepting the transfer amount according to token decimal, and then converting the intercepted result to float. So for such a transfer
 
 
 ```
