@@ -10,7 +10,7 @@ Voting is an important autonomous mechanism for blockchain systems. If a node co
 
 ## node type
 In our voting mechanism, there are three types of nodes: candidate node, partner node and servi node.  
-Calling the [applyRegister](../6-reference/SystemContract.html#applyregister) method of the voting contract can make you become the candidate node. When the number of votes is more than 2.1 million and the audit is approved, the candidate node will become a partner node or a servi node (determined by the last parameter passed in when the applyRegister is called, true is a servi node, false is a partner node). The servi node needs to produce blocks, and the partner node does not.
+Calling the [applyRegister](../6-reference/SystemContract.html#applyregisterapplicant-pubkey-location-url-netid-isproducer) method of the voting contract can make you become the candidate node. When the number of votes is more than 2.1 million and the audit is approved, the candidate node will become a partner node or a servi node (determined by the last parameter passed in when the applyRegister is called, true is a servi node, false is a partner node). The servi node needs to produce blocks, and the partner node does not.
 
 
 
@@ -27,7 +27,7 @@ The system will issue 2% token every year. 1% tokens are block awards only for s
 
 ### block award
 - Block rewards are allocated according to the number of blocks a node produced. The reward for each block is about 3.3 iost, which can be calculated from the rate of issue (2% per year) and the rate of block production (1 block per 0.5 second).
-- Block reward requires node to take the initiative to receive, and the way to receive it is calling [exchangeIOST](../6-reference/SystemContract.html#exchangeiost) method of system contract.
+- Block reward requires node to take the initiative to receive, and the way to receive it is calling [exchangeIOST](../6-reference/SystemContract.html#exchangeiostaccount-amount) method of system contract.
 
 
 ### voting award
@@ -35,14 +35,14 @@ The system will issue 2% token every year. 1% tokens are block awards only for s
 #### node award
 
 - The system automatically issues tokens every 172800 blocks (about 24 hours). The issued tokens will go into the node reward pool and are distributed proportionally according to the number of votes received by each node at the time of issue.
-- Any account can recharge the node reward pool by calling the [topupCandidateBonus](../6-reference/SystemContract.html#topupcandidatebonus) method of voting contract, and the tokens are distributed proportionally according to the number of votes received by each node at the recharging time.
-- The voting reward needs the node to take the initiative to receive, and the way to receive it is calling [candidateWithdraw](../6-reference/SystemContract.html#candidatewithdraw) method of the voting contract.
+- Any account can recharge the node reward pool by calling the [topupCandidateBonus](../6-reference/SystemContract.html#topupcandidatebonusamount-payer) method of voting contract, and the tokens are distributed proportionally according to the number of votes received by each node at the recharging time.
+- The voting reward needs the node to take the initiative to receive, and the way to receive it is calling [candidateWithdraw](../6-reference/SystemContract.html#candidatewithdrawcandidate) method of the voting contract.
 - 50% of the voting reward will go into the voter reward pool when the reward is received by node.
 - The rewards that have been obtained but not yet received are not affected by the changes of node attributes and votes, and they can be received at any time without expiration.
 
 #### voter award
 
 - When a node receives a reward, 50% of the reward will go into the voter reward pool of the node and the reward is distributed proportionally according to the voting number of each voter at that current moment.
-- Any account can recharge the voter reward pool by calling the [topupVoterBonus](../6-reference/SystemContract.html#topupvoterbonus) method of voting contract, and the tokens are distributed proportionally according to the voting number of each voter at the recharging time.
-- The voting reward needs the node to take the initiative to receive, and the way to receive it is calling [voterWithdraw](../6-reference/SystemContract.html#voterwithdraw) method of the voting contract.
+- Any account can recharge the voter reward pool by calling the [topupVoterBonus](../6-reference/SystemContract.html#topupvoterbonuscandidate-amount-payer) method of voting contract, and the tokens are distributed proportionally according to the voting number of each voter at the recharging time.
+- The voting reward needs the node to take the initiative to receive, and the way to receive it is calling [voterWithdraw](../6-reference/SystemContract.html#voterwithdrawvoter) method of the voting contract.
 - The awards already obtained but not yet received are not affected by the voters' additional or cancelled voting operations, and they can be received at any time without expiration.
