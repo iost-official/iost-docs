@@ -4,7 +4,7 @@ title: 创建 IRC721 Token
 sidebar_label: 创建 IRC721 Token
 ---
 
-## IRC20 草案标准
+## IRC721 草案标准
 
 不可替代 token 的标准接口。
 
