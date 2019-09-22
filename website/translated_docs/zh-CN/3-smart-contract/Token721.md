@@ -1,18 +1,18 @@
 ---
-id：token721
-标题：创建IRC721 token
-sidebar_label：创建IRC721 token
+id: token721iost
+title: 创建 IRC721 Token
+sidebar_label: 创建 IRC721 Token
 ---
 
-＃IRC721 草案标准
+## IRC20 草案标准
 
 不可替代 token 的标准接口。
 
-##摘要
+## 摘要
 
 在 IOST 上发行的不可替代 token 必须基于系统合约`token721.iost`来实现。 大多数时候，您可以直接通过`token721.iost`合约发行 token，但是如果您想通过自定义方式发行 token，则需要实现并发布自己的 token 合同。
 
-**注意**：尽管[`token721.iost`](6-reference/TokenContract.md#token721iost)现在可以使用，但尚未完全完成。 我们计划在不久的将来发布功能齐全的版本，因此在此之前请勿在生产环境中使用它。
+**注意**：尽管 [`token721.iost`](6-reference/TokenContract.md#token721iost) 现在可以使用，但尚未完全完成。 我们计划在不久的将来发布功能齐全的版本，因此在此之前请勿在生产环境中使用它。
 
 定制的不可替代的 token 合约需要实现以下接口，以支持诸如钱包和浏览器之类的应用程序。
 
@@ -93,7 +93,7 @@ sidebar_label：创建IRC721 token
 
 ### token 信息
 
-token 信息存储在 _token721.iost_ 中，并且诸如钱包之类的应用程序应直接使用 _token721.iost_ 合约中存储的信息以确保信息的可靠性。
+token 信息存储在 [`token721.iost`](6-reference/TokenContract.md#token721iost) 中，并且诸如钱包之类的应用程序应直接使用 [`token721.iost`](6-reference/TokenContract.md#token721iost) 合约中存储的信息以确保信息的可靠性。
 
 ### issue(tokenSymbol, acc, metaJson)
 

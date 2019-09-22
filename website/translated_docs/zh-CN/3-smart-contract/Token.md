@@ -12,7 +12,7 @@ IRC20 是我们在 iost 区块链上实现 Token 的标准。它包括除转账�
 `token.iost`是 IRC20 的实现，所有 `IRC20` Token 必须由`token.iost`创建。
 `iost`也是根据基于内置系统合约`token.iost`的 IRC20 标准实现的。
 
-如果要自定义 Token，请参阅[创建自定义 Token]（3-smart-contract / Token20.1.md）以获取更多详细信息。
+如果要自定义 Token，请参阅[创建自定义 Token](3-smart-contract/Token20.1.md)以获取更多详细信息。
 
 `token.iost`的接口表述如下：
 
@@ -49,7 +49,7 @@ ConfigJson 是 Token 的配置 json 格式文件。以下是所有支持的配�
 {
 	"decimal": 0~19之间的数字,
 	"canTransfer": true/false, 如果canTransfer为false，则无法转移Token，
-	"fullName": string describes the full name of the token
+	"fullName": token全名的字符串
 }
 ```
 
@@ -98,7 +98,8 @@ unfreezeTime 是 unix 时间的纳秒数，之后 Token 将被解冻。
 
 查询特定 Token 的 totalSupply。
 
-##分步示例
+## 分步示例
+
 在 iost 区块链上创建一个`IRC20` Token 非常简单，只是调用`token.iost`合约。
 
 下面是一个分步示例，介绍如何使用`bank`帐户创建 Token 并在帐户之间转移 Token，你需要首先创建帐户`bank`，`user0`，`user1`。

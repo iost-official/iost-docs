@@ -1,17 +1,17 @@
 ---
-id：Token20.1
-title：创建IRC21 token
-sidebar_label：创建IRC21 token
+id: Token20.1
+title: 创建 IRC21 Token
+sidebar_label: 创建 IRC21 Token
 ---
 
-＃IRC21 标准
+## IRC20 标准
 
 自部署 tokens 标准接口。
 
-##摘要
+## 摘要
 
-部署在 IOST 上的标准 token 必须通过系统合约 _token.iost_ 来实现。
-大多数情况下，您可以通过[_token.iost_](3-smart-contract/Token.md)合约直接创建 tokens，
+部署在 IOST 上的标准 token 必须通过系统合约 [_token.iost_](3-smart-contract/Token.md) 来实现。
+大多数情况下，您可以通过 [_token.iost_](3-smart-contract/Token.md) 合约直接创建 tokens，
 但是如果要创建具有自定义功能的 token，则需要实现并发布自己的 token 合约。
 
 自定义 token 合约需要实现以下接口，以支持钱包和交易等应用程序。
@@ -106,9 +106,9 @@ sidebar_label：创建IRC21 token
 }
 ```
 
-##标准规范
+## 标准规范
 
-###token 信息
+### token 信息
 
 token 信息存储在 _token.iost_ 中，钱包等应用程序应直接使用存储在 _token.iost_ 合同中的信息，以确保信息的可靠性。
 
@@ -172,7 +172,7 @@ unfreezeTime 是 unix 时间的纳秒数，之后 token 将被解冻。
 
 查询特定 token 的供应总量。
 
-##代码实现
+## 代码实现
 
 下面给出了一个基本实现示例，可以通过修改代码来进行定制。
 
