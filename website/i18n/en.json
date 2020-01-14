@@ -885,6 +885,18 @@
       "version-3.1.1/6-reference/version-3.1.1-EconContract": {
         "title": "Economic Contract",
         "sidebar_label": "Economic Contract"
+      },
+      "version-3.2.0/2-intro-of-iost/version-3.2.0-Vote": {
+        "title": "Vote",
+        "sidebar_label": "Vote"
+      },
+      "version-3.2.1/4-running-iost-node/version-3.2.1-Deployment": {
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
+      },
+      "version-3.2.1/4-running-iost-node/version-3.2.1-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
       }
     },
     "links": {

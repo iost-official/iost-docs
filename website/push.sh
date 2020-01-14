@@ -1,5 +1,5 @@
 set -e
-npm run build
+#npm run build
 
 # 推送到文档网站 ec2
 

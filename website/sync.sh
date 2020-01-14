@@ -10,6 +10,7 @@ function do_sync() {
 	done
 	for f in `cd versioned_docs/version-$V && find . -type f`;
 	do
+		echo cp translated_docs/$LAN/$f translated_docs/$LAN/version-$V/$f
 		cp translated_docs/$LAN/$f translated_docs/$LAN/version-$V/$f
 	done 
 }
@@ -18,7 +19,7 @@ function do_sync() {
 #for L in ja zh-CN 
 for L in zh-CN 
 do
-	for v in 3.2.0
+	for v in 3.2.1
 	do
 		do_sync $L $v
 	done
