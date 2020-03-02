@@ -897,6 +897,10 @@
       "version-3.2.1/4-running-iost-node/version-3.2.1-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-3.3.0/4-running-iost-node/version-3.3.0-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
       }
     },
     "links": {

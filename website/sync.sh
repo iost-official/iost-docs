@@ -19,7 +19,7 @@ function do_sync() {
 #for L in ja zh-CN 
 for L in zh-CN 
 do
-	for v in 3.2.1
+	for v in 3.3.1
 	do
 		do_sync $L $v
 	done
