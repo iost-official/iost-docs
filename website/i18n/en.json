@@ -116,6 +116,10 @@
         "title": "Economic Contract",
         "sidebar_label": "Economic Contract"
       },
+      "6-reference/ForExchange": {
+        "title": "ForExchange",
+        "sidebar_label": "ForExchange"
+      },
       "6-reference/GasChargeTable": {
         "title": "Gas Charge Table",
         "sidebar_label": "Gas Charge Table"
@@ -901,6 +905,18 @@
       "version-3.3.0/4-running-iost-node/version-3.3.0-iWallet": {
         "title": "Command Line Wallet Tool",
         "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-3.3.1/4-running-iost-node/version-3.3.1-Become-Servi-Node": {
+        "title": "Become Servi Node",
+        "sidebar_label": "Become Servi Node"
+      },
+      "version-3.3.2/4-running-iost-node/version-3.3.2-Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
+      },
+      "version-3.3.2/4-running-iost-node/version-3.3.2-Deployment": {
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
       }
     },
     "links": {

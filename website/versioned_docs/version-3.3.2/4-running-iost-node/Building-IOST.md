@@ -1,7 +1,8 @@
 ---
-id: Building-IOST
+id: version-3.3.2-Building-IOST
 title: Build IOST
 sidebar_label: Build IOST
+original_id: Building-IOST
 ---
 ### Install Golang
 Go 1.13 or newer is needed.

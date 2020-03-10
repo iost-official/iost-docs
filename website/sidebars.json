@@ -36,6 +36,7 @@
       "6-reference/EconContract",
       "6-reference/TokenContract",
       "6-reference/TransferJudgement",
+      "6-reference/ForExchange",
       "6-reference/GasChargeTable"
     ],
     "IOST Javascript SDK": [

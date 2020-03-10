@@ -1,0 +1,59 @@
+{
+  "version-3.3.3-docs": {
+    "Getting started": [
+      "version-3.3.3-1-getting-started/Overview",
+      "version-3.3.3-1-getting-started/Quickstart"
+    ],
+    "IOST Design and Concepts": [
+      "version-3.3.3-2-intro-of-iost/Account",
+      "version-3.3.3-2-intro-of-iost/Vote",
+      "version-3.3.3-2-intro-of-iost/Economic-model"
+    ],
+    "Smart Contract": [
+      "version-3.3.3-3-smart-contract/ContractStart",
+      "version-3.3.3-3-smart-contract/IOST-Blockchain-API",
+      "version-3.3.3-3-smart-contract/Update-Contract",
+      "version-3.3.3-3-smart-contract/Generate-Receipt",
+      "version-3.3.3-3-smart-contract/Token",
+      "version-3.3.3-3-smart-contract/Token20.1",
+      "version-3.3.3-3-smart-contract/Token721"
+    ],
+    "Running IOST node": [
+      "version-3.3.3-4-running-iost-node/LocalServer",
+      "version-3.3.3-4-running-iost-node/Building-IOST",
+      "version-3.3.3-4-running-iost-node/iWallet",
+      "version-3.3.3-4-running-iost-node/Deployment",
+      "version-3.3.3-4-running-iost-node/Become-Servi-Node",
+      "version-3.3.3-4-running-iost-node/Configuration",
+      "version-3.3.3-4-running-iost-node/Metrics"
+    ],
+    "Examples": [
+      "version-3.3.3-5-lucky-bet/LuckyBet"
+    ],
+    "Reference": [
+      "version-3.3.3-6-reference/API",
+      "version-3.3.3-6-reference/SystemContract",
+      "version-3.3.3-6-reference/EconContract",
+      "version-3.3.3-6-reference/TokenContract",
+      "version-3.3.3-6-reference/TransferJudgement",
+      "version-3.3.3-6-reference/ForExchange",
+      "version-3.3.3-6-reference/GasChargeTable"
+    ],
+    "IOST Javascript SDK": [
+      "version-3.3.3-7-iost-js/IOST-class",
+      "version-3.3.3-7-iost-js/Blockchain-class",
+      "version-3.3.3-7-iost-js/KeyPair-class",
+      "version-3.3.3-7-iost-js/Transaction-class"
+    ],
+    "IOST Tech Internals": [
+      "version-3.3.3-2-intro-of-iost/VM",
+      "version-3.3.3-2-intro-of-iost/Database",
+      "version-3.3.3-2-intro-of-iost/Network-layer"
+    ]
+  },
+  "version-3.3.3-docs-other": {
+    "First Category": [
+      "version-3.3.3-md-example"
+    ]
+  }
+}
