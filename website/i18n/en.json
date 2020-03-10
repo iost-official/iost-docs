@@ -917,6 +917,10 @@
       "version-3.3.2/4-running-iost-node/version-3.3.2-Deployment": {
         "title": "Join IOST Network",
         "sidebar_label": "Join IOST Network"
+      },
+      "version-3.3.3/6-reference/version-3.3.3-ForExchange": {
+        "title": "ForExchange",
+        "sidebar_label": "ForExchange"
       }
     },
     "links": {
