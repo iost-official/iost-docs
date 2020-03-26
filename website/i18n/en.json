@@ -620,7 +620,8 @@
         "sidebar_label": "Command Line Wallet Tool"
       },
       "version-2.4.0/6-reference/version-2.4.0-SystemContract": {
-        "title": "SystemContract"
+        "title": "SystemContract",
+        "sidebar_label": "System Contract"
       },
       "version-2.4.0/7-iost-js/version-2.4.0-Transaction-class": {
         "title": "Transaction",

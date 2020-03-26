@@ -17,9 +17,9 @@ function do_sync() {
 #LAN='zh-CN'
 #V="2.1.7"
 #for L in ja zh-CN 
-for L in zh-CN 
+for L in ru ko
 do
-	for v in 3.3.3
+	for v in 3.0.6
 	do
 		do_sync $L $v
 	done
