@@ -922,6 +922,10 @@
       "version-3.3.3/6-reference/version-3.3.3-ForExchange": {
         "title": "ForExchange",
         "sidebar_label": "ForExchange"
+      },
+      "version-3.3.4/3-smart-contract/version-3.3.4-Token721": {
+        "title": "Create IRC721 Token",
+        "sidebar_label": "Create IRC721 Token"
       }
     },
     "links": {

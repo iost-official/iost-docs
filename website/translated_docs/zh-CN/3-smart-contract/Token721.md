@@ -4,9 +4,12 @@ title: 创建 IRC721 Token
 sidebar_label: 创建 IRC721 Token
 ---
 
-## IRC721 草案标准
+## IRC721 标准
 
 不可替代 token 的标准接口。
+
+## 注意
+一般情况下，可以使用 [UniversalCryptoAssetToken](https://github.com/blockchainpower/UniversalCryptoAssetToken/blob/master/src/iost) 作为 IOST NFT 的实现。
 
 ## 摘要
 
@@ -157,6 +160,3 @@ token 信息存储在 [`token721.iost`](6-reference/TokenContract.md#token721ios
 
 使用`tokenId`查询特定`tokenSymbol`token 的 meta 信息。
 
-## 实现
-
-该实现尚不可用。 您现在可以使用当前[`token721.iost`](6-reference/TokenContract.md#token721iost)进行测试。

@@ -4,9 +4,13 @@ title: Create IRC721 Token
 sidebar_label: Create IRC721 Token
 ---
 
-# IRC721 draft standard
+# IRC721 Standard
 
 A standard interface for non-fungible tokens.
+
+## Notice
+
+We encourge developers to use [This implementation](https://github.com/blockchainpower/UniversalCryptoAssetToken/blob/master/src/iost) as a starting point of the non-fungible token related logics of their DAPPs.
 
 ## Abstract
 
@@ -157,6 +161,3 @@ Query the meta info of a specific `tokenSymbol` token owned by `owner` with `ind
 
 Query the meta info of a specific `tokenSymbol` token with `tokenId`.
 
-## Implementation
-
-The implementation is not yet available. You can test with current [`token721.iost`](6-reference/TokenContract.md#token721iost) by now.

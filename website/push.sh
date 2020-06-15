@@ -1,5 +1,5 @@
 set -e
-yarn run build
+#yarn run build
 
 # 推送到文档网站 ec2
 

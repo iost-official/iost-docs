@@ -14,12 +14,14 @@ function do_sync() {
 		cp translated_docs/$LAN/$f translated_docs/$LAN/version-$V/$f
 	done 
 }
+
 #LAN='zh-CN'
 #V="2.1.7"
-#for L in ja zh-CN 
-for L in ru ko
+#for L in ru ko
+
+for L in zh-CN 
 do
-	for v in 3.0.6
+	for v in 3.3.4
 	do
 		do_sync $L $v
 	done
