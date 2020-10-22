@@ -34,12 +34,27 @@ The development and deployment of smart contracts requires [iwallet](4-running-i
 
 ### Importing the initial account ```admin``` for iwallet
 
-In order to complete the test, you need to import an accouunt for iwallet.   
+You have two methods on how to use account key store file. You can choose any one you like. 
+
+#### Method 1: Import key store file into default location
+In order to complete the test, you need to import an account for iwallet.
 You can import the 'admin' account for the local test node.
 
 ```
 iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1
 ```
+
+After this command, the key store json file will written into ~/.iwallet/admin.json. Later 'iwallet --account admin' command will lookup account key store json inside ~/.iwallet folder and find the correct file.
+
+#### Method 2: Use specified key store file location
+
+```
+iwallet account import admin 2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1 --key_file admin.json
+# remember this file location, you provide it in later commands like iwallet --key_file admin.json
+```
+
+Since the admin key file is already provided for the local debug chain, you can also directly use it like 'iwallet --key_file config/dev_admin_key.json'.
+
 
 
 ## Hello world
@@ -61,17 +76,21 @@ module.exports = HelloWorld;
 The smart contract contains an interface that receives an input and then outputs ```hello, + enter ```. In order to allow this interface to be called outside the smart contract, you need to prepare the abi file. e.g HelloWorld.abi
 
 ```
+iwallet compile helloworld.js
+vim helloworld.js.abi
 {
-  "lang": "javascript",
-  "version": "1.0.0",
-  "abi": [
-    {
-      "name": "hello",
-      "args": [
-        "string"
-      ]
-    }
-  ]
+    "lang": "javascript",
+    "version": "1.0.0",
+    "abi": [
+        {
+            "name": "hello",
+            "args": [
+                "string"
+            ],
+            "amountLimit": [],
+            "description": ""
+        }
+    ]
 }
 ```
 
@@ -82,10 +101,16 @@ The name field of abi corresponds to the function name of js, and the args list 
 Publish smart contracts
 
 ```
+# ensure you are in `go-iost` folder
+# chain_id 1020 means the local chain
+# chain_id 1024 is mainnet
+# chain_id 1023 is testnet
 iwallet \
  --server localhost:30002 \
  --account admin \
- publish helloworld.js helloworld.abi
+ --key_file config/dev_admin_key.json \
+ --chain_id 1020 \ 
+ publish helloworld.js helloworld.js.abi
 ```
 
 Sample output
@@ -224,14 +249,14 @@ The result will be
     Checking transaction receipt...
     ERROR: running action Action{Contract: token.iost, ActionName: transfer, Data: ["iost","someone","me","10","this is st... error: transaction has no permission
 
-## Debugging
+## Debugging & Contract Logging
 
 First start the local node as described above. If you use docker, you can use the following command to print the log.
 ```
 docker ps -f <container>
 ```
 
-At this point, you can add the required log in the code by adding console.log(). The argument passed to console.log() will be printed to stdout of the server process.
+At this point, you can add the required log in the code by adding console.log(). The argument passed to console.log() will be printed to stdout of the server process. Make sure the 'log -> enablecontractlog' is true in config/iserver.yml.
 
 ## ABI Interface Definition
 

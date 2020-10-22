@@ -4,13 +4,13 @@ title: Create IRC721 Token
 sidebar_label: Create IRC721 Token
 ---
 
-# IRC721 Standard
+# IRC721 Standard (deprecated) 
 
 A standard interface for non-fungible tokens.
 
 ## Notice
 
-We encourge developers to use [This implementation](https://github.com/blockchainpower/UniversalCryptoAssetToken/blob/master/src/iost) as a starting point of the non-fungible token related logics of their DAPPs.
+IRC721 was the NFT standard for IOST. But later we found its design has some flaws which are not easy to be fixed, so now we encourage developers to use another pure javascript NFT standard: [IRC722](3-smart-contract/Token722.md).
 
 ## Abstract
 

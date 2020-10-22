@@ -108,7 +108,7 @@ Get the total circulation of tokens.
 | Total supply | string |
 
 
-## token721.iost
+## token721.iost (depreciated)
 ---
 
 ### Description

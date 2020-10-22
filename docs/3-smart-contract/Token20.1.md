@@ -265,8 +265,8 @@ The following gives a basic implementation, the customization can be made by mod
 }
 
 // code:
-const name = "your_token";
-const fullName = "YTK"; //It is recommended that the wallet and browser display the name of the currency as "fullName(name)", for example: YTK(your_token)
+const name = "ytk";
+const fullName = "YTK Stable Coin"; //It is recommended that the wallet and browser display the name of the currency as "name(fullName)", for example: ytk(YTK stable coin)
 const decimal = 8;
 const totalSupply = 90000000000;
 const admin = "your_admin";

@@ -139,7 +139,7 @@ docker exec iserver iwallet state
 
 See also [iWallet](4-running-iost-node/iWallet.md).
 
-The latest blockchain info is also shown at [blockchain explorer](https://explorer.iost.io).
+The latest blockchain info is also shown at [blockchain explorer](https://www.iostabc.com/).
 
 ## Upgrade the node
 
@@ -245,25 +245,12 @@ p2p:
 You might want to download recent blockchain directly instead of syncing from the genesis.
 Fortunately, we have the *snapshot*.   
 
-**Nodes which generate blocks should use snapshot with full history.**
-
-### Snapshot with full history
-**Nodes which generate blocks should use this.**  
-Download link: [storage.tar](http://archive.iost.io/snapshot/storage.tar), about 200GB   
-Checksum:
-[MD5](http://archive.iost.io/snapshot/MD5SUMS) /
-[SHA1](http://archive.iost.io/snapshot/SHA1SUMS) /
-[SHA256](http://archive.iost.io/snapshot/SHA256SUMS)
-
-### Snapshot with pruned history
-**Nodes which generate blocks should not use this.**  
-Download link: [storage_prune.tar](http://archive.iost.io/snapshot/storage_prune.tar), about 13GB   
+### Snapshot with pruned history 
+Download link: [storage_prune.tar](http://archive.iost.io/snapshot/storage_prune.tar), less than 30GB   
 Checksum:
 [MD5](http://archive.iost.io/snapshot/MD5SUMS_prune) /
 [SHA1](http://archive.iost.io/snapshot/SHA1SUMS_prune) /
 [SHA256](http://archive.iost.io/snapshot/SHA256SUMS_prune)
-
-
 
 Download the `tar` file using your favorite tools (i.e. `wget`), then do the following steps:
 

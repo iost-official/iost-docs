@@ -518,6 +518,11 @@ curl -X POST http://127.0.0.1:30001/subscribe -d '{"topics":["CONTRACT_EVENT"], 
 
 ```
 
+#### blockchain.contextInfo()
+```
+{"abi_name":"hello","caller":{"name":"admin","is_account":true},"contract_name":"ContractATrHLF6LnpzjwQ1iU4VB38cSCURYzeCSyH8nSFSw8Tnc","publisher":"admin"}
+```
+
 ## tx object and block object
 tx object contains current transaction information. Here's its attributes:
 
@@ -526,9 +531,9 @@ tx object contains current transaction information. Here's its attributes:
 	time: 1541541540000000000, // nano second
 	hash: "4mBbjkCYJQZz7hGSdnRKCLgGEkuhen1FCb6YDD7oLmtP",
 	expiration: 1541541540010000000, // nano second
-	gas_limit: 100000,
-	gas_ratio: 100,
-	auth_list: {"IOST4wQ6HPkSrtDRYi2TGkyMJZAB3em26fx79qR3UJC7fcxpL87wTn":2},
+	gasLimit: 100000,
+	gasRatio: 100,
+	authList: {"Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto":2}, // pubkey
 	publisher: "user0"
 }
 ```  
@@ -544,8 +549,8 @@ block object contrains current block information. Here's its attributes:
 ```js
 {
 	number: 132,
-	parent_hash: "4mBbjkCYJQZz7hGSdnRKCLgGEkuhen1FCb6YDD7oLmtP",
-	witness: "IOST4wQ6HPkSrtDRYi2TGkyMJZAB3em26fx79qR3UJC7fcxpL87wTn",
+	parentHash: "4mBbjkCYJQZz7hGSdnRKCLgGEkuhen1FCb6YDD7oLmtP", / parent block hash
+	witness: "6sNQa7PV2SFzqCBtQUcQYJGGoU7XaB6R4xuCQVXNZe6b", // block producer pubkey. Producer key is not same as account key
 	time: 1541541540000000000 // nano second
 }
 ```
@@ -553,7 +558,7 @@ block object contrains current block information. Here's its attributes:
 example:
 
 ```js
-console.log(block.parent_hash)
+console.log(block.time)
 ```
 
 ## IOSTCrypto object
@@ -567,7 +572,7 @@ Calculate sha3-256 hash.
 | :----: | :------ |:------ |
 | data | string | |
 
-Returns: string which is the result of base58 encode of hash byte array. (```base58\_encode(sha3\_256(data))```)
+Returns: string which is the result of base58 encode of hash byte array. (```base58_encode(sha3_256(data))```)
 
 example:
 

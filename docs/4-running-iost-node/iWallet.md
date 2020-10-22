@@ -16,6 +16,12 @@ You need to [install golang](Building-IOST.html#install-golang) firstly before y
 go get github.com/iost-official/go-iost/cmd/iwallet
 ```
 
+Or use iwallet inside docker directly:
+
+```
+docker run --rm iostio/iost-node iwallet --help
+```
+
 Please install [Node.js](https://nodejs.org/en/download/) if you want to [publish contracts onto the blockchain](#publish-contract).
 
 ## Basic Usage

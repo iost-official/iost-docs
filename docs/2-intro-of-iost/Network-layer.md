@@ -28,6 +28,4 @@ The way we handle this is adopting a filter algorithm to, well, filter duplicate
 
 We use [UPnP](https://en.wikipedia.org/wiki/Universal_Plug_and_Play) Protocol to achieve LAN penetration. UPnP is different than other policies, such as [UDP Hole Punching](https://en.wikipedia.org/wiki/UDP_hole_punching) and [STUN](https://en.wikipedia.org/wiki/STUN); it does not require port exposure without publishing the server. That means you can use your home computer to access our network and communicate with other nodes, without having to use a cloud server.
 
-## An Easter Egg
 
-In the P2P network package of our code repository, there is an `/example` directory. We have created an instant messaging app with our network package. Navigate to the directory, and run `go build` to compile the binary `./example`. Now you can chat with others within the network. Have fun!

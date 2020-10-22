@@ -40,13 +40,14 @@ yum --enablerepo=epel install -y git-lfs && git lfs install
 ### Clone Code
 
 ```
-go get -d github.com/iost-official/go-iost
+cd $GOPATH/github.com/iost-official/
+git clone https://github.com/iost-official/go-iost.git
 ```
 
 ### Build IOST
 ```
 cd $GOPATH/src/github.com/iost-official/go-iost
 git lfs pull
-make build install
 cd vm/v8vm/v8/; make deploy; cd ../../..
+make build install
 ```

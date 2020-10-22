@@ -12,10 +12,18 @@ Before you get into IOST technical details or developing smart contract on IOST,
 
 
 
-## If you want to use IOST
+## If you are an ordinary user
 
 You can join IOST community and contribute to IOST daily operation even if you are *NOT* a developer.  
-You can[have a look at the browser](https://www.iostabc.com).
+You can [have a look at the browser](https://www.iostabc.com).
+
+### Wallet
+
+#### Chrome Extension Wallet
+You can use one of these two wallet: [iWallet](https://chrome.google.com/webstore/detail/iwallet/kncchdigobghenbbaddojjnnaogfppfj?utm_source=chrome-ntp-icon) or [Jetstream](https://chrome.google.com/webstore/detail/jetstream/ijancdlmlahmfgcimhocmpibadokcdfc). 
+
+#### App Wallet
+You can use wallets like [TOKEN POCKET](https://www.tokenpocket.pro/).
 
 ## If you are a developer
 
@@ -32,8 +40,11 @@ For smart contract developers, you can refer to [smart contract developing secti
 
 There's also som examples provided for smart contract developers, which introduce how to write/deploy/run contracts.
 
+#### Pumpkin Example
+This a Defi-like full featured DAPP. You can use chrome IOST wallet extension to stake IOST coin, and then you can farm the 'Pumpkin' token. This is a great example including both contract code / frontend code. [Pumpkin](http://pumpkindefi.com/)
+
 #### Bet Example
-This example includes a bet contract writing in javascript, and a script demonstrating deploying/calling the contract from command line.
+This example includes a bet contract writing in javascript, and a script demonstrating deploying/calling the contract from command line. You can learn how to use the command line tool.
 
 * [doc](5-lucky-bet/LuckyBet.md)
 * [code](https://github.com/iost-official/luckybet_sample)
@@ -59,10 +70,9 @@ There are also SDK and API provided for developers:
 	* [code](https://github.com/iost-official/pyost) 
 * JSON RPC API
 	* [Documentation](6-reference/API.md)
+* Chrome Extension
+	* [code](https://github.com/lispc/iost-extension)
 
 ## If you are interested in tech details
 
 For those of you who are interested in technical details, you can learn about [database infrastructure](2-intro-of-iost/Database.md), [network layer](2-intro-of-iost/Network-layer.md), and [virtual machine](2-intro-of-iost/VM.md). You will be able to understand the internal logic of IOST through these documentations.
-
-## Help
-Feel free to ask on [Slack](https://iost-community.slack.com) or [IOST forum](https://forum.iost.io) if you have any questions.
