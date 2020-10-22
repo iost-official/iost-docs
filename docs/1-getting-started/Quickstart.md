@@ -34,11 +34,11 @@ For developers, there're a lot of materials to help you.
 You can choose to [run local single-node net](4-running-iost-node/LocalServer.md) or [join IOST net](4-running-iost-node/Deployment.md).   
 You can use [command line tool](4-running-iost-node/iWallet.md) to play with IOST Blockchain.
 
-### Smart contracts developing
+### Smart contracts development
 
-For smart contract developers, you can refer to [smart contract developing sections](3-smart-contract/ContractStart.md) for details.   
+For smart contract developers, you can refer to [smart contract development quick start](3-smart-contract/ContractStart.md) for details.   
 
-There's also som examples provided for smart contract developers, which introduce how to write/deploy/run contracts.
+There's also some examples provided for smart contract developers, which introduce how to write/deploy/run contracts.
 
 #### Pumpkin Example
 This a Defi-like full featured DAPP. You can use chrome IOST wallet extension to stake IOST coin, and then you can farm the 'Pumpkin' token. This is a great example including both contract code / frontend code. [Pumpkin](http://pumpkindefi.com/)
