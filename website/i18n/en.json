@@ -68,6 +68,10 @@
         "title": "Create IRC721 Token",
         "sidebar_label": "Create IRC721 Token"
       },
+      "3-smart-contract/Token722": {
+        "title": "Create IRC722 Token",
+        "sidebar_label": "Create IRC722 Token"
+      },
       "3-smart-contract/Update-Contract": {
         "title": "Update Contract",
         "sidebar_label": "Update Contract"
@@ -926,6 +930,50 @@
       "version-3.3.4/3-smart-contract/version-3.3.4-Token721": {
         "title": "Create IRC721 Token",
         "sidebar_label": "Create IRC721 Token"
+      },
+      "version-3.4.0/1-getting-started/version-3.4.0-Quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "version-3.4.0/2-intro-of-iost/version-3.4.0-Network-layer": {
+        "title": "Network layer",
+        "sidebar_label": "Network layer"
+      },
+      "version-3.4.0/3-smart-contract/version-3.4.0-ContractStart": {
+        "title": "Smart Contract Quick Start",
+        "sidebar_label": "Smart Contract Quick Start"
+      },
+      "version-3.4.0/3-smart-contract/version-3.4.0-IOST-Blockchain-API": {
+        "title": "IOST Blockchain API",
+        "sidebar_label": "IOST Blockchain API"
+      },
+      "version-3.4.0/3-smart-contract/version-3.4.0-Token20.1": {
+        "title": "Create IRC21 Token",
+        "sidebar_label": "Create IRC21 Token"
+      },
+      "version-3.4.0/3-smart-contract/version-3.4.0-Token721": {
+        "title": "Create IRC721 Token",
+        "sidebar_label": "Create IRC721 Token"
+      },
+      "version-3.4.0/3-smart-contract/version-3.4.0-Token722": {
+        "title": "Create IRC722 Token",
+        "sidebar_label": "Create IRC722 Token"
+      },
+      "version-3.4.0/4-running-iost-node/version-3.4.0-Building-IOST": {
+        "title": "Build IOST",
+        "sidebar_label": "Build IOST"
+      },
+      "version-3.4.0/4-running-iost-node/version-3.4.0-Deployment": {
+        "title": "Join IOST Network",
+        "sidebar_label": "Join IOST Network"
+      },
+      "version-3.4.0/4-running-iost-node/version-3.4.0-iWallet": {
+        "title": "Command Line Wallet Tool",
+        "sidebar_label": "Command Line Wallet Tool"
+      },
+      "version-3.4.0/6-reference/version-3.4.0-TokenContract": {
+        "title": "Token Contract",
+        "sidebar_label": "Token Contract"
       }
     },
     "links": {

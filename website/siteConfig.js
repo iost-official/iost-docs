@@ -32,7 +32,7 @@ const siteConfig = {
   // Used for publishing and more
   projectName: 'Iost',
   organizationName: 'IOST',
-  algolia: {
+  _algolia: {
     apiKey: '31556a769e30bb94f63be6ddcc49f071',
     indexName: 'iost',
     algoliaOptions: {

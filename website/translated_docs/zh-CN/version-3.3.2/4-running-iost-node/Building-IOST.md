@@ -39,13 +39,14 @@ yum --enablerepo=epel install -y git-lfs && git lfs install
 ### 获取代码
 
 ```
-go get -d github.com/iost-official/go-iost
+cd $GOPATH/src/github.com/iost-official/
+git clone https://github.com/iost-official/go-iost.git
 ```
 
 ### 编译
 ```
 cd $GOPATH/src/github.com/iost-official/go-iost
 git lfs pull
-make build install
 cd vm/v8vm/v8/; make deploy; cd ../../..
+make build install
 ```

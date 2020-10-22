@@ -16,7 +16,8 @@
       "3-smart-contract/Generate-Receipt",
       "3-smart-contract/Token",
       "3-smart-contract/Token20.1",
-      "3-smart-contract/Token721"
+      "3-smart-contract/Token721",
+      "3-smart-contract/Token722"
     ],
     "Running IOST node": [
       "4-running-iost-node/LocalServer",

@@ -21,7 +21,7 @@ function do_sync() {
 
 for L in zh-CN 
 do
-	for v in 3.3.4
+	for v in 3.4.0
 	do
 		do_sync $L $v
 	done

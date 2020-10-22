@@ -234,21 +234,8 @@ p2p:
 
 ## 使用 snapshot 加速同步
 
-从 snapshot 导入区块链数据可以显著加速同步过程。   
+从 snapshot 导入区块链数据可以显著加速同步过程。目前大小约为 30GB。   
 
-**造块节点需要使用完整 snapshot。**
-
-### 完整 snapshot
-**造块节点需要使用这种方式。**     
-下载链接: [storage.tar](http://archive.iost.io/snapshot/storage.tar)   
-文件校验:
-[MD5](http://archive.iost.io/snapshot/MD5SUMS) /
-[SHA1](http://archive.iost.io/snapshot/SHA1SUMS) /
-[SHA256](http://archive.iost.io/snapshot/SHA256SUMS)
-
-
-### 精简 snapshot
-**造块节点不应该使用这种方式。**     
 下载链接: [storage_prune.tar](http://archive.iost.io/snapshot/storage_prune.tar)   
 文件校验:
 [MD5](http://archive.iost.io/snapshot/MD5SUMS_prune) /
