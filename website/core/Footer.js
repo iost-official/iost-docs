@@ -55,13 +55,7 @@ class Footer extends React.Component {
             {/* <a href={this.pageUrl('users.html', this.props.language)}>
               User Showcase
             </a> */}
-            <a
-              href="https://forum.iost.io/"
-              target="_blank"
-              rel="noreferrer noopener">
-              Forum
-            </a>
-            <a href="https://iost-community.slack.com/">Slack chat</a>
+            <a href="https://t.me/iostdev">Telegram Developer Group</a>
             <a href="https://medium.com/@iostoken">Medium</a>
             
             {/* <a href={`${this.props.config.baseUrl}blog`}>Blog</a> */}
