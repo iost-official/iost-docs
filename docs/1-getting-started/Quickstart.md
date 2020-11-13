@@ -6,16 +6,16 @@ sidebar_label: Quickstart
 
 This page provides a guide for different kinds of users to find out which parts in the documentations to look at.
 
-## If you want to know IOST basic concepts
+## IOST basic concepts
 
 Before you get into IOST technical details or developing smart contract on IOST, it is helpful to know IOST basic concepts at first and have a thorough understanding about IOST. You can learn some basic concepts about IOST's [account system](2-intro-of-iost/Account.md), [economic model](2-intro-of-iost/Economic-model.md), [vote process](2-intro-of-iost/Vote.md).
 
 
+## Tools
 
-## If you are an ordinary user
+### Blockchain Explorer
 
-You can join IOST community and contribute to IOST daily operation even if you are *NOT* a developer.  
-You can [have a look at the browser](https://www.iostabc.com).
+You can [have a look at the explorer](https://www.iostabc.com).
 
 ### Wallet
 
@@ -25,7 +25,7 @@ You can use one of these two wallet: [iWallet](https://chrome.google.com/webstor
 #### App Wallet
 You can use wallets like [TOKEN POCKET](https://www.tokenpocket.pro/).
 
-## If you are a developer
+## Development resources
 
 For developers, there're a lot of materials to help you.
 
@@ -73,6 +73,6 @@ There are also SDK and API provided for developers:
 * Chrome Extension
 	* [code](https://github.com/lispc/iost-extension)
 
-## If you are interested in tech details
+## Tech details of IOST blockchain implementation
 
 For those of you who are interested in technical details, you can learn about [database infrastructure](2-intro-of-iost/Database.md), [network layer](2-intro-of-iost/Network-layer.md), and [virtual machine](2-intro-of-iost/VM.md). You will be able to understand the internal logic of IOST through these documentations.

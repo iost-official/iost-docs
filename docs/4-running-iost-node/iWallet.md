@@ -930,9 +930,10 @@ The following command changes keypair of an account.
 # 100 is the default threshold of permission, we must use this same value here
 # You can also change active keypair using similar command
 # Step 1: add a new permission key
-iwallet -a testacc call auth.iost assignPermission '["testacc","owner","BBwMULYkv1JXh9jnN6ECbED5QcvjxnLxy2QHjy3xxEEn",100]' 
-# Step 2: remove the old permission key
-iwallet -a testacc call auth.iost revokePermission '["testacc","owner","78N7oANHbBrAxG2Ru7yfzSv73o1z4K4EDskxFTfDkspo"]'
+iwallet -a testacc call auth.iost assignPermission '["testacc","owner","BBwMULYkv1JXh9jnN6ECbED5QcvjxnLxy2QHjy3xxEEn",100]' --signers testacc@owner 
+# Step 2: remove the old permission key 
+iwallet -a testacc call auth.iost revokePermission '["testacc","owner","78N7oANHbBrAxG2Ru7yfzSv73o1z4K4EDskxFTfDkspo"]' --signers testacc@owner
+# Now since the owner key of testacc is changed, the ~/.iwallet/testacc.json is outdated. You have to edit this file to use the account later.
 ```
 
 ### Multiple Signature

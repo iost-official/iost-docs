@@ -6,14 +6,13 @@ sidebar_label: Overview
 
 Welcome to IOST documentations!
 
-IOST is a new generation of high-performance public blockchains. The infrastructure is scalable, stable and allows low level customization for different business requirements. After the launch of IOST mainnet, we have welcomed many new developers to the IOST technical community.
+IOST is a new generation of high-performance public blockchain focusing on performance and developer friendliness. Some great features include:
 
-These documentations are an entry point to IOST ecosystem for new developers as well as those who are experienced. The documentations are maintained both by the IOST community and by the core team — your help is always welcome! The documentation serves the purpose of providing a clear understanding of IOST technology and ecosystem.
+1. The V8 JavaScript engine is integrated inside the blockchain, so you can use JavaScript to write smart contracts!
+2. The blockchain is highly scalable with thousands of TPS. Meanwhile it still has a more decentralized consensus than DPoS.
+3. 0.5 second block, 0.5 minute finality.
+4. Free transactions. You can stake coins to get gas.
 
-There are some prerequisites to get started with development on the IOST networks:
+The infrastructure is scalable and stable. After the launch of IOST mainnet in 2019, developers have made a lot of great DAPPs on the IOST smart contract platform.   
 
-* Mainstream coding and development experience
-* No need for previous Blockchain development experience
-* Understanding of IOST basics or your business scenario/requirements
-
-We sincerely welcome developers to IOST!
+We sincerely welcome developers to [IOST technology community](https://t.me/iostdev)
