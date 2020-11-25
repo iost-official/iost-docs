@@ -476,50 +476,67 @@ curl http://127.0.0.1:30001/getAccount/admin/true
 200 OK
 
 {
-	"name": "admin",
-	"balance": 982678652,
-	"gas_info": {
-		"current_total": 53102598634,
-		"transferable_gas": 60000,
-		"pledge_gas": 53102538634,
-		"increase_speed": 330011,
-		"limit": 90003000000,
-		"pledged_info": [{
-			"pledger": "admin",
-			"amount": 3000100
-		}]
-	},
-	"ram_info": {
-		"available": "99000"
-	},
-	"permissions": {
-		"active": {
-			"name": "active",
-			"group_names": [],
-			"items": [{
-				"id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
-				"is_key_pair": true,
-				"weight": "1",
-				"permission": ""
-			}],
-			"threshold": "1"
-		},
-		"owner": {
-			"name": "owner",
-			"group_names": [],
-			"items": [{
-				"id": "IOST2mCzj85xkSvMf1eoGtrexQcwE6gK8z5xr6Kc48DwxXPCqQJva4",
-				"is_key_pair": true,
-				"weight": "1",
-				"permission": ""
-			}],
-			"threshold": "1"
-		}
-	},
-	"groups": {},
-	"frozen_balances": [],
-	"vote_infos": []
+    "name": "admin",
+    "balance": 20999997618.36,
+    "gas_info": {
+        "current_total": 30000000,
+        "transferable_gas": 0,
+        "pledge_gas": 30000000,
+        "increase_speed": 115,
+        "limit": 30000000,
+        "pledged_info": [
+            {
+                "pledger": "admin",
+                "amount": 100
+            },
+            {
+                "pledger": "foundation",
+                "amount": 100
+            },
+            {
+                "pledger": "producer000",
+                "amount": 100
+            }
+        ]
+    },
+    "ram_info": {
+        "available": "100000",
+        "used": "0",
+        "total": "100000"
+    },
+    "permissions": {
+        "active": {
+            "name": "active",
+            "group_names": [],
+            "items": [
+                {
+                    "id": "Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto",
+                    "is_key_pair": true,
+                    "weight": "100",
+                    "permission": ""
+                }
+            ],
+            "threshold": "100"
+        },
+        "owner": {
+            "name": "owner",
+            "group_names": [],
+            "items": [
+                {
+                    "id": "Gcv8c2tH8qZrUYnKdEEdTtASsxivic2834MQW6mgxqto",
+                    "is_key_pair": true,
+                    "weight": "100",
+                    "permission": ""
+                }
+            ],
+            "threshold": "100"
+        }
+    },
+    "groups": {},
+    "frozen_balances": [],
+    "vote_infos": []
 }
+
 ```
 
 | 字段 | 类型 | 描述 |
