@@ -106,7 +106,7 @@ const siteConfig = {
   ogImage: 'img/logo.png',
   twitterImage: 'img/logo.png',
   twitter: 'true',
-  twitterUsername: 'IOSToken',
+  twitterUsername: 'IOST_Official',
 
   gaTrackingId: "UA-126034939-1",
   gaGtag: true,
