@@ -13,7 +13,7 @@ Both `iwallet` and [API](6-reference/API.md) use RPC API inside and they have si
 You need to [install golang](Building-IOST.html#install-golang) firstly before you get `iwallet` by the following command:
 
 ```
-go install github.com/iost-official/go-iost/cmd/iwallet@latest
+go install github.com/iost-official/go-iost/cmd/iwallet
 ```
 
 Or use iwallet inside docker directly:
