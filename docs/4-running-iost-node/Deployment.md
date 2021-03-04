@@ -21,7 +21,7 @@ If you want to run a full node connected to IOST network, your machine must meet
 
 - Curl (any version you like)
 - Python (any version you like)
-- [Docker 1.13/Docker CE 17.03 or newer](https://docs.docker.com/install)
+- [Docker Engine 17.03 or newer](https://docs.docker.com/get-docker/)
 - (Optional) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Start the node
@@ -246,7 +246,7 @@ You might want to download recent blockchain directly instead of syncing from th
 Fortunately, we have the *snapshot*.   
 
 ### Snapshot with pruned history 
-Download link: [storage_prune.tar](http://archive.iost.io/snapshot/storage_prune.tar), less than 30GB   
+Download link: [storage_prune.tar](http://archive.iost.io/snapshot/storage_prune.tar), about 30GB   
 Checksum:
 [MD5](http://archive.iost.io/snapshot/MD5SUMS_prune) /
 [SHA1](http://archive.iost.io/snapshot/SHA1SUMS_prune) /
@@ -255,7 +255,7 @@ Checksum:
 Download the `tar` file using your favorite tools (i.e. `wget`), then do the following steps:
 
 - make sure iServer is shutdown: `docker stop iserver`
-- extract the snapshot file: `sudo rm -rf $PREFIX/storage && sudo tar xvf [storage.tar or storage_prune.tar] -C $PREFIX`
+- extract the snapshot file: `sudo rm -rf $PREFIX/storage && sudo tar xvf storage_prune.tar -C $PREFIX`
 - restart iServer: `docker start iserver`
 
 Then the node is going to continue syncing the blockchain from the certain height.

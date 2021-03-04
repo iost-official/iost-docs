@@ -4,12 +4,12 @@ title: Build IOST
 sidebar_label: Build IOST
 ---
 ### Install Golang
-Go 1.13 or newer is needed.
+Go 1.16 or newer is needed. CGO is needed too.   
 You can refer to [here](https://golang.org/doc/install) for installation. After installing, running
 ```
 go version
 ```
-You will see outputs contains "go version go1.13".
+You will see outputs contains "go version go1.16".
 
 > You may need to add the following environment variables to make your golang work better.
 > ```
@@ -40,15 +40,13 @@ yum --enablerepo=epel install -y git-lfs && git lfs install
 ### Clone Code
 
 ```
-mkdir -p $GOPATH/github.com/iost-official/
-cd $GOPATH/github.com/iost-official/
 git clone https://github.com/iost-official/go-iost.git
 ```
 
 ### Build IOST
 ```
-cd $GOPATH/src/github.com/iost-official/go-iost
+cd go-iost
 git lfs pull
-cd vm/v8vm/v8/; make deploy; cd ../../..
+make vmlib_install
 make build install
 ```

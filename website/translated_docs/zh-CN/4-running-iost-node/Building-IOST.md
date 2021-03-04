@@ -5,10 +5,10 @@ sidebar_label: 环境与设置
 ---
 
 ### 安装Golang
-至少需要安装 Go 1.13。   
+至少需要安装 Go 1.16。需要 CGO。       
 你可以参考[这里](https://golang.org/doc/install)进行安装. 之后运行
 go version
-应该输出"go version go1.13".
+应该输出"go version go1.16".
 
 > 为了你的golang可以更好使用，你可能需要添加如下环境变量
 > ```
@@ -39,15 +39,13 @@ yum --enablerepo=epel install -y git-lfs && git lfs install
 ### 获取代码
 
 ```
-mkdir -p $GOPATH/github.com/iost-official/
-cd $GOPATH/src/github.com/iost-official/
 git clone https://github.com/iost-official/go-iost.git
 ```
 
 ### 编译
 ```
-cd $GOPATH/src/github.com/iost-official/go-iost
+cd go-iost
 git lfs pull
-cd vm/v8vm/v8/; make deploy; cd ../../..
+make vmlib_install
 make build install
 ```

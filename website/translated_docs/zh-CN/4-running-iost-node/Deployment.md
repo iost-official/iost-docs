@@ -16,7 +16,7 @@ sidebar_label: 部署
 
 - Curl (版本任意)
 - Python (版本任意)
-- [Docker 1.13/Docker CE 17.03 以上](https://docs.docker.com/install)
+- [Docker Engine 17.03 以上](https://docs.docker.com/get-docker/)
 - (推荐) [Docker Compose](https://docs.docker.com/compose/install)
 
 ## 启动节点
@@ -245,7 +245,7 @@ p2p:
 下载镜像文件，然后以此执行以下操作：
 
 - 确保 iServer 停止：`docker stop iserver`
-- 导入数据：`sudo rm -rf $PREFIX/storage && sudo tar xvf [storage.tar 或者 stroage_prune.tar] -C $PREFIX`
+- 导入数据：`sudo rm -rf $PREFIX/storage && sudo tar xvf stroage_prune.tar -C $PREFIX`
 - 重启 iServer：`docker start iserver`
 
 之后节点会从 snapshot 中的高度继续同步。
