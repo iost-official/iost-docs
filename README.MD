@@ -24,6 +24,23 @@ npm run build
 ```
 This will generate a `build` directory inside the `website` directory containing the `.html` files from all of your docs and other pages included in `pages`.
 
+## Update
+
+Release a new version: 
+
+```
+cd website/
+npm run version 3.5.0
+# edit version in sync.sh
+bash sync.sh
+```
+
+Update without new version:
+```
+# better read the script before running, and git diff after running
+bash iost-docs/update.sh
+```
+
 ## Deploy
 Complete the deployment by publishing the website/build directory with nginx or github page.
 
